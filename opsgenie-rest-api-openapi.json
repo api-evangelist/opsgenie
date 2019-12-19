@@ -1,0 +1,1151 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "2.0.0",
+        "title": "OpsGenie REST API",
+        "description": "OpsGenie OpenAPI Specification",
+        "termsOfService": "http:\/\/exmple.com\/license\/"
+    },
+    "servers": [
+        "http:\/\/api.opsgenie.com\/"
+    ],
+    "paths": {
+        "\/v2\/alerts\/requests\/{requestId}": {
+            "get": {
+                "summary": "Get Request Status of Alert",
+                "description": "Used to track the status and alert details (if any) of the request whose identifier is given",
+                "operationId": "GetRequestStatus",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "requestId",
+                        "in": "path",
+                        "description": "Universally unique identifier of the questioned request"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request status information for given id",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/GetRequestStatusResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/v2\/alerts": {
+            "get": {
+                "summary": "List Alerts",
+                "description": "Returns list of alerts",
+                "operationId": "ListAlerts",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "Search query to apply while filtering the alerts"
+                    },
+                    {
+                        "name": "searchIdentifier",
+                        "in": "query",
+                        "description": "Identifier of the saved search query to apply while filtering the alerts"
+                    },
+                    {
+                        "name": "searchIdentifierType",
+                        "in": "query",
+                        "description": "Identifier type of the saved search query. Possible values are 'id', or 'name'"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "Start index of the result set (to apply pagination). Minimum value (and also default value) is 0"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Maximum number of items to provide in the result. Must be a positive integer value. Default value is 20 and maximum value is 100"
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Name of the field that result set will be sorted by"
+                    },
+                    {
+                        "name": "order",
+                        "in": "query",
+                        "description": "Sorting order of the result set"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request status information for given id",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/GetRequestStatusResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create Alert",
+                "description": "Creates a new alert",
+                "operationId": "CreateAlert",
+                "deprecated": 0,
+                "parameters": []
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "BaseResponse": {
+                "type": "object",
+                "properties": {
+                    "requestId": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "took": {
+                        "description": "",
+                        "type": "number"
+                    }
+                }
+            },
+            "BaseResponseWithExpandable": {
+                "type": "object"
+            },
+            "ErrorResponse": {
+                "type": "object"
+            },
+            "SuccessResponse": {
+                "type": "object"
+            },
+            "SuccessData": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "PageDetails": {
+                "type": "object",
+                "properties": {
+                    "prev": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "next": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "first": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "last": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "Recipient": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "TeamRecipient": {
+                "type": "object"
+            },
+            "GroupRecipient": {
+                "type": "object"
+            },
+            "ScheduleRecipient": {
+                "type": "object"
+            },
+            "EscalationRecipient": {
+                "type": "object"
+            },
+            "UserRecipient": {
+                "type": "object"
+            },
+            "NoRecipient": {
+                "type": "object"
+            },
+            "AllRecipient": {
+                "type": "object"
+            },
+            "TimeRestrictionInterval": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "WeekdayTimeRestrictionInterval": {
+                "type": "object"
+            },
+            "TimeOfDayRestrictionInterval": {
+                "type": "object"
+            },
+            "WeekdayTimeRestriction": {
+                "type": "object",
+                "properties": {
+                    "startDay": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "startHour": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "startMin": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "endDay": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "endHour": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "endMin": {
+                        "description": "",
+                        "type": "integer"
+                    }
+                }
+            },
+            "TimeOfDayRestriction": {
+                "type": "object",
+                "properties": {
+                    "startHour": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "startMin": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "endHour": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "endMin": {
+                        "description": "",
+                        "type": "integer"
+                    }
+                }
+            },
+            "Duration": {
+                "type": "object",
+                "properties": {
+                    "timeAmount": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "timeUnit": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "Filter": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "MatchAll": {
+                "type": "object"
+            },
+            "MatchAllConditions": {
+                "type": "object"
+            },
+            "MatchAnyCondition": {
+                "type": "object"
+            },
+            "Condition": {
+                "type": "object",
+                "properties": {
+                    "field": {
+                        "description": "Specifies which alert field will be used in condition. Possible values are message, alias, description, source, entity, tags, actions, extra-properties, recipients or teams",
+                        "type": "string"
+                    },
+                    "key": {
+                        "description": "If field is set as extra-properties, key could be used for key-value pair",
+                        "type": "string"
+                    },
+                    "not": {
+                        "description": "Indicates behaviour of the given operation. Default value is false",
+                        "type": "boolean"
+                    },
+                    "operation": {
+                        "description": "It is the operation that will be executed for the given field and key.",
+                        "type": "string"
+                    },
+                    "expectedValue": {
+                        "description": "User defined value that will be compared with alert field according to the operation. Default value is empty string",
+                        "type": "string"
+                    },
+                    "order": {
+                        "description": "Order of the condition in conditions list",
+                        "type": "integer"
+                    }
+                }
+            },
+            "Responder": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "UserResponder": {
+                "type": "object"
+            },
+            "TeamResponder": {
+                "type": "object"
+            },
+            "AlertActionPayload": {
+                "type": "object",
+                "properties": {
+                    "user": {
+                        "description": "Display name of the request owner",
+                        "type": "string"
+                    },
+                    "note": {
+                        "description": "Additional note that will be added while creating the alert",
+                        "type": "string"
+                    },
+                    "source": {
+                        "description": "Source field of the alert. Default value is IP address of the incoming request",
+                        "type": "string"
+                    }
+                }
+            },
+            "CreateAlertPayload": {
+                "type": "object"
+            },
+            "AcknowledgeAlertPayload": {
+                "type": "object"
+            },
+            "UnAcknowledgeAlertPayload": {
+                "type": "object"
+            },
+            "CloseAlertPayload": {
+                "type": "object"
+            },
+            "SnoozeAlertPayload": {
+                "type": "object"
+            },
+            "EscalateAlertToNextPayload": {
+                "type": "object"
+            },
+            "AssignAlertPayload": {
+                "type": "object"
+            },
+            "AddTeamToAlertPayload": {
+                "type": "object"
+            },
+            "AddResponderToAlertPayload": {
+                "type": "object"
+            },
+            "ExecuteCustomAlertActionPayload": {
+                "type": "object"
+            },
+            "AddTagsToAlertPayload": {
+                "type": "object"
+            },
+            "AddDetailsToAlertPayload": {
+                "type": "object"
+            },
+            "AddNoteToAlertPayload": {
+                "type": "object"
+            },
+            "CreateSavedSearchPayload": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "query": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "UserRecipient": {
+                        "description": "User recipient",
+                        "type": "object"
+                    },
+                    "owner": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "teams": {
+                        "description": "Teams that the alert will be routed to send notifications",
+                        "type": "array"
+                    }
+                }
+            },
+            "teams": {
+                "type": "array"
+            },
+            "UpdateSavedSearchPayload": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "query": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "UserRecipient": {
+                        "description": "User recipient",
+                        "type": "object"
+                    },
+                    "owner": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "teams": {
+                        "description": "Teams that the alert will be routed to send notifications",
+                        "type": "array"
+                    }
+                }
+            },
+            "UpdateAlertPriorityPayload": {
+                "type": "object",
+                "properties": {
+                    "priority": {
+                        "description": "Priority level of the alert",
+                        "type": "string"
+                    }
+                }
+            },
+            "UpdateAlertMessagePayload": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "description": "Message of the alert",
+                        "type": "string"
+                    }
+                }
+            },
+            "UpdateAlertDescriptionPayload": {
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "GetRequestStatusResponse": {
+                "type": "object"
+            },
+            "ListAlertsResponse": {
+                "type": "object"
+            },
+            "GetAlertResponse": {
+                "type": "object"
+            },
+            "ListAlertRecipientsResponse": {
+                "type": "object"
+            },
+            "ListAlertLogsResponse": {
+                "type": "object"
+            },
+            "ListAlertNotesResponse": {
+                "type": "object"
+            },
+            "ListSavedSearchesResponse": {
+                "type": "object"
+            },
+            "CreateSavedSearchResponse": {
+                "type": "object"
+            },
+            "GetSavedSearchResponse": {
+                "type": "object"
+            },
+            "ListAlertAttachmentsResponse": {
+                "type": "object"
+            },
+            "GetAlertAttachmentResponse": {
+                "type": "object"
+            },
+            "GetCountAlertsResponse": {
+                "type": "object"
+            },
+            "AlertRequestStatus": {
+                "type": "object",
+                "properties": {
+                    "action": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "processedAt": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "integrationId": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "isSuccess": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "status": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "alertId": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "alias": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "BaseAlert": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "tinyId": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "alias": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "message": {
+                        "description": "Message of the alert",
+                        "type": "string"
+                    },
+                    "status": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "acknowledged": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "isSeen": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "tags": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "snoozed": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "snoozedUntil": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "count": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "lastOccurredAt": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "updatedAt": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "source": {
+                        "description": "Source field of the alert. Default value is IP address of the incoming request",
+                        "type": "string"
+                    },
+                    "owner": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "priority": {
+                        "description": "Priority level of the alert",
+                        "type": "string"
+                    },
+                    "responders": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "integration": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "report": {
+                        "description": "",
+                        "type": ""
+                    }
+                }
+            },
+            "tags": {
+                "type": "array"
+            },
+            "responders": {
+                "type": "array"
+            },
+            "integration": {
+                "type": "object"
+            },
+            "report": {
+                "type": "object"
+            },
+            "AlertTeamMeta": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "AlertIntegration": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "type": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "AlertReport": {
+                "type": "object",
+                "properties": {
+                    "ackTime": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "closeTime": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "acknowledgedBy": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "closedBy": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "Alert": {
+                "type": "object"
+            },
+            "AlertRecipient": {
+                "type": "object",
+                "properties": {
+                    "user": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "state": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "method": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "updatedAt": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "user": {
+                "type": "object"
+            },
+            "AlertUserMeta": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "username": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "AlertLog": {
+                "type": "object",
+                "properties": {
+                    "log": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "type": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "owner": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "offset": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "AlertPaging": {
+                "type": "object",
+                "properties": {
+                    "first": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "next": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "AlertNote": {
+                "type": "object",
+                "properties": {
+                    "note": {
+                        "description": "Additional note that will be added while creating the alert",
+                        "type": "string"
+                    },
+                    "owner": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "offset": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "SavedSearchMeta": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "SavedSearchEntity": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "SavedSearch": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "updatedAt": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "SavedSearchEntity": {
+                        "description": "",
+                        "type": "object"
+                    },
+                    "owner": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "teams": {
+                        "description": "Teams that the alert will be routed to send notifications",
+                        "type": "array"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "query": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "AlertAttachmentMeta": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "AlertAttachment": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "url": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "CreateHeartbeatPayload": {
+                "type": "object"
+            },
+            "UpdateHeartbeatPayload": {
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "interval": {
+                        "description": "Specifies how often a heartbeat message should be expected",
+                        "type": "integer"
+                    },
+                    "intervalUnit": {
+                        "description": "Interval specified as 'minutes', 'hours' or 'days'",
+                        "type": "string"
+                    },
+                    "enabled": {
+                        "description": "Enable\/disable heartbeat monitoring",
+                        "type": "boolean"
+                    }
+                }
+            },
+            "CreateHeartbeatResponse": {
+                "type": "object"
+            },
+            "GetHeartbeatResponse": {
+                "type": "object"
+            },
+            "UpdateHeartbeatResponse": {
+                "type": "object"
+            },
+            "EnableHeartbeatResponse": {
+                "type": "object"
+            },
+            "DisableHeartbeatResponse": {
+                "type": "object"
+            },
+            "ListHeartbeatResponse": {
+                "type": "object"
+            },
+            "Heartbeat": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "interval": {
+                        "description": "Specifies how often a heartbeat message should be expected",
+                        "type": "integer"
+                    },
+                    "enabled": {
+                        "description": "Enable\/disable heartbeat monitoring",
+                        "type": "boolean"
+                    },
+                    "intervalUnit": {
+                        "description": "Interval specified as 'minutes', 'hours' or 'days'",
+                        "type": "string"
+                    },
+                    "expired": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "lastPingTime": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "HeartbeatMeta": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "enabled": {
+                        "description": "Enable\/disable heartbeat monitoring",
+                        "type": "boolean"
+                    },
+                    "expired": {
+                        "description": "",
+                        "type": "boolean"
+                    }
+                }
+            },
+            "GetAccountInfoResponse": {
+                "type": "object"
+            },
+            "AccountInfo": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "userCount": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "plan": {
+                        "description": "",
+                        "type": ""
+                    }
+                }
+            },
+            "plan": {
+                "type": "object"
+            },
+            "AccountPlan": {
+                "type": "object",
+                "properties": {
+                    "maxUserCount": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "isYearly": {
+                        "description": "",
+                        "type": "boolean"
+                    }
+                }
+            },
+            "StatusPageEntry": {
+                "type": "object"
+            },
+            "CreateIncidentPayload": {
+                "type": "object"
+            },
+            "IncidentActionPayload": {
+                "type": "object",
+                "properties": {
+                    "note": {
+                        "description": "Additional note that will be added while creating the alert",
+                        "type": "string"
+                    }
+                }
+            },
+            "CloseIncidentPayload": {
+                "type": "object"
+            },
+            "GetIncidentRequestStatusResponse": {
+                "type": "object"
+            },
+            "GetIncidentResponse": {
+                "type": "object"
+            },
+            "ListIncidentsResponse": {
+                "type": "object"
+            },
+            "IncidentRequestStatus": {
+                "type": "object",
+                "properties": {
+                    "success": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "action": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "processedAt": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "integrationId": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "isSuccess": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "status": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "incidentId": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "Incident": {
+                "type": "object"
+            },
+            "BaseIncident": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "tinyId": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "message": {
+                        "description": "Message of the alert",
+                        "type": "string"
+                    },
+                    "status": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "isSeen": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "tags": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "createdAt": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "updatedAt": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "source": {
+                        "description": "Source field of the alert. Default value is IP address of the incoming request",
+                        "type": "string"
+                    },
+                    "owner": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "priority": {
+                        "description": "Priority level of the alert",
+                        "type": "string"
+                    },
+                    "responders": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "teamId": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "details": {
+                        "description": "Map of key-value pairs to use as custom properties of the incident",
+                        "type": "object"
+                    }
+                }
+            },
+            "details": {
+                "type": "object"
+            }
+        }
+    }
+}
