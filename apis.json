@@ -1,0 +1,121 @@
+{
+    "name": "OpsGenie",
+    "description": "OpsGenie is an incident response orchestration platform for DevOps & ITOps teams to streamline your alerts & incident resolution processes faster & efficiently.",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/1821-opsgenie.jpg",
+    "tags": [
+        "have api",
+        "have swagger",
+        "notifications",
+        "orchestration",
+        "telecommunications"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/opsgenie\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "OpsGenie",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/1821-opsgenie.jpg",
+            "humanURL": "http:\/\/www.opsgenie.com\/",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/opsgenie-openapi.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/opsgenie.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/opsgenie-postman-collection.json"
+                }
+            ]
+        },
+        {
+            "name": "OpsGenie REST API",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/1821-opsgenie.jpg",
+            "humanURL": "http:\/\/www.opsgenie.com\/",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/opsgenie-rest-api-openapi.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/opsgenie-rest-api.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/opsgenie-rest-api-postman-collection.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Base",
+            "url": "https:\/\/api.opsgenie.com\/"
+        },
+        {
+            "type": "Blog",
+            "url": "http:\/\/www.opsgenie.com\/blog\/"
+        },
+        {
+            "type": "Blog RSS",
+            "url": "http:\/\/feeds.feedburner.com\/OpsgenieBlog"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "http:\/\/www.crunchbase.com\/company\/opsgenie"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/opsgenie"
+        },
+        {
+            "type": "Developers",
+            "url": "http:\/\/www.opsgenie.com\/docs\/"
+        },
+        {
+            "type": "Email",
+            "url": "info@opsgenie.com"
+        },
+        {
+            "type": "Email",
+            "url": "support@opsgenie.com"
+        },
+        {
+            "type": "Email",
+            "url": "sales@opsgenie.com"
+        },
+        {
+            "type": "Github",
+            "url": "https:\/\/github.com\/opsgenie"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/1821-2019-09-04-08-40-43.json"
+        },
+        {
+            "type": "Pricing",
+            "url": "https:\/\/www.opsgenie.com\/pricing"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/opsgenie"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/www.opsgenie.com\/"
+        }
+    ]
+}
