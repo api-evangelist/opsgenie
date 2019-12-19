@@ -1,0 +1,140 @@
+{
+    "id": "a6d9210408ca91eb78ce75648882b84f",
+    "name": "OpsGenie REST API",
+    "description": null,
+    "auth": null,
+    "events": null,
+    "variables": [],
+    "order": [],
+    "folders_order": [],
+    "folders": [],
+    "requests": [
+        {
+            "id": "9e8516069090044ef2becc97e2c49534",
+            "name": "Get Request Status of Alert",
+            "url": "http:\/\/api.opsgenie.com\/\/v2\/alerts\/requests\/{requestId}",
+            "description": "Used to track the status and alert details (if any) of the request whose identifier is given",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "requestId",
+                    "description": "Universally unique identifier of the questioned request",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "a6d9210408ca91eb78ce75648882b84f",
+            "rawModeData": ""
+        },
+        {
+            "id": "a01206a67f2e1421a9da981c1a31783a",
+            "name": "List Alerts",
+            "url": "http:\/\/api.opsgenie.com\/\/v2\/alerts",
+            "description": "Returns list of alerts",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "query",
+                    "description": "Search query to apply while filtering the alerts",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "searchIdentifier",
+                    "description": "Identifier of the saved search query to apply while filtering the alerts",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "searchIdentifierType",
+                    "description": "Identifier type of the saved search query. Possible values are 'id', or 'name'",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "offset",
+                    "description": "Start index of the result set (to apply pagination). Minimum value (and also default value) is 0",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "limit",
+                    "description": "Maximum number of items to provide in the result. Must be a positive integer value. Default value is 20 and maximum value is 100",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "sort",
+                    "description": "Name of the field that result set will be sorted by",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "order",
+                    "description": "Sorting order of the result set",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "a6d9210408ca91eb78ce75648882b84f",
+            "rawModeData": ""
+        },
+        {
+            "id": "5b92b7018b86956da99efa04b0c46855",
+            "name": "Create Alert",
+            "url": "http:\/\/api.opsgenie.com\/\/v2\/alerts",
+            "description": "Creates a new alert",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "a6d9210408ca91eb78ce75648882b84f",
+            "rawModeData": ""
+        }
+    ]
+}
