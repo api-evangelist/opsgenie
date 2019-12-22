@@ -1,5 +1,5 @@
 {
-    "id": "a6d9210408ca91eb78ce75648882b84f",
+    "id": "7d35f6e1cc84569f7694f46e4720745b",
     "name": "OpsGenie REST API",
     "description": null,
     "auth": null,
@@ -10,7 +10,7 @@
     "folders": [],
     "requests": [
         {
-            "id": "9e8516069090044ef2becc97e2c49534",
+            "id": "062ec8af43d3ef941a1a4fe555fef11b",
             "name": "Get Request Status of Alert",
             "url": "http:\/\/api.opsgenie.com\/\/v2\/alerts\/requests\/{requestId}",
             "description": "Used to track the status and alert details (if any) of the request whose identifier is given",
@@ -37,11 +37,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "a6d9210408ca91eb78ce75648882b84f",
+            "collectionId": "7d35f6e1cc84569f7694f46e4720745b",
             "rawModeData": ""
         },
         {
-            "id": "a01206a67f2e1421a9da981c1a31783a",
+            "id": "0c8fd45dac3b25b9b276934c248201e3",
             "name": "List Alerts",
             "url": "http:\/\/api.opsgenie.com\/\/v2\/alerts",
             "description": "Returns list of alerts",
@@ -110,11 +110,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "a6d9210408ca91eb78ce75648882b84f",
+            "collectionId": "7d35f6e1cc84569f7694f46e4720745b",
             "rawModeData": ""
         },
         {
-            "id": "5b92b7018b86956da99efa04b0c46855",
+            "id": "9948e6fb7b8865929d52ad86daf49df9",
             "name": "Create Alert",
             "url": "http:\/\/api.opsgenie.com\/\/v2\/alerts",
             "description": "Creates a new alert",
@@ -133,7 +133,7 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "a6d9210408ca91eb78ce75648882b84f",
+            "collectionId": "7d35f6e1cc84569f7694f46e4720745b",
             "rawModeData": ""
         }
     ]
