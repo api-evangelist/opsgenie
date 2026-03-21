@@ -1,0 +1,204 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.api-evangelist.com/opsgenie/alert.json",
+  "title": "OpsGenie Alert",
+  "description": "Represents an alert in the OpsGenie incident management platform. Alerts are the primary mechanism for notifying teams about issues that require attention.",
+  "type": "object",
+  "required": ["message"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the alert assigned by OpsGenie."
+    },
+    "tinyId": {
+      "type": "string",
+      "description": "Short, human-readable identifier for the alert."
+    },
+    "alias": {
+      "type": "string",
+      "maxLength": 512,
+      "description": "Client-defined identifier used for alert deduplication."
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 130,
+      "description": "The alert message, limited to 130 characters."
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 15000,
+      "description": "Detailed description providing context about the alert."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["open", "closed"],
+      "description": "Current status of the alert."
+    },
+    "acknowledged": {
+      "type": "boolean",
+      "description": "Whether the alert has been acknowledged by a responder."
+    },
+    "isSeen": {
+      "type": "boolean",
+      "description": "Whether the alert has been viewed."
+    },
+    "snoozed": {
+      "type": "boolean",
+      "description": "Whether the alert is currently snoozed."
+    },
+    "snoozedUntil": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when the snooze period ends."
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 20,
+      "description": "Tags attached to the alert for categorization."
+    },
+    "count": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Number of times the alert has occurred (deduplication count)."
+    },
+    "lastOccurredAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time of the most recent occurrence."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when the alert was first created."
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time of the last modification."
+    },
+    "source": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Source of the alert, typically the integration or tool that created it."
+    },
+    "owner": {
+      "type": "string",
+      "description": "Username of the alert owner (assigned user)."
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["P1", "P2", "P3", "P4", "P5"],
+      "description": "Priority level from P1 (critical) to P5 (informational)."
+    },
+    "entity": {
+      "type": "string",
+      "maxLength": 512,
+      "description": "Entity field used to specify the domain of the alert."
+    },
+    "responders": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Responder"
+      },
+      "description": "Teams, users, escalations, and schedules responsible for the alert."
+    },
+    "visibleTo": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Responder"
+      },
+      "description": "Teams and users who can see the alert without receiving notifications."
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 10,
+      "description": "Custom actions available for the alert."
+    },
+    "details": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Custom key-value pairs providing additional context."
+    },
+    "integration": {
+      "$ref": "#/$defs/Integration"
+    },
+    "report": {
+      "$ref": "#/$defs/AlertReport"
+    }
+  },
+  "$defs": {
+    "Responder": {
+      "type": "object",
+      "required": ["type"],
+      "description": "A team, user, escalation, or schedule that responds to alerts.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the responder."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the responder (teams and schedules)."
+        },
+        "username": {
+          "type": "string",
+          "format": "email",
+          "description": "Username of the responder (users)."
+        },
+        "type": {
+          "type": "string",
+          "enum": ["team", "user", "escalation", "schedule"],
+          "description": "Type of the responder entity."
+        }
+      }
+    },
+    "Integration": {
+      "type": "object",
+      "description": "The integration that created the alert.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Integration ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "Integration name."
+        },
+        "type": {
+          "type": "string",
+          "description": "Integration type."
+        }
+      }
+    },
+    "AlertReport": {
+      "type": "object",
+      "description": "Report containing timing and actor information for the alert lifecycle.",
+      "properties": {
+        "ackTime": {
+          "type": "integer",
+          "description": "Time in milliseconds from creation to acknowledgment."
+        },
+        "closeTime": {
+          "type": "integer",
+          "description": "Time in milliseconds from creation to closure."
+        },
+        "acknowledgedBy": {
+          "type": "string",
+          "description": "Username of the person who acknowledged the alert."
+        },
+        "closedBy": {
+          "type": "string",
+          "description": "Username of the person who closed the alert."
+        }
+      }
+    }
+  }
+}

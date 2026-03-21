@@ -1,0 +1,398 @@
+openapi: 3.1.0
+info:
+  title: OpsGenie Service API
+  description: >-
+    The OpsGenie Service API enables developers to manage services within
+    the OpsGenie platform. Services represent business-critical
+    applications and components that can be associated with incidents to
+    track their impact. The API provides endpoints for creating, updating,
+    retrieving, and deleting services. The Service API is available to
+    Standard and Enterprise plan users and is used in conjunction with
+    the Incident API to identify which services are affected during an
+    outage.
+  version: '1.0.0'
+  contact:
+    name: Atlassian Support
+    url: https://support.atlassian.com/opsgenie/
+  termsOfService: https://www.atlassian.com/legal/cloud-terms-of-service
+externalDocs:
+  description: OpsGenie Service API Documentation
+  url: https://docs.opsgenie.com/docs/service-api
+servers:
+  - url: https://api.opsgenie.com
+    description: Production Server
+  - url: https://api.eu.opsgenie.com
+    description: EU Production Server
+tags:
+  - name: Services
+    description: >-
+      Operations for creating, retrieving, updating, and deleting services
+      in the service catalog.
+security:
+  - genieKey: []
+paths:
+  /v1/services:
+    post:
+      operationId: createService
+      summary: Create service
+      description: >-
+        Creates a new service in the OpsGenie service catalog. Available
+        to Standard and Enterprise plan users.
+      tags:
+        - Services
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateServiceRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetServiceResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      operationId: listServices
+      summary: List services
+      description: >-
+        Returns a list of all services in the account.
+      tags:
+        - Services
+      parameters:
+        - name: limit
+          in: query
+          description: >-
+            Maximum number of services to return.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: offset
+          in: query
+          description: >-
+            Starting index for pagination.
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+        - name: sort
+          in: query
+          description: >-
+            Field to sort by.
+          schema:
+            type: string
+        - name: order
+          in: query
+          description: >-
+            Sort order.
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListServicesResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v1/services/{identifier}:
+    get:
+      operationId: getService
+      summary: Get service
+      description: >-
+        Retrieves the details of a specific service by its ID.
+      tags:
+        - Services
+      parameters:
+        - $ref: '#/components/parameters/ServiceIdentifier'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetServiceResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    patch:
+      operationId: updateService
+      summary: Update service
+      description: >-
+        Updates the specified service.
+      tags:
+        - Services
+      parameters:
+        - $ref: '#/components/parameters/ServiceIdentifier'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateServiceRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetServiceResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteService
+      summary: Delete service
+      description: >-
+        Deletes the specified service from the service catalog.
+      tags:
+        - Services
+      parameters:
+        - $ref: '#/components/parameters/ServiceIdentifier'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  securitySchemes:
+    genieKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        API key authentication using the GenieKey scheme.
+  parameters:
+    ServiceIdentifier:
+      name: identifier
+      in: path
+      required: true
+      description: >-
+        Unique identifier of the service.
+      schema:
+        type: string
+  schemas:
+    CreateServiceRequest:
+      type: object
+      required:
+        - name
+        - teamId
+      properties:
+        name:
+          type: string
+          description: >-
+            Name of the service.
+        description:
+          type: string
+          description: >-
+            Description of the service.
+        teamId:
+          type: string
+          description: >-
+            ID of the team that owns the service.
+        visibility:
+          type: string
+          enum:
+            - TEAM_MEMBERS
+            - OPSGENIE_USERS
+          description: >-
+            Visibility level of the service.
+        tags:
+          type: array
+          items:
+            type: string
+          description: >-
+            Tags associated with the service.
+    UpdateServiceRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: >-
+            Updated service name.
+        description:
+          type: string
+          description: >-
+            Updated description.
+        visibility:
+          type: string
+          enum:
+            - TEAM_MEMBERS
+            - OPSGENIE_USERS
+          description: >-
+            Updated visibility.
+        tags:
+          type: array
+          items:
+            type: string
+          description: >-
+            Updated tags.
+    Service:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier.
+        name:
+          type: string
+          description: >-
+            Name of the service.
+        description:
+          type: string
+          description: >-
+            Description of the service.
+        teamId:
+          type: string
+          description: >-
+            ID of the owning team.
+        visibility:
+          type: string
+          description: >-
+            Visibility level.
+        tags:
+          type: array
+          items:
+            type: string
+          description: >-
+            Tags.
+        isExternal:
+          type: boolean
+          description: >-
+            Whether the service is external.
+    ListServicesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Service'
+          description: >-
+            List of services.
+        paging:
+          type: object
+          properties:
+            next:
+              type: string
+              description: >-
+                URL for the next page.
+            first:
+              type: string
+              description: >-
+                URL for the first page.
+        totalCount:
+          type: integer
+          description: >-
+            Total number of services.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    GetServiceResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Service'
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: >-
+            Result message.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: >-
+            Error message.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.

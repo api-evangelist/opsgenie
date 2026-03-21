@@ -1,0 +1,209 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "opsgenie": "https://api.opsgenie.com/ns/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Alert": {
+      "@id": "opsgenie:Alert",
+      "@context": {
+        "alertId": "opsgenie:alertId",
+        "tinyId": "opsgenie:tinyId",
+        "alias": "opsgenie:alias",
+        "message": "schema:description",
+        "description": "schema:text",
+        "status": "opsgenie:status",
+        "acknowledged": "opsgenie:acknowledged",
+        "isSeen": "opsgenie:isSeen",
+        "snoozed": "opsgenie:snoozed",
+        "snoozedUntil": {
+          "@id": "opsgenie:snoozedUntil",
+          "@type": "xsd:dateTime"
+        },
+        "tags": "schema:keywords",
+        "count": "opsgenie:count",
+        "lastOccurredAt": {
+          "@id": "opsgenie:lastOccurredAt",
+          "@type": "xsd:dateTime"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        },
+        "source": "dcterms:source",
+        "owner": "opsgenie:owner",
+        "priority": "opsgenie:priority",
+        "entity": "opsgenie:entity",
+        "responders": {
+          "@id": "opsgenie:responders",
+          "@container": "@set"
+        },
+        "actions": {
+          "@id": "opsgenie:actions",
+          "@container": "@set"
+        }
+      }
+    },
+
+    "Incident": {
+      "@id": "opsgenie:Incident",
+      "@context": {
+        "incidentId": "opsgenie:incidentId",
+        "tinyId": "opsgenie:tinyId",
+        "message": "schema:description",
+        "description": "schema:text",
+        "status": "opsgenie:status",
+        "priority": "opsgenie:priority",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        },
+        "ownerTeam": "opsgenie:ownerTeam",
+        "responders": {
+          "@id": "opsgenie:responders",
+          "@container": "@set"
+        },
+        "impactedServices": {
+          "@id": "opsgenie:impactedServices",
+          "@container": "@set"
+        },
+        "tags": "schema:keywords"
+      }
+    },
+
+    "User": {
+      "@id": "opsgenie:User",
+      "@context": {
+        "userId": "opsgenie:userId",
+        "username": "schema:email",
+        "fullName": "schema:name",
+        "role": "opsgenie:role",
+        "blocked": "opsgenie:blocked",
+        "verified": "opsgenie:verified",
+        "timeZone": "opsgenie:timeZone",
+        "locale": "opsgenie:locale",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "tags": "schema:keywords"
+      }
+    },
+
+    "Team": {
+      "@id": "opsgenie:Team",
+      "@context": {
+        "teamId": "opsgenie:teamId",
+        "name": "schema:name",
+        "description": "schema:description",
+        "members": {
+          "@id": "schema:member",
+          "@container": "@set"
+        }
+      }
+    },
+
+    "Schedule": {
+      "@id": "opsgenie:Schedule",
+      "@context": {
+        "scheduleId": "opsgenie:scheduleId",
+        "name": "schema:name",
+        "description": "schema:description",
+        "timezone": "opsgenie:timezone",
+        "enabled": "opsgenie:enabled",
+        "ownerTeam": "opsgenie:ownerTeam",
+        "rotations": {
+          "@id": "opsgenie:rotations",
+          "@container": "@set"
+        }
+      }
+    },
+
+    "Escalation": {
+      "@id": "opsgenie:Escalation",
+      "@context": {
+        "escalationId": "opsgenie:escalationId",
+        "name": "schema:name",
+        "description": "schema:description",
+        "ownerTeam": "opsgenie:ownerTeam",
+        "rules": {
+          "@id": "opsgenie:rules",
+          "@container": "@set"
+        }
+      }
+    },
+
+    "Heartbeat": {
+      "@id": "opsgenie:Heartbeat",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "interval": "opsgenie:interval",
+        "intervalUnit": "opsgenie:intervalUnit",
+        "enabled": "opsgenie:enabled",
+        "expired": "opsgenie:expired",
+        "lastPingTime": {
+          "@id": "opsgenie:lastPingTime",
+          "@type": "xsd:dateTime"
+        },
+        "ownerTeam": "opsgenie:ownerTeam"
+      }
+    },
+
+    "Service": {
+      "@id": "opsgenie:Service",
+      "@context": {
+        "serviceId": "opsgenie:serviceId",
+        "name": "schema:name",
+        "description": "schema:description",
+        "teamId": "opsgenie:teamId",
+        "visibility": "opsgenie:visibility",
+        "tags": "schema:keywords"
+      }
+    },
+
+    "Integration": {
+      "@id": "opsgenie:Integration",
+      "@context": {
+        "integrationId": "opsgenie:integrationId",
+        "name": "schema:name",
+        "type": "opsgenie:integrationType",
+        "enabled": "opsgenie:enabled",
+        "ownerTeam": "opsgenie:ownerTeam",
+        "isGlobal": "opsgenie:isGlobal",
+        "apiKey": "opsgenie:apiKey"
+      }
+    },
+
+    "Maintenance": {
+      "@id": "opsgenie:Maintenance",
+      "@context": {
+        "maintenanceId": "opsgenie:maintenanceId",
+        "status": "opsgenie:status",
+        "description": "schema:description",
+        "startDate": {
+          "@id": "schema:startDate",
+          "@type": "xsd:dateTime"
+        },
+        "endDate": {
+          "@id": "schema:endDate",
+          "@type": "xsd:dateTime"
+        },
+        "rules": {
+          "@id": "opsgenie:rules",
+          "@container": "@set"
+        }
+      }
+    }
+  }
+}

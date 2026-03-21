@@ -1,0 +1,1566 @@
+openapi: 3.1.0
+info:
+  title: OpsGenie Alert API
+  description: >-
+    The OpsGenie Alert API allows developers to programmatically create,
+    update, close, and manage alerts within the OpsGenie incident management
+    platform. Alert creation, deletion, and action requests are processed
+    asynchronously to provide higher availability and scalability. The API
+    supports setting alert priorities, adding responders such as teams,
+    users, escalations, and schedules, attaching tags and custom details,
+    and managing alert notes and acknowledgments.
+  version: '2.0.0'
+  contact:
+    name: Atlassian Support
+    url: https://support.atlassian.com/opsgenie/
+  termsOfService: https://www.atlassian.com/legal/cloud-terms-of-service
+externalDocs:
+  description: OpsGenie Alert API Documentation
+  url: https://docs.opsgenie.com/docs/alert-api
+servers:
+  - url: https://api.opsgenie.com
+    description: Production Server
+  - url: https://api.eu.opsgenie.com
+    description: EU Production Server
+tags:
+  - name: Alerts
+    description: >-
+      Operations for creating, retrieving, updating, and managing alerts
+      within the OpsGenie platform.
+security:
+  - genieKey: []
+paths:
+  /v2/alerts:
+    post:
+      operationId: createAlert
+      summary: Create alert
+      description: >-
+        Creates an alert in OpsGenie. The request is processed asynchronously
+        and returns a request ID that can be used to track the status of
+        the alert creation.
+      tags:
+        - Alerts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAlertRequest'
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncRequestResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      operationId: listAlerts
+      summary: List alerts
+      description: >-
+        Returns a list of alerts matching the specified search criteria.
+        Alerts are returned in reverse chronological order by default.
+      tags:
+        - Alerts
+      parameters:
+        - $ref: '#/components/parameters/AlertQuery'
+        - $ref: '#/components/parameters/SearchIdentifier'
+        - $ref: '#/components/parameters/SearchIdentifierType'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Sort'
+        - $ref: '#/components/parameters/Order'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAlertsResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/alerts/{identifier}:
+    get:
+      operationId: getAlert
+      summary: Get alert
+      description: >-
+        Retrieves the details of a specific alert identified by its ID,
+        tiny ID, or alias.
+      tags:
+        - Alerts
+      parameters:
+        - $ref: '#/components/parameters/AlertIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAlertResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteAlert
+      summary: Delete alert
+      description: >-
+        Deletes the specified alert. The request is processed asynchronously.
+      tags:
+        - Alerts
+      parameters:
+        - $ref: '#/components/parameters/AlertIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncRequestResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/alerts/{identifier}/close:
+    post:
+      operationId: closeAlert
+      summary: Close alert
+      description: >-
+        Closes the specified alert. The request is processed asynchronously.
+      tags:
+        - Alerts
+      parameters:
+        - $ref: '#/components/parameters/AlertIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CloseAlertRequest'
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncRequestResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/alerts/{identifier}/acknowledge:
+    post:
+      operationId: acknowledgeAlert
+      summary: Acknowledge alert
+      description: >-
+        Acknowledges the specified alert. The request is processed asynchronously.
+      tags:
+        - Alerts
+      parameters:
+        - $ref: '#/components/parameters/AlertIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertActionRequest'
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncRequestResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/alerts/{identifier}/unacknowledge:
+    post:
+      operationId: unacknowledgeAlert
+      summary: Unacknowledge alert
+      description: >-
+        Removes the acknowledgment from the specified alert. The request is
+        processed asynchronously.
+      tags:
+        - Alerts
+      parameters:
+        - $ref: '#/components/parameters/AlertIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertActionRequest'
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncRequestResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/alerts/{identifier}/snooze:
+    post:
+      operationId: snoozeAlert
+      summary: Snooze alert
+      description: >-
+        Snoozes the specified alert until the given end time. The request
+        is processed asynchronously.
+      tags:
+        - Alerts
+      parameters:
+        - $ref: '#/components/parameters/AlertIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SnoozeAlertRequest'
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncRequestResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/alerts/{identifier}/escalate:
+    post:
+      operationId: escalateAlert
+      summary: Escalate alert
+      description: >-
+        Escalates the specified alert to the given escalation. The request
+        is processed asynchronously.
+      tags:
+        - Alerts
+      parameters:
+        - $ref: '#/components/parameters/AlertIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EscalateAlertRequest'
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncRequestResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/alerts/{identifier}/assign:
+    post:
+      operationId: assignAlert
+      summary: Assign alert
+      description: >-
+        Assigns the specified alert to a user. The request is processed
+        asynchronously.
+      tags:
+        - Alerts
+      parameters:
+        - $ref: '#/components/parameters/AlertIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignAlertRequest'
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncRequestResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/alerts/{identifier}/tags:
+    post:
+      operationId: addTags
+      summary: Add tags to alert
+      description: >-
+        Adds tags to the specified alert. The request is processed asynchronously.
+      tags:
+        - Alerts
+      parameters:
+        - $ref: '#/components/parameters/AlertIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddTagsRequest'
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncRequestResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: removeTags
+      summary: Remove tags from alert
+      description: >-
+        Removes specified tags from the alert.
+      tags:
+        - Alerts
+      parameters:
+        - $ref: '#/components/parameters/AlertIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+        - name: tags
+          in: query
+          required: true
+          description: >-
+            Comma-separated list of tags to remove from the alert.
+          schema:
+            type: string
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncRequestResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/alerts/{identifier}/notes:
+    post:
+      operationId: addNote
+      summary: Add note to alert
+      description: >-
+        Adds a note to the specified alert. The request is processed
+        asynchronously.
+      tags:
+        - Alerts
+      parameters:
+        - $ref: '#/components/parameters/AlertIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddNoteRequest'
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncRequestResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      operationId: listAlertNotes
+      summary: List alert notes
+      description: >-
+        Lists the notes attached to the specified alert.
+      tags:
+        - Alerts
+      parameters:
+        - $ref: '#/components/parameters/AlertIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Order'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAlertNotesResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/alerts/{identifier}/details:
+    post:
+      operationId: addDetails
+      summary: Add details to alert
+      description: >-
+        Adds custom key-value details to the specified alert. The request
+        is processed asynchronously.
+      tags:
+        - Alerts
+      parameters:
+        - $ref: '#/components/parameters/AlertIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddDetailsRequest'
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncRequestResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/alerts/{identifier}/responders:
+    post:
+      operationId: addResponder
+      summary: Add responder to alert
+      description: >-
+        Adds a responder (team, user, escalation, or schedule) to the
+        specified alert. The request is processed asynchronously.
+      tags:
+        - Alerts
+      parameters:
+        - $ref: '#/components/parameters/AlertIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddResponderRequest'
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncRequestResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/alerts/{identifier}/attachments:
+    post:
+      operationId: addAttachment
+      summary: Add attachment to alert
+      description: >-
+        Adds a file attachment to the specified alert.
+      tags:
+        - Alerts
+      parameters:
+        - $ref: '#/components/parameters/AlertIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: >-
+                    The file to attach to the alert.
+              required:
+                - file
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      operationId: listAttachments
+      summary: List alert attachments
+      description: >-
+        Lists the file attachments on the specified alert.
+      tags:
+        - Alerts
+      parameters:
+        - $ref: '#/components/parameters/AlertIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAttachmentsResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/alerts/{identifier}/logs:
+    get:
+      operationId: listAlertLogs
+      summary: List alert logs
+      description: >-
+        Lists the activity logs for the specified alert.
+      tags:
+        - Alerts
+      parameters:
+        - $ref: '#/components/parameters/AlertIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Order'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAlertLogsResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/alerts/{identifier}/recipients:
+    get:
+      operationId: listAlertRecipients
+      summary: List alert recipients
+      description: >-
+        Lists the recipients of the specified alert.
+      tags:
+        - Alerts
+      parameters:
+        - $ref: '#/components/parameters/AlertIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAlertRecipientsResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/alerts/count:
+    get:
+      operationId: countAlerts
+      summary: Count alerts
+      description: >-
+        Returns the count of alerts matching the specified search criteria.
+      tags:
+        - Alerts
+      parameters:
+        - $ref: '#/components/parameters/AlertQuery'
+        - $ref: '#/components/parameters/SearchIdentifier'
+        - $ref: '#/components/parameters/SearchIdentifierType'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountAlertsResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/alerts/requests/{requestId}:
+    get:
+      operationId: getRequestStatus
+      summary: Get request status
+      description: >-
+        Retrieves the status and alert details of an asynchronous request
+        using the request ID returned from alert action endpoints.
+      tags:
+        - Alerts
+      parameters:
+        - name: requestId
+          in: path
+          required: true
+          description: >-
+            The ID of the asynchronous request to check status for.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestStatusResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  securitySchemes:
+    genieKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        API key authentication using the GenieKey scheme. The value should
+        be in the format 'GenieKey your-api-key'.
+  parameters:
+    AlertIdentifier:
+      name: identifier
+      in: path
+      required: true
+      description: >-
+        Identifier of the alert, which can be the alert ID, tiny ID, or alias.
+      schema:
+        type: string
+    IdentifierType:
+      name: identifierType
+      in: query
+      description: >-
+        Type of the identifier. Possible values are id, tiny, or alias.
+        Default is id.
+      schema:
+        type: string
+        enum:
+          - id
+          - tiny
+          - alias
+        default: id
+    AlertQuery:
+      name: query
+      in: query
+      description: >-
+        Search query to filter alerts. Uses OpsGenie query language syntax.
+      schema:
+        type: string
+    SearchIdentifier:
+      name: searchIdentifier
+      in: query
+      description: >-
+        Identifier of a saved search to use for filtering alerts.
+      schema:
+        type: string
+    SearchIdentifierType:
+      name: searchIdentifierType
+      in: query
+      description: >-
+        Type of the saved search identifier. Possible values are id or name.
+      schema:
+        type: string
+        enum:
+          - id
+          - name
+    Offset:
+      name: offset
+      in: query
+      description: >-
+        Starting index for pagination.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    Limit:
+      name: limit
+      in: query
+      description: >-
+        Maximum number of items to return.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    Sort:
+      name: sort
+      in: query
+      description: >-
+        Field to sort results by. Possible values include createdAt,
+        updatedAt, tinyId, alias, message, status, acknowledged, isSeen,
+        snoozed, count, lastOccurredAt, and owner.
+      schema:
+        type: string
+        enum:
+          - createdAt
+          - updatedAt
+          - tinyId
+          - alias
+          - message
+          - status
+          - acknowledged
+          - isSeen
+          - snoozed
+          - count
+          - lastOccurredAt
+          - owner
+    Order:
+      name: order
+      in: query
+      description: >-
+        Sort order for the results. Possible values are desc and asc.
+      schema:
+        type: string
+        enum:
+          - desc
+          - asc
+        default: desc
+  schemas:
+    CreateAlertRequest:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          maxLength: 130
+          description: >-
+            The message of the alert, limited to 130 characters.
+        alias:
+          type: string
+          maxLength: 512
+          description: >-
+            Client-defined identifier for the alert, used for deduplication.
+        description:
+          type: string
+          maxLength: 15000
+          description: >-
+            A detailed description of the alert.
+        responders:
+          type: array
+          description: >-
+            Teams, users, escalations, and schedules that the alert is
+            routed to.
+          items:
+            $ref: '#/components/schemas/Responder'
+        visibleTo:
+          type: array
+          description: >-
+            Teams and users that the alert will become visible to without
+            sending notifications.
+          items:
+            $ref: '#/components/schemas/Responder'
+        actions:
+          type: array
+          description: >-
+            Custom actions available for the alert.
+          items:
+            type: string
+          maxItems: 10
+        tags:
+          type: array
+          description: >-
+            Tags to attach to the alert.
+          items:
+            type: string
+          maxItems: 20
+        details:
+          type: object
+          description: >-
+            Custom key-value pairs to attach to the alert.
+          additionalProperties:
+            type: string
+        entity:
+          type: string
+          maxLength: 512
+          description: >-
+            Entity field of the alert, used to specify the domain of the alert.
+        source:
+          type: string
+          maxLength: 100
+          description: >-
+            Source field of the alert, used to specify the source of the alert.
+        priority:
+          type: string
+          enum:
+            - P1
+            - P2
+            - P3
+            - P4
+            - P5
+          description: >-
+            Priority level of the alert. P1 is the highest, P5 is the lowest.
+        user:
+          type: string
+          maxLength: 100
+          description: >-
+            Display name of the request owner.
+        note:
+          type: string
+          maxLength: 25000
+          description: >-
+            Additional note to add to the alert when created.
+    CloseAlertRequest:
+      type: object
+      properties:
+        user:
+          type: string
+          description: >-
+            Display name of the request owner.
+        source:
+          type: string
+          description: >-
+            Source of the close action.
+        note:
+          type: string
+          description: >-
+            Additional note to add when closing the alert.
+    AlertActionRequest:
+      type: object
+      properties:
+        user:
+          type: string
+          description: >-
+            Display name of the request owner.
+        source:
+          type: string
+          description: >-
+            Source of the action.
+        note:
+          type: string
+          description: >-
+            Additional note to add with the action.
+    SnoozeAlertRequest:
+      type: object
+      required:
+        - endTime
+      properties:
+        endTime:
+          type: string
+          format: date-time
+          description: >-
+            The date and time when the snooze will end, in ISO 8601 format.
+        user:
+          type: string
+          description: >-
+            Display name of the request owner.
+        source:
+          type: string
+          description: >-
+            Source of the snooze action.
+        note:
+          type: string
+          description: >-
+            Additional note to add with the snooze.
+    EscalateAlertRequest:
+      type: object
+      required:
+        - escalation
+      properties:
+        escalation:
+          $ref: '#/components/schemas/Responder'
+        user:
+          type: string
+          description: >-
+            Display name of the request owner.
+        source:
+          type: string
+          description: >-
+            Source of the escalation action.
+        note:
+          type: string
+          description: >-
+            Additional note to add with the escalation.
+    AssignAlertRequest:
+      type: object
+      required:
+        - owner
+      properties:
+        owner:
+          type: object
+          description: >-
+            The user to assign the alert to.
+          properties:
+            id:
+              type: string
+              description: >-
+                ID of the user.
+            username:
+              type: string
+              description: >-
+                Username (email) of the user.
+        user:
+          type: string
+          description: >-
+            Display name of the request owner.
+        source:
+          type: string
+          description: >-
+            Source of the assign action.
+        note:
+          type: string
+          description: >-
+            Additional note to add with the assignment.
+    AddTagsRequest:
+      type: object
+      required:
+        - tags
+      properties:
+        tags:
+          type: array
+          description: >-
+            List of tags to add to the alert.
+          items:
+            type: string
+        user:
+          type: string
+          description: >-
+            Display name of the request owner.
+        source:
+          type: string
+          description: >-
+            Source of the action.
+        note:
+          type: string
+          description: >-
+            Additional note to add with the tags.
+    AddNoteRequest:
+      type: object
+      required:
+        - note
+      properties:
+        note:
+          type: string
+          maxLength: 25000
+          description: >-
+            The note text to add to the alert.
+        user:
+          type: string
+          description: >-
+            Display name of the request owner.
+        source:
+          type: string
+          description: >-
+            Source of the action.
+    AddDetailsRequest:
+      type: object
+      required:
+        - details
+      properties:
+        details:
+          type: object
+          description: >-
+            Key-value pairs to add to the alert details.
+          additionalProperties:
+            type: string
+        user:
+          type: string
+          description: >-
+            Display name of the request owner.
+        source:
+          type: string
+          description: >-
+            Source of the action.
+        note:
+          type: string
+          description: >-
+            Additional note to add with the details.
+    AddResponderRequest:
+      type: object
+      required:
+        - responder
+      properties:
+        responder:
+          $ref: '#/components/schemas/Responder'
+        user:
+          type: string
+          description: >-
+            Display name of the request owner.
+        source:
+          type: string
+          description: >-
+            Source of the action.
+        note:
+          type: string
+          description: >-
+            Additional note to add with the responder.
+    Responder:
+      type: object
+      required:
+        - type
+      properties:
+        id:
+          type: string
+          description: >-
+            ID of the responder.
+        name:
+          type: string
+          description: >-
+            Name of the responder (for teams and schedules).
+        username:
+          type: string
+          description: >-
+            Username of the responder (for users).
+        type:
+          type: string
+          enum:
+            - team
+            - user
+            - escalation
+            - schedule
+          description: >-
+            Type of the responder entity.
+    Alert:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier of the alert.
+        tinyId:
+          type: string
+          description: >-
+            Short, human-readable identifier of the alert.
+        alias:
+          type: string
+          description: >-
+            Client-defined identifier used for deduplication.
+        message:
+          type: string
+          description: >-
+            The message of the alert.
+        status:
+          type: string
+          enum:
+            - open
+            - closed
+          description: >-
+            Current status of the alert.
+        acknowledged:
+          type: boolean
+          description: >-
+            Whether the alert has been acknowledged.
+        isSeen:
+          type: boolean
+          description: >-
+            Whether the alert has been seen.
+        tags:
+          type: array
+          items:
+            type: string
+          description: >-
+            Tags attached to the alert.
+        snoozed:
+          type: boolean
+          description: >-
+            Whether the alert is currently snoozed.
+        snoozedUntil:
+          type: string
+          format: date-time
+          description: >-
+            The date and time when the snooze will end.
+        lastOccurredAt:
+          type: string
+          format: date-time
+          description: >-
+            The last time the alert occurred.
+        createdAt:
+          type: string
+          format: date-time
+          description: >-
+            The date and time when the alert was created.
+        updatedAt:
+          type: string
+          format: date-time
+          description: >-
+            The date and time when the alert was last updated.
+        count:
+          type: integer
+          description: >-
+            The number of times the alert has occurred.
+        source:
+          type: string
+          description: >-
+            Source of the alert.
+        owner:
+          type: string
+          description: >-
+            The owner (assigned user) of the alert.
+        priority:
+          type: string
+          enum:
+            - P1
+            - P2
+            - P3
+            - P4
+            - P5
+          description: >-
+            Priority level of the alert.
+        responders:
+          type: array
+          items:
+            $ref: '#/components/schemas/Responder'
+          description: >-
+            Responders of the alert.
+        integration:
+          type: object
+          properties:
+            id:
+              type: string
+              description: >-
+                Integration ID.
+            name:
+              type: string
+              description: >-
+                Integration name.
+            type:
+              type: string
+              description: >-
+                Integration type.
+          description: >-
+            Integration that created the alert.
+        report:
+          type: object
+          properties:
+            ackTime:
+              type: integer
+              description: >-
+                Time in milliseconds to acknowledge the alert.
+            closeTime:
+              type: integer
+              description: >-
+                Time in milliseconds to close the alert.
+            acknowledgedBy:
+              type: string
+              description: >-
+                User who acknowledged the alert.
+            closedBy:
+              type: string
+              description: >-
+                User who closed the alert.
+          description: >-
+            Report with timing and actor information.
+        actions:
+          type: array
+          items:
+            type: string
+          description: >-
+            Custom actions available for the alert.
+        entity:
+          type: string
+          description: >-
+            Entity field of the alert.
+        description:
+          type: string
+          description: >-
+            Detailed description of the alert.
+        details:
+          type: object
+          additionalProperties:
+            type: string
+          description: >-
+            Custom key-value pairs attached to the alert.
+    AsyncRequestResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: >-
+            Result message.
+        took:
+          type: number
+          description: >-
+            Time taken to process the request in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the asynchronous request that can be
+            used to track the status.
+    RequestStatusResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            success:
+              type: boolean
+              description: >-
+                Whether the request was successful.
+            action:
+              type: string
+              description: >-
+                The action that was performed.
+            processedAt:
+              type: string
+              format: date-time
+              description: >-
+                The date and time when the request was processed.
+            integrationId:
+              type: string
+              description: >-
+                ID of the integration.
+            isSuccess:
+              type: boolean
+              description: >-
+                Whether the operation succeeded.
+            status:
+              type: string
+              description: >-
+                Status of the request.
+            alertId:
+              type: string
+              description: >-
+                ID of the alert created or affected.
+            alias:
+              type: string
+              description: >-
+                Alias of the alert.
+        took:
+          type: number
+          description: >-
+            Time taken to process the request in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    ListAlertsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Alert'
+          description: >-
+            List of alerts.
+        paging:
+          $ref: '#/components/schemas/Paging'
+        took:
+          type: number
+          description: >-
+            Time taken to process the request in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    GetAlertResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Alert'
+        took:
+          type: number
+          description: >-
+            Time taken to process the request in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    CountAlertsResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            count:
+              type: integer
+              description: >-
+                Count of alerts matching the query.
+        took:
+          type: number
+          description: >-
+            Time taken to process the request in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    ListAlertNotesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              note:
+                type: string
+                description: >-
+                  Text content of the note.
+              owner:
+                type: string
+                description: >-
+                  User who created the note.
+              createdAt:
+                type: string
+                format: date-time
+                description: >-
+                  Date and time when the note was created.
+              offset:
+                type: string
+                description: >-
+                  Offset value for pagination.
+        paging:
+          $ref: '#/components/schemas/Paging'
+        took:
+          type: number
+          description: >-
+            Time taken to process the request in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    ListAlertLogsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              log:
+                type: string
+                description: >-
+                  Log message text.
+              type:
+                type: string
+                description: >-
+                  Type of the log entry.
+              owner:
+                type: string
+                description: >-
+                  User who triggered the logged action.
+              createdAt:
+                type: string
+                format: date-time
+                description: >-
+                  Date and time when the log entry was created.
+              offset:
+                type: string
+                description: >-
+                  Offset value for pagination.
+        paging:
+          $ref: '#/components/schemas/Paging'
+        took:
+          type: number
+          description: >-
+            Time taken to process the request in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    ListAlertRecipientsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              user:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: >-
+                      User ID.
+                  username:
+                    type: string
+                    description: >-
+                      Username of the recipient.
+              state:
+                type: string
+                description: >-
+                  State of the notification to the recipient.
+              method:
+                type: string
+                description: >-
+                  Notification method used.
+              createdAt:
+                type: string
+                format: date-time
+                description: >-
+                  Date and time when the notification was created.
+              updatedAt:
+                type: string
+                format: date-time
+                description: >-
+                  Date and time when the notification was last updated.
+        took:
+          type: number
+          description: >-
+            Time taken to process the request in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    ListAttachmentsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: >-
+                  Name of the attachment file.
+              id:
+                type: string
+                description: >-
+                  Unique identifier of the attachment.
+        took:
+          type: number
+          description: >-
+            Time taken to process the request in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    Paging:
+      type: object
+      properties:
+        next:
+          type: string
+          description: >-
+            URL for the next page of results.
+        first:
+          type: string
+          description: >-
+            URL for the first page of results.
+        last:
+          type: string
+          description: >-
+            URL for the last page of results.
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: >-
+            Result message.
+        took:
+          type: number
+          description: >-
+            Time taken to process the request in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: >-
+            Error message describing what went wrong.
+        took:
+          type: number
+          description: >-
+            Time taken to process the request in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.

@@ -1,0 +1,1428 @@
+openapi: 3.1.0
+info:
+  title: OpsGenie Schedule API
+  description: >-
+    The OpsGenie Schedule API enables developers to programmatically manage
+    on-call schedules and rotations. It provides endpoints for creating,
+    updating, and deleting schedules, as well as managing schedule rotations
+    and overrides. Developers can query who is currently on call for a given
+    schedule, making it possible to build custom dashboards and integrations
+    that reflect real-time on-call status.
+  version: '2.0.0'
+  contact:
+    name: Atlassian Support
+    url: https://support.atlassian.com/opsgenie/
+  termsOfService: https://www.atlassian.com/legal/cloud-terms-of-service
+externalDocs:
+  description: OpsGenie Schedule API Documentation
+  url: https://docs.opsgenie.com/docs/schedule-api
+servers:
+  - url: https://api.opsgenie.com
+    description: Production Server
+  - url: https://api.eu.opsgenie.com
+    description: EU Production Server
+tags:
+  - name: Schedules
+    description: >-
+      Operations for managing on-call schedules.
+  - name: Rotations
+    description: >-
+      Operations for managing schedule rotations.
+  - name: Overrides
+    description: >-
+      Operations for managing schedule overrides.
+  - name: On-Call
+    description: >-
+      Operations for querying on-call participants.
+security:
+  - genieKey: []
+paths:
+  /v2/schedules:
+    post:
+      operationId: createSchedule
+      summary: Create schedule
+      description: >-
+        Creates a new on-call schedule with the specified configuration
+        including rotations and time restrictions.
+      tags:
+        - Schedules
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateScheduleRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      operationId: listSchedules
+      summary: List schedules
+      description: >-
+        Returns a list of all on-call schedules in the account.
+      tags:
+        - Schedules
+      parameters:
+        - name: expand
+          in: query
+          description: >-
+            Comma-separated list of fields to include in the response.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListSchedulesResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/schedules/{identifier}:
+    get:
+      operationId: getSchedule
+      summary: Get schedule
+      description: >-
+        Retrieves the details of a specific schedule by ID or name.
+      tags:
+        - Schedules
+      parameters:
+        - $ref: '#/components/parameters/ScheduleIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetScheduleResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    patch:
+      operationId: updateSchedule
+      summary: Update schedule
+      description: >-
+        Updates the specified schedule's configuration.
+      tags:
+        - Schedules
+      parameters:
+        - $ref: '#/components/parameters/ScheduleIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateScheduleRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteSchedule
+      summary: Delete schedule
+      description: >-
+        Deletes the specified schedule.
+      tags:
+        - Schedules
+      parameters:
+        - $ref: '#/components/parameters/ScheduleIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/schedules/{identifier}/timeline:
+    get:
+      operationId: getScheduleTimeline
+      summary: Get schedule timeline
+      description: >-
+        Retrieves the timeline view showing on-call periods for the
+        specified schedule within a given time interval.
+      tags:
+        - Schedules
+      parameters:
+        - $ref: '#/components/parameters/ScheduleIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+        - name: intervalUnit
+          in: query
+          description: >-
+            Unit of the time interval for the timeline.
+          schema:
+            type: string
+            enum:
+              - days
+              - weeks
+              - months
+        - name: interval
+          in: query
+          description: >-
+            Length of the time interval.
+          schema:
+            type: integer
+        - name: date
+          in: query
+          description: >-
+            Start date for the timeline in ISO 8601 format.
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleTimelineResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/schedules/{identifier}/rotations:
+    post:
+      operationId: createScheduleRotation
+      summary: Create schedule rotation
+      description: >-
+        Creates a new rotation within the specified schedule.
+      tags:
+        - Rotations
+      parameters:
+        - $ref: '#/components/parameters/ScheduleIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRotationRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      operationId: listScheduleRotations
+      summary: List schedule rotations
+      description: >-
+        Lists the rotations within the specified schedule.
+      tags:
+        - Rotations
+      parameters:
+        - $ref: '#/components/parameters/ScheduleIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListRotationsResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/schedules/{identifier}/rotations/{rotationId}:
+    get:
+      operationId: getScheduleRotation
+      summary: Get schedule rotation
+      description: >-
+        Retrieves the details of a specific rotation.
+      tags:
+        - Rotations
+      parameters:
+        - $ref: '#/components/parameters/ScheduleIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+        - name: rotationId
+          in: path
+          required: true
+          description: >-
+            Identifier of the rotation.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetRotationResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    patch:
+      operationId: updateScheduleRotation
+      summary: Update schedule rotation
+      description: >-
+        Updates the specified rotation within a schedule.
+      tags:
+        - Rotations
+      parameters:
+        - $ref: '#/components/parameters/ScheduleIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+        - name: rotationId
+          in: path
+          required: true
+          description: >-
+            Identifier of the rotation.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRotationRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteScheduleRotation
+      summary: Delete schedule rotation
+      description: >-
+        Deletes the specified rotation from the schedule.
+      tags:
+        - Rotations
+      parameters:
+        - $ref: '#/components/parameters/ScheduleIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+        - name: rotationId
+          in: path
+          required: true
+          description: >-
+            Identifier of the rotation.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/schedules/{identifier}/overrides:
+    post:
+      operationId: createScheduleOverride
+      summary: Create schedule override
+      description: >-
+        Creates a temporary override for the specified schedule, allowing
+        a different user to take on-call duty for a specific time period.
+      tags:
+        - Overrides
+      parameters:
+        - $ref: '#/components/parameters/ScheduleIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOverrideRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      operationId: listScheduleOverrides
+      summary: List schedule overrides
+      description: >-
+        Lists the overrides for the specified schedule.
+      tags:
+        - Overrides
+      parameters:
+        - $ref: '#/components/parameters/ScheduleIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListOverridesResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/schedules/{identifier}/overrides/{alias}:
+    get:
+      operationId: getScheduleOverride
+      summary: Get schedule override
+      description: >-
+        Retrieves the details of a specific schedule override.
+      tags:
+        - Overrides
+      parameters:
+        - $ref: '#/components/parameters/ScheduleIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+        - name: alias
+          in: path
+          required: true
+          description: >-
+            Alias of the override.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOverrideResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      operationId: updateScheduleOverride
+      summary: Update schedule override
+      description: >-
+        Updates an existing schedule override.
+      tags:
+        - Overrides
+      parameters:
+        - $ref: '#/components/parameters/ScheduleIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+        - name: alias
+          in: path
+          required: true
+          description: >-
+            Alias of the override.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateOverrideRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteScheduleOverride
+      summary: Delete schedule override
+      description: >-
+        Deletes the specified schedule override.
+      tags:
+        - Overrides
+      parameters:
+        - $ref: '#/components/parameters/ScheduleIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+        - name: alias
+          in: path
+          required: true
+          description: >-
+            Alias of the override.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/schedules/{identifier}/on-calls:
+    get:
+      operationId: getOnCalls
+      summary: Get on-call participants
+      description: >-
+        Retrieves the current on-call participants for the specified
+        schedule.
+      tags:
+        - On-Call
+      parameters:
+        - $ref: '#/components/parameters/ScheduleIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+        - name: flat
+          in: query
+          description: >-
+            If true, returns a flat list of on-call participants.
+          schema:
+            type: boolean
+        - name: date
+          in: query
+          description: >-
+            Date to check on-call for, in ISO 8601 format.
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOnCallsResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  securitySchemes:
+    genieKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        API key authentication using the GenieKey scheme.
+  parameters:
+    ScheduleIdentifier:
+      name: identifier
+      in: path
+      required: true
+      description: >-
+        Identifier of the schedule, which can be the schedule ID or name.
+      schema:
+        type: string
+    IdentifierType:
+      name: identifierType
+      in: query
+      description: >-
+        Type of the identifier. Possible values are id or name.
+      schema:
+        type: string
+        enum:
+          - id
+          - name
+        default: id
+  schemas:
+    CreateScheduleRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: >-
+            Name of the schedule.
+        description:
+          type: string
+          description: >-
+            Description of the schedule.
+        timezone:
+          type: string
+          description: >-
+            Timezone of the schedule, e.g. America/New_York.
+        enabled:
+          type: boolean
+          description: >-
+            Whether the schedule is active.
+          default: true
+        ownerTeam:
+          type: object
+          description: >-
+            Team that owns the schedule.
+          properties:
+            id:
+              type: string
+              description: >-
+                Team ID.
+            name:
+              type: string
+              description: >-
+                Team name.
+        rotations:
+          type: array
+          description: >-
+            Initial rotations for the schedule.
+          items:
+            $ref: '#/components/schemas/Rotation'
+    UpdateScheduleRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: >-
+            Updated schedule name.
+        description:
+          type: string
+          description: >-
+            Updated description.
+        timezone:
+          type: string
+          description: >-
+            Updated timezone.
+        enabled:
+          type: boolean
+          description: >-
+            Whether the schedule is active.
+        ownerTeam:
+          type: object
+          description: >-
+            Updated owner team.
+          properties:
+            id:
+              type: string
+              description: >-
+                Team ID.
+            name:
+              type: string
+              description: >-
+                Team name.
+    Rotation:
+      type: object
+      required:
+        - type
+        - participants
+        - startDate
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier of the rotation.
+        name:
+          type: string
+          description: >-
+            Name of the rotation.
+        type:
+          type: string
+          enum:
+            - daily
+            - weekly
+            - hourly
+          description: >-
+            Type of rotation cycle.
+        startDate:
+          type: string
+          format: date-time
+          description: >-
+            Start date and time of the rotation.
+        endDate:
+          type: string
+          format: date-time
+          description: >-
+            End date and time of the rotation.
+        length:
+          type: integer
+          description: >-
+            Length of the rotation cycle.
+        participants:
+          type: array
+          description: >-
+            Participants in the rotation.
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                  - user
+                  - team
+                  - escalation
+                  - none
+                description: >-
+                  Type of participant.
+              id:
+                type: string
+                description: >-
+                  Participant ID.
+              username:
+                type: string
+                description: >-
+                  Username for user participants.
+        timeRestriction:
+          type: object
+          description: >-
+            Time restriction for when the rotation is active.
+          properties:
+            type:
+              type: string
+              enum:
+                - time-of-day
+                - weekday-and-time-of-day
+              description: >-
+                Type of time restriction.
+            restrictions:
+              type: array
+              items:
+                type: object
+                properties:
+                  startDay:
+                    type: string
+                    description: >-
+                      Start day of the week.
+                  startHour:
+                    type: integer
+                    description: >-
+                      Start hour.
+                  startMin:
+                    type: integer
+                    description: >-
+                      Start minute.
+                  endDay:
+                    type: string
+                    description: >-
+                      End day of the week.
+                  endHour:
+                    type: integer
+                    description: >-
+                      End hour.
+                  endMin:
+                    type: integer
+                    description: >-
+                      End minute.
+    CreateRotationRequest:
+      type: object
+      required:
+        - type
+        - participants
+        - startDate
+      properties:
+        name:
+          type: string
+          description: >-
+            Name of the rotation.
+        type:
+          type: string
+          enum:
+            - daily
+            - weekly
+            - hourly
+          description: >-
+            Type of rotation cycle.
+        startDate:
+          type: string
+          format: date-time
+          description: >-
+            Start date and time of the rotation.
+        endDate:
+          type: string
+          format: date-time
+          description: >-
+            End date and time of the rotation.
+        length:
+          type: integer
+          description: >-
+            Length of the rotation cycle.
+        participants:
+          type: array
+          description: >-
+            Participants in the rotation.
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                description: >-
+                  Participant type.
+              id:
+                type: string
+                description: >-
+                  Participant ID.
+              username:
+                type: string
+                description: >-
+                  Username for user participants.
+        timeRestriction:
+          type: object
+          description: >-
+            Time restriction for the rotation.
+          properties:
+            type:
+              type: string
+              description: >-
+                Type of restriction.
+            restrictions:
+              type: array
+              items:
+                type: object
+                properties:
+                  startDay:
+                    type: string
+                    description: >-
+                      Start day.
+                  startHour:
+                    type: integer
+                    description: >-
+                      Start hour.
+                  startMin:
+                    type: integer
+                    description: >-
+                      Start minute.
+                  endDay:
+                    type: string
+                    description: >-
+                      End day.
+                  endHour:
+                    type: integer
+                    description: >-
+                      End hour.
+                  endMin:
+                    type: integer
+                    description: >-
+                      End minute.
+    UpdateRotationRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: >-
+            Updated rotation name.
+        type:
+          type: string
+          enum:
+            - daily
+            - weekly
+            - hourly
+          description: >-
+            Updated rotation type.
+        startDate:
+          type: string
+          format: date-time
+          description: >-
+            Updated start date.
+        endDate:
+          type: string
+          format: date-time
+          description: >-
+            Updated end date.
+        length:
+          type: integer
+          description: >-
+            Updated rotation length.
+        participants:
+          type: array
+          description: >-
+            Updated participants.
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                description: >-
+                  Participant type.
+              id:
+                type: string
+                description: >-
+                  Participant ID.
+              username:
+                type: string
+                description: >-
+                  Username for user participants.
+    CreateOverrideRequest:
+      type: object
+      required:
+        - user
+        - startDate
+        - endDate
+      properties:
+        user:
+          type: object
+          description: >-
+            User who will take over the on-call duty.
+          properties:
+            id:
+              type: string
+              description: >-
+                User ID.
+            username:
+              type: string
+              description: >-
+                Username (email).
+        startDate:
+          type: string
+          format: date-time
+          description: >-
+            Start date and time of the override.
+        endDate:
+          type: string
+          format: date-time
+          description: >-
+            End date and time of the override.
+        rotations:
+          type: array
+          description: >-
+            Specific rotations to override. If not provided, all rotations
+            are overridden.
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: >-
+                  Rotation ID.
+              name:
+                type: string
+                description: >-
+                  Rotation name.
+    UpdateOverrideRequest:
+      type: object
+      required:
+        - user
+        - startDate
+        - endDate
+      properties:
+        user:
+          type: object
+          description: >-
+            User for the override.
+          properties:
+            id:
+              type: string
+              description: >-
+                User ID.
+            username:
+              type: string
+              description: >-
+                Username (email).
+        startDate:
+          type: string
+          format: date-time
+          description: >-
+            Updated start date.
+        endDate:
+          type: string
+          format: date-time
+          description: >-
+            Updated end date.
+        rotations:
+          type: array
+          description: >-
+            Specific rotations to override.
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: >-
+                  Rotation ID.
+              name:
+                type: string
+                description: >-
+                  Rotation name.
+    Schedule:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier of the schedule.
+        name:
+          type: string
+          description: >-
+            Name of the schedule.
+        description:
+          type: string
+          description: >-
+            Description of the schedule.
+        timezone:
+          type: string
+          description: >-
+            Timezone of the schedule.
+        enabled:
+          type: boolean
+          description: >-
+            Whether the schedule is active.
+        ownerTeam:
+          type: object
+          properties:
+            id:
+              type: string
+              description: >-
+                Team ID.
+            name:
+              type: string
+              description: >-
+                Team name.
+          description: >-
+            Owner team of the schedule.
+        rotations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rotation'
+          description: >-
+            Rotations within the schedule.
+    ListSchedulesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Schedule'
+          description: >-
+            List of schedules.
+        expandable:
+          type: array
+          items:
+            type: string
+          description: >-
+            Expandable fields.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    GetScheduleResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Schedule'
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    ListRotationsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rotation'
+          description: >-
+            List of rotations.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    GetRotationResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Rotation'
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    ListOverridesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              alias:
+                type: string
+                description: >-
+                  Alias of the override.
+              user:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: >-
+                      User ID.
+                  username:
+                    type: string
+                    description: >-
+                      Username.
+              startDate:
+                type: string
+                format: date-time
+                description: >-
+                  Start date.
+              endDate:
+                type: string
+                format: date-time
+                description: >-
+                  End date.
+          description: >-
+            List of overrides.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    GetOverrideResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            alias:
+              type: string
+              description: >-
+                Alias of the override.
+            user:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: >-
+                    User ID.
+                username:
+                  type: string
+                  description: >-
+                    Username.
+            startDate:
+              type: string
+              format: date-time
+              description: >-
+                Start date.
+            endDate:
+              type: string
+              format: date-time
+              description: >-
+                End date.
+            rotations:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: >-
+                      Rotation ID.
+                  name:
+                    type: string
+                    description: >-
+                      Rotation name.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    ScheduleTimelineResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            startDate:
+              type: string
+              format: date-time
+              description: >-
+                Start of the timeline.
+            endDate:
+              type: string
+              format: date-time
+              description: >-
+                End of the timeline.
+            finalTimeline:
+              type: object
+              properties:
+                rotations:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: >-
+                          Rotation ID.
+                      name:
+                        type: string
+                        description: >-
+                          Rotation name.
+                      periods:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            startDate:
+                              type: string
+                              format: date-time
+                              description: >-
+                                Period start.
+                            endDate:
+                              type: string
+                              format: date-time
+                              description: >-
+                                Period end.
+                            recipient:
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                  description: >-
+                                    Participant type.
+                                id:
+                                  type: string
+                                  description: >-
+                                    Participant ID.
+                                name:
+                                  type: string
+                                  description: >-
+                                    Participant name.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    GetOnCallsResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            onCallParticipants:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: >-
+                      Participant ID.
+                  name:
+                    type: string
+                    description: >-
+                      Participant name.
+                  type:
+                    type: string
+                    description: >-
+                      Participant type.
+              description: >-
+                Current on-call participants.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: >-
+            Result message.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: >-
+            Error message.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.

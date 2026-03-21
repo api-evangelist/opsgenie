@@ -1,0 +1,117 @@
+openapi: 3.1.0
+info:
+  title: OpsGenie Account API
+  description: >-
+    The OpsGenie Account API provides endpoints for retrieving account-level
+    information and configuration settings. Developers can use this API
+    to access details about their OpsGenie account, including plan
+    information and account metadata. It serves as a foundational API
+    for administrative operations and account management within the
+    OpsGenie platform.
+  version: '2.0.0'
+  contact:
+    name: Atlassian Support
+    url: https://support.atlassian.com/opsgenie/
+  termsOfService: https://www.atlassian.com/legal/cloud-terms-of-service
+externalDocs:
+  description: OpsGenie Account API Documentation
+  url: https://docs.opsgenie.com/docs/account-api
+servers:
+  - url: https://api.opsgenie.com
+    description: Production Server
+  - url: https://api.eu.opsgenie.com
+    description: EU Production Server
+tags:
+  - name: Account
+    description: >-
+      Operations for retrieving account information and configuration.
+security:
+  - genieKey: []
+paths:
+  /v2/account:
+    get:
+      operationId: getAccount
+      summary: Get account info
+      description: >-
+        Retrieves account-level information including the account name,
+        plan details, and user count.
+      tags:
+        - Account
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAccountResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  securitySchemes:
+    genieKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        API key authentication using the GenieKey scheme.
+  schemas:
+    Account:
+      type: object
+      properties:
+        name:
+          type: string
+          description: >-
+            Name of the OpsGenie account.
+        userCount:
+          type: integer
+          description: >-
+            Number of users in the account.
+        plan:
+          type: object
+          properties:
+            maxUserCount:
+              type: integer
+              description: >-
+                Maximum number of users allowed by the plan.
+            name:
+              type: string
+              description: >-
+                Name of the current plan.
+            isYearly:
+              type: boolean
+              description: >-
+                Whether the plan is billed yearly.
+          description: >-
+            Plan information for the account.
+    GetAccountResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Account'
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: >-
+            Error message.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.

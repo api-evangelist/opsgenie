@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.api-evangelist.com/opsgenie/incident.json",
+  "title": "OpsGenie Incident",
+  "description": "Represents an incident in the OpsGenie platform. Incidents are higher-level events that may affect services and require coordinated response across teams.",
+  "type": "object",
+  "required": ["message"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the incident."
+    },
+    "tinyId": {
+      "type": "string",
+      "description": "Short, human-readable identifier."
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 130,
+      "description": "The incident message, limited to 130 characters."
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 10000,
+      "description": "Detailed description of the incident."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["open", "resolved", "closed"],
+      "description": "Current status of the incident."
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 20,
+      "description": "Tags for categorization."
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["P1", "P2", "P3", "P4", "P5"],
+      "description": "Priority level from P1 (critical) to P5 (informational)."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when the incident was created."
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time of the last modification."
+    },
+    "ownerTeam": {
+      "type": "string",
+      "description": "The owner team of the incident."
+    },
+    "responders": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/IncidentResponder"
+      },
+      "description": "Teams assigned to respond to the incident."
+    },
+    "impactedServices": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "IDs of services impacted by the incident."
+    },
+    "details": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Custom key-value pairs providing additional context."
+    },
+    "notifyStakeholders": {
+      "type": "boolean",
+      "description": "Whether stakeholders are notified about the incident."
+    },
+    "statusPageEntry": {
+      "$ref": "#/$defs/StatusPageEntry"
+    }
+  },
+  "$defs": {
+    "IncidentResponder": {
+      "type": "object",
+      "description": "A team assigned to respond to the incident.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Team ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "Team name."
+        },
+        "type": {
+          "type": "string",
+          "enum": ["team"],
+          "description": "Type of responder, currently only team is supported for incidents."
+        }
+      }
+    },
+    "StatusPageEntry": {
+      "type": "object",
+      "description": "A status page entry associated with the incident.",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Title of the status page entry."
+        },
+        "detail": {
+          "type": "string",
+          "description": "Detail message for the status page."
+        }
+      }
+    }
+  }
+}

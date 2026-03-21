@@ -1,0 +1,241 @@
+asyncapi: 2.6.0
+info:
+  title: OpsGenie Webhook Events
+  description: >-
+    OpsGenie sends webhook notifications for alert actions to configured
+    webhook URLs. When alert events occur such as create, acknowledge,
+    close, or delete, OpsGenie posts a JSON payload to the registered
+    webhook endpoint containing alert details and the action performed.
+    The webhook payload format is fixed and includes a subset of alert
+    fields along with the triggering action and source information.
+  version: '2.0.0'
+  contact:
+    name: Atlassian Support
+    url: https://support.atlassian.com/opsgenie/
+servers:
+  webhookEndpoint:
+    url: '{webhookUrl}'
+    protocol: https
+    description: >-
+      Customer-configured webhook endpoint URL that receives alert
+      event notifications from OpsGenie.
+    variables:
+      webhookUrl:
+        description: >-
+          The URL configured in the OpsGenie webhook integration settings.
+    security:
+      - {}
+channels:
+  /webhook:
+    description: >-
+      Webhook endpoint that receives OpsGenie alert event notifications.
+      OpsGenie posts JSON payloads to this channel when alert actions
+      occur.
+    publish:
+      operationId: receiveAlertEvent
+      summary: Receive alert event notification
+      description: >-
+        OpsGenie sends alert event notifications to this endpoint when
+        alert actions are performed. The payload includes the action type,
+        alert details, and source information.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/AlertCreated'
+          - $ref: '#/components/messages/AlertAcknowledged'
+          - $ref: '#/components/messages/AlertClosed'
+          - $ref: '#/components/messages/AlertDeleted'
+          - $ref: '#/components/messages/AlertNoteAdded'
+          - $ref: '#/components/messages/AlertOwnershipAssigned'
+          - $ref: '#/components/messages/AlertCustomAction'
+components:
+  messages:
+    AlertCreated:
+      name: AlertCreated
+      title: Alert Created
+      summary: >-
+        Notification sent when a new alert is created in OpsGenie.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/WebhookPayload'
+      examples:
+        - name: AlertCreatedExample
+          payload:
+            action: Create
+            alert:
+              alertId: 44f717bf-44bd-11c9-44c7-2d0cf1d07b23
+              message: Test alert from monitoring
+              username: admin@example.com
+              alias: monitoring-alert-001
+              tinyId: '454'
+              entity: ''
+              userId: 4caaaa77-9222-4322-8622-d3522fbd7dda
+            source:
+              name: MonitoringTool
+              type: api
+    AlertAcknowledged:
+      name: AlertAcknowledged
+      title: Alert Acknowledged
+      summary: >-
+        Notification sent when an alert is acknowledged.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/WebhookPayload'
+    AlertClosed:
+      name: AlertClosed
+      title: Alert Closed
+      summary: >-
+        Notification sent when an alert is closed.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/WebhookPayload'
+    AlertDeleted:
+      name: AlertDeleted
+      title: Alert Deleted
+      summary: >-
+        Notification sent when an alert is deleted.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/WebhookPayload'
+    AlertNoteAdded:
+      name: AlertNoteAdded
+      title: Alert Note Added
+      summary: >-
+        Notification sent when a note is added to an alert.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/WebhookPayload'
+    AlertOwnershipAssigned:
+      name: AlertOwnershipAssigned
+      title: Alert Ownership Assigned
+      summary: >-
+        Notification sent when ownership of an alert is assigned to a user.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/WebhookPayload'
+    AlertCustomAction:
+      name: AlertCustomAction
+      title: Alert Custom Action
+      summary: >-
+        Notification sent when a custom action is executed on an alert.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/WebhookPayload'
+  schemas:
+    WebhookPayload:
+      type: object
+      required:
+        - action
+        - alert
+        - source
+      properties:
+        action:
+          type: string
+          description: >-
+            The alert action that triggered the webhook. Standard values
+            are Create, Acknowledge, AddNote, AssignOwnership, Close, and
+            Delete. Custom action names are also possible.
+          enum:
+            - Create
+            - Acknowledge
+            - AddNote
+            - AssignOwnership
+            - Close
+            - Delete
+        alert:
+          $ref: '#/components/schemas/WebhookAlert'
+        source:
+          $ref: '#/components/schemas/WebhookSource'
+        escalationNotify:
+          type: object
+          description: >-
+            Escalation notification details, if the event involves an
+            escalation.
+          properties:
+            id:
+              type: string
+              description: >-
+                Escalation ID.
+            name:
+              type: string
+              description: >-
+                Escalation name.
+            type:
+              type: string
+              description: >-
+                Entity type.
+    WebhookAlert:
+      type: object
+      description: >-
+        Subset of alert fields included in the webhook payload.
+      properties:
+        alertId:
+          type: string
+          description: >-
+            Unique identifier of the alert.
+        message:
+          type: string
+          description: >-
+            Alert message text.
+        username:
+          type: string
+          description: >-
+            Username of the user who performed the action.
+        alias:
+          type: string
+          description: >-
+            Client-defined alias for the alert.
+        tinyId:
+          type: string
+          description: >-
+            Short human-readable identifier.
+        entity:
+          type: string
+          description: >-
+            Entity field of the alert.
+        userId:
+          type: string
+          description: >-
+            ID of the user who performed the action.
+        createdAt:
+          type: integer
+          description: >-
+            Timestamp of alert creation in milliseconds since epoch.
+        updatedAt:
+          type: integer
+          description: >-
+            Timestamp of last update in milliseconds since epoch.
+        tags:
+          type: array
+          items:
+            type: string
+          description: >-
+            Tags attached to the alert.
+        description:
+          type: string
+          description: >-
+            Detailed description of the alert.
+        priority:
+          type: string
+          description: >-
+            Priority level (P1-P5).
+        source:
+          type: string
+          description: >-
+            Source of the alert.
+        note:
+          type: string
+          description: >-
+            Note content, if the action involves a note.
+    WebhookSource:
+      type: object
+      description: >-
+        Information about the source that triggered the alert action.
+      properties:
+        name:
+          type: string
+          description: >-
+            Name of the source (integration or tool name).
+        type:
+          type: string
+          description: >-
+            Type of the source (e.g. api, web, system).

@@ -1,0 +1,594 @@
+openapi: 3.1.0
+info:
+  title: OpsGenie Integration API
+  description: >-
+    The OpsGenie Integration API enables developers to programmatically
+    manage integrations that connect OpsGenie with third-party monitoring,
+    ticketing, and communication tools. It provides endpoints for creating,
+    enabling, disabling, and configuring integrations and their associated
+    actions. Note that the Integration API does not support Zendesk, Slack,
+    or Incoming Call integrations, which must be configured through the
+    OpsGenie web interface.
+  version: '2.0.0'
+  contact:
+    name: Atlassian Support
+    url: https://support.atlassian.com/opsgenie/
+  termsOfService: https://www.atlassian.com/legal/cloud-terms-of-service
+externalDocs:
+  description: OpsGenie Integration API Documentation
+  url: https://docs.opsgenie.com/docs/integration-api
+servers:
+  - url: https://api.opsgenie.com
+    description: Production Server
+  - url: https://api.eu.opsgenie.com
+    description: EU Production Server
+tags:
+  - name: Integrations
+    description: >-
+      Operations for creating, retrieving, enabling, disabling, and
+      managing integrations.
+security:
+  - genieKey: []
+paths:
+  /v2/integrations:
+    post:
+      operationId: createIntegration
+      summary: Create integration
+      description: >-
+        Creates a new integration in OpsGenie. The type of integration
+        determines the configuration options available.
+      tags:
+        - Integrations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateIntegrationRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateIntegrationResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      operationId: listIntegrations
+      summary: List integrations
+      description: >-
+        Returns a list of all integrations configured in the account.
+      tags:
+        - Integrations
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListIntegrationsResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/integrations/{id}:
+    get:
+      operationId: getIntegration
+      summary: Get integration
+      description: >-
+        Retrieves the details of a specific integration by its ID.
+      tags:
+        - Integrations
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: >-
+            Unique identifier of the integration.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetIntegrationResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      operationId: updateIntegration
+      summary: Update integration
+      description: >-
+        Updates the specified integration's configuration.
+      tags:
+        - Integrations
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: >-
+            Unique identifier of the integration.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateIntegrationRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteIntegration
+      summary: Delete integration
+      description: >-
+        Deletes the specified integration.
+      tags:
+        - Integrations
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: >-
+            Unique identifier of the integration.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/integrations/{id}/enable:
+    post:
+      operationId: enableIntegration
+      summary: Enable integration
+      description: >-
+        Enables the specified integration so it can process incoming events.
+      tags:
+        - Integrations
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: >-
+            Unique identifier of the integration.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/integrations/{id}/disable:
+    post:
+      operationId: disableIntegration
+      summary: Disable integration
+      description: >-
+        Disables the specified integration so it stops processing events.
+      tags:
+        - Integrations
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: >-
+            Unique identifier of the integration.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/integrations/authenticate:
+    post:
+      operationId: authenticateIntegration
+      summary: Authenticate integration
+      description: >-
+        Authenticates an integration using the provided API key and returns
+        the integration details if the key is valid.
+      tags:
+        - Integrations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - type
+              properties:
+                type:
+                  type: string
+                  description: >-
+                    Type of the integration to authenticate.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetIntegrationResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  securitySchemes:
+    genieKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        API key authentication using the GenieKey scheme.
+  schemas:
+    CreateIntegrationRequest:
+      type: object
+      required:
+        - name
+        - type
+      properties:
+        name:
+          type: string
+          description: >-
+            Name of the integration.
+        type:
+          type: string
+          description: >-
+            Type of the integration (e.g. API, Marid, Email, etc.).
+        ownerTeam:
+          type: object
+          description: >-
+            Team that owns the integration.
+          properties:
+            id:
+              type: string
+              description: >-
+                Team ID.
+            name:
+              type: string
+              description: >-
+                Team name.
+        allowWriteAccess:
+          type: boolean
+          description: >-
+            Whether the integration allows write access.
+        allowConfigurationAccess:
+          type: boolean
+          description: >-
+            Whether the integration allows configuration access.
+        ignoreRespondersFromPayload:
+          type: boolean
+          description: >-
+            Whether to ignore responders from the incoming payload.
+        suppressNotifications:
+          type: boolean
+          description: >-
+            Whether to suppress notifications from this integration.
+        responders:
+          type: array
+          description: >-
+            Default responders for the integration.
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: >-
+                  Responder ID.
+              name:
+                type: string
+                description: >-
+                  Responder name.
+              type:
+                type: string
+                enum:
+                  - team
+                  - user
+                  - escalation
+                  - schedule
+                description: >-
+                  Responder type.
+    UpdateIntegrationRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: >-
+            Updated integration name.
+        ownerTeam:
+          type: object
+          description: >-
+            Updated owner team.
+          properties:
+            id:
+              type: string
+              description: >-
+                Team ID.
+            name:
+              type: string
+              description: >-
+                Team name.
+        allowWriteAccess:
+          type: boolean
+          description: >-
+            Updated write access setting.
+        allowConfigurationAccess:
+          type: boolean
+          description: >-
+            Updated configuration access setting.
+        ignoreRespondersFromPayload:
+          type: boolean
+          description: >-
+            Updated responder ignore setting.
+        suppressNotifications:
+          type: boolean
+          description: >-
+            Updated notification suppression setting.
+        responders:
+          type: array
+          description: >-
+            Updated default responders.
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: >-
+                  Responder ID.
+              name:
+                type: string
+                description: >-
+                  Responder name.
+              type:
+                type: string
+                description: >-
+                  Responder type.
+    Integration:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier.
+        name:
+          type: string
+          description: >-
+            Name of the integration.
+        type:
+          type: string
+          description: >-
+            Type of the integration.
+        enabled:
+          type: boolean
+          description: >-
+            Whether the integration is currently enabled.
+        ownerTeam:
+          type: object
+          properties:
+            id:
+              type: string
+              description: >-
+                Team ID.
+            name:
+              type: string
+              description: >-
+                Team name.
+          description: >-
+            Owner team.
+        isGlobal:
+          type: boolean
+          description: >-
+            Whether this is a global (account-level) integration.
+        allowWriteAccess:
+          type: boolean
+          description: >-
+            Whether write access is enabled.
+        allowConfigurationAccess:
+          type: boolean
+          description: >-
+            Whether configuration access is enabled.
+        responders:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: >-
+                  Responder ID.
+              name:
+                type: string
+                description: >-
+                  Responder name.
+              type:
+                type: string
+                description: >-
+                  Responder type.
+          description: >-
+            Default responders.
+    CreateIntegrationResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: >-
+                ID of the created integration.
+            name:
+              type: string
+              description: >-
+                Name of the integration.
+            enabled:
+              type: boolean
+              description: >-
+                Whether the integration is enabled.
+            type:
+              type: string
+              description: >-
+                Integration type.
+            apiKey:
+              type: string
+              description: >-
+                API key for the integration.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    ListIntegrationsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Integration'
+          description: >-
+            List of integrations.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    GetIntegrationResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Integration'
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: >-
+            Result message.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: >-
+            Error message.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.

@@ -1,0 +1,391 @@
+openapi: 3.1.0
+info:
+  title: OpsGenie Maintenance API
+  description: >-
+    The OpsGenie Maintenance API allows developers to manage maintenance
+    windows that suppress alert notifications during planned maintenance
+    periods. It provides endpoints for creating, updating, listing, and
+    deleting maintenance windows with configurable time ranges and rules
+    for which integrations or policies are affected. This helps operations
+    teams avoid unnecessary alerting during scheduled downtime.
+  version: '1.0.0'
+  contact:
+    name: Atlassian Support
+    url: https://support.atlassian.com/opsgenie/
+  termsOfService: https://www.atlassian.com/legal/cloud-terms-of-service
+externalDocs:
+  description: OpsGenie Maintenance API Documentation
+  url: https://docs.opsgenie.com/docs/maintenance-api
+servers:
+  - url: https://api.opsgenie.com
+    description: Production Server
+  - url: https://api.eu.opsgenie.com
+    description: EU Production Server
+tags:
+  - name: Maintenance
+    description: >-
+      Operations for creating, listing, retrieving, and deleting
+      maintenance windows.
+security:
+  - genieKey: []
+paths:
+  /v1/maintenance:
+    post:
+      operationId: createMaintenance
+      summary: Create maintenance
+      description: >-
+        Creates a new maintenance window that suppresses alert notifications
+        during the specified time period.
+      tags:
+        - Maintenance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMaintenanceRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMaintenanceResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      operationId: listMaintenances
+      summary: List maintenances
+      description: >-
+        Returns a list of maintenance windows filtered by type.
+      tags:
+        - Maintenance
+      parameters:
+        - name: type
+          in: query
+          description: >-
+            Filter by maintenance type. Non-expired returns active and
+            future windows.
+          schema:
+            type: string
+            enum:
+              - all
+              - past
+              - non-expired
+            default: non-expired
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListMaintenancesResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v1/maintenance/{id}:
+    get:
+      operationId: getMaintenance
+      summary: Get maintenance
+      description: >-
+        Retrieves the details of a specific maintenance window by its ID.
+      tags:
+        - Maintenance
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: >-
+            Unique identifier of the maintenance window.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMaintenanceResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteMaintenance
+      summary: Delete maintenance
+      description: >-
+        Deletes the specified maintenance window.
+      tags:
+        - Maintenance
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: >-
+            Unique identifier of the maintenance window.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v1/maintenance/{id}/cancel:
+    post:
+      operationId: cancelMaintenance
+      summary: Cancel maintenance
+      description: >-
+        Cancels an active or scheduled maintenance window.
+      tags:
+        - Maintenance
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: >-
+            Unique identifier of the maintenance window.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  securitySchemes:
+    genieKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        API key authentication using the GenieKey scheme.
+  schemas:
+    CreateMaintenanceRequest:
+      type: object
+      required:
+        - description
+        - time
+        - rules
+      properties:
+        description:
+          type: string
+          description: >-
+            Description of the maintenance window.
+        time:
+          type: object
+          required:
+            - type
+          description: >-
+            Time configuration for the maintenance window.
+          properties:
+            type:
+              type: string
+              enum:
+                - for-5-minutes
+                - for-30-minutes
+                - for-1-hour
+                - indefinitely
+                - schedule
+              description: >-
+                Type of maintenance duration.
+            startDate:
+              type: string
+              format: date-time
+              description: >-
+                Start date for scheduled maintenance.
+            endDate:
+              type: string
+              format: date-time
+              description: >-
+                End date for scheduled maintenance.
+        rules:
+          type: array
+          description: >-
+            Rules defining which integrations or policies are affected.
+          items:
+            type: object
+            properties:
+              entity:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: >-
+                      Entity ID (integration or policy ID).
+                  type:
+                    type: string
+                    enum:
+                      - integration
+                      - policy
+                    description: >-
+                      Type of entity affected.
+                description: >-
+                  Entity affected by the maintenance rule.
+    Maintenance:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier.
+        status:
+          type: string
+          enum:
+            - active
+            - planned
+            - past
+            - cancelled
+          description: >-
+            Current status of the maintenance.
+        description:
+          type: string
+          description: >-
+            Description of the maintenance window.
+        time:
+          type: object
+          properties:
+            type:
+              type: string
+              description: >-
+                Type of maintenance duration.
+            startDate:
+              type: string
+              format: date-time
+              description: >-
+                Start date.
+            endDate:
+              type: string
+              format: date-time
+              description: >-
+                End date.
+          description: >-
+            Time configuration.
+        rules:
+          type: array
+          items:
+            type: object
+            properties:
+              entity:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: >-
+                      Entity ID.
+                  type:
+                    type: string
+                    description: >-
+                      Entity type.
+                description: >-
+                  Affected entity.
+          description: >-
+            Maintenance rules.
+    ListMaintenancesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Maintenance'
+          description: >-
+            List of maintenance windows.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    GetMaintenanceResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Maintenance'
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: >-
+            Result message.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: >-
+            Error message.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
