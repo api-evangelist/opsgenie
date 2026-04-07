@@ -38,8 +38,7 @@ paths:
       description: >-
         Creates a new service in the OpsGenie service catalog. Available
         to Standard and Enterprise plan users.
-      tags:
-        - Services
+      tags: []
       requestBody:
         required: true
         content:
@@ -70,8 +69,7 @@ paths:
       summary: List services
       description: >-
         Returns a list of all services in the account.
-      tags:
-        - Services
+      tags: []
       parameters:
         - name: limit
           in: query
@@ -124,8 +122,7 @@ paths:
       summary: Get service
       description: >-
         Retrieves the details of a specific service by its ID.
-      tags:
-        - Services
+      tags: []
       parameters:
         - $ref: '#/components/parameters/ServiceIdentifier'
       responses:
@@ -152,8 +149,7 @@ paths:
       summary: Update service
       description: >-
         Updates the specified service.
-      tags:
-        - Services
+      tags: []
       parameters:
         - $ref: '#/components/parameters/ServiceIdentifier'
       requestBody:
@@ -192,8 +188,7 @@ paths:
       summary: Delete service
       description: >-
         Deletes the specified service from the service catalog.
-      tags:
-        - Services
+      tags: []
       parameters:
         - $ref: '#/components/parameters/ServiceIdentifier'
       responses:

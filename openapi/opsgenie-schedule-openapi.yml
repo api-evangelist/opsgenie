@@ -22,18 +22,18 @@ servers:
   - url: https://api.eu.opsgenie.com
     description: EU Production Server
 tags:
-  - name: Schedules
-    description: >-
-      Operations for managing on-call schedules.
-  - name: Rotations
-    description: >-
-      Operations for managing schedule rotations.
-  - name: Overrides
-    description: >-
-      Operations for managing schedule overrides.
   - name: On-Call
     description: >-
       Operations for querying on-call participants.
+  - name: Overrides
+    description: >-
+      Operations for managing schedule overrides.
+  - name: Rotations
+    description: >-
+      Operations for managing schedule rotations.
+  - name: Schedules
+    description: >-
+      Operations for managing on-call schedules.
 security:
   - genieKey: []
 paths:
