@@ -1,0 +1,116 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Opsgenie (Atlassian)
+providerId: opsgenie
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Incident Response
+  - On-Call
+description: 'Opsgenie tiers: Free / Essentials / Standard / Enterprise. New sales ended June 2025; existing
+  customers must migrate by April 2027.'
+sources:
+  - https://www.atlassian.com/software/opsgenie/pricing
+plans:
+  - id: opsgenie-free
+    name: Free
+    type: freemium
+    description: Up to 5 users, basic on-call.
+    entries:
+      - label: Users
+        name: users
+        type: quota
+        metric: user
+        limit: 5
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: 100 international notifications/mo
+      - name: 1 schedule
+      - name: 1 escalation policy
+      - name: Email + push
+  - id: opsgenie-essentials
+    name: Essentials
+    type: paid
+    description: $9.45/user/month.
+    entries:
+      - label: Per user
+        name: seat
+        type: subscription
+        metric: user
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '9.45'
+        userMultiplied: true
+    elements:
+      - name: Unlimited integrations
+      - name: Multiple schedules
+      - name: Multiple escalation policies
+      - name: Round-robin
+      - name: Status pages
+  - id: opsgenie-standard
+    name: Standard
+    type: paid
+    description: $19.95/user/month.
+    entries:
+      - label: Per user
+        name: seat
+        type: subscription
+        metric: user
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '19.95'
+        userMultiplied: true
+    elements:
+      - name: Custom incident response orchestration
+      - name: Stakeholder communications
+      - name: Service health dashboards
+      - name: Heartbeat monitoring
+  - id: opsgenie-enterprise
+    name: Enterprise
+    type: enterprise
+    description: $31.90/user/month.
+    entries:
+      - label: Per user
+        name: seat
+        type: subscription
+        metric: user
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '31.90'
+        userMultiplied: true
+    elements:
+      - name: Advanced reporting and analytics
+      - name: Post-incident reviews
+      - name: Audit logs
+      - name: Service-now integration
+      - name: JSM-grade incident management
+  - id: opsgenie-eol
+    name: End of Life Notice
+    type: enterprise
+    description: New sales ended 2025-06-04; data must move to JSM/Compass by 2027-04-05.
+    entries:
+      - label: EOL date
+        name: eol
+        type: subscription
+        metric: one-time
+        limit: 1
+        timeFrame: one-time
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Migrate to Jira Service Management or Compass
+      - name: Existing customers continue until April 2027
