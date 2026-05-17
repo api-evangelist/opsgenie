@@ -5,7 +5,7 @@ description: OpsGenie is an incident management and alerting platform, now part 
   developer platform provides a comprehensive set of REST APIs for programmatically managing alerts, incidents,
   teams, schedules, escalations, integrations, heartbeats, services, notification rules, accounts, and
   maintenance windows.
-type: Contract
+kind: contract
 position: Consuming
 access: 3rd-Party
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
