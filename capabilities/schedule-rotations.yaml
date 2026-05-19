@@ -1,0 +1,226 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OpsGenie Schedule API — Rotations
+  description: 'OpsGenie Schedule API — Rotations. 5 operations. Lead operation: Create schedule rotation. Self-contained
+    Naftiko capability covering one Opsgenie business surface.'
+  tags:
+  - Opsgenie
+  - Rotations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OPSGENIE_API_KEY: OPSGENIE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: schedule-rotations
+    baseUri: https://api.opsgenie.com
+    description: OpsGenie Schedule API — Rotations business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-schedules-identifier-rotations
+      path: /v2/schedules/{identifier}/rotations
+      operations:
+      - name: createschedulerotation
+        method: POST
+        description: Create schedule rotation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listschedulerotations
+        method: GET
+        description: List schedule rotations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-schedules-identifier-rotations-rotationId
+      path: /v2/schedules/{identifier}/rotations/{rotationId}
+      operations:
+      - name: getschedulerotation
+        method: GET
+        description: Get schedule rotation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: rotationId
+          in: path
+          type: string
+          description: Identifier of the rotation.
+          required: true
+      - name: updateschedulerotation
+        method: PATCH
+        description: Update schedule rotation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: rotationId
+          in: path
+          type: string
+          description: Identifier of the rotation.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteschedulerotation
+        method: DELETE
+        description: Delete schedule rotation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: rotationId
+          in: path
+          type: string
+          description: Identifier of the rotation.
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.OPSGENIE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: schedule-rotations-rest
+    port: 8080
+    description: REST adapter for OpsGenie Schedule API — Rotations. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v2/schedules/{identifier}/rotations
+      name: v2-schedules-identifier-rotations
+      description: REST surface for v2-schedules-identifier-rotations.
+      operations:
+      - method: POST
+        name: createschedulerotation
+        description: Create schedule rotation
+        call: schedule-rotations.createschedulerotation
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listschedulerotations
+        description: List schedule rotations
+        call: schedule-rotations.listschedulerotations
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/schedules/{identifier}/rotations/{rotationid}
+      name: v2-schedules-identifier-rotations-rotationid
+      description: REST surface for v2-schedules-identifier-rotations-rotationId.
+      operations:
+      - method: GET
+        name: getschedulerotation
+        description: Get schedule rotation
+        call: schedule-rotations.getschedulerotation
+        with:
+          rotationId: rest.rotationId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateschedulerotation
+        description: Update schedule rotation
+        call: schedule-rotations.updateschedulerotation
+        with:
+          rotationId: rest.rotationId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteschedulerotation
+        description: Delete schedule rotation
+        call: schedule-rotations.deleteschedulerotation
+        with:
+          rotationId: rest.rotationId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: schedule-rotations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OpsGenie Schedule API — Rotations. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: create-schedule-rotation
+      description: Create schedule rotation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: schedule-rotations.createschedulerotation
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-schedule-rotations
+      description: List schedule rotations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schedule-rotations.listschedulerotations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-schedule-rotation
+      description: Get schedule rotation
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schedule-rotations.getschedulerotation
+      with:
+        rotationId: tools.rotationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-schedule-rotation
+      description: Update schedule rotation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: schedule-rotations.updateschedulerotation
+      with:
+        rotationId: tools.rotationId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-schedule-rotation
+      description: Delete schedule rotation
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: schedule-rotations.deleteschedulerotation
+      with:
+        rotationId: tools.rotationId
+      outputParameters:
+      - type: object
+        mapping: $.

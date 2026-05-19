@@ -1,0 +1,87 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OpsGenie Schedule API — On-Call
+  description: 'OpsGenie Schedule API — On-Call. 1 operations. Lead operation: Get on-call participants. Self-contained Naftiko
+    capability covering one Opsgenie business surface.'
+  tags:
+  - Opsgenie
+  - On-Call
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OPSGENIE_API_KEY: OPSGENIE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: schedule-on-call
+    baseUri: https://api.opsgenie.com
+    description: OpsGenie Schedule API — On-Call business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-schedules-identifier-on-calls
+      path: /v2/schedules/{identifier}/on-calls
+      operations:
+      - name: getoncalls
+        method: GET
+        description: Get on-call participants
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: flat
+          in: query
+          type: boolean
+          description: If true, returns a flat list of on-call participants.
+        - name: date
+          in: query
+          type: string
+          description: Date to check on-call for, in ISO 8601 format.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.OPSGENIE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: schedule-on-call-rest
+    port: 8080
+    description: REST adapter for OpsGenie Schedule API — On-Call. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v2/schedules/{identifier}/on-calls
+      name: v2-schedules-identifier-on-calls
+      description: REST surface for v2-schedules-identifier-on-calls.
+      operations:
+      - method: GET
+        name: getoncalls
+        description: Get on-call participants
+        call: schedule-on-call.getoncalls
+        with:
+          flat: rest.flat
+          date: rest.date
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: schedule-on-call-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OpsGenie Schedule API — On-Call. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-call-participants
+      description: Get on-call participants
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schedule-on-call.getoncalls
+      with:
+        flat: tools.flat
+        date: tools.date
+      outputParameters:
+      - type: object
+        mapping: $.

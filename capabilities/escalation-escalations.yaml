@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OpsGenie Escalation API — Escalations
+  description: 'OpsGenie Escalation API — Escalations. 5 operations. Lead operation: Create escalation. Self-contained Naftiko
+    capability covering one Opsgenie business surface.'
+  tags:
+  - Opsgenie
+  - Escalations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OPSGENIE_API_KEY: OPSGENIE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: escalation-escalations
+    baseUri: https://api.opsgenie.com
+    description: OpsGenie Escalation API — Escalations business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-escalations
+      path: /v2/escalations
+      operations:
+      - name: createescalation
+        method: POST
+        description: Create escalation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listescalations
+        method: GET
+        description: List escalations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-escalations-identifier
+      path: /v2/escalations/{identifier}
+      operations:
+      - name: getescalation
+        method: GET
+        description: Get escalation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateescalation
+        method: PATCH
+        description: Update escalation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteescalation
+        method: DELETE
+        description: Delete escalation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.OPSGENIE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: escalation-escalations-rest
+    port: 8080
+    description: REST adapter for OpsGenie Escalation API — Escalations. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v2/escalations
+      name: v2-escalations
+      description: REST surface for v2-escalations.
+      operations:
+      - method: POST
+        name: createescalation
+        description: Create escalation
+        call: escalation-escalations.createescalation
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listescalations
+        description: List escalations
+        call: escalation-escalations.listescalations
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/escalations/{identifier}
+      name: v2-escalations-identifier
+      description: REST surface for v2-escalations-identifier.
+      operations:
+      - method: GET
+        name: getescalation
+        description: Get escalation
+        call: escalation-escalations.getescalation
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateescalation
+        description: Update escalation
+        call: escalation-escalations.updateescalation
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteescalation
+        description: Delete escalation
+        call: escalation-escalations.deleteescalation
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: escalation-escalations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OpsGenie Escalation API — Escalations. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: create-escalation
+      description: Create escalation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: escalation-escalations.createescalation
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-escalations
+      description: List escalations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: escalation-escalations.listescalations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-escalation
+      description: Get escalation
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: escalation-escalations.getescalation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-escalation
+      description: Update escalation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: escalation-escalations.updateescalation
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-escalation
+      description: Delete escalation
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: escalation-escalations.deleteescalation
+      outputParameters:
+      - type: object
+        mapping: $.

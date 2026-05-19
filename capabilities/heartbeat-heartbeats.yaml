@@ -1,0 +1,295 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OpsGenie Heartbeat API — Heartbeats
+  description: 'OpsGenie Heartbeat API — Heartbeats. 8 operations. Lead operation: Create heartbeat. Self-contained Naftiko
+    capability covering one Opsgenie business surface.'
+  tags:
+  - Opsgenie
+  - Heartbeats
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OPSGENIE_API_KEY: OPSGENIE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: heartbeat-heartbeats
+    baseUri: https://api.opsgenie.com
+    description: OpsGenie Heartbeat API — Heartbeats business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-heartbeats
+      path: /v2/heartbeats
+      operations:
+      - name: createheartbeat
+        method: POST
+        description: Create heartbeat
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listheartbeats
+        method: GET
+        description: List heartbeats
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-heartbeats-name
+      path: /v2/heartbeats/{name}
+      operations:
+      - name: getheartbeat
+        method: GET
+        description: Get heartbeat
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateheartbeat
+        method: PATCH
+        description: Update heartbeat
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteheartbeat
+        method: DELETE
+        description: Delete heartbeat
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-heartbeats-name-disable
+      path: /v2/heartbeats/{name}/disable
+      operations:
+      - name: disableheartbeat
+        method: POST
+        description: Disable heartbeat
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-heartbeats-name-enable
+      path: /v2/heartbeats/{name}/enable
+      operations:
+      - name: enableheartbeat
+        method: POST
+        description: Enable heartbeat
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-heartbeats-name-ping
+      path: /v2/heartbeats/{name}/ping
+      operations:
+      - name: pingheartbeat
+        method: GET
+        description: Ping heartbeat
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.OPSGENIE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: heartbeat-heartbeats-rest
+    port: 8080
+    description: REST adapter for OpsGenie Heartbeat API — Heartbeats. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v2/heartbeats
+      name: v2-heartbeats
+      description: REST surface for v2-heartbeats.
+      operations:
+      - method: POST
+        name: createheartbeat
+        description: Create heartbeat
+        call: heartbeat-heartbeats.createheartbeat
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listheartbeats
+        description: List heartbeats
+        call: heartbeat-heartbeats.listheartbeats
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/heartbeats/{name}
+      name: v2-heartbeats-name
+      description: REST surface for v2-heartbeats-name.
+      operations:
+      - method: GET
+        name: getheartbeat
+        description: Get heartbeat
+        call: heartbeat-heartbeats.getheartbeat
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateheartbeat
+        description: Update heartbeat
+        call: heartbeat-heartbeats.updateheartbeat
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteheartbeat
+        description: Delete heartbeat
+        call: heartbeat-heartbeats.deleteheartbeat
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/heartbeats/{name}/disable
+      name: v2-heartbeats-name-disable
+      description: REST surface for v2-heartbeats-name-disable.
+      operations:
+      - method: POST
+        name: disableheartbeat
+        description: Disable heartbeat
+        call: heartbeat-heartbeats.disableheartbeat
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/heartbeats/{name}/enable
+      name: v2-heartbeats-name-enable
+      description: REST surface for v2-heartbeats-name-enable.
+      operations:
+      - method: POST
+        name: enableheartbeat
+        description: Enable heartbeat
+        call: heartbeat-heartbeats.enableheartbeat
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/heartbeats/{name}/ping
+      name: v2-heartbeats-name-ping
+      description: REST surface for v2-heartbeats-name-ping.
+      operations:
+      - method: GET
+        name: pingheartbeat
+        description: Ping heartbeat
+        call: heartbeat-heartbeats.pingheartbeat
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: heartbeat-heartbeats-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OpsGenie Heartbeat API — Heartbeats. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: create-heartbeat
+      description: Create heartbeat
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: heartbeat-heartbeats.createheartbeat
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-heartbeats
+      description: List heartbeats
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: heartbeat-heartbeats.listheartbeats
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-heartbeat
+      description: Get heartbeat
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: heartbeat-heartbeats.getheartbeat
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-heartbeat
+      description: Update heartbeat
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: heartbeat-heartbeats.updateheartbeat
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-heartbeat
+      description: Delete heartbeat
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: heartbeat-heartbeats.deleteheartbeat
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: disable-heartbeat
+      description: Disable heartbeat
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: heartbeat-heartbeats.disableheartbeat
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: enable-heartbeat
+      description: Enable heartbeat
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: heartbeat-heartbeats.enableheartbeat
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: ping-heartbeat
+      description: Ping heartbeat
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: heartbeat-heartbeats.pingheartbeat
+      outputParameters:
+      - type: object
+        mapping: $.

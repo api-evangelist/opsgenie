@@ -1,0 +1,235 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OpsGenie Maintenance API — Maintenance
+  description: 'OpsGenie Maintenance API — Maintenance. 5 operations. Lead operation: Create maintenance. Self-contained Naftiko
+    capability covering one Opsgenie business surface.'
+  tags:
+  - Opsgenie
+  - Maintenance
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OPSGENIE_API_KEY: OPSGENIE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: maintenance-maintenance
+    baseUri: https://api.opsgenie.com
+    description: OpsGenie Maintenance API — Maintenance business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-maintenance
+      path: /v1/maintenance
+      operations:
+      - name: createmaintenance
+        method: POST
+        description: Create maintenance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listmaintenances
+        method: GET
+        description: List maintenances
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: type
+          in: query
+          type: string
+          description: Filter by maintenance type. Non-expired returns active and future windows.
+    - name: v1-maintenance-id
+      path: /v1/maintenance/{id}
+      operations:
+      - name: getmaintenance
+        method: GET
+        description: Get maintenance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Unique identifier of the maintenance window.
+          required: true
+      - name: deletemaintenance
+        method: DELETE
+        description: Delete maintenance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Unique identifier of the maintenance window.
+          required: true
+    - name: v1-maintenance-id-cancel
+      path: /v1/maintenance/{id}/cancel
+      operations:
+      - name: cancelmaintenance
+        method: POST
+        description: Cancel maintenance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Unique identifier of the maintenance window.
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.OPSGENIE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: maintenance-maintenance-rest
+    port: 8080
+    description: REST adapter for OpsGenie Maintenance API — Maintenance. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/maintenance
+      name: v1-maintenance
+      description: REST surface for v1-maintenance.
+      operations:
+      - method: POST
+        name: createmaintenance
+        description: Create maintenance
+        call: maintenance-maintenance.createmaintenance
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listmaintenances
+        description: List maintenances
+        call: maintenance-maintenance.listmaintenances
+        with:
+          type: rest.type
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/maintenance/{id}
+      name: v1-maintenance-id
+      description: REST surface for v1-maintenance-id.
+      operations:
+      - method: GET
+        name: getmaintenance
+        description: Get maintenance
+        call: maintenance-maintenance.getmaintenance
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletemaintenance
+        description: Delete maintenance
+        call: maintenance-maintenance.deletemaintenance
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/maintenance/{id}/cancel
+      name: v1-maintenance-id-cancel
+      description: REST surface for v1-maintenance-id-cancel.
+      operations:
+      - method: POST
+        name: cancelmaintenance
+        description: Cancel maintenance
+        call: maintenance-maintenance.cancelmaintenance
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: maintenance-maintenance-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OpsGenie Maintenance API — Maintenance. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: create-maintenance
+      description: Create maintenance
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: maintenance-maintenance.createmaintenance
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-maintenances
+      description: List maintenances
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: maintenance-maintenance.listmaintenances
+      with:
+        type: tools.type
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-maintenance
+      description: Get maintenance
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: maintenance-maintenance.getmaintenance
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-maintenance
+      description: Delete maintenance
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: maintenance-maintenance.deletemaintenance
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cancel-maintenance
+      description: Cancel maintenance
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: maintenance-maintenance.cancelmaintenance
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.

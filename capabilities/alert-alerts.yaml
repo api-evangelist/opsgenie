@@ -1,0 +1,849 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OpsGenie Alert API — Alerts
+  description: 'OpsGenie Alert API — Alerts. 22 operations. Lead operation: Create alert. Self-contained Naftiko capability
+    covering one Opsgenie business surface.'
+  tags:
+  - Opsgenie
+  - Alerts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OPSGENIE_API_KEY: OPSGENIE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: alert-alerts
+    baseUri: https://api.opsgenie.com
+    description: OpsGenie Alert API — Alerts business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-alerts
+      path: /v2/alerts
+      operations:
+      - name: createalert
+        method: POST
+        description: Create alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listalerts
+        method: GET
+        description: List alerts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-alerts-count
+      path: /v2/alerts/count
+      operations:
+      - name: countalerts
+        method: GET
+        description: Count alerts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-alerts-requests-requestId
+      path: /v2/alerts/requests/{requestId}
+      operations:
+      - name: getrequeststatus
+        method: GET
+        description: Get request status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: requestId
+          in: path
+          type: string
+          description: The ID of the asynchronous request to check status for.
+          required: true
+    - name: v2-alerts-identifier
+      path: /v2/alerts/{identifier}
+      operations:
+      - name: getalert
+        method: GET
+        description: Get alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletealert
+        method: DELETE
+        description: Delete alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-alerts-identifier-acknowledge
+      path: /v2/alerts/{identifier}/acknowledge
+      operations:
+      - name: acknowledgealert
+        method: POST
+        description: Acknowledge alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v2-alerts-identifier-assign
+      path: /v2/alerts/{identifier}/assign
+      operations:
+      - name: assignalert
+        method: POST
+        description: Assign alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v2-alerts-identifier-attachments
+      path: /v2/alerts/{identifier}/attachments
+      operations:
+      - name: addattachment
+        method: POST
+        description: Add attachment to alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listattachments
+        method: GET
+        description: List alert attachments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-alerts-identifier-close
+      path: /v2/alerts/{identifier}/close
+      operations:
+      - name: closealert
+        method: POST
+        description: Close alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v2-alerts-identifier-details
+      path: /v2/alerts/{identifier}/details
+      operations:
+      - name: adddetails
+        method: POST
+        description: Add details to alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v2-alerts-identifier-escalate
+      path: /v2/alerts/{identifier}/escalate
+      operations:
+      - name: escalatealert
+        method: POST
+        description: Escalate alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v2-alerts-identifier-logs
+      path: /v2/alerts/{identifier}/logs
+      operations:
+      - name: listalertlogs
+        method: GET
+        description: List alert logs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-alerts-identifier-notes
+      path: /v2/alerts/{identifier}/notes
+      operations:
+      - name: addnote
+        method: POST
+        description: Add note to alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listalertnotes
+        method: GET
+        description: List alert notes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-alerts-identifier-recipients
+      path: /v2/alerts/{identifier}/recipients
+      operations:
+      - name: listalertrecipients
+        method: GET
+        description: List alert recipients
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-alerts-identifier-responders
+      path: /v2/alerts/{identifier}/responders
+      operations:
+      - name: addresponder
+        method: POST
+        description: Add responder to alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v2-alerts-identifier-snooze
+      path: /v2/alerts/{identifier}/snooze
+      operations:
+      - name: snoozealert
+        method: POST
+        description: Snooze alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v2-alerts-identifier-tags
+      path: /v2/alerts/{identifier}/tags
+      operations:
+      - name: addtags
+        method: POST
+        description: Add tags to alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: removetags
+        method: DELETE
+        description: Remove tags from alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tags
+          in: query
+          type: string
+          description: Comma-separated list of tags to remove from the alert.
+          required: true
+    - name: v2-alerts-identifier-unacknowledge
+      path: /v2/alerts/{identifier}/unacknowledge
+      operations:
+      - name: unacknowledgealert
+        method: POST
+        description: Unacknowledge alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.OPSGENIE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: alert-alerts-rest
+    port: 8080
+    description: REST adapter for OpsGenie Alert API — Alerts. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v2/alerts
+      name: v2-alerts
+      description: REST surface for v2-alerts.
+      operations:
+      - method: POST
+        name: createalert
+        description: Create alert
+        call: alert-alerts.createalert
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listalerts
+        description: List alerts
+        call: alert-alerts.listalerts
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/alerts/count
+      name: v2-alerts-count
+      description: REST surface for v2-alerts-count.
+      operations:
+      - method: GET
+        name: countalerts
+        description: Count alerts
+        call: alert-alerts.countalerts
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/alerts/requests/{requestid}
+      name: v2-alerts-requests-requestid
+      description: REST surface for v2-alerts-requests-requestId.
+      operations:
+      - method: GET
+        name: getrequeststatus
+        description: Get request status
+        call: alert-alerts.getrequeststatus
+        with:
+          requestId: rest.requestId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/alerts/{identifier}
+      name: v2-alerts-identifier
+      description: REST surface for v2-alerts-identifier.
+      operations:
+      - method: GET
+        name: getalert
+        description: Get alert
+        call: alert-alerts.getalert
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletealert
+        description: Delete alert
+        call: alert-alerts.deletealert
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/alerts/{identifier}/acknowledge
+      name: v2-alerts-identifier-acknowledge
+      description: REST surface for v2-alerts-identifier-acknowledge.
+      operations:
+      - method: POST
+        name: acknowledgealert
+        description: Acknowledge alert
+        call: alert-alerts.acknowledgealert
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/alerts/{identifier}/assign
+      name: v2-alerts-identifier-assign
+      description: REST surface for v2-alerts-identifier-assign.
+      operations:
+      - method: POST
+        name: assignalert
+        description: Assign alert
+        call: alert-alerts.assignalert
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/alerts/{identifier}/attachments
+      name: v2-alerts-identifier-attachments
+      description: REST surface for v2-alerts-identifier-attachments.
+      operations:
+      - method: POST
+        name: addattachment
+        description: Add attachment to alert
+        call: alert-alerts.addattachment
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listattachments
+        description: List alert attachments
+        call: alert-alerts.listattachments
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/alerts/{identifier}/close
+      name: v2-alerts-identifier-close
+      description: REST surface for v2-alerts-identifier-close.
+      operations:
+      - method: POST
+        name: closealert
+        description: Close alert
+        call: alert-alerts.closealert
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/alerts/{identifier}/details
+      name: v2-alerts-identifier-details
+      description: REST surface for v2-alerts-identifier-details.
+      operations:
+      - method: POST
+        name: adddetails
+        description: Add details to alert
+        call: alert-alerts.adddetails
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/alerts/{identifier}/escalate
+      name: v2-alerts-identifier-escalate
+      description: REST surface for v2-alerts-identifier-escalate.
+      operations:
+      - method: POST
+        name: escalatealert
+        description: Escalate alert
+        call: alert-alerts.escalatealert
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/alerts/{identifier}/logs
+      name: v2-alerts-identifier-logs
+      description: REST surface for v2-alerts-identifier-logs.
+      operations:
+      - method: GET
+        name: listalertlogs
+        description: List alert logs
+        call: alert-alerts.listalertlogs
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/alerts/{identifier}/notes
+      name: v2-alerts-identifier-notes
+      description: REST surface for v2-alerts-identifier-notes.
+      operations:
+      - method: POST
+        name: addnote
+        description: Add note to alert
+        call: alert-alerts.addnote
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listalertnotes
+        description: List alert notes
+        call: alert-alerts.listalertnotes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/alerts/{identifier}/recipients
+      name: v2-alerts-identifier-recipients
+      description: REST surface for v2-alerts-identifier-recipients.
+      operations:
+      - method: GET
+        name: listalertrecipients
+        description: List alert recipients
+        call: alert-alerts.listalertrecipients
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/alerts/{identifier}/responders
+      name: v2-alerts-identifier-responders
+      description: REST surface for v2-alerts-identifier-responders.
+      operations:
+      - method: POST
+        name: addresponder
+        description: Add responder to alert
+        call: alert-alerts.addresponder
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/alerts/{identifier}/snooze
+      name: v2-alerts-identifier-snooze
+      description: REST surface for v2-alerts-identifier-snooze.
+      operations:
+      - method: POST
+        name: snoozealert
+        description: Snooze alert
+        call: alert-alerts.snoozealert
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/alerts/{identifier}/tags
+      name: v2-alerts-identifier-tags
+      description: REST surface for v2-alerts-identifier-tags.
+      operations:
+      - method: POST
+        name: addtags
+        description: Add tags to alert
+        call: alert-alerts.addtags
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: removetags
+        description: Remove tags from alert
+        call: alert-alerts.removetags
+        with:
+          tags: rest.tags
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/alerts/{identifier}/unacknowledge
+      name: v2-alerts-identifier-unacknowledge
+      description: REST surface for v2-alerts-identifier-unacknowledge.
+      operations:
+      - method: POST
+        name: unacknowledgealert
+        description: Unacknowledge alert
+        call: alert-alerts.unacknowledgealert
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: alert-alerts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OpsGenie Alert API — Alerts. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: create-alert
+      description: Create alert
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: alert-alerts.createalert
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-alerts
+      description: List alerts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: alert-alerts.listalerts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: count-alerts
+      description: Count alerts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: alert-alerts.countalerts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-request-status
+      description: Get request status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: alert-alerts.getrequeststatus
+      with:
+        requestId: tools.requestId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-alert
+      description: Get alert
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: alert-alerts.getalert
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-alert
+      description: Delete alert
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: alert-alerts.deletealert
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acknowledge-alert
+      description: Acknowledge alert
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: alert-alerts.acknowledgealert
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: assign-alert
+      description: Assign alert
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: alert-alerts.assignalert
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-attachment-alert
+      description: Add attachment to alert
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: alert-alerts.addattachment
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-alert-attachments
+      description: List alert attachments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: alert-alerts.listattachments
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: close-alert
+      description: Close alert
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: alert-alerts.closealert
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-details-alert
+      description: Add details to alert
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: alert-alerts.adddetails
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: escalate-alert
+      description: Escalate alert
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: alert-alerts.escalatealert
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-alert-logs
+      description: List alert logs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: alert-alerts.listalertlogs
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-note-alert
+      description: Add note to alert
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: alert-alerts.addnote
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-alert-notes
+      description: List alert notes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: alert-alerts.listalertnotes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-alert-recipients
+      description: List alert recipients
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: alert-alerts.listalertrecipients
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-responder-alert
+      description: Add responder to alert
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: alert-alerts.addresponder
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: snooze-alert
+      description: Snooze alert
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: alert-alerts.snoozealert
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-tags-alert
+      description: Add tags to alert
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: alert-alerts.addtags
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: remove-tags-alert
+      description: Remove tags from alert
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: alert-alerts.removetags
+      with:
+        tags: tools.tags
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: unacknowledge-alert
+      description: Unacknowledge alert
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: alert-alerts.unacknowledgealert
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,331 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OpsGenie Incident API — Incidents
+  description: 'OpsGenie Incident API — Incidents. 7 operations. Lead operation: List incidents. Self-contained Naftiko capability
+    covering one Opsgenie business surface.'
+  tags:
+  - Opsgenie
+  - Incidents
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OPSGENIE_API_KEY: OPSGENIE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: incident-incidents
+    baseUri: https://api.opsgenie.com
+    description: OpsGenie Incident API — Incidents business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-incidents
+      path: /v1/incidents
+      operations:
+      - name: listincidents
+        method: GET
+        description: List incidents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          description: Search query to filter incidents using OpsGenie query language.
+          required: true
+        - name: offset
+          in: query
+          type: integer
+          description: Starting index for pagination.
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of items to return.
+        - name: sort
+          in: query
+          type: string
+          description: Field to sort results by.
+        - name: order
+          in: query
+          type: string
+          description: Sort order for the results.
+    - name: v1-incidents-create
+      path: /v1/incidents/create
+      operations:
+      - name: createincident
+        method: POST
+        description: Create incident
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-incidents-requests-requestId
+      path: /v1/incidents/requests/{requestId}
+      operations:
+      - name: getincidentrequeststatus
+        method: GET
+        description: Get incident request status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: requestId
+          in: path
+          type: string
+          description: The ID of the asynchronous request to check status for.
+          required: true
+    - name: v1-incidents-identifier
+      path: /v1/incidents/{identifier}
+      operations:
+      - name: getincident
+        method: GET
+        description: Get incident
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteincident
+        method: DELETE
+        description: Delete incident
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-incidents-identifier-close
+      path: /v1/incidents/{identifier}/close
+      operations:
+      - name: closeincident
+        method: POST
+        description: Close incident
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v1-incidents-identifier-resolve
+      path: /v1/incidents/{identifier}/resolve
+      operations:
+      - name: resolveincident
+        method: POST
+        description: Resolve incident
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.OPSGENIE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: incident-incidents-rest
+    port: 8080
+    description: REST adapter for OpsGenie Incident API — Incidents. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/incidents
+      name: v1-incidents
+      description: REST surface for v1-incidents.
+      operations:
+      - method: GET
+        name: listincidents
+        description: List incidents
+        call: incident-incidents.listincidents
+        with:
+          query: rest.query
+          offset: rest.offset
+          limit: rest.limit
+          sort: rest.sort
+          order: rest.order
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/incidents/create
+      name: v1-incidents-create
+      description: REST surface for v1-incidents-create.
+      operations:
+      - method: POST
+        name: createincident
+        description: Create incident
+        call: incident-incidents.createincident
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/incidents/requests/{requestid}
+      name: v1-incidents-requests-requestid
+      description: REST surface for v1-incidents-requests-requestId.
+      operations:
+      - method: GET
+        name: getincidentrequeststatus
+        description: Get incident request status
+        call: incident-incidents.getincidentrequeststatus
+        with:
+          requestId: rest.requestId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/incidents/{identifier}
+      name: v1-incidents-identifier
+      description: REST surface for v1-incidents-identifier.
+      operations:
+      - method: GET
+        name: getincident
+        description: Get incident
+        call: incident-incidents.getincident
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteincident
+        description: Delete incident
+        call: incident-incidents.deleteincident
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/incidents/{identifier}/close
+      name: v1-incidents-identifier-close
+      description: REST surface for v1-incidents-identifier-close.
+      operations:
+      - method: POST
+        name: closeincident
+        description: Close incident
+        call: incident-incidents.closeincident
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/incidents/{identifier}/resolve
+      name: v1-incidents-identifier-resolve
+      description: REST surface for v1-incidents-identifier-resolve.
+      operations:
+      - method: POST
+        name: resolveincident
+        description: Resolve incident
+        call: incident-incidents.resolveincident
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: incident-incidents-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OpsGenie Incident API — Incidents. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-incidents
+      description: List incidents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: incident-incidents.listincidents
+      with:
+        query: tools.query
+        offset: tools.offset
+        limit: tools.limit
+        sort: tools.sort
+        order: tools.order
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-incident
+      description: Create incident
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: incident-incidents.createincident
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-incident-request-status
+      description: Get incident request status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: incident-incidents.getincidentrequeststatus
+      with:
+        requestId: tools.requestId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-incident
+      description: Get incident
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: incident-incidents.getincident
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-incident
+      description: Delete incident
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: incident-incidents.deleteincident
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: close-incident
+      description: Close incident
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: incident-incidents.closeincident
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: resolve-incident
+      description: Resolve incident
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: incident-incidents.resolveincident
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,284 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OpsGenie Team API — Teams
+  description: 'OpsGenie Team API — Teams. 7 operations. Lead operation: Create team. Self-contained Naftiko capability covering
+    one Opsgenie business surface.'
+  tags:
+  - Opsgenie
+  - Teams
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OPSGENIE_API_KEY: OPSGENIE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: team-teams
+    baseUri: https://api.opsgenie.com
+    description: OpsGenie Team API — Teams business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-teams
+      path: /v2/teams
+      operations:
+      - name: createteam
+        method: POST
+        description: Create team
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listteams
+        method: GET
+        description: List teams
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-teams-identifier
+      path: /v2/teams/{identifier}
+      operations:
+      - name: getteam
+        method: GET
+        description: Get team
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateteam
+        method: PATCH
+        description: Update team
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteteam
+        method: DELETE
+        description: Delete team
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-teams-identifier-logs
+      path: /v2/teams/{identifier}/logs
+      operations:
+      - name: listteamlogs
+        method: GET
+        description: List team logs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of log entries to return.
+        - name: offset
+          in: query
+          type: integer
+          description: Starting index for pagination.
+        - name: order
+          in: query
+          type: string
+          description: Sort order.
+    - name: v2-teams-identifier-members
+      path: /v2/teams/{identifier}/members
+      operations:
+      - name: listteammembers
+        method: GET
+        description: List team members
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.OPSGENIE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: team-teams-rest
+    port: 8080
+    description: REST adapter for OpsGenie Team API — Teams. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v2/teams
+      name: v2-teams
+      description: REST surface for v2-teams.
+      operations:
+      - method: POST
+        name: createteam
+        description: Create team
+        call: team-teams.createteam
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listteams
+        description: List teams
+        call: team-teams.listteams
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/teams/{identifier}
+      name: v2-teams-identifier
+      description: REST surface for v2-teams-identifier.
+      operations:
+      - method: GET
+        name: getteam
+        description: Get team
+        call: team-teams.getteam
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateteam
+        description: Update team
+        call: team-teams.updateteam
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteteam
+        description: Delete team
+        call: team-teams.deleteteam
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/teams/{identifier}/logs
+      name: v2-teams-identifier-logs
+      description: REST surface for v2-teams-identifier-logs.
+      operations:
+      - method: GET
+        name: listteamlogs
+        description: List team logs
+        call: team-teams.listteamlogs
+        with:
+          limit: rest.limit
+          offset: rest.offset
+          order: rest.order
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/teams/{identifier}/members
+      name: v2-teams-identifier-members
+      description: REST surface for v2-teams-identifier-members.
+      operations:
+      - method: GET
+        name: listteammembers
+        description: List team members
+        call: team-teams.listteammembers
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: team-teams-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OpsGenie Team API — Teams. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: create-team
+      description: Create team
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: team-teams.createteam
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-teams
+      description: List teams
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: team-teams.listteams
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-team
+      description: Get team
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: team-teams.getteam
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-team
+      description: Update team
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: team-teams.updateteam
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-team
+      description: Delete team
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: team-teams.deleteteam
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-team-logs
+      description: List team logs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: team-teams.listteamlogs
+      with:
+        limit: tools.limit
+        offset: tools.offset
+        order: tools.order
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-team-members
+      description: List team members
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: team-teams.listteammembers
+      outputParameters:
+      - type: object
+        mapping: $.

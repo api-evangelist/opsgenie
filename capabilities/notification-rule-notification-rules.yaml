@@ -1,0 +1,422 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OpsGenie Notification Rule API — Notification Rules
+  description: 'OpsGenie Notification Rule API — Notification Rules. 12 operations. Lead operation: Create notification rule.
+    Self-contained Naftiko capability covering one Opsgenie business surface.'
+  tags:
+  - Opsgenie
+  - Notification Rules
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OPSGENIE_API_KEY: OPSGENIE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: notification-rule-notification-rules
+    baseUri: https://api.opsgenie.com
+    description: OpsGenie Notification Rule API — Notification Rules business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-users-identifier-notification-rules
+      path: /v2/users/{identifier}/notification-rules
+      operations:
+      - name: createnotificationrule
+        method: POST
+        description: Create notification rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listnotificationrules
+        method: GET
+        description: List notification rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-users-identifier-notification-rules-ruleId
+      path: /v2/users/{identifier}/notification-rules/{ruleId}
+      operations:
+      - name: getnotificationrule
+        method: GET
+        description: Get notification rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatenotificationrule
+        method: PATCH
+        description: Update notification rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletenotificationrule
+        method: DELETE
+        description: Delete notification rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-users-identifier-notification-rules-ruleId-disable
+      path: /v2/users/{identifier}/notification-rules/{ruleId}/disable
+      operations:
+      - name: disablenotificationrule
+        method: POST
+        description: Disable notification rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-users-identifier-notification-rules-ruleId-enable
+      path: /v2/users/{identifier}/notification-rules/{ruleId}/enable
+      operations:
+      - name: enablenotificationrule
+        method: POST
+        description: Enable notification rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-users-identifier-notification-rules-ruleId-steps
+      path: /v2/users/{identifier}/notification-rules/{ruleId}/steps
+      operations:
+      - name: createnotificationrulestep
+        method: POST
+        description: Create notification rule step
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listnotificationrulesteps
+        method: GET
+        description: List notification rule steps
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-users-identifier-notification-rules-ruleId-steps-stepId
+      path: /v2/users/{identifier}/notification-rules/{ruleId}/steps/{stepId}
+      operations:
+      - name: getnotificationrulestep
+        method: GET
+        description: Get notification rule step
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatenotificationrulestep
+        method: PATCH
+        description: Update notification rule step
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletenotificationrulestep
+        method: DELETE
+        description: Delete notification rule step
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.OPSGENIE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: notification-rule-notification-rules-rest
+    port: 8080
+    description: REST adapter for OpsGenie Notification Rule API — Notification Rules. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/v2/users/{identifier}/notification-rules
+      name: v2-users-identifier-notification-rules
+      description: REST surface for v2-users-identifier-notification-rules.
+      operations:
+      - method: POST
+        name: createnotificationrule
+        description: Create notification rule
+        call: notification-rule-notification-rules.createnotificationrule
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listnotificationrules
+        description: List notification rules
+        call: notification-rule-notification-rules.listnotificationrules
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/users/{identifier}/notification-rules/{ruleid}
+      name: v2-users-identifier-notification-rules-ruleid
+      description: REST surface for v2-users-identifier-notification-rules-ruleId.
+      operations:
+      - method: GET
+        name: getnotificationrule
+        description: Get notification rule
+        call: notification-rule-notification-rules.getnotificationrule
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatenotificationrule
+        description: Update notification rule
+        call: notification-rule-notification-rules.updatenotificationrule
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletenotificationrule
+        description: Delete notification rule
+        call: notification-rule-notification-rules.deletenotificationrule
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/users/{identifier}/notification-rules/{ruleid}/disable
+      name: v2-users-identifier-notification-rules-ruleid-disable
+      description: REST surface for v2-users-identifier-notification-rules-ruleId-disable.
+      operations:
+      - method: POST
+        name: disablenotificationrule
+        description: Disable notification rule
+        call: notification-rule-notification-rules.disablenotificationrule
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/users/{identifier}/notification-rules/{ruleid}/enable
+      name: v2-users-identifier-notification-rules-ruleid-enable
+      description: REST surface for v2-users-identifier-notification-rules-ruleId-enable.
+      operations:
+      - method: POST
+        name: enablenotificationrule
+        description: Enable notification rule
+        call: notification-rule-notification-rules.enablenotificationrule
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/users/{identifier}/notification-rules/{ruleid}/steps
+      name: v2-users-identifier-notification-rules-ruleid-steps
+      description: REST surface for v2-users-identifier-notification-rules-ruleId-steps.
+      operations:
+      - method: POST
+        name: createnotificationrulestep
+        description: Create notification rule step
+        call: notification-rule-notification-rules.createnotificationrulestep
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listnotificationrulesteps
+        description: List notification rule steps
+        call: notification-rule-notification-rules.listnotificationrulesteps
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/users/{identifier}/notification-rules/{ruleid}/steps/{stepid}
+      name: v2-users-identifier-notification-rules-ruleid-steps-stepid
+      description: REST surface for v2-users-identifier-notification-rules-ruleId-steps-stepId.
+      operations:
+      - method: GET
+        name: getnotificationrulestep
+        description: Get notification rule step
+        call: notification-rule-notification-rules.getnotificationrulestep
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatenotificationrulestep
+        description: Update notification rule step
+        call: notification-rule-notification-rules.updatenotificationrulestep
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletenotificationrulestep
+        description: Delete notification rule step
+        call: notification-rule-notification-rules.deletenotificationrulestep
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: notification-rule-notification-rules-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OpsGenie Notification Rule API — Notification Rules. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: create-notification-rule
+      description: Create notification rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: notification-rule-notification-rules.createnotificationrule
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-notification-rules
+      description: List notification rules
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: notification-rule-notification-rules.listnotificationrules
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-notification-rule
+      description: Get notification rule
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: notification-rule-notification-rules.getnotificationrule
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-notification-rule
+      description: Update notification rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: notification-rule-notification-rules.updatenotificationrule
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-notification-rule
+      description: Delete notification rule
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: notification-rule-notification-rules.deletenotificationrule
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: disable-notification-rule
+      description: Disable notification rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: notification-rule-notification-rules.disablenotificationrule
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: enable-notification-rule
+      description: Enable notification rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: notification-rule-notification-rules.enablenotificationrule
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-notification-rule-step
+      description: Create notification rule step
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: notification-rule-notification-rules.createnotificationrulestep
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-notification-rule-steps
+      description: List notification rule steps
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: notification-rule-notification-rules.listnotificationrulesteps
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-notification-rule-step
+      description: Get notification rule step
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: notification-rule-notification-rules.getnotificationrulestep
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-notification-rule-step
+      description: Update notification rule step
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: notification-rule-notification-rules.updatenotificationrulestep
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-notification-rule-step
+      description: Delete notification rule step
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: notification-rule-notification-rules.deletenotificationrulestep
+      outputParameters:
+      - type: object
+        mapping: $.

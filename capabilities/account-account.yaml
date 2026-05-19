@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OpsGenie Account API — Account
+  description: 'OpsGenie Account API — Account. 1 operations. Lead operation: Get account info. Self-contained Naftiko capability
+    covering one Opsgenie business surface.'
+  tags:
+  - Opsgenie
+  - Account
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OPSGENIE_API_KEY: OPSGENIE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: account-account
+    baseUri: https://api.opsgenie.com
+    description: OpsGenie Account API — Account business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-account
+      path: /v2/account
+      operations:
+      - name: getaccount
+        method: GET
+        description: Get account info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.OPSGENIE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: account-account-rest
+    port: 8080
+    description: REST adapter for OpsGenie Account API — Account. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v2/account
+      name: v2-account
+      description: REST surface for v2-account.
+      operations:
+      - method: GET
+        name: getaccount
+        description: Get account info
+        call: account-account.getaccount
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: account-account-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OpsGenie Account API — Account. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-account-info
+      description: Get account info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account-account.getaccount
+      outputParameters:
+      - type: object
+        mapping: $.

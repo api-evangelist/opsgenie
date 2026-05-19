@@ -1,0 +1,261 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OpsGenie Schedule API — Schedules
+  description: 'OpsGenie Schedule API — Schedules. 6 operations. Lead operation: Create schedule. Self-contained Naftiko capability
+    covering one Opsgenie business surface.'
+  tags:
+  - Opsgenie
+  - Schedules
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OPSGENIE_API_KEY: OPSGENIE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: schedule-schedules
+    baseUri: https://api.opsgenie.com
+    description: OpsGenie Schedule API — Schedules business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-schedules
+      path: /v2/schedules
+      operations:
+      - name: createschedule
+        method: POST
+        description: Create schedule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listschedules
+        method: GET
+        description: List schedules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: expand
+          in: query
+          type: string
+          description: Comma-separated list of fields to include in the response.
+    - name: v2-schedules-identifier
+      path: /v2/schedules/{identifier}
+      operations:
+      - name: getschedule
+        method: GET
+        description: Get schedule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateschedule
+        method: PATCH
+        description: Update schedule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteschedule
+        method: DELETE
+        description: Delete schedule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-schedules-identifier-timeline
+      path: /v2/schedules/{identifier}/timeline
+      operations:
+      - name: getscheduletimeline
+        method: GET
+        description: Get schedule timeline
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: intervalUnit
+          in: query
+          type: string
+          description: Unit of the time interval for the timeline.
+        - name: interval
+          in: query
+          type: integer
+          description: Length of the time interval.
+        - name: date
+          in: query
+          type: string
+          description: Start date for the timeline in ISO 8601 format.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.OPSGENIE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: schedule-schedules-rest
+    port: 8080
+    description: REST adapter for OpsGenie Schedule API — Schedules. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v2/schedules
+      name: v2-schedules
+      description: REST surface for v2-schedules.
+      operations:
+      - method: POST
+        name: createschedule
+        description: Create schedule
+        call: schedule-schedules.createschedule
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listschedules
+        description: List schedules
+        call: schedule-schedules.listschedules
+        with:
+          expand: rest.expand
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/schedules/{identifier}
+      name: v2-schedules-identifier
+      description: REST surface for v2-schedules-identifier.
+      operations:
+      - method: GET
+        name: getschedule
+        description: Get schedule
+        call: schedule-schedules.getschedule
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateschedule
+        description: Update schedule
+        call: schedule-schedules.updateschedule
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteschedule
+        description: Delete schedule
+        call: schedule-schedules.deleteschedule
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/schedules/{identifier}/timeline
+      name: v2-schedules-identifier-timeline
+      description: REST surface for v2-schedules-identifier-timeline.
+      operations:
+      - method: GET
+        name: getscheduletimeline
+        description: Get schedule timeline
+        call: schedule-schedules.getscheduletimeline
+        with:
+          intervalUnit: rest.intervalUnit
+          interval: rest.interval
+          date: rest.date
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: schedule-schedules-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OpsGenie Schedule API — Schedules. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: create-schedule
+      description: Create schedule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: schedule-schedules.createschedule
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-schedules
+      description: List schedules
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schedule-schedules.listschedules
+      with:
+        expand: tools.expand
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-schedule
+      description: Get schedule
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schedule-schedules.getschedule
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-schedule
+      description: Update schedule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: schedule-schedules.updateschedule
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-schedule
+      description: Delete schedule
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: schedule-schedules.deleteschedule
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-schedule-timeline
+      description: Get schedule timeline
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schedule-schedules.getscheduletimeline
+      with:
+        intervalUnit: tools.intervalUnit
+        interval: tools.interval
+        date: tools.date
+      outputParameters:
+      - type: object
+        mapping: $.

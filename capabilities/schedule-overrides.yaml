@@ -1,0 +1,226 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OpsGenie Schedule API — Overrides
+  description: 'OpsGenie Schedule API — Overrides. 5 operations. Lead operation: Create schedule override. Self-contained
+    Naftiko capability covering one Opsgenie business surface.'
+  tags:
+  - Opsgenie
+  - Overrides
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OPSGENIE_API_KEY: OPSGENIE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: schedule-overrides
+    baseUri: https://api.opsgenie.com
+    description: OpsGenie Schedule API — Overrides business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-schedules-identifier-overrides
+      path: /v2/schedules/{identifier}/overrides
+      operations:
+      - name: createscheduleoverride
+        method: POST
+        description: Create schedule override
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listscheduleoverrides
+        method: GET
+        description: List schedule overrides
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-schedules-identifier-overrides-alias
+      path: /v2/schedules/{identifier}/overrides/{alias}
+      operations:
+      - name: getscheduleoverride
+        method: GET
+        description: Get schedule override
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: alias
+          in: path
+          type: string
+          description: Alias of the override.
+          required: true
+      - name: updatescheduleoverride
+        method: PUT
+        description: Update schedule override
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: alias
+          in: path
+          type: string
+          description: Alias of the override.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletescheduleoverride
+        method: DELETE
+        description: Delete schedule override
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: alias
+          in: path
+          type: string
+          description: Alias of the override.
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.OPSGENIE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: schedule-overrides-rest
+    port: 8080
+    description: REST adapter for OpsGenie Schedule API — Overrides. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v2/schedules/{identifier}/overrides
+      name: v2-schedules-identifier-overrides
+      description: REST surface for v2-schedules-identifier-overrides.
+      operations:
+      - method: POST
+        name: createscheduleoverride
+        description: Create schedule override
+        call: schedule-overrides.createscheduleoverride
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listscheduleoverrides
+        description: List schedule overrides
+        call: schedule-overrides.listscheduleoverrides
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/schedules/{identifier}/overrides/{alias}
+      name: v2-schedules-identifier-overrides-alias
+      description: REST surface for v2-schedules-identifier-overrides-alias.
+      operations:
+      - method: GET
+        name: getscheduleoverride
+        description: Get schedule override
+        call: schedule-overrides.getscheduleoverride
+        with:
+          alias: rest.alias
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatescheduleoverride
+        description: Update schedule override
+        call: schedule-overrides.updatescheduleoverride
+        with:
+          alias: rest.alias
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletescheduleoverride
+        description: Delete schedule override
+        call: schedule-overrides.deletescheduleoverride
+        with:
+          alias: rest.alias
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: schedule-overrides-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OpsGenie Schedule API — Overrides. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: create-schedule-override
+      description: Create schedule override
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: schedule-overrides.createscheduleoverride
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-schedule-overrides
+      description: List schedule overrides
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schedule-overrides.listscheduleoverrides
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-schedule-override
+      description: Get schedule override
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schedule-overrides.getscheduleoverride
+      with:
+        alias: tools.alias
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-schedule-override
+      description: Update schedule override
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: schedule-overrides.updatescheduleoverride
+      with:
+        alias: tools.alias
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-schedule-override
+      description: Delete schedule override
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: schedule-overrides.deletescheduleoverride
+      with:
+        alias: tools.alias
+      outputParameters:
+      - type: object
+        mapping: $.

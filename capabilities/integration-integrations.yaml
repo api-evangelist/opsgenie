@@ -1,0 +1,352 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OpsGenie Integration API — Integrations
+  description: 'OpsGenie Integration API — Integrations. 8 operations. Lead operation: Create integration. Self-contained
+    Naftiko capability covering one Opsgenie business surface.'
+  tags:
+  - Opsgenie
+  - Integrations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OPSGENIE_API_KEY: OPSGENIE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: integration-integrations
+    baseUri: https://api.opsgenie.com
+    description: OpsGenie Integration API — Integrations business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-integrations
+      path: /v2/integrations
+      operations:
+      - name: createintegration
+        method: POST
+        description: Create integration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listintegrations
+        method: GET
+        description: List integrations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-integrations-authenticate
+      path: /v2/integrations/authenticate
+      operations:
+      - name: authenticateintegration
+        method: POST
+        description: Authenticate integration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v2-integrations-id
+      path: /v2/integrations/{id}
+      operations:
+      - name: getintegration
+        method: GET
+        description: Get integration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Unique identifier of the integration.
+          required: true
+      - name: updateintegration
+        method: PUT
+        description: Update integration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Unique identifier of the integration.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteintegration
+        method: DELETE
+        description: Delete integration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Unique identifier of the integration.
+          required: true
+    - name: v2-integrations-id-disable
+      path: /v2/integrations/{id}/disable
+      operations:
+      - name: disableintegration
+        method: POST
+        description: Disable integration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Unique identifier of the integration.
+          required: true
+    - name: v2-integrations-id-enable
+      path: /v2/integrations/{id}/enable
+      operations:
+      - name: enableintegration
+        method: POST
+        description: Enable integration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Unique identifier of the integration.
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.OPSGENIE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: integration-integrations-rest
+    port: 8080
+    description: REST adapter for OpsGenie Integration API — Integrations. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v2/integrations
+      name: v2-integrations
+      description: REST surface for v2-integrations.
+      operations:
+      - method: POST
+        name: createintegration
+        description: Create integration
+        call: integration-integrations.createintegration
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listintegrations
+        description: List integrations
+        call: integration-integrations.listintegrations
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/integrations/authenticate
+      name: v2-integrations-authenticate
+      description: REST surface for v2-integrations-authenticate.
+      operations:
+      - method: POST
+        name: authenticateintegration
+        description: Authenticate integration
+        call: integration-integrations.authenticateintegration
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/integrations/{id}
+      name: v2-integrations-id
+      description: REST surface for v2-integrations-id.
+      operations:
+      - method: GET
+        name: getintegration
+        description: Get integration
+        call: integration-integrations.getintegration
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateintegration
+        description: Update integration
+        call: integration-integrations.updateintegration
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteintegration
+        description: Delete integration
+        call: integration-integrations.deleteintegration
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/integrations/{id}/disable
+      name: v2-integrations-id-disable
+      description: REST surface for v2-integrations-id-disable.
+      operations:
+      - method: POST
+        name: disableintegration
+        description: Disable integration
+        call: integration-integrations.disableintegration
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/integrations/{id}/enable
+      name: v2-integrations-id-enable
+      description: REST surface for v2-integrations-id-enable.
+      operations:
+      - method: POST
+        name: enableintegration
+        description: Enable integration
+        call: integration-integrations.enableintegration
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: integration-integrations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OpsGenie Integration API — Integrations. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: create-integration
+      description: Create integration
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: integration-integrations.createintegration
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-integrations
+      description: List integrations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: integration-integrations.listintegrations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: authenticate-integration
+      description: Authenticate integration
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: integration-integrations.authenticateintegration
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-integration
+      description: Get integration
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: integration-integrations.getintegration
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-integration
+      description: Update integration
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: integration-integrations.updateintegration
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-integration
+      description: Delete integration
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: integration-integrations.deleteintegration
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: disable-integration
+      description: Disable integration
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: integration-integrations.disableintegration
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: enable-integration
+      description: Enable integration
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: integration-integrations.enableintegration
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
