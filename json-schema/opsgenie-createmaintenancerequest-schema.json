@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateMaintenanceRequest",
+  "title": "CreateMaintenanceRequest",
+  "type": "object",
+  "required": [
+    "description",
+    "time",
+    "rules"
+  ],
+  "properties": {
+    "description": {
+      "type": "string",
+      "description": "Description of the maintenance window."
+    },
+    "time": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "description": "Time configuration for the maintenance window.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "for-5-minutes",
+            "for-30-minutes",
+            "for-1-hour",
+            "indefinitely",
+            "schedule"
+          ],
+          "description": "Type of maintenance duration."
+        },
+        "startDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Start date for scheduled maintenance."
+        },
+        "endDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "End date for scheduled maintenance."
+        }
+      }
+    },
+    "rules": {
+      "type": "array",
+      "description": "Rules defining which integrations or policies are affected.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entity": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Entity ID (integration or policy ID)."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "integration",
+                  "policy"
+                ],
+                "description": "Type of entity affected."
+              }
+            },
+            "description": "Entity affected by the maintenance rule."
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetAccountResponse",
+  "title": "GetAccountResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/Account"
+    },
+    "took": {
+      "type": "number",
+      "description": "Time taken in seconds."
+    },
+    "requestId": {
+      "type": "string",
+      "description": "Unique identifier for the request."
+    }
+  }
+}

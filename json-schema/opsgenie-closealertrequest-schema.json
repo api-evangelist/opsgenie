@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CloseAlertRequest",
+  "title": "CloseAlertRequest",
+  "type": "object",
+  "properties": {
+    "user": {
+      "type": "string",
+      "description": "Display name of the request owner."
+    },
+    "source": {
+      "type": "string",
+      "description": "Source of the close action."
+    },
+    "note": {
+      "type": "string",
+      "description": "Additional note to add when closing the alert."
+    }
+  }
+}

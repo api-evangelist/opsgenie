@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/User",
+  "title": "User",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the user."
+    },
+    "username": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address and login identifier."
+    },
+    "fullName": {
+      "type": "string",
+      "description": "Full name of the user."
+    },
+    "role": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Role ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "Role name."
+        }
+      },
+      "description": "Role of the user."
+    },
+    "blocked": {
+      "type": "boolean",
+      "description": "Whether the user is blocked."
+    },
+    "verified": {
+      "type": "boolean",
+      "description": "Whether the user has verified their account."
+    },
+    "timeZone": {
+      "type": "string",
+      "description": "Timezone of the user."
+    },
+    "locale": {
+      "type": "string",
+      "description": "Locale of the user."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when the user was created."
+    },
+    "mutedUntil": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time until which the user is muted."
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags associated with the user."
+    },
+    "details": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "description": "Custom details for the user."
+    }
+  }
+}

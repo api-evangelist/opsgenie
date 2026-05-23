@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListTeamLogsResponse",
+  "title": "ListTeamLogsResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "log": {
+            "type": "string",
+            "description": "Log message."
+          },
+          "owner": {
+            "type": "string",
+            "description": "User who triggered the action."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the log entry was created."
+          }
+        }
+      },
+      "description": "List of log entries."
+    },
+    "paging": {
+      "type": "object",
+      "properties": {
+        "next": {
+          "type": "string",
+          "description": "URL for the next page."
+        },
+        "first": {
+          "type": "string",
+          "description": "URL for the first page."
+        }
+      }
+    },
+    "took": {
+      "type": "number",
+      "description": "Time taken in seconds."
+    },
+    "requestId": {
+      "type": "string",
+      "description": "Unique identifier for the request."
+    }
+  }
+}

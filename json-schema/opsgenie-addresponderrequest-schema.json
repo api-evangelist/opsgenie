@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AddResponderRequest",
+  "title": "AddResponderRequest",
+  "type": "object",
+  "required": [
+    "responder"
+  ],
+  "properties": {
+    "responder": {
+      "$ref": "#/components/schemas/Responder"
+    },
+    "user": {
+      "type": "string",
+      "description": "Display name of the request owner."
+    },
+    "source": {
+      "type": "string",
+      "description": "Source of the action."
+    },
+    "note": {
+      "type": "string",
+      "description": "Additional note to add with the responder."
+    }
+  }
+}

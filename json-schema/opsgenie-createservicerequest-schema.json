@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateServiceRequest",
+  "title": "CreateServiceRequest",
+  "type": "object",
+  "required": [
+    "name",
+    "teamId"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the service."
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the service."
+    },
+    "teamId": {
+      "type": "string",
+      "description": "ID of the team that owns the service."
+    },
+    "visibility": {
+      "type": "string",
+      "enum": [
+        "TEAM_MEMBERS",
+        "OPSGENIE_USERS"
+      ],
+      "description": "Visibility level of the service."
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags associated with the service."
+    }
+  }
+}

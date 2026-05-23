@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListAlertLogsResponse",
+  "title": "ListAlertLogsResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "log": {
+            "type": "string",
+            "description": "Log message text."
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of the log entry."
+          },
+          "owner": {
+            "type": "string",
+            "description": "User who triggered the logged action."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date and time when the log entry was created."
+          },
+          "offset": {
+            "type": "string",
+            "description": "Offset value for pagination."
+          }
+        }
+      }
+    },
+    "paging": {
+      "$ref": "#/components/schemas/Paging"
+    },
+    "took": {
+      "type": "number",
+      "description": "Time taken to process the request in seconds."
+    },
+    "requestId": {
+      "type": "string",
+      "description": "Unique identifier for the request."
+    }
+  }
+}

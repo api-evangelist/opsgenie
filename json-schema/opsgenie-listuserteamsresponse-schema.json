@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListUserTeamsResponse",
+  "title": "ListUserTeamsResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Team ID."
+          },
+          "name": {
+            "type": "string",
+            "description": "Team name."
+          }
+        }
+      },
+      "description": "List of teams the user belongs to."
+    },
+    "took": {
+      "type": "number",
+      "description": "Time taken in seconds."
+    },
+    "requestId": {
+      "type": "string",
+      "description": "Unique identifier for the request."
+    }
+  }
+}

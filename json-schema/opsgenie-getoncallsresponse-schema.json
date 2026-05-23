@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetOnCallsResponse",
+  "title": "GetOnCallsResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "onCallParticipants": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Participant ID."
+              },
+              "name": {
+                "type": "string",
+                "description": "Participant name."
+              },
+              "type": {
+                "type": "string",
+                "description": "Participant type."
+              }
+            }
+          },
+          "description": "Current on-call participants."
+        }
+      }
+    },
+    "took": {
+      "type": "number",
+      "description": "Time taken in seconds."
+    },
+    "requestId": {
+      "type": "string",
+      "description": "Unique identifier for the request."
+    }
+  }
+}

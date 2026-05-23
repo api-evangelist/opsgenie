@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateScheduleRequest",
+  "title": "CreateScheduleRequest",
+  "type": "object",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the schedule."
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the schedule."
+    },
+    "timezone": {
+      "type": "string",
+      "description": "Timezone of the schedule, e.g. America/New_York."
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the schedule is active.",
+      "default": true
+    },
+    "ownerTeam": {
+      "type": "object",
+      "description": "Team that owns the schedule.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Team ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "Team name."
+        }
+      }
+    },
+    "rotations": {
+      "type": "array",
+      "description": "Initial rotations for the schedule.",
+      "items": {
+        "$ref": "#/components/schemas/Rotation"
+      }
+    }
+  }
+}

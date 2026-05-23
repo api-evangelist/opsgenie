@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateServiceRequest",
+  "title": "UpdateServiceRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Updated service name."
+    },
+    "description": {
+      "type": "string",
+      "description": "Updated description."
+    },
+    "visibility": {
+      "type": "string",
+      "enum": [
+        "TEAM_MEMBERS",
+        "OPSGENIE_USERS"
+      ],
+      "description": "Updated visibility."
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Updated tags."
+    }
+  }
+}

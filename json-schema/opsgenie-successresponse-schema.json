@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SuccessResponse",
+  "title": "SuccessResponse",
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "string",
+      "description": "Result message."
+    },
+    "took": {
+      "type": "number",
+      "description": "Time taken to process the request in seconds."
+    },
+    "requestId": {
+      "type": "string",
+      "description": "Unique identifier for the request."
+    }
+  }
+}

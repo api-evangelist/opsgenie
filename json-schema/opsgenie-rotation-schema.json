@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Rotation",
+  "title": "Rotation",
+  "type": "object",
+  "required": [
+    "type",
+    "participants",
+    "startDate"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the rotation."
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the rotation."
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "daily",
+        "weekly",
+        "hourly"
+      ],
+      "description": "Type of rotation cycle."
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Start date and time of the rotation."
+    },
+    "endDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "End date and time of the rotation."
+    },
+    "length": {
+      "type": "integer",
+      "description": "Length of the rotation cycle."
+    },
+    "participants": {
+      "type": "array",
+      "description": "Participants in the rotation.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "user",
+              "team",
+              "escalation",
+              "none"
+            ],
+            "description": "Type of participant."
+          },
+          "id": {
+            "type": "string",
+            "description": "Participant ID."
+          },
+          "username": {
+            "type": "string",
+            "description": "Username for user participants."
+          }
+        }
+      }
+    },
+    "timeRestriction": {
+      "type": "object",
+      "description": "Time restriction for when the rotation is active.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "time-of-day",
+            "weekday-and-time-of-day"
+          ],
+          "description": "Type of time restriction."
+        },
+        "restrictions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "startDay": {
+                "type": "string",
+                "description": "Start day of the week."
+              },
+              "startHour": {
+                "type": "integer",
+                "description": "Start hour."
+              },
+              "startMin": {
+                "type": "integer",
+                "description": "Start minute."
+              },
+              "endDay": {
+                "type": "string",
+                "description": "End day of the week."
+              },
+              "endHour": {
+                "type": "integer",
+                "description": "End hour."
+              },
+              "endMin": {
+                "type": "integer",
+                "description": "End minute."
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AddNoteRequest",
+  "title": "AddNoteRequest",
+  "type": "object",
+  "required": [
+    "note"
+  ],
+  "properties": {
+    "note": {
+      "type": "string",
+      "maxLength": 25000,
+      "description": "The note text to add to the alert."
+    },
+    "user": {
+      "type": "string",
+      "description": "Display name of the request owner."
+    },
+    "source": {
+      "type": "string",
+      "description": "Source of the action."
+    }
+  }
+}

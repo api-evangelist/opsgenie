@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NotificationCriteria",
+  "title": "NotificationCriteria",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "match-all",
+        "match-any-condition",
+        "match-all-conditions"
+      ],
+      "description": "Criteria type for matching alerts."
+    },
+    "conditions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "description": "Alert field to evaluate."
+          },
+          "operation": {
+            "type": "string",
+            "enum": [
+              "matches",
+              "contains",
+              "starts-with",
+              "ends-with",
+              "equals",
+              "contains-key",
+              "contains-value",
+              "greater-than",
+              "less-than",
+              "is-empty",
+              "equals-ignore-whitespace"
+            ],
+            "description": "Comparison operation."
+          },
+          "key": {
+            "type": "string",
+            "description": "Key for key-value fields."
+          },
+          "not": {
+            "type": "boolean",
+            "description": "Whether to negate the condition."
+          },
+          "expectedValue": {
+            "type": "string",
+            "description": "Expected value to compare against."
+          },
+          "order": {
+            "type": "integer",
+            "description": "Order of the condition."
+          }
+        }
+      },
+      "description": "List of conditions."
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AddDetailsRequest",
+  "title": "AddDetailsRequest",
+  "type": "object",
+  "required": [
+    "details"
+  ],
+  "properties": {
+    "details": {
+      "type": "object",
+      "description": "Key-value pairs to add to the alert details.",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "user": {
+      "type": "string",
+      "description": "Display name of the request owner."
+    },
+    "source": {
+      "type": "string",
+      "description": "Source of the action."
+    },
+    "note": {
+      "type": "string",
+      "description": "Additional note to add with the details."
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IncidentActionRequest",
+  "title": "IncidentActionRequest",
+  "type": "object",
+  "properties": {
+    "note": {
+      "type": "string",
+      "description": "Additional note to add with the action."
+    }
+  }
+}

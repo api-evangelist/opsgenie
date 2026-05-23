@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListHeartbeatsResponse",
+  "title": "ListHeartbeatsResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "heartbeats": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/Heartbeat"
+          },
+          "description": "List of heartbeats."
+        }
+      }
+    },
+    "took": {
+      "type": "number",
+      "description": "Time taken in seconds."
+    },
+    "requestId": {
+      "type": "string",
+      "description": "Unique identifier for the request."
+    }
+  }
+}

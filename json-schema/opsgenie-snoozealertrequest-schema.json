@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SnoozeAlertRequest",
+  "title": "SnoozeAlertRequest",
+  "type": "object",
+  "required": [
+    "endTime"
+  ],
+  "properties": {
+    "endTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the snooze will end, in ISO 8601 format."
+    },
+    "user": {
+      "type": "string",
+      "description": "Display name of the request owner."
+    },
+    "source": {
+      "type": "string",
+      "description": "Source of the snooze action."
+    },
+    "note": {
+      "type": "string",
+      "description": "Additional note to add with the snooze."
+    }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateUserRequest",
+  "title": "UpdateUserRequest",
+  "type": "object",
+  "properties": {
+    "fullName": {
+      "type": "string",
+      "description": "Full name of the user."
+    },
+    "role": {
+      "type": "object",
+      "description": "Role assigned to the user.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Role ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "Role name."
+        }
+      }
+    },
+    "skypeUsername": {
+      "type": "string",
+      "description": "Skype username of the user."
+    },
+    "timeZone": {
+      "type": "string",
+      "description": "Timezone of the user."
+    },
+    "locale": {
+      "type": "string",
+      "description": "Locale of the user."
+    },
+    "userAddress": {
+      "type": "object",
+      "description": "Physical address of the user.",
+      "properties": {
+        "country": {
+          "type": "string",
+          "description": "Country."
+        },
+        "state": {
+          "type": "string",
+          "description": "State or province."
+        },
+        "city": {
+          "type": "string",
+          "description": "City."
+        },
+        "line": {
+          "type": "string",
+          "description": "Street address line."
+        },
+        "zipCode": {
+          "type": "string",
+          "description": "ZIP or postal code."
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "description": "Tags associated with the user.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "details": {
+      "type": "object",
+      "description": "Custom key-value details for the user.",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

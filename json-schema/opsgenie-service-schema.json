@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Service",
+  "title": "Service",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the service."
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the service."
+    },
+    "teamId": {
+      "type": "string",
+      "description": "ID of the owning team."
+    },
+    "visibility": {
+      "type": "string",
+      "description": "Visibility level."
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags."
+    },
+    "isExternal": {
+      "type": "boolean",
+      "description": "Whether the service is external."
+    }
+  }
+}

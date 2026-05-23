@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Responder",
+  "title": "Responder",
+  "type": "object",
+  "required": [
+    "type"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "ID of the responder."
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the responder (for teams and schedules)."
+    },
+    "username": {
+      "type": "string",
+      "description": "Username of the responder (for users)."
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "team",
+        "user",
+        "escalation",
+        "schedule"
+      ],
+      "description": "Type of the responder entity."
+    }
+  }
+}

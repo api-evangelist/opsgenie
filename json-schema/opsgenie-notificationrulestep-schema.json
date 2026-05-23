@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NotificationRuleStep",
+  "title": "NotificationRuleStep",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Step ID."
+    },
+    "contact": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "email",
+            "sms",
+            "voice",
+            "mobile"
+          ],
+          "description": "Notification delivery method."
+        },
+        "to": {
+          "type": "string",
+          "description": "Contact address (email, phone number, etc.)."
+        }
+      },
+      "description": "Contact information for the step."
+    },
+    "sendAfter": {
+      "type": "object",
+      "properties": {
+        "timeAmount": {
+          "type": "integer",
+          "description": "Amount of time to wait before sending."
+        },
+        "timeUnit": {
+          "type": "string",
+          "enum": [
+            "minutes",
+            "hours",
+            "days"
+          ],
+          "description": "Time unit."
+        }
+      },
+      "description": "Delay before sending this step's notification."
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the step is enabled."
+    }
+  }
+}

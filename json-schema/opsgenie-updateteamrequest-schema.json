@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateTeamRequest",
+  "title": "UpdateTeamRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Updated name for the team."
+    },
+    "description": {
+      "type": "string",
+      "description": "Updated description."
+    },
+    "members": {
+      "type": "array",
+      "description": "Updated list of team members.",
+      "items": {
+        "$ref": "#/components/schemas/TeamMember"
+      }
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Maintenance",
+  "title": "Maintenance",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "planned",
+        "past",
+        "cancelled"
+      ],
+      "description": "Current status of the maintenance."
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the maintenance window."
+    },
+    "time": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Type of maintenance duration."
+        },
+        "startDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Start date."
+        },
+        "endDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "End date."
+        }
+      },
+      "description": "Time configuration."
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entity": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Entity ID."
+              },
+              "type": {
+                "type": "string",
+                "description": "Entity type."
+              }
+            },
+            "description": "Affected entity."
+          }
+        }
+      },
+      "description": "Maintenance rules."
+    }
+  }
+}

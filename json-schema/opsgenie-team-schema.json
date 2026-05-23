@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Team",
+  "title": "Team",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the team."
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the team."
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the team."
+    },
+    "members": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/TeamMember"
+      },
+      "description": "Members of the team."
+    },
+    "links": {
+      "type": "object",
+      "properties": {
+        "web": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the team dashboard in the OpsGenie web UI."
+        },
+        "api": {
+          "type": "string",
+          "format": "uri",
+          "description": "API URL for this team."
+        }
+      },
+      "description": "Related links."
+    }
+  }
+}

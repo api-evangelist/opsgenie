@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateHeartbeatRequest",
+  "title": "UpdateHeartbeatRequest",
+  "type": "object",
+  "properties": {
+    "description": {
+      "type": "string",
+      "description": "Updated description."
+    },
+    "interval": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Updated interval."
+    },
+    "intervalUnit": {
+      "type": "string",
+      "enum": [
+        "minutes",
+        "hours",
+        "days"
+      ],
+      "description": "Updated interval unit."
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Updated enabled status."
+    },
+    "ownerTeam": {
+      "type": "object",
+      "description": "Updated owner team.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Team ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "Team name."
+        }
+      }
+    },
+    "alertMessage": {
+      "type": "string",
+      "description": "Updated alert message."
+    },
+    "alertTags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Updated alert tags."
+    },
+    "alertPriority": {
+      "type": "string",
+      "enum": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5"
+      ],
+      "description": "Updated alert priority."
+    }
+  }
+}

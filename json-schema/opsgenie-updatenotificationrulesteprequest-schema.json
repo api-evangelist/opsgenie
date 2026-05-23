@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateNotificationRuleStepRequest",
+  "title": "UpdateNotificationRuleStepRequest",
+  "type": "object",
+  "properties": {
+    "contact": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "email",
+            "sms",
+            "voice",
+            "mobile"
+          ],
+          "description": "Updated delivery method."
+        },
+        "to": {
+          "type": "string",
+          "description": "Updated contact address."
+        }
+      },
+      "description": "Updated contact."
+    },
+    "sendAfter": {
+      "type": "object",
+      "properties": {
+        "timeAmount": {
+          "type": "integer",
+          "description": "Updated wait time."
+        },
+        "timeUnit": {
+          "type": "string",
+          "enum": [
+            "minutes",
+            "hours",
+            "days"
+          ],
+          "description": "Updated time unit."
+        }
+      },
+      "description": "Updated delay."
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Updated enabled status."
+    }
+  }
+}

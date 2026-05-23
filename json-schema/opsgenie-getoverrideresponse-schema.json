@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetOverrideResponse",
+  "title": "GetOverrideResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "alias": {
+          "type": "string",
+          "description": "Alias of the override."
+        },
+        "user": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "User ID."
+            },
+            "username": {
+              "type": "string",
+              "description": "Username."
+            }
+          }
+        },
+        "startDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Start date."
+        },
+        "endDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "End date."
+        },
+        "rotations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Rotation ID."
+              },
+              "name": {
+                "type": "string",
+                "description": "Rotation name."
+              }
+            }
+          }
+        }
+      }
+    },
+    "took": {
+      "type": "number",
+      "description": "Time taken in seconds."
+    },
+    "requestId": {
+      "type": "string",
+      "description": "Unique identifier for the request."
+    }
+  }
+}

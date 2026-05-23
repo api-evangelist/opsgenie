@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateOverrideRequest",
+  "title": "UpdateOverrideRequest",
+  "type": "object",
+  "required": [
+    "user",
+    "startDate",
+    "endDate"
+  ],
+  "properties": {
+    "user": {
+      "type": "object",
+      "description": "User for the override.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "User ID."
+        },
+        "username": {
+          "type": "string",
+          "description": "Username (email)."
+        }
+      }
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Updated start date."
+    },
+    "endDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Updated end date."
+    },
+    "rotations": {
+      "type": "array",
+      "description": "Specific rotations to override.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Rotation ID."
+          },
+          "name": {
+            "type": "string",
+            "description": "Rotation name."
+          }
+        }
+      }
+    }
+  }
+}

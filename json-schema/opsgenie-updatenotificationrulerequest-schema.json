@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateNotificationRuleRequest",
+  "title": "UpdateNotificationRuleRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Updated rule name."
+    },
+    "criteria": {
+      "$ref": "#/components/schemas/NotificationCriteria"
+    },
+    "notificationTime": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Updated notification time preferences."
+    },
+    "timeRestriction": {
+      "$ref": "#/components/schemas/TimeRestriction"
+    },
+    "schedules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Schedule ID."
+          },
+          "name": {
+            "type": "string",
+            "description": "Schedule name."
+          }
+        }
+      },
+      "description": "Updated schedules."
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/NotificationRuleStep"
+      },
+      "description": "Updated notification steps."
+    },
+    "order": {
+      "type": "integer",
+      "description": "Updated order."
+    },
+    "repeat": {
+      "type": "object",
+      "properties": {
+        "loopAfter": {
+          "type": "integer",
+          "description": "Steps after which to loop."
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "Repeat enabled."
+        }
+      },
+      "description": "Updated repeat configuration."
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Updated enabled status."
+    }
+  }
+}

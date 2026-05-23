@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListAlertRecipientsResponse",
+  "title": "ListAlertRecipientsResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "User ID."
+              },
+              "username": {
+                "type": "string",
+                "description": "Username of the recipient."
+              }
+            }
+          },
+          "state": {
+            "type": "string",
+            "description": "State of the notification to the recipient."
+          },
+          "method": {
+            "type": "string",
+            "description": "Notification method used."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date and time when the notification was created."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date and time when the notification was last updated."
+          }
+        }
+      }
+    },
+    "took": {
+      "type": "number",
+      "description": "Time taken to process the request in seconds."
+    },
+    "requestId": {
+      "type": "string",
+      "description": "Unique identifier for the request."
+    }
+  }
+}

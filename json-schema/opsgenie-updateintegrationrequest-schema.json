@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateIntegrationRequest",
+  "title": "UpdateIntegrationRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Updated integration name."
+    },
+    "ownerTeam": {
+      "type": "object",
+      "description": "Updated owner team.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Team ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "Team name."
+        }
+      }
+    },
+    "allowWriteAccess": {
+      "type": "boolean",
+      "description": "Updated write access setting."
+    },
+    "allowConfigurationAccess": {
+      "type": "boolean",
+      "description": "Updated configuration access setting."
+    },
+    "ignoreRespondersFromPayload": {
+      "type": "boolean",
+      "description": "Updated responder ignore setting."
+    },
+    "suppressNotifications": {
+      "type": "boolean",
+      "description": "Updated notification suppression setting."
+    },
+    "responders": {
+      "type": "array",
+      "description": "Updated default responders.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Responder ID."
+          },
+          "name": {
+            "type": "string",
+            "description": "Responder name."
+          },
+          "type": {
+            "type": "string",
+            "description": "Responder type."
+          }
+        }
+      }
+    }
+  }
+}

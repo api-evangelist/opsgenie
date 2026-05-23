@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EscalationRule",
+  "title": "EscalationRule",
+  "type": "object",
+  "required": [
+    "condition",
+    "notifyType",
+    "delay",
+    "recipient"
+  ],
+  "properties": {
+    "condition": {
+      "type": "string",
+      "enum": [
+        "if-not-acked",
+        "if-not-closed"
+      ],
+      "description": "Condition that triggers the escalation rule."
+    },
+    "notifyType": {
+      "type": "string",
+      "enum": [
+        "default",
+        "next",
+        "previous",
+        "users",
+        "admins",
+        "random",
+        "all"
+      ],
+      "description": "Type of notification to send."
+    },
+    "delay": {
+      "type": "object",
+      "description": "Delay before this rule is triggered.",
+      "properties": {
+        "timeAmount": {
+          "type": "integer",
+          "description": "Amount of time to wait."
+        },
+        "timeUnit": {
+          "type": "string",
+          "enum": [
+            "minutes",
+            "hours",
+            "days"
+          ],
+          "description": "Unit of time for the delay."
+        }
+      }
+    },
+    "recipient": {
+      "type": "object",
+      "description": "Recipient of the escalation notification.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Recipient ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "Recipient name."
+        },
+        "username": {
+          "type": "string",
+          "description": "Username for user recipients."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "user",
+            "team",
+            "schedule"
+          ],
+          "description": "Type of recipient."
+        }
+      }
+    }
+  }
+}

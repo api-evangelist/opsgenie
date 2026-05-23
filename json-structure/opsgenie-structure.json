@@ -1,0 +1,372 @@
+{
+  "provider": "OpsGenie",
+  "providerId": "opsgenie",
+  "kind": "json-structure",
+  "description": "Structural overview of the OpsGenie API surface; extracted from openapi/.",
+  "schemaCount": 24,
+  "operationCount": 22,
+  "schemas": [
+    {
+      "name": "CreateAlertRequest",
+      "type": "object",
+      "propertyCount": 13,
+      "required": [
+        "message"
+      ]
+    },
+    {
+      "name": "CloseAlertRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "AlertActionRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "SnoozeAlertRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "endTime"
+      ]
+    },
+    {
+      "name": "EscalateAlertRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "escalation"
+      ]
+    },
+    {
+      "name": "AssignAlertRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "owner"
+      ]
+    },
+    {
+      "name": "AddTagsRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "tags"
+      ]
+    },
+    {
+      "name": "AddNoteRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "note"
+      ]
+    },
+    {
+      "name": "AddDetailsRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "details"
+      ]
+    },
+    {
+      "name": "AddResponderRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "responder"
+      ]
+    },
+    {
+      "name": "Responder",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "name": "Alert",
+      "type": "object",
+      "propertyCount": 24,
+      "required": []
+    },
+    {
+      "name": "AsyncRequestResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "RequestStatusResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ListAlertsResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "GetAlertResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "CountAlertsResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ListAlertNotesResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "ListAlertLogsResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "ListAlertRecipientsResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ListAttachmentsResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "Paging",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "SuccessResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ErrorResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/v2/alerts",
+      "operationId": "listAlerts",
+      "summary": "List alerts",
+      "tags": [
+        "Alerts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v2/alerts",
+      "operationId": "createAlert",
+      "summary": "Create alert",
+      "tags": [
+        "Alerts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v2/alerts/{identifier}",
+      "operationId": "getAlert",
+      "summary": "Get alert",
+      "tags": [
+        "Alerts"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/v2/alerts/{identifier}",
+      "operationId": "deleteAlert",
+      "summary": "Delete alert",
+      "tags": [
+        "Alerts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v2/alerts/{identifier}/close",
+      "operationId": "closeAlert",
+      "summary": "Close alert",
+      "tags": [
+        "Alerts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v2/alerts/{identifier}/acknowledge",
+      "operationId": "acknowledgeAlert",
+      "summary": "Acknowledge alert",
+      "tags": [
+        "Alerts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v2/alerts/{identifier}/unacknowledge",
+      "operationId": "unacknowledgeAlert",
+      "summary": "Unacknowledge alert",
+      "tags": [
+        "Alerts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v2/alerts/{identifier}/snooze",
+      "operationId": "snoozeAlert",
+      "summary": "Snooze alert",
+      "tags": [
+        "Alerts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v2/alerts/{identifier}/escalate",
+      "operationId": "escalateAlert",
+      "summary": "Escalate alert",
+      "tags": [
+        "Alerts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v2/alerts/{identifier}/assign",
+      "operationId": "assignAlert",
+      "summary": "Assign alert",
+      "tags": [
+        "Alerts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v2/alerts/{identifier}/tags",
+      "operationId": "addTags",
+      "summary": "Add tags to alert",
+      "tags": [
+        "Alerts"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/v2/alerts/{identifier}/tags",
+      "operationId": "removeTags",
+      "summary": "Remove tags from alert",
+      "tags": [
+        "Alerts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v2/alerts/{identifier}/notes",
+      "operationId": "listAlertNotes",
+      "summary": "List alert notes",
+      "tags": [
+        "Alerts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v2/alerts/{identifier}/notes",
+      "operationId": "addNote",
+      "summary": "Add note to alert",
+      "tags": [
+        "Alerts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v2/alerts/{identifier}/details",
+      "operationId": "addDetails",
+      "summary": "Add details to alert",
+      "tags": [
+        "Alerts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v2/alerts/{identifier}/responders",
+      "operationId": "addResponder",
+      "summary": "Add responder to alert",
+      "tags": [
+        "Alerts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v2/alerts/{identifier}/attachments",
+      "operationId": "listAttachments",
+      "summary": "List alert attachments",
+      "tags": [
+        "Alerts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v2/alerts/{identifier}/attachments",
+      "operationId": "addAttachment",
+      "summary": "Add attachment to alert",
+      "tags": [
+        "Alerts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v2/alerts/{identifier}/logs",
+      "operationId": "listAlertLogs",
+      "summary": "List alert logs",
+      "tags": [
+        "Alerts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v2/alerts/{identifier}/recipients",
+      "operationId": "listAlertRecipients",
+      "summary": "List alert recipients",
+      "tags": [
+        "Alerts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v2/alerts/count",
+      "operationId": "countAlerts",
+      "summary": "Count alerts",
+      "tags": [
+        "Alerts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v2/alerts/requests/{requestId}",
+      "operationId": "getRequestStatus",
+      "summary": "Get request status",
+      "tags": [
+        "Alerts"
+      ]
+    }
+  ]
+}

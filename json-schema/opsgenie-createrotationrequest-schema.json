@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateRotationRequest",
+  "title": "CreateRotationRequest",
+  "type": "object",
+  "required": [
+    "type",
+    "participants",
+    "startDate"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the rotation."
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "daily",
+        "weekly",
+        "hourly"
+      ],
+      "description": "Type of rotation cycle."
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Start date and time of the rotation."
+    },
+    "endDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "End date and time of the rotation."
+    },
+    "length": {
+      "type": "integer",
+      "description": "Length of the rotation cycle."
+    },
+    "participants": {
+      "type": "array",
+      "description": "Participants in the rotation.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Participant type."
+          },
+          "id": {
+            "type": "string",
+            "description": "Participant ID."
+          },
+          "username": {
+            "type": "string",
+            "description": "Username for user participants."
+          }
+        }
+      }
+    },
+    "timeRestriction": {
+      "type": "object",
+      "description": "Time restriction for the rotation.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Type of restriction."
+        },
+        "restrictions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "startDay": {
+                "type": "string",
+                "description": "Start day."
+              },
+              "startHour": {
+                "type": "integer",
+                "description": "Start hour."
+              },
+              "startMin": {
+                "type": "integer",
+                "description": "Start minute."
+              },
+              "endDay": {
+                "type": "string",
+                "description": "End day."
+              },
+              "endHour": {
+                "type": "integer",
+                "description": "End hour."
+              },
+              "endMin": {
+                "type": "integer",
+                "description": "End minute."
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

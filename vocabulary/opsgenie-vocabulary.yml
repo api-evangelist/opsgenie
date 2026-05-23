@@ -1,0 +1,7 @@
+name: OpsGenie Domain Vocabulary
+provider: OpsGenie
+providerId: opsgenie
+description: Tag-derived vocabulary for the OpsGenie API surface; sourced from openapi/ tags.
+terms:
+- term: Alerts
+  description: Operations for creating, retrieving, updating, and managing alerts within the OpsGenie platform.

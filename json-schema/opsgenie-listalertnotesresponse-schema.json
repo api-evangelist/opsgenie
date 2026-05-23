@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListAlertNotesResponse",
+  "title": "ListAlertNotesResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "note": {
+            "type": "string",
+            "description": "Text content of the note."
+          },
+          "owner": {
+            "type": "string",
+            "description": "User who created the note."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date and time when the note was created."
+          },
+          "offset": {
+            "type": "string",
+            "description": "Offset value for pagination."
+          }
+        }
+      }
+    },
+    "paging": {
+      "$ref": "#/components/schemas/Paging"
+    },
+    "took": {
+      "type": "number",
+      "description": "Time taken to process the request in seconds."
+    },
+    "requestId": {
+      "type": "string",
+      "description": "Unique identifier for the request."
+    }
+  }
+}

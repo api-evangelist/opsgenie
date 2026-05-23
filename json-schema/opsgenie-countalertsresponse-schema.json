@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CountAlertsResponse",
+  "title": "CountAlertsResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "Count of alerts matching the query."
+        }
+      }
+    },
+    "took": {
+      "type": "number",
+      "description": "Time taken to process the request in seconds."
+    },
+    "requestId": {
+      "type": "string",
+      "description": "Unique identifier for the request."
+    }
+  }
+}

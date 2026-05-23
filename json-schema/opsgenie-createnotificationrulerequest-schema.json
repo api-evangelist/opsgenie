@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateNotificationRuleRequest",
+  "title": "CreateNotificationRuleRequest",
+  "type": "object",
+  "required": [
+    "name",
+    "actionType"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the notification rule."
+    },
+    "actionType": {
+      "type": "string",
+      "enum": [
+        "create-alert",
+        "acknowledged-alert",
+        "closed-alert",
+        "assigned-alert",
+        "add-note",
+        "schedule-start",
+        "schedule-end",
+        "incoming-call-routing"
+      ],
+      "description": "Action type that triggers this notification rule."
+    },
+    "criteria": {
+      "$ref": "#/components/schemas/NotificationCriteria"
+    },
+    "notificationTime": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "just-before",
+          "15-minutes-ago",
+          "1-hour-ago",
+          "1-day-ago"
+        ]
+      },
+      "description": "Notification time preferences."
+    },
+    "timeRestriction": {
+      "$ref": "#/components/schemas/TimeRestriction"
+    },
+    "schedules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Schedule ID."
+          },
+          "name": {
+            "type": "string",
+            "description": "Schedule name."
+          },
+          "type": {
+            "type": "string",
+            "description": "Type (schedule)."
+          }
+        }
+      },
+      "description": "Schedules this rule applies to."
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/NotificationRuleStep"
+      },
+      "description": "Notification steps."
+    },
+    "order": {
+      "type": "integer",
+      "description": "Order of the rule."
+    },
+    "repeat": {
+      "type": "object",
+      "properties": {
+        "loopAfter": {
+          "type": "integer",
+          "description": "Number of steps after which to loop back."
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether repeat is enabled."
+        }
+      },
+      "description": "Repeat configuration."
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the rule is enabled."
+    }
+  }
+}

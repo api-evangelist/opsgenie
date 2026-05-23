@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NotificationRule",
+  "title": "NotificationRule",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Rule name."
+    },
+    "actionType": {
+      "type": "string",
+      "description": "Action type that triggers this rule."
+    },
+    "order": {
+      "type": "integer",
+      "description": "Rule order."
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the rule is enabled."
+    },
+    "criteria": {
+      "$ref": "#/components/schemas/NotificationCriteria"
+    },
+    "timeRestriction": {
+      "$ref": "#/components/schemas/TimeRestriction"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/NotificationRuleStep"
+      },
+      "description": "Notification steps."
+    },
+    "repeat": {
+      "type": "object",
+      "properties": {
+        "loopAfter": {
+          "type": "integer",
+          "description": "Steps after which to loop."
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "Repeat enabled."
+        }
+      }
+    }
+  }
+}

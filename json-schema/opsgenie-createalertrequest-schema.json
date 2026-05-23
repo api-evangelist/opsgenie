@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateAlertRequest",
+  "title": "CreateAlertRequest",
+  "type": "object",
+  "required": [
+    "message"
+  ],
+  "properties": {
+    "message": {
+      "type": "string",
+      "maxLength": 130,
+      "description": "The message of the alert, limited to 130 characters."
+    },
+    "alias": {
+      "type": "string",
+      "maxLength": 512,
+      "description": "Client-defined identifier for the alert, used for deduplication."
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 15000,
+      "description": "A detailed description of the alert."
+    },
+    "responders": {
+      "type": "array",
+      "description": "Teams, users, escalations, and schedules that the alert is routed to.",
+      "items": {
+        "$ref": "#/components/schemas/Responder"
+      }
+    },
+    "visibleTo": {
+      "type": "array",
+      "description": "Teams and users that the alert will become visible to without sending notifications.",
+      "items": {
+        "$ref": "#/components/schemas/Responder"
+      }
+    },
+    "actions": {
+      "type": "array",
+      "description": "Custom actions available for the alert.",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 10
+    },
+    "tags": {
+      "type": "array",
+      "description": "Tags to attach to the alert.",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 20
+    },
+    "details": {
+      "type": "object",
+      "description": "Custom key-value pairs to attach to the alert.",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "entity": {
+      "type": "string",
+      "maxLength": 512,
+      "description": "Entity field of the alert, used to specify the domain of the alert."
+    },
+    "source": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Source field of the alert, used to specify the source of the alert."
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5"
+      ],
+      "description": "Priority level of the alert. P1 is the highest, P5 is the lowest."
+    },
+    "user": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Display name of the request owner."
+    },
+    "note": {
+      "type": "string",
+      "maxLength": 25000,
+      "description": "Additional note to add to the alert when created."
+    }
+  }
+}

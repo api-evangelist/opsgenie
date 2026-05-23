@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Escalation",
+  "title": "Escalation",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the escalation."
+    },
+    "description": {
+      "type": "string",
+      "description": "Description."
+    },
+    "ownerTeam": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Team ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "Team name."
+        }
+      },
+      "description": "Owner team."
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/EscalationRule"
+      },
+      "description": "Escalation rules."
+    },
+    "repeat": {
+      "type": "object",
+      "properties": {
+        "waitInterval": {
+          "type": "integer",
+          "description": "Wait interval in minutes."
+        },
+        "count": {
+          "type": "integer",
+          "description": "Repeat count."
+        },
+        "resetRecipientStates": {
+          "type": "boolean",
+          "description": "Reset recipient states."
+        },
+        "closeAlertAfterAll": {
+          "type": "boolean",
+          "description": "Close alert after all repeats."
+        }
+      },
+      "description": "Repeat configuration."
+    }
+  }
+}

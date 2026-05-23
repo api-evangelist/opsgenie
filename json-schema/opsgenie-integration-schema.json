@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Integration",
+  "title": "Integration",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the integration."
+    },
+    "type": {
+      "type": "string",
+      "description": "Type of the integration."
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the integration is currently enabled."
+    },
+    "ownerTeam": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Team ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "Team name."
+        }
+      },
+      "description": "Owner team."
+    },
+    "isGlobal": {
+      "type": "boolean",
+      "description": "Whether this is a global (account-level) integration."
+    },
+    "allowWriteAccess": {
+      "type": "boolean",
+      "description": "Whether write access is enabled."
+    },
+    "allowConfigurationAccess": {
+      "type": "boolean",
+      "description": "Whether configuration access is enabled."
+    },
+    "responders": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Responder ID."
+          },
+          "name": {
+            "type": "string",
+            "description": "Responder name."
+          },
+          "type": {
+            "type": "string",
+            "description": "Responder type."
+          }
+        }
+      },
+      "description": "Default responders."
+    }
+  }
+}

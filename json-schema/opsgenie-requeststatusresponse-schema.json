@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RequestStatusResponse",
+  "title": "RequestStatusResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "description": "Whether the request was successful."
+        },
+        "action": {
+          "type": "string",
+          "description": "The action that was performed."
+        },
+        "processedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time when the request was processed."
+        },
+        "integrationId": {
+          "type": "string",
+          "description": "ID of the integration."
+        },
+        "isSuccess": {
+          "type": "boolean",
+          "description": "Whether the operation succeeded."
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the request."
+        },
+        "alertId": {
+          "type": "string",
+          "description": "ID of the alert created or affected."
+        },
+        "alias": {
+          "type": "string",
+          "description": "Alias of the alert."
+        }
+      }
+    },
+    "took": {
+      "type": "number",
+      "description": "Time taken to process the request in seconds."
+    },
+    "requestId": {
+      "type": "string",
+      "description": "Unique identifier for the request."
+    }
+  }
+}
