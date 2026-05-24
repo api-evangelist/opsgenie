@@ -306,6 +306,8 @@ common:
     sources:
     - https://www.atlassian.com/software/opsgenie/pricing
     updated: '2026-05-04'
+  - type: LLMsTxt
+    url: https://docs.opsgenie.com/llms.txt
 maintainers:
   - FN: API Evangelist
     email: info@apievangelist.com
