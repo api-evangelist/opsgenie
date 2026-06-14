@@ -1,0 +1,1332 @@
+"""
+OpsGenie (Atlassian) GraphQL Schema
+Conceptual schema derived from the OpsGenie REST API.
+Source: https://docs.opsgenie.com/docs/api-overview
+Provider: OpsGenie (Atlassian)
+Base URL: https://api.opsgenie.com
+"""
+
+# ─────────────────────────────────────────────
+# Scalars
+# ─────────────────────────────────────────────
+
+scalar DateTime
+scalar JSON
+
+# ─────────────────────────────────────────────
+# Enums
+# ─────────────────────────────────────────────
+
+"""Priority level for an alert."""
+enum AlertPriority {
+  P1
+  P2
+  P3
+  P4
+  P5
+}
+
+"""Lifecycle status of an alert."""
+enum AlertStatus {
+  OPEN
+  ACKED
+  CLOSED
+}
+
+"""Lifecycle status of an incident."""
+enum IncidentStatus {
+  OPEN
+  RESOLVED
+  CLOSED
+}
+
+"""Type of a schedule rotation."""
+enum RotationType {
+  DAILY
+  WEEKLY
+  HOURLY
+}
+
+"""Role of a user within OpsGenie."""
+enum UserRole {
+  ADMIN
+  USER
+  READ_ONLY
+  OBSERVER
+  STAKEHOLDER
+}
+
+"""Type of a team member role."""
+enum TeamMemberRole {
+  ADMIN
+  USER
+}
+
+"""Type of contact method for notifications."""
+enum ContactMethodType {
+  EMAIL
+  SMS
+  VOICE
+  MOBILE
+}
+
+"""Notification condition operator."""
+enum ConditionOperator {
+  MATCHES
+  DOES_NOT_MATCH
+  CONTAINS
+  DOES_NOT_CONTAIN
+  STARTS_WITH
+  ENDS_WITH
+  EQUALS
+  NOT_EQUALS
+  GREATER_THAN
+  LESS_THAN
+}
+
+"""Field targeted by a notification condition."""
+enum ConditionField {
+  MESSAGE
+  ALIAS
+  DESCRIPTION
+  SOURCE
+  ENTITY
+  TAGS
+  PRIORITY
+  EXTRA_PROPERTIES
+  RESPONDERS
+  TEAMS
+}
+
+"""Status of a heartbeat monitor."""
+enum HeartbeatStatus {
+  ACTIVE
+  EXPIRED
+}
+
+"""Type of responder assigned to an alert or incident."""
+enum ResponderType {
+  TEAM
+  USER
+  ESCALATION
+  SCHEDULE
+}
+
+"""Status of an integration."""
+enum IntegrationStatus {
+  ENABLED
+  DISABLED
+}
+
+"""Type of maintenance window rule entity."""
+enum MaintenanceEntityType {
+  INTEGRATION
+  POLICY
+}
+
+"""Status of a maintenance window."""
+enum MaintenanceStatus {
+  ACTIVE
+  INACTIVE
+  PLANNED
+  CANCELLED
+}
+
+# ─────────────────────────────────────────────
+# Alert Types
+# ─────────────────────────────────────────────
+
+"""A top-level alert within OpsGenie."""
+type Alert {
+  id: ID!
+  tinyId: String
+  alias: String
+  message: String!
+  status: AlertStatus!
+  acknowledged: Boolean!
+  isSeen: Boolean!
+  tags: [AlertTag!]
+  snoozed: Boolean!
+  snoozedUntil: DateTime
+  count: Int!
+  lastOccurredAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  source: String
+  owner: String
+  priority: AlertPriority!
+  responders: [AlertResponder!]
+  integration: AlertIntegrationRef
+  report: AlertReport
+  details: AlertDetails
+}
+
+"""Extended metadata and payload for an alert."""
+type AlertDetails {
+  alertId: ID!
+  message: String!
+  alias: String
+  description: String
+  responders: [AlertResponder!]
+  visibleTo: [AlertResponder!]
+  actions: [String!]
+  tags: [AlertTag!]
+  details: JSON
+  entity: String
+  source: String
+  priority: AlertPriority!
+  user: String
+  note: String
+  notes: [AlertNote!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  status: AlertStatus!
+  acknowledged: Boolean!
+  snoozed: Boolean!
+  snoozedUntil: DateTime
+  count: Int!
+  teams: [TeamRef!]
+  integration: AlertIntegrationRef
+  report: AlertReport
+  owner: String
+}
+
+"""A responder (team or user) assigned to an alert."""
+type AlertResponder {
+  id: ID!
+  type: ResponderType!
+  name: String
+}
+
+"""A tag string applied to an alert."""
+type AlertTag {
+  value: String!
+}
+
+"""A note added to an alert."""
+type AlertNote {
+  id: ID!
+  alertId: ID!
+  note: String!
+  owner: String!
+  createdAt: DateTime!
+  offset: String
+}
+
+"""Record of an alert acknowledgment."""
+type AlertAck {
+  alertId: ID!
+  acknowledgedBy: String!
+  acknowledgedAt: DateTime!
+}
+
+"""Record of an alert being closed."""
+type AlertClose {
+  alertId: ID!
+  closedBy: String!
+  closedAt: DateTime!
+}
+
+"""Record of an alert being snoozed."""
+type AlertSnooze {
+  alertId: ID!
+  snoozedBy: String!
+  snoozedUntil: DateTime!
+}
+
+"""A user action taken on an alert."""
+type AlertAction {
+  alertId: ID!
+  action: String!
+  performedBy: String!
+  performedAt: DateTime!
+}
+
+"""Reference to the integration that sourced an alert."""
+type AlertIntegrationRef {
+  id: ID!
+  name: String!
+  type: String!
+}
+
+"""Reporting metadata for an alert."""
+type AlertReport {
+  ackTime: Int
+  closeTime: Int
+  acknowledgedBy: String
+  closedBy: String
+}
+
+"""A reference to an alert source."""
+type AlertSource {
+  name: String!
+  type: String!
+}
+
+"""Payload returned by alert count queries."""
+type AlertCountPayload {
+  count: Int!
+}
+
+# ─────────────────────────────────────────────
+# Incident Types
+# ─────────────────────────────────────────────
+
+"""A top-level incident within OpsGenie."""
+type Incident {
+  id: ID!
+  tinyId: String
+  message: String!
+  status: IncidentStatus!
+  tags: [IncidentTag!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  priority: AlertPriority!
+  responders: [AlertResponder!]
+  details: IncidentDetails
+}
+
+"""Extended metadata for an incident."""
+type IncidentDetails {
+  incidentId: ID!
+  message: String!
+  status: IncidentStatus!
+  tags: [IncidentTag!]
+  description: String
+  responders: [AlertResponder!]
+  impactedServices: [IncidentImpactedServices!]
+  priority: AlertPriority!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  notes: [IncidentNote!]
+  statusPageEntry: IncidentStatusPageEntry
+}
+
+"""Services impacted by an incident."""
+type IncidentImpactedServices {
+  serviceId: ID!
+  serviceName: String!
+}
+
+"""A tag applied to an incident."""
+type IncidentTag {
+  value: String!
+}
+
+"""A timeline note on an incident."""
+type IncidentNote {
+  id: ID!
+  incidentId: ID!
+  note: String!
+  owner: String!
+  createdAt: DateTime!
+}
+
+"""Status page entry for an incident."""
+type IncidentStatusPageEntry {
+  hide: Boolean!
+  title: String
+  detail: String
+}
+
+# ─────────────────────────────────────────────
+# Service Types
+# ─────────────────────────────────────────────
+
+"""A business service registered in OpsGenie."""
+type Service {
+  id: ID!
+  name: String!
+  description: String
+  teamId: ID
+  team: ServiceTeam
+  tags: [String!]
+  links: ServiceLinks
+}
+
+"""Extended service metadata."""
+type ServiceDetails {
+  serviceId: ID!
+  name: String!
+  description: String
+  team: ServiceTeam
+  tags: [String!]
+  links: ServiceLinks
+  isExternal: Boolean
+}
+
+"""Team that owns a service."""
+type ServiceTeam {
+  id: ID!
+  name: String!
+}
+
+"""Links associated with a service."""
+type ServiceLinks {
+  dashboardUrl: String
+  runbookUrl: String
+  documentationUrl: String
+}
+
+"""A team affected by an incident."""
+type AffectedTeam {
+  id: ID!
+  name: String!
+}
+
+# ─────────────────────────────────────────────
+# On-Call and Schedule Types
+# ─────────────────────────────────────────────
+
+"""Current on-call information for a schedule."""
+type OnCall {
+  scheduleId: ID!
+  scheduleName: String!
+  enabled: Boolean!
+  onCallParticipants: [OnCallParticipant!]!
+}
+
+"""A participant currently on call."""
+type OnCallParticipant {
+  id: ID!
+  name: String!
+  type: ResponderType!
+  onCallStartDate: DateTime
+  onCallEndDate: DateTime
+}
+
+"""An on-call schedule."""
+type Schedule {
+  id: ID!
+  name: String!
+  enabled: Boolean!
+  timezone: String!
+  description: String
+  ownerTeam: TeamRef
+  rotations: [ScheduleRotation!]
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""Extended schedule metadata."""
+type ScheduleDetails {
+  scheduleId: ID!
+  name: String!
+  description: String
+  timezone: String!
+  enabled: Boolean!
+  ownerTeam: TeamRef
+  rotations: [ScheduleRotation!]!
+  overrides: [ScheduleOverride!]
+}
+
+"""A rotation within an on-call schedule."""
+type ScheduleRotation {
+  id: ID!
+  name: String!
+  startDate: DateTime!
+  endDate: DateTime
+  type: RotationType!
+  length: Int!
+  participants: [RotationParticipant!]!
+  timeRestriction: TimeRestriction
+}
+
+"""A participant in a schedule rotation."""
+type RotationParticipant {
+  id: ID!
+  type: ResponderType!
+  name: String
+}
+
+"""Alias for rotation participants collection."""
+type RotationParticipants {
+  participants: [RotationParticipant!]!
+}
+
+"""Time restriction applied to a rotation."""
+type TimeRestriction {
+  type: String!
+  restrictions: [WeekdayRestriction!]
+  restriction: DailyRestriction
+}
+
+"""Day-of-week restriction for a rotation."""
+type WeekdayRestriction {
+  startDay: String!
+  startHour: Int!
+  startMin: Int!
+  endDay: String!
+  endHour: Int!
+  endMin: Int!
+}
+
+"""Daily time restriction for a rotation."""
+type DailyRestriction {
+  startHour: Int!
+  startMin: Int!
+  endHour: Int!
+  endMin: Int!
+}
+
+"""An override to a schedule rotation."""
+type ScheduleOverride {
+  alias: String!
+  user: UserRef!
+  startDate: DateTime!
+  endDate: DateTime!
+  rotationIds: [String!]
+}
+
+# ─────────────────────────────────────────────
+# Escalation Types
+# ─────────────────────────────────────────────
+
+"""A named escalation policy."""
+type EscalationPolicy {
+  id: ID!
+  name: String!
+  description: String
+  rules: [EscalationRule!]!
+  teams: [TeamRef!]
+  ownerTeam: TeamRef
+  repeat: EscalationRepeat
+}
+
+"""A rule within an escalation policy."""
+type EscalationRule {
+  condition: EscalationCondition!
+  notifyType: String!
+  delay: EscalationDelay!
+  recipient: AlertResponder!
+}
+
+"""Condition that determines when an escalation rule fires."""
+type EscalationCondition {
+  conditionType: String!
+}
+
+"""Delay between escalation steps."""
+type EscalationDelay {
+  timeAmount: Int!
+  timeUnit: String!
+}
+
+"""Repeat configuration for an escalation policy."""
+type EscalationRepeat {
+  waitInterval: Int!
+  count: Int!
+  resetRecipientStates: Boolean!
+  closeAlertAfterAll: Boolean!
+}
+
+# ─────────────────────────────────────────────
+# Team Types
+# ─────────────────────────────────────────────
+
+"""An OpsGenie team."""
+type Team {
+  id: ID!
+  name: String!
+  description: String
+  members: [TeamMember!]
+  links: TeamLinks
+}
+
+"""Extended team metadata."""
+type TeamDetails {
+  teamId: ID!
+  name: String!
+  description: String
+  members: [TeamMember!]!
+  links: TeamLinks
+}
+
+"""A member of a team."""
+type TeamMember {
+  user: UserRef!
+  role: TeamMemberRole!
+}
+
+"""Contact method for a team member."""
+type TeamContactMethod {
+  id: ID!
+  type: ContactMethodType!
+  method: String!
+  enabled: Boolean!
+}
+
+"""Links related to a team."""
+type TeamLinks {
+  web: String
+  api: String
+}
+
+"""A lightweight reference to a team."""
+type TeamRef {
+  id: ID!
+  name: String!
+}
+
+# ─────────────────────────────────────────────
+# User Types
+# ─────────────────────────────────────────────
+
+"""An OpsGenie user account."""
+type User {
+  id: ID!
+  username: String!
+  fullName: String!
+  role: UserRoleObject!
+  timeZone: String
+  locale: String
+  blocked: Boolean!
+  verified: Boolean!
+  mutedUntil: DateTime
+  createdAt: DateTime!
+  tags: [String!]
+  details: UserDetails
+}
+
+"""Extended user profile and preferences."""
+type UserDetails {
+  userId: ID!
+  username: String!
+  fullName: String!
+  role: UserRoleObject!
+  skypeUsername: String
+  timeZone: String!
+  locale: String!
+  blocked: Boolean!
+  verified: Boolean!
+  mutedUntil: DateTime
+  createdAt: DateTime!
+  tags: [String!]
+  contactMethods: [UserContactMethod!]
+  notificationRules: [UserNotification!]
+}
+
+"""Role assigned to a user."""
+type UserRoleObject {
+  id: UserRole!
+  name: String!
+}
+
+"""Notification preference for a user."""
+type UserNotification {
+  id: ID!
+  name: String!
+  order: Int!
+  enabled: Boolean!
+  criteria: NotificationCriteria!
+  timeRestriction: TimeRestriction
+  steps: [NotificationStep!]!
+}
+
+"""Contact method registered for a user."""
+type UserContactMethod {
+  id: ID!
+  type: ContactMethodType!
+  method: String!
+  enabled: Boolean!
+  disabledReason: String
+}
+
+"""A lightweight reference to a user."""
+type UserRef {
+  id: ID!
+  username: String!
+  fullName: String
+}
+
+# ─────────────────────────────────────────────
+# Notification Policy Types
+# ─────────────────────────────────────────────
+
+"""A policy controlling when and how notifications are dispatched."""
+type NotificationPolicy {
+  id: ID!
+  name: String!
+  policyDescription: String
+  filter: NotificationFilter
+  timeRestriction: TimeRestriction
+  autoRestartAction: AutoAction
+  autoCloseAction: AutoAction
+  deduplicationAction: DeduplicationAction
+  enabled: Boolean!
+  teamId: ID
+}
+
+"""Filter criteria for a notification policy."""
+type NotificationFilter {
+  type: String!
+  conditions: [PolicyCondition!]
+}
+
+"""A single condition within a notification filter."""
+type PolicyCondition {
+  field: ConditionField!
+  operation: ConditionOperator!
+  expectedValue: String!
+  not: Boolean!
+  key: String
+  order: Int
+}
+
+"""Criteria for triggering user notification rules."""
+type NotificationCriteria {
+  type: String!
+  conditions: [PolicyCondition!]
+}
+
+"""A step in a user notification rule."""
+type NotificationStep {
+  id: ID!
+  sendAfter: NotificationDelay
+  contact: UserContactMethod!
+  enabled: Boolean!
+}
+
+"""Delay before a notification step fires."""
+type NotificationDelay {
+  timeAmount: Int!
+  timeUnit: String!
+}
+
+"""Auto-action taken on an alert (restart or close)."""
+type AutoAction {
+  delay: EscalationDelay!
+}
+
+"""Deduplication configuration for a notification policy."""
+type DeduplicationAction {
+  deduplicationActionType: String!
+  frequencyOfNotification: Int
+  count: Int
+}
+
+# ─────────────────────────────────────────────
+# Maintenance Window Types
+# ─────────────────────────────────────────────
+
+"""A scheduled maintenance window suppressing alert notifications."""
+type MaintenanceWindow {
+  id: ID!
+  status: MaintenanceStatus!
+  description: String
+  startDate: DateTime!
+  endDate: DateTime!
+  rules: [MaintenanceRule!]!
+}
+
+"""A rule within a maintenance window."""
+type MaintenanceRule {
+  state: String!
+  entity: MaintenanceEntity!
+}
+
+"""The integration or policy entity targeted by a maintenance rule."""
+type MaintenanceEntity {
+  id: ID!
+  type: MaintenanceEntityType!
+}
+
+# ─────────────────────────────────────────────
+# Heartbeat Types
+# ─────────────────────────────────────────────
+
+"""A heartbeat monitor that expects periodic pings from a system."""
+type Heartbeat {
+  name: String!
+  description: String
+  interval: Int!
+  intervalUnit: String!
+  enabled: Boolean!
+  status: HeartbeatStatus!
+  expired: Boolean!
+  alertMessage: String
+  alertTags: [String!]
+  alertPriority: AlertPriority
+  ownerTeam: TeamRef
+}
+
+"""Extended heartbeat metadata including recent ping history."""
+type HeartbeatDetails {
+  name: String!
+  description: String
+  interval: Int!
+  intervalUnit: String!
+  enabled: Boolean!
+  status: HeartbeatStatus!
+  expired: Boolean!
+  lastPingTime: DateTime
+  alertMessage: String
+  alertTags: [String!]
+  alertPriority: AlertPriority
+  ownerTeam: TeamRef
+  pingCount: Int
+}
+
+# ─────────────────────────────────────────────
+# Integration Types
+# ─────────────────────────────────────────────
+
+"""An OpsGenie integration with a third-party tool."""
+type Integration {
+  id: ID!
+  name: String!
+  type: String!
+  enabled: Boolean!
+  teamId: ID
+  teamName: String
+}
+
+"""Extended integration configuration."""
+type IntegrationDetails {
+  integrationId: ID!
+  name: String!
+  type: String!
+  enabled: Boolean!
+  teamId: ID
+  teamName: String
+  apiKey: String
+  webhookUrl: String
+  suppressNotifications: Boolean
+  ignoreRepeatedAlerts: Boolean
+  actions: [IntegrationAction!]
+  advancedSettings: JSON
+}
+
+"""An action configured on an integration."""
+type IntegrationAction {
+  id: ID!
+  type: String!
+  name: String!
+  alias: String
+  order: Int!
+  filter: NotificationFilter
+  extraProperties: JSON
+}
+
+"""Webhook configuration for a webhook-type integration."""
+type WebhookConfig {
+  url: String!
+  enabled: Boolean!
+  sendAlertActions: Boolean!
+  sendHeartbeatActions: Boolean!
+  headers: [WebhookHeader!]
+}
+
+"""A header included with webhook requests."""
+type WebhookHeader {
+  name: String!
+  value: String!
+}
+
+# ─────────────────────────────────────────────
+# Authentication Types
+# ─────────────────────────────────────────────
+
+"""An OpsGenie API key for authentication."""
+type APIKey {
+  id: ID!
+  name: String!
+  key: String!
+  createdAt: DateTime!
+  accessRights: [String!]
+  teamId: ID
+}
+
+"""An authentication token."""
+type Token {
+  accessToken: String!
+  tokenType: String!
+  expiresIn: Int
+}
+
+# ─────────────────────────────────────────────
+# Account Types
+# ─────────────────────────────────────────────
+
+"""OpsGenie account details."""
+type Account {
+  name: String!
+  userCount: Int!
+  plan: AccountPlan!
+  timezone: String
+  locale: String
+}
+
+"""Plan information for an OpsGenie account."""
+type AccountPlan {
+  maxUserCount: Int!
+  name: String!
+  isYearly: Boolean!
+}
+
+# ─────────────────────────────────────────────
+# Pagination and Connection Types
+# ─────────────────────────────────────────────
+
+"""Pagination metadata for list responses."""
+type PageInfo {
+  totalCount: Int!
+  paging: PagingDetails
+}
+
+"""Paging cursor details."""
+type PagingDetails {
+  next: String
+  prev: String
+  first: String
+  last: String
+}
+
+"""Paginated list of alerts."""
+type AlertConnection {
+  data: [Alert!]!
+  paging: PagingDetails
+  totalCount: Int
+}
+
+"""Paginated list of incidents."""
+type IncidentConnection {
+  data: [Incident!]!
+  paging: PagingDetails
+  totalCount: Int
+}
+
+"""Paginated list of teams."""
+type TeamConnection {
+  data: [Team!]!
+  paging: PagingDetails
+}
+
+"""Paginated list of users."""
+type UserConnection {
+  data: [User!]!
+  paging: PagingDetails
+  totalCount: Int
+}
+
+"""Paginated list of schedules."""
+type ScheduleConnection {
+  data: [Schedule!]!
+  paging: PagingDetails
+}
+
+"""Paginated list of escalation policies."""
+type EscalationConnection {
+  data: [EscalationPolicy!]!
+  paging: PagingDetails
+}
+
+"""Paginated list of services."""
+type ServiceConnection {
+  data: [Service!]!
+  paging: PagingDetails
+}
+
+"""Paginated list of integrations."""
+type IntegrationConnection {
+  data: [Integration!]!
+  paging: PagingDetails
+}
+
+"""Paginated list of maintenance windows."""
+type MaintenanceConnection {
+  data: [MaintenanceWindow!]!
+  paging: PagingDetails
+}
+
+"""Paginated list of heartbeat monitors."""
+type HeartbeatConnection {
+  data: [Heartbeat!]!
+  paging: PagingDetails
+}
+
+# ─────────────────────────────────────────────
+# Mutation Input Types
+# ─────────────────────────────────────────────
+
+"""Input for creating a new alert."""
+input CreateAlertInput {
+  message: String!
+  alias: String
+  description: String
+  responders: [AlertResponderInput!]
+  visibleTo: [AlertResponderInput!]
+  actions: [String!]
+  tags: [String!]
+  details: JSON
+  entity: String
+  source: String
+  priority: AlertPriority
+  user: String
+  note: String
+}
+
+"""Input for specifying an alert responder."""
+input AlertResponderInput {
+  id: ID
+  name: String
+  type: ResponderType!
+}
+
+"""Input for creating a new incident."""
+input CreateIncidentInput {
+  message: String!
+  description: String
+  responders: [AlertResponderInput!]
+  tags: [String!]
+  details: JSON
+  priority: AlertPriority
+  impactedServices: [ID!]
+  statusPageEntry: IncidentStatusPageEntryInput
+  notifyStakeholders: Boolean
+}
+
+"""Input for an incident status page entry."""
+input IncidentStatusPageEntryInput {
+  hide: Boolean
+  title: String
+  detail: String
+}
+
+"""Input for creating or updating a schedule."""
+input ScheduleInput {
+  name: String!
+  description: String
+  timezone: String!
+  enabled: Boolean
+  ownerTeam: TeamRefInput
+  rotations: [ScheduleRotationInput!]
+}
+
+"""Input for a schedule rotation."""
+input ScheduleRotationInput {
+  name: String!
+  startDate: DateTime!
+  endDate: DateTime
+  type: RotationType!
+  length: Int!
+  participants: [AlertResponderInput!]!
+  timeRestriction: TimeRestrictionInput
+}
+
+"""Input for a time restriction."""
+input TimeRestrictionInput {
+  type: String!
+  restrictions: [WeekdayRestrictionInput!]
+  restriction: DailyRestrictionInput
+}
+
+"""Input for a weekday restriction."""
+input WeekdayRestrictionInput {
+  startDay: String!
+  startHour: Int!
+  startMin: Int!
+  endDay: String!
+  endHour: Int!
+  endMin: Int!
+}
+
+"""Input for a daily time restriction."""
+input DailyRestrictionInput {
+  startHour: Int!
+  startMin: Int!
+  endHour: Int!
+  endMin: Int!
+}
+
+"""Input for a team reference."""
+input TeamRefInput {
+  id: ID
+  name: String
+}
+
+"""Input for creating a heartbeat monitor."""
+input CreateHeartbeatInput {
+  name: String!
+  description: String
+  interval: Int!
+  intervalUnit: String!
+  enabled: Boolean
+  alertMessage: String
+  alertTags: [String!]
+  alertPriority: AlertPriority
+  ownerTeam: TeamRefInput
+}
+
+"""Input for creating a maintenance window."""
+input CreateMaintenanceInput {
+  description: String
+  startDate: DateTime!
+  endDate: DateTime!
+  rules: [MaintenanceRuleInput!]!
+}
+
+"""Input for a maintenance rule."""
+input MaintenanceRuleInput {
+  state: String!
+  entity: MaintenanceEntityInput!
+}
+
+"""Input for a maintenance entity."""
+input MaintenanceEntityInput {
+  id: ID!
+  type: MaintenanceEntityType!
+}
+
+# ─────────────────────────────────────────────
+# Response Types
+# ─────────────────────────────────────────────
+
+"""Standard asynchronous request result."""
+type RequestResult {
+  result: String!
+  took: Float!
+  requestId: String!
+}
+
+# ─────────────────────────────────────────────
+# Root Query
+# ─────────────────────────────────────────────
+
+type Query {
+  """Fetch a single alert by its ID."""
+  alert(id: ID!): AlertDetails
+
+  """List alerts with optional filtering."""
+  alerts(
+    query: String
+    searchIdentifier: String
+    searchIdentifierType: String
+    offset: Int
+    limit: Int
+    sort: String
+    order: String
+  ): AlertConnection!
+
+  """Count alerts matching the given query."""
+  alertCount(query: String): AlertCountPayload!
+
+  """Fetch a single incident by ID."""
+  incident(id: ID!): IncidentDetails
+
+  """List incidents with optional filtering."""
+  incidents(
+    query: String
+    offset: Int
+    limit: Int
+    sort: String
+    order: String
+  ): IncidentConnection!
+
+  """Fetch a schedule by its ID or name."""
+  schedule(id: ID!): ScheduleDetails
+
+  """List all schedules."""
+  schedules(limit: Int, offset: Int, expand: Boolean): ScheduleConnection!
+
+  """Return current on-call participants for a schedule."""
+  whoIsOnCall(scheduleId: ID!, flat: Boolean): OnCall!
+
+  """Fetch an escalation policy by ID."""
+  escalation(id: ID!): EscalationPolicy
+
+  """List all escalation policies."""
+  escalations(limit: Int, offset: Int): EscalationConnection!
+
+  """Fetch a team by ID."""
+  team(id: ID!): TeamDetails
+
+  """List all teams."""
+  teams(limit: Int, offset: Int): TeamConnection!
+
+  """Fetch a user by their ID or username."""
+  user(id: ID!): UserDetails
+
+  """List all users."""
+  users(limit: Int, offset: Int, sort: String, order: String): UserConnection!
+
+  """Fetch a service by ID."""
+  service(id: ID!): ServiceDetails
+
+  """List all services."""
+  services(limit: Int, offset: Int, teamId: ID): ServiceConnection!
+
+  """Fetch a heartbeat monitor by name."""
+  heartbeat(name: String!): HeartbeatDetails
+
+  """List all heartbeat monitors."""
+  heartbeats(limit: Int, offset: Int): HeartbeatConnection!
+
+  """Fetch an integration by ID."""
+  integration(id: ID!): IntegrationDetails
+
+  """List all integrations."""
+  integrations(
+    type: String
+    teamId: ID
+    limit: Int
+    offset: Int
+  ): IntegrationConnection!
+
+  """Fetch a maintenance window by ID."""
+  maintenanceWindow(id: ID!): MaintenanceWindow
+
+  """List maintenance windows."""
+  maintenanceWindows(
+    type: String
+    limit: Int
+    offset: Int
+  ): MaintenanceConnection!
+
+  """Retrieve the current account details."""
+  account: Account!
+}
+
+# ─────────────────────────────────────────────
+# Root Mutation
+# ─────────────────────────────────────────────
+
+type Mutation {
+  """Create a new alert."""
+  createAlert(input: CreateAlertInput!): RequestResult!
+
+  """Close an alert by ID."""
+  closeAlert(id: ID!, user: String, source: String, note: String): RequestResult!
+
+  """Acknowledge an alert by ID."""
+  acknowledgeAlert(id: ID!, user: String, source: String, note: String): RequestResult!
+
+  """Snooze an alert until the given time."""
+  snoozeAlert(id: ID!, endTime: DateTime!, user: String, source: String, note: String): RequestResult!
+
+  """Add a note to an alert."""
+  addAlertNote(id: ID!, note: String!, user: String, source: String): RequestResult!
+
+  """Unacknowledge an alert."""
+  unacknowledgeAlert(id: ID!, user: String, source: String, note: String): RequestResult!
+
+  """Assign an alert to a user."""
+  assignAlert(id: ID!, owner: AlertResponderInput!, user: String, source: String, note: String): RequestResult!
+
+  """Escalate an alert to the next rule in the escalation policy."""
+  escalateAlert(id: ID!, escalation: AlertResponderInput!, user: String, source: String, note: String): RequestResult!
+
+  """Create a new incident."""
+  createIncident(input: CreateIncidentInput!): RequestResult!
+
+  """Close an incident."""
+  closeIncident(id: ID!, note: String): RequestResult!
+
+  """Resolve an incident."""
+  resolveIncident(id: ID!, note: String): RequestResult!
+
+  """Add a note to an incident."""
+  addIncidentNote(id: ID!, note: String!): RequestResult!
+
+  """Create a new on-call schedule."""
+  createSchedule(input: ScheduleInput!): Schedule!
+
+  """Update an existing schedule."""
+  updateSchedule(id: ID!, input: ScheduleInput!): Schedule!
+
+  """Delete a schedule."""
+  deleteSchedule(id: ID!): RequestResult!
+
+  """Create an escalation policy."""
+  createEscalation(name: String!, description: String, rules: [EscalationRuleInput!]!, ownerTeam: TeamRefInput): EscalationPolicy!
+
+  """Update an escalation policy."""
+  updateEscalation(id: ID!, name: String, description: String, rules: [EscalationRuleInput!]): EscalationPolicy!
+
+  """Delete an escalation policy."""
+  deleteEscalation(id: ID!): RequestResult!
+
+  """Create a new team."""
+  createTeam(name: String!, description: String, members: [TeamMemberInput!]): Team!
+
+  """Update a team."""
+  updateTeam(id: ID!, name: String, description: String): Team!
+
+  """Delete a team."""
+  deleteTeam(id: ID!): RequestResult!
+
+  """Add a member to a team."""
+  addTeamMember(teamId: ID!, userId: ID!, role: TeamMemberRole): RequestResult!
+
+  """Remove a member from a team."""
+  removeTeamMember(teamId: ID!, userId: ID!): RequestResult!
+
+  """Create a new user."""
+  createUser(username: String!, fullName: String!, role: UserRole!, locale: String, timeZone: String, tags: [String!]): User!
+
+  """Update an existing user."""
+  updateUser(id: ID!, fullName: String, role: UserRole, locale: String, timeZone: String, tags: [String!]): User!
+
+  """Delete a user."""
+  deleteUser(id: ID!): RequestResult!
+
+  """Create a heartbeat monitor."""
+  createHeartbeat(input: CreateHeartbeatInput!): Heartbeat!
+
+  """Update a heartbeat monitor."""
+  updateHeartbeat(name: String!, input: CreateHeartbeatInput!): Heartbeat!
+
+  """Delete a heartbeat monitor."""
+  deleteHeartbeat(name: String!): RequestResult!
+
+  """Send a ping to a heartbeat monitor."""
+  pingHeartbeat(name: String!): RequestResult!
+
+  """Enable a heartbeat monitor."""
+  enableHeartbeat(name: String!): RequestResult!
+
+  """Disable a heartbeat monitor."""
+  disableHeartbeat(name: String!): RequestResult!
+
+  """Create a maintenance window."""
+  createMaintenanceWindow(input: CreateMaintenanceInput!): MaintenanceWindow!
+
+  """Update a maintenance window."""
+  updateMaintenanceWindow(id: ID!, input: CreateMaintenanceInput!): MaintenanceWindow!
+
+  """Delete a maintenance window."""
+  deleteMaintenanceWindow(id: ID!): RequestResult!
+
+  """Cancel an active or planned maintenance window."""
+  cancelMaintenanceWindow(id: ID!): RequestResult!
+
+  """Enable an integration."""
+  enableIntegration(id: ID!): RequestResult!
+
+  """Disable an integration."""
+  disableIntegration(id: ID!): RequestResult!
+}
+
+# ─────────────────────────────────────────────
+# Additional Input Types
+# ─────────────────────────────────────────────
+
+"""Input for a team member."""
+input TeamMemberInput {
+  user: TeamRefInput!
+  role: TeamMemberRole!
+}
+
+"""Input for an escalation rule."""
+input EscalationRuleInput {
+  condition: String!
+  notifyType: String!
+  delay: EscalationDelayInput!
+  recipient: AlertResponderInput!
+}
+
+"""Input for an escalation delay."""
+input EscalationDelayInput {
+  timeAmount: Int!
+  timeUnit: String!
+}
