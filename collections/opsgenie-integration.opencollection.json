@@ -1,0 +1,166 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpsGenie Integration API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Integrations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List integrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/integrations"
+          },
+          "docs": "Returns a list of all integrations configured in the account."
+        },
+        {
+          "info": {
+            "name": "Create integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/integrations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new integration in OpsGenie. The type of integration determines the configuration options available."
+        },
+        {
+          "info": {
+            "name": "Get integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/integrations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the integration."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific integration by its ID."
+        },
+        {
+          "info": {
+            "name": "Update integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.opsgenie.com/v2/integrations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the integration."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified integration's configuration."
+        },
+        {
+          "info": {
+            "name": "Delete integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.opsgenie.com/v2/integrations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the integration."
+              }
+            ]
+          },
+          "docs": "Deletes the specified integration."
+        },
+        {
+          "info": {
+            "name": "Enable integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/integrations/:id/enable",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the integration."
+              }
+            ]
+          },
+          "docs": "Enables the specified integration so it can process incoming events."
+        },
+        {
+          "info": {
+            "name": "Disable integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/integrations/:id/disable",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the integration."
+              }
+            ]
+          },
+          "docs": "Disables the specified integration so it stops processing events."
+        },
+        {
+          "info": {
+            "name": "Authenticate integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/integrations/authenticate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticates an integration using the provided API key and returns the integration details if the key is valid."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

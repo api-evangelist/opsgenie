@@ -1,0 +1,199 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpsGenie Team API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Teams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List teams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/teams"
+          },
+          "docs": "Returns a list of all teams in the OpsGenie account."
+        },
+        {
+          "info": {
+            "name": "Create team",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/teams",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new team in OpsGenie with the specified members and roles."
+        },
+        {
+          "info": {
+            "name": "Get team",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/teams/:identifier",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the team, which can be the team ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name. Default is id."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific team by its ID or name."
+        },
+        {
+          "info": {
+            "name": "Update team",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.opsgenie.com/v2/teams/:identifier",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the team, which can be the team ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name. Default is id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified team's information including name, description, and members."
+        },
+        {
+          "info": {
+            "name": "Delete team",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.opsgenie.com/v2/teams/:identifier",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the team, which can be the team ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name. Default is id."
+              }
+            ]
+          },
+          "docs": "Deletes the specified team from the OpsGenie account."
+        },
+        {
+          "info": {
+            "name": "List team members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/teams/:identifier/members",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the team, which can be the team ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name. Default is id."
+              }
+            ]
+          },
+          "docs": "Lists the members of the specified team."
+        },
+        {
+          "info": {
+            "name": "List team logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/teams/:identifier/logs",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the team, which can be the team ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name. Default is id."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of log entries to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting index for pagination."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order."
+              }
+            ]
+          },
+          "docs": "Lists the activity logs for the specified team."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,131 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpsGenie Escalation API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Escalations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List escalations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/escalations"
+          },
+          "docs": "Returns a list of all escalation policies in the account."
+        },
+        {
+          "info": {
+            "name": "Create escalation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/escalations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new escalation policy with the specified rules and notification sequence."
+        },
+        {
+          "info": {
+            "name": "Get escalation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/escalations/:identifier",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the escalation, which can be the ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific escalation policy."
+        },
+        {
+          "info": {
+            "name": "Update escalation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.opsgenie.com/v2/escalations/:identifier",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the escalation, which can be the ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified escalation policy."
+        },
+        {
+          "info": {
+            "name": "Delete escalation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.opsgenie.com/v2/escalations/:identifier",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the escalation, which can be the ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name."
+              }
+            ]
+          },
+          "docs": "Deletes the specified escalation policy."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

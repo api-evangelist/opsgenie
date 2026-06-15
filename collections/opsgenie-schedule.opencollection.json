@@ -1,0 +1,545 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpsGenie Schedule API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Schedules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List schedules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/schedules",
+            "params": [
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "Returns a list of all on-call schedules in the account."
+        },
+        {
+          "info": {
+            "name": "Create schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/schedules",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new on-call schedule with the specified configuration including rotations and time restrictions."
+        },
+        {
+          "info": {
+            "name": "Get schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/schedules/:identifier",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the schedule, which can be the schedule ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific schedule by ID or name."
+        },
+        {
+          "info": {
+            "name": "Update schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.opsgenie.com/v2/schedules/:identifier",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the schedule, which can be the schedule ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified schedule's configuration."
+        },
+        {
+          "info": {
+            "name": "Delete schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.opsgenie.com/v2/schedules/:identifier",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the schedule, which can be the schedule ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name."
+              }
+            ]
+          },
+          "docs": "Deletes the specified schedule."
+        },
+        {
+          "info": {
+            "name": "Get schedule timeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/schedules/:identifier/timeline",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the schedule, which can be the schedule ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name."
+              },
+              {
+                "name": "intervalUnit",
+                "value": "",
+                "type": "query",
+                "description": "Unit of the time interval for the timeline."
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Length of the time interval."
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the timeline in ISO 8601 format."
+              }
+            ]
+          },
+          "docs": "Retrieves the timeline view showing on-call periods for the specified schedule within a given time interval."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Rotations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List schedule rotations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/schedules/:identifier/rotations",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the schedule, which can be the schedule ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name."
+              }
+            ]
+          },
+          "docs": "Lists the rotations within the specified schedule."
+        },
+        {
+          "info": {
+            "name": "Create schedule rotation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/schedules/:identifier/rotations",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the schedule, which can be the schedule ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new rotation within the specified schedule."
+        },
+        {
+          "info": {
+            "name": "Get schedule rotation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/schedules/:identifier/rotations/:rotationId",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the schedule, which can be the schedule ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name."
+              },
+              {
+                "name": "rotationId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the rotation."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific rotation."
+        },
+        {
+          "info": {
+            "name": "Update schedule rotation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.opsgenie.com/v2/schedules/:identifier/rotations/:rotationId",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the schedule, which can be the schedule ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name."
+              },
+              {
+                "name": "rotationId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the rotation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified rotation within a schedule."
+        },
+        {
+          "info": {
+            "name": "Delete schedule rotation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.opsgenie.com/v2/schedules/:identifier/rotations/:rotationId",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the schedule, which can be the schedule ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name."
+              },
+              {
+                "name": "rotationId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the rotation."
+              }
+            ]
+          },
+          "docs": "Deletes the specified rotation from the schedule."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Overrides",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List schedule overrides",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/schedules/:identifier/overrides",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the schedule, which can be the schedule ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name."
+              }
+            ]
+          },
+          "docs": "Lists the overrides for the specified schedule."
+        },
+        {
+          "info": {
+            "name": "Create schedule override",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/schedules/:identifier/overrides",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the schedule, which can be the schedule ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a temporary override for the specified schedule, allowing a different user to take on-call duty for a specific time period."
+        },
+        {
+          "info": {
+            "name": "Get schedule override",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/schedules/:identifier/overrides/:alias",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the schedule, which can be the schedule ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name."
+              },
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path",
+                "description": "Alias of the override."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific schedule override."
+        },
+        {
+          "info": {
+            "name": "Update schedule override",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.opsgenie.com/v2/schedules/:identifier/overrides/:alias",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the schedule, which can be the schedule ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name."
+              },
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path",
+                "description": "Alias of the override."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing schedule override."
+        },
+        {
+          "info": {
+            "name": "Delete schedule override",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.opsgenie.com/v2/schedules/:identifier/overrides/:alias",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the schedule, which can be the schedule ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name."
+              },
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path",
+                "description": "Alias of the override."
+              }
+            ]
+          },
+          "docs": "Deletes the specified schedule override."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "On-Call",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get on-call participants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/schedules/:identifier/on-calls",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the schedule, which can be the schedule ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name."
+              },
+              {
+                "name": "flat",
+                "value": "",
+                "type": "query",
+                "description": "If true, returns a flat list of on-call participants."
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Date to check on-call for, in ISO 8601 format."
+              }
+            ]
+          },
+          "docs": "Retrieves the current on-call participants for the specified schedule."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

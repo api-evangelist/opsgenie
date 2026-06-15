@@ -1,0 +1,170 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpsGenie Heartbeat API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Heartbeats",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List heartbeats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/heartbeats"
+          },
+          "docs": "Returns a list of all heartbeat monitors in the account."
+        },
+        {
+          "info": {
+            "name": "Create heartbeat",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/heartbeats",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new heartbeat monitor with the specified configuration including name, interval, and alert settings."
+        },
+        {
+          "info": {
+            "name": "Get heartbeat",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/heartbeats/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the heartbeat monitor."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific heartbeat by its name."
+        },
+        {
+          "info": {
+            "name": "Update heartbeat",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.opsgenie.com/v2/heartbeats/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the heartbeat monitor."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified heartbeat's configuration."
+        },
+        {
+          "info": {
+            "name": "Delete heartbeat",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.opsgenie.com/v2/heartbeats/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the heartbeat monitor."
+              }
+            ]
+          },
+          "docs": "Deletes the specified heartbeat monitor."
+        },
+        {
+          "info": {
+            "name": "Ping heartbeat",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/heartbeats/:name/ping",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the heartbeat monitor."
+              }
+            ]
+          },
+          "docs": "Sends a ping to the specified heartbeat to indicate the monitored system is healthy. If no ping is received within the configured interval, OpsGenie generates an alert."
+        },
+        {
+          "info": {
+            "name": "Enable heartbeat",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/heartbeats/:name/enable",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the heartbeat monitor."
+              }
+            ]
+          },
+          "docs": "Enables the specified heartbeat monitor."
+        },
+        {
+          "info": {
+            "name": "Disable heartbeat",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/heartbeats/:name/disable",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the heartbeat monitor."
+              }
+            ]
+          },
+          "docs": "Disables the specified heartbeat monitor."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,688 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpsGenie Alert API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Alerts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List alerts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/alerts",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search query to filter alerts. Uses OpsGenie query language syntax."
+              },
+              {
+                "name": "searchIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Identifier of a saved search to use for filtering alerts."
+              },
+              {
+                "name": "searchIdentifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the saved search identifier. Possible values are id or name."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting index for pagination."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort results by. Possible values include createdAt, updatedAt, tinyId, alias, message, status, acknowledged, isSeen, snoozed, count, lastOccurredAt, and owner."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order for the results. Possible values are desc and asc."
+              }
+            ]
+          },
+          "docs": "Returns a list of alerts matching the specified search criteria. Alerts are returned in reverse chronological order by default."
+        },
+        {
+          "info": {
+            "name": "Create alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/alerts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an alert in OpsGenie. The request is processed asynchronously and returns a request ID that can be used to track the status of the alert creation."
+        },
+        {
+          "info": {
+            "name": "Get alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/alerts/:identifier",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the alert, which can be the alert ID, tiny ID, or alias."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id, tiny, or alias. Default is id."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific alert identified by its ID, tiny ID, or alias."
+        },
+        {
+          "info": {
+            "name": "Delete alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.opsgenie.com/v2/alerts/:identifier",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the alert, which can be the alert ID, tiny ID, or alias."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id, tiny, or alias. Default is id."
+              }
+            ]
+          },
+          "docs": "Deletes the specified alert. The request is processed asynchronously."
+        },
+        {
+          "info": {
+            "name": "Close alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/alerts/:identifier/close",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the alert, which can be the alert ID, tiny ID, or alias."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id, tiny, or alias. Default is id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Closes the specified alert. The request is processed asynchronously."
+        },
+        {
+          "info": {
+            "name": "Acknowledge alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/alerts/:identifier/acknowledge",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the alert, which can be the alert ID, tiny ID, or alias."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id, tiny, or alias. Default is id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Acknowledges the specified alert. The request is processed asynchronously."
+        },
+        {
+          "info": {
+            "name": "Unacknowledge alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/alerts/:identifier/unacknowledge",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the alert, which can be the alert ID, tiny ID, or alias."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id, tiny, or alias. Default is id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Removes the acknowledgment from the specified alert. The request is processed asynchronously."
+        },
+        {
+          "info": {
+            "name": "Snooze alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/alerts/:identifier/snooze",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the alert, which can be the alert ID, tiny ID, or alias."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id, tiny, or alias. Default is id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Snoozes the specified alert until the given end time. The request is processed asynchronously."
+        },
+        {
+          "info": {
+            "name": "Escalate alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/alerts/:identifier/escalate",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the alert, which can be the alert ID, tiny ID, or alias."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id, tiny, or alias. Default is id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Escalates the specified alert to the given escalation. The request is processed asynchronously."
+        },
+        {
+          "info": {
+            "name": "Assign alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/alerts/:identifier/assign",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the alert, which can be the alert ID, tiny ID, or alias."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id, tiny, or alias. Default is id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assigns the specified alert to a user. The request is processed asynchronously."
+        },
+        {
+          "info": {
+            "name": "Add tags to alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/alerts/:identifier/tags",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the alert, which can be the alert ID, tiny ID, or alias."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id, tiny, or alias. Default is id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds tags to the specified alert. The request is processed asynchronously."
+        },
+        {
+          "info": {
+            "name": "Remove tags from alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.opsgenie.com/v2/alerts/:identifier/tags",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the alert, which can be the alert ID, tiny ID, or alias."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id, tiny, or alias. Default is id."
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of tags to remove from the alert."
+              }
+            ]
+          },
+          "docs": "Removes specified tags from the alert."
+        },
+        {
+          "info": {
+            "name": "List alert notes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/alerts/:identifier/notes",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the alert, which can be the alert ID, tiny ID, or alias."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id, tiny, or alias. Default is id."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting index for pagination."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order for the results. Possible values are desc and asc."
+              }
+            ]
+          },
+          "docs": "Lists the notes attached to the specified alert."
+        },
+        {
+          "info": {
+            "name": "Add note to alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/alerts/:identifier/notes",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the alert, which can be the alert ID, tiny ID, or alias."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id, tiny, or alias. Default is id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a note to the specified alert. The request is processed asynchronously."
+        },
+        {
+          "info": {
+            "name": "Add details to alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/alerts/:identifier/details",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the alert, which can be the alert ID, tiny ID, or alias."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id, tiny, or alias. Default is id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds custom key-value details to the specified alert. The request is processed asynchronously."
+        },
+        {
+          "info": {
+            "name": "Add responder to alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/alerts/:identifier/responders",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the alert, which can be the alert ID, tiny ID, or alias."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id, tiny, or alias. Default is id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a responder (team, user, escalation, or schedule) to the specified alert. The request is processed asynchronously."
+        },
+        {
+          "info": {
+            "name": "List alert attachments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/alerts/:identifier/attachments",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the alert, which can be the alert ID, tiny ID, or alias."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id, tiny, or alias. Default is id."
+              }
+            ]
+          },
+          "docs": "Lists the file attachments on the specified alert."
+        },
+        {
+          "info": {
+            "name": "Add attachment to alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/alerts/:identifier/attachments",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the alert, which can be the alert ID, tiny ID, or alias."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id, tiny, or alias. Default is id."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Adds a file attachment to the specified alert."
+        },
+        {
+          "info": {
+            "name": "List alert logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/alerts/:identifier/logs",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the alert, which can be the alert ID, tiny ID, or alias."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id, tiny, or alias. Default is id."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting index for pagination."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order for the results. Possible values are desc and asc."
+              }
+            ]
+          },
+          "docs": "Lists the activity logs for the specified alert."
+        },
+        {
+          "info": {
+            "name": "List alert recipients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/alerts/:identifier/recipients",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the alert, which can be the alert ID, tiny ID, or alias."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id, tiny, or alias. Default is id."
+              }
+            ]
+          },
+          "docs": "Lists the recipients of the specified alert."
+        },
+        {
+          "info": {
+            "name": "Count alerts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/alerts/count",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search query to filter alerts. Uses OpsGenie query language syntax."
+              },
+              {
+                "name": "searchIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Identifier of a saved search to use for filtering alerts."
+              },
+              {
+                "name": "searchIdentifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the saved search identifier. Possible values are id or name."
+              }
+            ]
+          },
+          "docs": "Returns the count of alerts matching the specified search criteria."
+        },
+        {
+          "info": {
+            "name": "Get request status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/alerts/requests/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the asynchronous request to check status for."
+              }
+            ]
+          },
+          "docs": "Retrieves the status and alert details of an asynchronous request using the request ID returned from alert action endpoints."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

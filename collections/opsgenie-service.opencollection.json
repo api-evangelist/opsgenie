@@ -1,0 +1,131 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpsGenie Service API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "List services",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.opsgenie.com/v1/services",
+        "params": [
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "Maximum number of services to return."
+          },
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query",
+            "description": "Starting index for pagination."
+          },
+          {
+            "name": "sort",
+            "value": "",
+            "type": "query",
+            "description": "Field to sort by."
+          },
+          {
+            "name": "order",
+            "value": "",
+            "type": "query",
+            "description": "Sort order."
+          }
+        ]
+      },
+      "docs": "Returns a list of all services in the account."
+    },
+    {
+      "info": {
+        "name": "Create service",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.opsgenie.com/v1/services",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Creates a new service in the OpsGenie service catalog. Available to Standard and Enterprise plan users."
+    },
+    {
+      "info": {
+        "name": "Get service",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.opsgenie.com/v1/services/:identifier",
+        "params": [
+          {
+            "name": "identifier",
+            "value": "",
+            "type": "path",
+            "description": "Unique identifier of the service."
+          }
+        ]
+      },
+      "docs": "Retrieves the details of a specific service by its ID."
+    },
+    {
+      "info": {
+        "name": "Update service",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "https://api.opsgenie.com/v1/services/:identifier",
+        "params": [
+          {
+            "name": "identifier",
+            "value": "",
+            "type": "path",
+            "description": "Unique identifier of the service."
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Updates the specified service."
+    },
+    {
+      "info": {
+        "name": "Delete service",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://api.opsgenie.com/v1/services/:identifier",
+        "params": [
+          {
+            "name": "identifier",
+            "value": "",
+            "type": "path",
+            "description": "Unique identifier of the service."
+          }
+        ]
+      },
+      "docs": "Deletes the specified service from the service catalog."
+    }
+  ],
+  "bundled": true
+}
