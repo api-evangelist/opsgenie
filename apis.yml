@@ -245,6 +245,12 @@ apis:
   - type: OpenAPI
     url: openapi/opsgenie-maintenance-openapi.yml
 common:
+- type: VulnerabilityDisclosure
+  url: security/opsgenie-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/opsgenie-domain-security.yml
+- type: Authentication
+  url: authentication/opsgenie-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/opsgenie
 - type: Portal

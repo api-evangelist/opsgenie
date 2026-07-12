@@ -1,0 +1,31 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/opsgenie-account-openapi.yml, openapi/opsgenie-alert-openapi.yml, openapi/opsgenie-escalation-openapi.yml,
+  openapi/opsgenie-heartbeat-openapi.yml, openapi/opsgenie-incident-openapi.yml, openapi/opsgenie-integration-openapi.yml,
+  openapi/opsgenie-maintenance-openapi.yml, openapi/opsgenie-notification-rule-openapi.yml,
+  openapi/opsgenie-schedule-openapi.yml, openapi/opsgenie-service-openapi.yml, openapi/opsgenie-team-openapi.yml,
+  openapi/opsgenie-user-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: genieKey
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: API key authentication using the GenieKey scheme.
+  sources:
+  - openapi/opsgenie-account-openapi.yml
+  - openapi/opsgenie-alert-openapi.yml
+  - openapi/opsgenie-escalation-openapi.yml
+  - openapi/opsgenie-heartbeat-openapi.yml
+  - openapi/opsgenie-incident-openapi.yml
+  - openapi/opsgenie-integration-openapi.yml
+  - openapi/opsgenie-maintenance-openapi.yml
+  - openapi/opsgenie-notification-rule-openapi.yml
+  - openapi/opsgenie-schedule-openapi.yml
+  - openapi/opsgenie-service-openapi.yml
+  - openapi/opsgenie-team-openapi.yml
+  - openapi/opsgenie-user-openapi.yml
