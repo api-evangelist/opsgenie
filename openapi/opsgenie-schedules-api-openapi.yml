@@ -1,0 +1,540 @@
+openapi: 3.1.0
+info:
+  title: OpsGenie Account Schedules API
+  description: The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.
+  version: 2.0.0
+  contact:
+    name: Atlassian Support
+    url: https://support.atlassian.com/opsgenie/
+  termsOfService: https://www.atlassian.com/legal/cloud-terms-of-service
+servers:
+- url: https://api.opsgenie.com
+  description: Production Server
+- url: https://api.eu.opsgenie.com
+  description: EU Production Server
+security:
+- genieKey: []
+tags:
+- name: Schedules
+  description: Operations for managing on-call schedules.
+paths:
+  /v2/schedules:
+    post:
+      operationId: createSchedule
+      summary: Create schedule
+      description: Creates a new on-call schedule with the specified configuration including rotations and time restrictions.
+      tags:
+      - Schedules
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateScheduleRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      operationId: listSchedules
+      summary: List schedules
+      description: Returns a list of all on-call schedules in the account.
+      tags:
+      - Schedules
+      parameters:
+      - name: expand
+        in: query
+        description: Comma-separated list of fields to include in the response.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListSchedulesResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/schedules/{identifier}:
+    get:
+      operationId: getSchedule
+      summary: Get schedule
+      description: Retrieves the details of a specific schedule by ID or name.
+      tags:
+      - Schedules
+      parameters:
+      - $ref: '#/components/parameters/ScheduleIdentifier'
+      - $ref: '#/components/parameters/IdentifierType'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetScheduleResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    patch:
+      operationId: updateSchedule
+      summary: Update schedule
+      description: Updates the specified schedule's configuration.
+      tags:
+      - Schedules
+      parameters:
+      - $ref: '#/components/parameters/ScheduleIdentifier'
+      - $ref: '#/components/parameters/IdentifierType'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateScheduleRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteSchedule
+      summary: Delete schedule
+      description: Deletes the specified schedule.
+      tags:
+      - Schedules
+      parameters:
+      - $ref: '#/components/parameters/ScheduleIdentifier'
+      - $ref: '#/components/parameters/IdentifierType'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/schedules/{identifier}/timeline:
+    get:
+      operationId: getScheduleTimeline
+      summary: Get schedule timeline
+      description: Retrieves the timeline view showing on-call periods for the specified schedule within a given time interval.
+      tags:
+      - Schedules
+      parameters:
+      - $ref: '#/components/parameters/ScheduleIdentifier'
+      - $ref: '#/components/parameters/IdentifierType'
+      - name: intervalUnit
+        in: query
+        description: Unit of the time interval for the timeline.
+        schema:
+          type: string
+          enum:
+          - days
+          - weeks
+          - months
+      - name: interval
+        in: query
+        description: Length of the time interval.
+        schema:
+          type: integer
+      - name: date
+        in: query
+        description: Start date for the timeline in ISO 8601 format.
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleTimelineResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  parameters:
+    IdentifierType:
+      name: identifierType
+      in: query
+      description: Type of the identifier. Possible values are id or name.
+      schema:
+        type: string
+        enum:
+        - id
+        - name
+        default: id
+    ScheduleIdentifier:
+      name: identifier
+      in: path
+      required: true
+      description: Identifier of the schedule, which can be the schedule ID or name.
+      schema:
+        type: string
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    GetScheduleResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Schedule'
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    ScheduleTimelineResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            startDate:
+              type: string
+              format: date-time
+              description: Start of the timeline.
+            endDate:
+              type: string
+              format: date-time
+              description: End of the timeline.
+            finalTimeline:
+              type: object
+              properties:
+                rotations:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: Rotation ID.
+                      name:
+                        type: string
+                        description: Rotation name.
+                      periods:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            startDate:
+                              type: string
+                              format: date-time
+                              description: Period start.
+                            endDate:
+                              type: string
+                              format: date-time
+                              description: Period end.
+                            recipient:
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                  description: Participant type.
+                                id:
+                                  type: string
+                                  description: Participant ID.
+                                name:
+                                  type: string
+                                  description: Participant name.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    ListSchedulesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Schedule'
+          description: List of schedules.
+        expandable:
+          type: array
+          items:
+            type: string
+          description: Expandable fields.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    Rotation:
+      type: object
+      required:
+      - type
+      - participants
+      - startDate
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the rotation.
+        name:
+          type: string
+          description: Name of the rotation.
+        type:
+          type: string
+          enum:
+          - daily
+          - weekly
+          - hourly
+          description: Type of rotation cycle.
+        startDate:
+          type: string
+          format: date-time
+          description: Start date and time of the rotation.
+        endDate:
+          type: string
+          format: date-time
+          description: End date and time of the rotation.
+        length:
+          type: integer
+          description: Length of the rotation cycle.
+        participants:
+          type: array
+          description: Participants in the rotation.
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - user
+                - team
+                - escalation
+                - none
+                description: Type of participant.
+              id:
+                type: string
+                description: Participant ID.
+              username:
+                type: string
+                description: Username for user participants.
+        timeRestriction:
+          type: object
+          description: Time restriction for when the rotation is active.
+          properties:
+            type:
+              type: string
+              enum:
+              - time-of-day
+              - weekday-and-time-of-day
+              description: Type of time restriction.
+            restrictions:
+              type: array
+              items:
+                type: object
+                properties:
+                  startDay:
+                    type: string
+                    description: Start day of the week.
+                  startHour:
+                    type: integer
+                    description: Start hour.
+                  startMin:
+                    type: integer
+                    description: Start minute.
+                  endDay:
+                    type: string
+                    description: End day of the week.
+                  endHour:
+                    type: integer
+                    description: End hour.
+                  endMin:
+                    type: integer
+                    description: End minute.
+    CreateScheduleRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Name of the schedule.
+        description:
+          type: string
+          description: Description of the schedule.
+        timezone:
+          type: string
+          description: Timezone of the schedule, e.g. America/New_York.
+        enabled:
+          type: boolean
+          description: Whether the schedule is active.
+          default: true
+        ownerTeam:
+          type: object
+          description: Team that owns the schedule.
+          properties:
+            id:
+              type: string
+              description: Team ID.
+            name:
+              type: string
+              description: Team name.
+        rotations:
+          type: array
+          description: Initial rotations for the schedule.
+          items:
+            $ref: '#/components/schemas/Rotation'
+    UpdateScheduleRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated schedule name.
+        description:
+          type: string
+          description: Updated description.
+        timezone:
+          type: string
+          description: Updated timezone.
+        enabled:
+          type: boolean
+          description: Whether the schedule is active.
+        ownerTeam:
+          type: object
+          description: Updated owner team.
+          properties:
+            id:
+              type: string
+              description: Team ID.
+            name:
+              type: string
+              description: Team name.
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Result message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    Schedule:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the schedule.
+        name:
+          type: string
+          description: Name of the schedule.
+        description:
+          type: string
+          description: Description of the schedule.
+        timezone:
+          type: string
+          description: Timezone of the schedule.
+        enabled:
+          type: boolean
+          description: Whether the schedule is active.
+        ownerTeam:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Team ID.
+            name:
+              type: string
+              description: Team name.
+          description: Owner team of the schedule.
+        rotations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rotation'
+          description: Rotations within the schedule.
+  securitySchemes:
+    genieKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key authentication using the GenieKey scheme.
+externalDocs:
+  description: OpsGenie Account API Documentation
+  url: https://docs.opsgenie.com/docs/account-api

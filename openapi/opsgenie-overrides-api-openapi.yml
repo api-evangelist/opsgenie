@@ -1,0 +1,397 @@
+openapi: 3.1.0
+info:
+  title: OpsGenie Account Overrides API
+  description: The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.
+  version: 2.0.0
+  contact:
+    name: Atlassian Support
+    url: https://support.atlassian.com/opsgenie/
+  termsOfService: https://www.atlassian.com/legal/cloud-terms-of-service
+servers:
+- url: https://api.opsgenie.com
+  description: Production Server
+- url: https://api.eu.opsgenie.com
+  description: EU Production Server
+security:
+- genieKey: []
+tags:
+- name: Overrides
+  description: Operations for managing schedule overrides.
+paths:
+  /v2/schedules/{identifier}/overrides:
+    post:
+      operationId: createScheduleOverride
+      summary: Create schedule override
+      description: Creates a temporary override for the specified schedule, allowing a different user to take on-call duty for a specific time period.
+      tags:
+      - Overrides
+      parameters:
+      - $ref: '#/components/parameters/ScheduleIdentifier'
+      - $ref: '#/components/parameters/IdentifierType'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOverrideRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      operationId: listScheduleOverrides
+      summary: List schedule overrides
+      description: Lists the overrides for the specified schedule.
+      tags:
+      - Overrides
+      parameters:
+      - $ref: '#/components/parameters/ScheduleIdentifier'
+      - $ref: '#/components/parameters/IdentifierType'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListOverridesResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/schedules/{identifier}/overrides/{alias}:
+    get:
+      operationId: getScheduleOverride
+      summary: Get schedule override
+      description: Retrieves the details of a specific schedule override.
+      tags:
+      - Overrides
+      parameters:
+      - $ref: '#/components/parameters/ScheduleIdentifier'
+      - $ref: '#/components/parameters/IdentifierType'
+      - name: alias
+        in: path
+        required: true
+        description: Alias of the override.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOverrideResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      operationId: updateScheduleOverride
+      summary: Update schedule override
+      description: Updates an existing schedule override.
+      tags:
+      - Overrides
+      parameters:
+      - $ref: '#/components/parameters/ScheduleIdentifier'
+      - $ref: '#/components/parameters/IdentifierType'
+      - name: alias
+        in: path
+        required: true
+        description: Alias of the override.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateOverrideRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteScheduleOverride
+      summary: Delete schedule override
+      description: Deletes the specified schedule override.
+      tags:
+      - Overrides
+      parameters:
+      - $ref: '#/components/parameters/ScheduleIdentifier'
+      - $ref: '#/components/parameters/IdentifierType'
+      - name: alias
+        in: path
+        required: true
+        description: Alias of the override.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  parameters:
+    IdentifierType:
+      name: identifierType
+      in: query
+      description: Type of the identifier. Possible values are id or name.
+      schema:
+        type: string
+        enum:
+        - id
+        - name
+        default: id
+    ScheduleIdentifier:
+      name: identifier
+      in: path
+      required: true
+      description: Identifier of the schedule, which can be the schedule ID or name.
+      schema:
+        type: string
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    ListOverridesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              alias:
+                type: string
+                description: Alias of the override.
+              user:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: User ID.
+                  username:
+                    type: string
+                    description: Username.
+              startDate:
+                type: string
+                format: date-time
+                description: Start date.
+              endDate:
+                type: string
+                format: date-time
+                description: End date.
+          description: List of overrides.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    UpdateOverrideRequest:
+      type: object
+      required:
+      - user
+      - startDate
+      - endDate
+      properties:
+        user:
+          type: object
+          description: User for the override.
+          properties:
+            id:
+              type: string
+              description: User ID.
+            username:
+              type: string
+              description: Username (email).
+        startDate:
+          type: string
+          format: date-time
+          description: Updated start date.
+        endDate:
+          type: string
+          format: date-time
+          description: Updated end date.
+        rotations:
+          type: array
+          description: Specific rotations to override.
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Rotation ID.
+              name:
+                type: string
+                description: Rotation name.
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Result message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    CreateOverrideRequest:
+      type: object
+      required:
+      - user
+      - startDate
+      - endDate
+      properties:
+        user:
+          type: object
+          description: User who will take over the on-call duty.
+          properties:
+            id:
+              type: string
+              description: User ID.
+            username:
+              type: string
+              description: Username (email).
+        startDate:
+          type: string
+          format: date-time
+          description: Start date and time of the override.
+        endDate:
+          type: string
+          format: date-time
+          description: End date and time of the override.
+        rotations:
+          type: array
+          description: Specific rotations to override. If not provided, all rotations are overridden.
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Rotation ID.
+              name:
+                type: string
+                description: Rotation name.
+    GetOverrideResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            alias:
+              type: string
+              description: Alias of the override.
+            user:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: User ID.
+                username:
+                  type: string
+                  description: Username.
+            startDate:
+              type: string
+              format: date-time
+              description: Start date.
+            endDate:
+              type: string
+              format: date-time
+              description: End date.
+            rotations:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Rotation ID.
+                  name:
+                    type: string
+                    description: Rotation name.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+  securitySchemes:
+    genieKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key authentication using the GenieKey scheme.
+externalDocs:
+  description: OpsGenie Account API Documentation
+  url: https://docs.opsgenie.com/docs/account-api

@@ -1,0 +1,128 @@
+openapi: 3.1.0
+info:
+  title: OpsGenie Account On-Call API
+  description: The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.
+  version: 2.0.0
+  contact:
+    name: Atlassian Support
+    url: https://support.atlassian.com/opsgenie/
+  termsOfService: https://www.atlassian.com/legal/cloud-terms-of-service
+servers:
+- url: https://api.opsgenie.com
+  description: Production Server
+- url: https://api.eu.opsgenie.com
+  description: EU Production Server
+security:
+- genieKey: []
+tags:
+- name: On-Call
+  description: Operations for querying on-call participants.
+paths:
+  /v2/schedules/{identifier}/on-calls:
+    get:
+      operationId: getOnCalls
+      summary: Get on-call participants
+      description: Retrieves the current on-call participants for the specified schedule.
+      tags:
+      - On-Call
+      parameters:
+      - $ref: '#/components/parameters/ScheduleIdentifier'
+      - $ref: '#/components/parameters/IdentifierType'
+      - name: flat
+        in: query
+        description: If true, returns a flat list of on-call participants.
+        schema:
+          type: boolean
+      - name: date
+        in: query
+        description: Date to check on-call for, in ISO 8601 format.
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOnCallsResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  parameters:
+    IdentifierType:
+      name: identifierType
+      in: query
+      description: Type of the identifier. Possible values are id or name.
+      schema:
+        type: string
+        enum:
+        - id
+        - name
+        default: id
+    ScheduleIdentifier:
+      name: identifier
+      in: path
+      required: true
+      description: Identifier of the schedule, which can be the schedule ID or name.
+      schema:
+        type: string
+  schemas:
+    GetOnCallsResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            onCallParticipants:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Participant ID.
+                  name:
+                    type: string
+                    description: Participant name.
+                  type:
+                    type: string
+                    description: Participant type.
+              description: Current on-call participants.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+  securitySchemes:
+    genieKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key authentication using the GenieKey scheme.
+externalDocs:
+  description: OpsGenie Account API Documentation
+  url: https://docs.opsgenie.com/docs/account-api

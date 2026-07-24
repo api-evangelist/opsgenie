@@ -1,0 +1,466 @@
+openapi: 3.1.0
+info:
+  title: OpsGenie Account Rotations API
+  description: The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.
+  version: 2.0.0
+  contact:
+    name: Atlassian Support
+    url: https://support.atlassian.com/opsgenie/
+  termsOfService: https://www.atlassian.com/legal/cloud-terms-of-service
+servers:
+- url: https://api.opsgenie.com
+  description: Production Server
+- url: https://api.eu.opsgenie.com
+  description: EU Production Server
+security:
+- genieKey: []
+tags:
+- name: Rotations
+  description: Operations for managing schedule rotations.
+paths:
+  /v2/schedules/{identifier}/rotations:
+    post:
+      operationId: createScheduleRotation
+      summary: Create schedule rotation
+      description: Creates a new rotation within the specified schedule.
+      tags:
+      - Rotations
+      parameters:
+      - $ref: '#/components/parameters/ScheduleIdentifier'
+      - $ref: '#/components/parameters/IdentifierType'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRotationRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      operationId: listScheduleRotations
+      summary: List schedule rotations
+      description: Lists the rotations within the specified schedule.
+      tags:
+      - Rotations
+      parameters:
+      - $ref: '#/components/parameters/ScheduleIdentifier'
+      - $ref: '#/components/parameters/IdentifierType'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListRotationsResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/schedules/{identifier}/rotations/{rotationId}:
+    get:
+      operationId: getScheduleRotation
+      summary: Get schedule rotation
+      description: Retrieves the details of a specific rotation.
+      tags:
+      - Rotations
+      parameters:
+      - $ref: '#/components/parameters/ScheduleIdentifier'
+      - $ref: '#/components/parameters/IdentifierType'
+      - name: rotationId
+        in: path
+        required: true
+        description: Identifier of the rotation.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetRotationResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    patch:
+      operationId: updateScheduleRotation
+      summary: Update schedule rotation
+      description: Updates the specified rotation within a schedule.
+      tags:
+      - Rotations
+      parameters:
+      - $ref: '#/components/parameters/ScheduleIdentifier'
+      - $ref: '#/components/parameters/IdentifierType'
+      - name: rotationId
+        in: path
+        required: true
+        description: Identifier of the rotation.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRotationRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteScheduleRotation
+      summary: Delete schedule rotation
+      description: Deletes the specified rotation from the schedule.
+      tags:
+      - Rotations
+      parameters:
+      - $ref: '#/components/parameters/ScheduleIdentifier'
+      - $ref: '#/components/parameters/IdentifierType'
+      - name: rotationId
+        in: path
+        required: true
+        description: Identifier of the rotation.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  parameters:
+    IdentifierType:
+      name: identifierType
+      in: query
+      description: Type of the identifier. Possible values are id or name.
+      schema:
+        type: string
+        enum:
+        - id
+        - name
+        default: id
+    ScheduleIdentifier:
+      name: identifier
+      in: path
+      required: true
+      description: Identifier of the schedule, which can be the schedule ID or name.
+      schema:
+        type: string
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    ListRotationsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rotation'
+          description: List of rotations.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    CreateRotationRequest:
+      type: object
+      required:
+      - type
+      - participants
+      - startDate
+      properties:
+        name:
+          type: string
+          description: Name of the rotation.
+        type:
+          type: string
+          enum:
+          - daily
+          - weekly
+          - hourly
+          description: Type of rotation cycle.
+        startDate:
+          type: string
+          format: date-time
+          description: Start date and time of the rotation.
+        endDate:
+          type: string
+          format: date-time
+          description: End date and time of the rotation.
+        length:
+          type: integer
+          description: Length of the rotation cycle.
+        participants:
+          type: array
+          description: Participants in the rotation.
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                description: Participant type.
+              id:
+                type: string
+                description: Participant ID.
+              username:
+                type: string
+                description: Username for user participants.
+        timeRestriction:
+          type: object
+          description: Time restriction for the rotation.
+          properties:
+            type:
+              type: string
+              description: Type of restriction.
+            restrictions:
+              type: array
+              items:
+                type: object
+                properties:
+                  startDay:
+                    type: string
+                    description: Start day.
+                  startHour:
+                    type: integer
+                    description: Start hour.
+                  startMin:
+                    type: integer
+                    description: Start minute.
+                  endDay:
+                    type: string
+                    description: End day.
+                  endHour:
+                    type: integer
+                    description: End hour.
+                  endMin:
+                    type: integer
+                    description: End minute.
+    UpdateRotationRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated rotation name.
+        type:
+          type: string
+          enum:
+          - daily
+          - weekly
+          - hourly
+          description: Updated rotation type.
+        startDate:
+          type: string
+          format: date-time
+          description: Updated start date.
+        endDate:
+          type: string
+          format: date-time
+          description: Updated end date.
+        length:
+          type: integer
+          description: Updated rotation length.
+        participants:
+          type: array
+          description: Updated participants.
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                description: Participant type.
+              id:
+                type: string
+                description: Participant ID.
+              username:
+                type: string
+                description: Username for user participants.
+    Rotation:
+      type: object
+      required:
+      - type
+      - participants
+      - startDate
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the rotation.
+        name:
+          type: string
+          description: Name of the rotation.
+        type:
+          type: string
+          enum:
+          - daily
+          - weekly
+          - hourly
+          description: Type of rotation cycle.
+        startDate:
+          type: string
+          format: date-time
+          description: Start date and time of the rotation.
+        endDate:
+          type: string
+          format: date-time
+          description: End date and time of the rotation.
+        length:
+          type: integer
+          description: Length of the rotation cycle.
+        participants:
+          type: array
+          description: Participants in the rotation.
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - user
+                - team
+                - escalation
+                - none
+                description: Type of participant.
+              id:
+                type: string
+                description: Participant ID.
+              username:
+                type: string
+                description: Username for user participants.
+        timeRestriction:
+          type: object
+          description: Time restriction for when the rotation is active.
+          properties:
+            type:
+              type: string
+              enum:
+              - time-of-day
+              - weekday-and-time-of-day
+              description: Type of time restriction.
+            restrictions:
+              type: array
+              items:
+                type: object
+                properties:
+                  startDay:
+                    type: string
+                    description: Start day of the week.
+                  startHour:
+                    type: integer
+                    description: Start hour.
+                  startMin:
+                    type: integer
+                    description: Start minute.
+                  endDay:
+                    type: string
+                    description: End day of the week.
+                  endHour:
+                    type: integer
+                    description: End hour.
+                  endMin:
+                    type: integer
+                    description: End minute.
+    GetRotationResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Rotation'
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Result message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+  securitySchemes:
+    genieKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key authentication using the GenieKey scheme.
+externalDocs:
+  description: OpsGenie Account API Documentation
+  url: https://docs.opsgenie.com/docs/account-api

@@ -1,44 +1,30 @@
 openapi: 3.1.0
 info:
-  title: OpsGenie Heartbeat API
-  description: >-
-    The OpsGenie Heartbeat API allows developers to set up and manage
-    heartbeat monitors that track the health and availability of systems
-    and services. Heartbeats work by expecting periodic pings from
-    monitored systems, and when a ping is not received within the
-    configured interval, OpsGenie generates an alert. The API provides
-    endpoints for creating, updating, deleting, and pinging heartbeats,
-    enabling automated health monitoring for infrastructure and
-    applications.
-  version: '2.0.0'
+  title: OpsGenie Account Heartbeats API
+  description: The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.
+  version: 2.0.0
   contact:
     name: Atlassian Support
     url: https://support.atlassian.com/opsgenie/
   termsOfService: https://www.atlassian.com/legal/cloud-terms-of-service
-externalDocs:
-  description: OpsGenie Heartbeat API Documentation
-  url: https://docs.opsgenie.com/docs/heartbeat-api
 servers:
-  - url: https://api.opsgenie.com
-    description: Production Server
-  - url: https://api.eu.opsgenie.com
-    description: EU Production Server
-tags:
-  - name: Heartbeats
-    description: >-
-      Operations for creating, managing, and pinging heartbeat monitors.
+- url: https://api.opsgenie.com
+  description: Production Server
+- url: https://api.eu.opsgenie.com
+  description: EU Production Server
 security:
-  - genieKey: []
+- genieKey: []
+tags:
+- name: Heartbeats
+  description: Operations for creating, managing, and pinging heartbeat monitors.
 paths:
   /v2/heartbeats:
     post:
       operationId: createHeartbeat
       summary: Create heartbeat
-      description: >-
-        Creates a new heartbeat monitor with the specified configuration
-        including name, interval, and alert settings.
+      description: Creates a new heartbeat monitor with the specified configuration including name, interval, and alert settings.
       tags:
-        - Heartbeats
+      - Heartbeats
       requestBody:
         required: true
         content:
@@ -67,10 +53,9 @@ paths:
     get:
       operationId: listHeartbeats
       summary: List heartbeats
-      description: >-
-        Returns a list of all heartbeat monitors in the account.
+      description: Returns a list of all heartbeat monitors in the account.
       tags:
-        - Heartbeats
+      - Heartbeats
       responses:
         '200':
           description: Success
@@ -88,12 +73,11 @@ paths:
     get:
       operationId: getHeartbeat
       summary: Get heartbeat
-      description: >-
-        Retrieves the details of a specific heartbeat by its name.
+      description: Retrieves the details of a specific heartbeat by its name.
       tags:
-        - Heartbeats
+      - Heartbeats
       parameters:
-        - $ref: '#/components/parameters/HeartbeatName'
+      - $ref: '#/components/parameters/HeartbeatName'
       responses:
         '200':
           description: Success
@@ -116,12 +100,11 @@ paths:
     patch:
       operationId: updateHeartbeat
       summary: Update heartbeat
-      description: >-
-        Updates the specified heartbeat's configuration.
+      description: Updates the specified heartbeat's configuration.
       tags:
-        - Heartbeats
+      - Heartbeats
       parameters:
-        - $ref: '#/components/parameters/HeartbeatName'
+      - $ref: '#/components/parameters/HeartbeatName'
       requestBody:
         required: true
         content:
@@ -156,12 +139,11 @@ paths:
     delete:
       operationId: deleteHeartbeat
       summary: Delete heartbeat
-      description: >-
-        Deletes the specified heartbeat monitor.
+      description: Deletes the specified heartbeat monitor.
       tags:
-        - Heartbeats
+      - Heartbeats
       parameters:
-        - $ref: '#/components/parameters/HeartbeatName'
+      - $ref: '#/components/parameters/HeartbeatName'
       responses:
         '200':
           description: Success
@@ -185,14 +167,11 @@ paths:
     get:
       operationId: pingHeartbeat
       summary: Ping heartbeat
-      description: >-
-        Sends a ping to the specified heartbeat to indicate the monitored
-        system is healthy. If no ping is received within the configured
-        interval, OpsGenie generates an alert.
+      description: Sends a ping to the specified heartbeat to indicate the monitored system is healthy. If no ping is received within the configured interval, OpsGenie generates an alert.
       tags:
-        - Heartbeats
+      - Heartbeats
       parameters:
-        - $ref: '#/components/parameters/HeartbeatName'
+      - $ref: '#/components/parameters/HeartbeatName'
       responses:
         '202':
           description: Accepted
@@ -216,12 +195,11 @@ paths:
     post:
       operationId: enableHeartbeat
       summary: Enable heartbeat
-      description: >-
-        Enables the specified heartbeat monitor.
+      description: Enables the specified heartbeat monitor.
       tags:
-        - Heartbeats
+      - Heartbeats
       parameters:
-        - $ref: '#/components/parameters/HeartbeatName'
+      - $ref: '#/components/parameters/HeartbeatName'
       responses:
         '200':
           description: Success
@@ -245,12 +223,11 @@ paths:
     post:
       operationId: disableHeartbeat
       summary: Disable heartbeat
-      description: >-
-        Disables the specified heartbeat monitor.
+      description: Disables the specified heartbeat monitor.
       tags:
-        - Heartbeats
+      - Heartbeats
       parameters:
-        - $ref: '#/components/parameters/HeartbeatName'
+      - $ref: '#/components/parameters/HeartbeatName'
       responses:
         '200':
           description: Success
@@ -271,209 +248,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
-  securitySchemes:
-    genieKey:
-      type: apiKey
-      in: header
-      name: Authorization
-      description: >-
-        API key authentication using the GenieKey scheme.
-  parameters:
-    HeartbeatName:
-      name: name
-      in: path
-      required: true
-      description: >-
-        Name of the heartbeat monitor.
-      schema:
-        type: string
   schemas:
-    CreateHeartbeatRequest:
-      type: object
-      required:
-        - name
-        - interval
-        - intervalUnit
-        - enabled
-      properties:
-        name:
-          type: string
-          description: >-
-            Name of the heartbeat.
-        description:
-          type: string
-          description: >-
-            Description of what the heartbeat monitors.
-        interval:
-          type: integer
-          minimum: 1
-          description: >-
-            Interval duration for the heartbeat ping.
-        intervalUnit:
-          type: string
-          enum:
-            - minutes
-            - hours
-            - days
-          description: >-
-            Unit for the heartbeat interval.
-        enabled:
-          type: boolean
-          description: >-
-            Whether the heartbeat is active.
-        ownerTeam:
-          type: object
-          description: >-
-            Team that owns the heartbeat.
-          properties:
-            id:
-              type: string
-              description: >-
-                Team ID.
-            name:
-              type: string
-              description: >-
-                Team name.
-        alertMessage:
-          type: string
-          description: >-
-            Custom alert message when the heartbeat expires.
-        alertTags:
-          type: array
-          items:
-            type: string
-          description: >-
-            Tags to add to the alert created by an expired heartbeat.
-        alertPriority:
-          type: string
-          enum:
-            - P1
-            - P2
-            - P3
-            - P4
-            - P5
-          description: >-
-            Priority of the alert created by an expired heartbeat.
-    UpdateHeartbeatRequest:
-      type: object
-      properties:
-        description:
-          type: string
-          description: >-
-            Updated description.
-        interval:
-          type: integer
-          minimum: 1
-          description: >-
-            Updated interval.
-        intervalUnit:
-          type: string
-          enum:
-            - minutes
-            - hours
-            - days
-          description: >-
-            Updated interval unit.
-        enabled:
-          type: boolean
-          description: >-
-            Updated enabled status.
-        ownerTeam:
-          type: object
-          description: >-
-            Updated owner team.
-          properties:
-            id:
-              type: string
-              description: >-
-                Team ID.
-            name:
-              type: string
-              description: >-
-                Team name.
-        alertMessage:
-          type: string
-          description: >-
-            Updated alert message.
-        alertTags:
-          type: array
-          items:
-            type: string
-          description: >-
-            Updated alert tags.
-        alertPriority:
-          type: string
-          enum:
-            - P1
-            - P2
-            - P3
-            - P4
-            - P5
-          description: >-
-            Updated alert priority.
-    Heartbeat:
-      type: object
-      properties:
-        name:
-          type: string
-          description: >-
-            Name of the heartbeat.
-        description:
-          type: string
-          description: >-
-            Description of the heartbeat.
-        interval:
-          type: integer
-          description: >-
-            Heartbeat interval.
-        intervalUnit:
-          type: string
-          enum:
-            - minutes
-            - hours
-            - days
-          description: >-
-            Unit for the interval.
-        enabled:
-          type: boolean
-          description: >-
-            Whether the heartbeat is enabled.
-        expired:
-          type: boolean
-          description: >-
-            Whether the heartbeat has expired.
-        lastPingTime:
-          type: string
-          format: date-time
-          description: >-
-            Time of the last successful ping.
-        ownerTeam:
-          type: object
-          properties:
-            id:
-              type: string
-              description: >-
-                Team ID.
-            name:
-              type: string
-              description: >-
-                Team name.
-          description: >-
-            Owner team.
-        alertMessage:
-          type: string
-          description: >-
-            Alert message for expired heartbeats.
-        alertTags:
-          type: array
-          items:
-            type: string
-          description: >-
-            Alert tags.
-        alertPriority:
-          type: string
-          description: >-
-            Alert priority.
     HeartbeatResponse:
       type: object
       properties:
@@ -481,12 +256,22 @@ components:
           $ref: '#/components/schemas/Heartbeat'
         took:
           type: number
-          description: >-
-            Time taken in seconds.
+          description: Time taken in seconds.
         requestId:
           type: string
-          description: >-
-            Unique identifier for the request.
+          description: Unique identifier for the request.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
     ListHeartbeatsResponse:
       type: object
       properties:
@@ -497,43 +282,191 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Heartbeat'
-              description: >-
-                List of heartbeats.
+              description: List of heartbeats.
         took:
           type: number
-          description: >-
-            Time taken in seconds.
+          description: Time taken in seconds.
         requestId:
           type: string
-          description: >-
-            Unique identifier for the request.
+          description: Unique identifier for the request.
+    Heartbeat:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the heartbeat.
+        description:
+          type: string
+          description: Description of the heartbeat.
+        interval:
+          type: integer
+          description: Heartbeat interval.
+        intervalUnit:
+          type: string
+          enum:
+          - minutes
+          - hours
+          - days
+          description: Unit for the interval.
+        enabled:
+          type: boolean
+          description: Whether the heartbeat is enabled.
+        expired:
+          type: boolean
+          description: Whether the heartbeat has expired.
+        lastPingTime:
+          type: string
+          format: date-time
+          description: Time of the last successful ping.
+        ownerTeam:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Team ID.
+            name:
+              type: string
+              description: Team name.
+          description: Owner team.
+        alertMessage:
+          type: string
+          description: Alert message for expired heartbeats.
+        alertTags:
+          type: array
+          items:
+            type: string
+          description: Alert tags.
+        alertPriority:
+          type: string
+          description: Alert priority.
+    CreateHeartbeatRequest:
+      type: object
+      required:
+      - name
+      - interval
+      - intervalUnit
+      - enabled
+      properties:
+        name:
+          type: string
+          description: Name of the heartbeat.
+        description:
+          type: string
+          description: Description of what the heartbeat monitors.
+        interval:
+          type: integer
+          minimum: 1
+          description: Interval duration for the heartbeat ping.
+        intervalUnit:
+          type: string
+          enum:
+          - minutes
+          - hours
+          - days
+          description: Unit for the heartbeat interval.
+        enabled:
+          type: boolean
+          description: Whether the heartbeat is active.
+        ownerTeam:
+          type: object
+          description: Team that owns the heartbeat.
+          properties:
+            id:
+              type: string
+              description: Team ID.
+            name:
+              type: string
+              description: Team name.
+        alertMessage:
+          type: string
+          description: Custom alert message when the heartbeat expires.
+        alertTags:
+          type: array
+          items:
+            type: string
+          description: Tags to add to the alert created by an expired heartbeat.
+        alertPriority:
+          type: string
+          enum:
+          - P1
+          - P2
+          - P3
+          - P4
+          - P5
+          description: Priority of the alert created by an expired heartbeat.
+    UpdateHeartbeatRequest:
+      type: object
+      properties:
+        description:
+          type: string
+          description: Updated description.
+        interval:
+          type: integer
+          minimum: 1
+          description: Updated interval.
+        intervalUnit:
+          type: string
+          enum:
+          - minutes
+          - hours
+          - days
+          description: Updated interval unit.
+        enabled:
+          type: boolean
+          description: Updated enabled status.
+        ownerTeam:
+          type: object
+          description: Updated owner team.
+          properties:
+            id:
+              type: string
+              description: Team ID.
+            name:
+              type: string
+              description: Team name.
+        alertMessage:
+          type: string
+          description: Updated alert message.
+        alertTags:
+          type: array
+          items:
+            type: string
+          description: Updated alert tags.
+        alertPriority:
+          type: string
+          enum:
+          - P1
+          - P2
+          - P3
+          - P4
+          - P5
+          description: Updated alert priority.
     SuccessResponse:
       type: object
       properties:
         result:
           type: string
-          description: >-
-            Result message.
+          description: Result message.
         took:
           type: number
-          description: >-
-            Time taken in seconds.
+          description: Time taken in seconds.
         requestId:
           type: string
-          description: >-
-            Unique identifier for the request.
-    ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: >-
-            Error message.
-        took:
-          type: number
-          description: >-
-            Time taken in seconds.
-        requestId:
-          type: string
-          description: >-
-            Unique identifier for the request.
+          description: Unique identifier for the request.
+  parameters:
+    HeartbeatName:
+      name: name
+      in: path
+      required: true
+      description: Name of the heartbeat monitor.
+      schema:
+        type: string
+  securitySchemes:
+    genieKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key authentication using the GenieKey scheme.
+externalDocs:
+  description: OpsGenie Account API Documentation
+  url: https://docs.opsgenie.com/docs/account-api
