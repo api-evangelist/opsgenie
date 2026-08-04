@@ -1,0 +1,1000 @@
+{
+  "info": {
+    "_postman_id": "5307d5bb-e141-4944-a84f-9a1fb4384548",
+    "name": "OpsGenie Account Maintenance API",
+    "description": "The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.\n\nContact Support:\n Name: Atlassian Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:27.000Z",
+    "updatedAt": "2026-07-28T02:27:27.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5307d5bb-e141-4944-a84f-9a1fb4384548"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "maintenance",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "cancel",
+                  "item": [
+                    {
+                      "name": "Cancel maintenance",
+                      "id": "25bc233e-c927-4fd2-9cb0-d237b3318fa8",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/maintenance/:id/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "maintenance",
+                            ":id",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "id": "8a4542ea-6e92-4bd2-848e-fb46729efe96",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier of the maintenance window."
+                            }
+                          ]
+                        },
+                        "description": "Cancels an active or scheduled maintenance window."
+                      },
+                      "response": [
+                        {
+                          "id": "519ab065-e879-4557-8495-919db983a745",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/maintenance/:id/cancel",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "maintenance",
+                                ":id",
+                                "cancel"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"result\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:27.000Z",
+                          "updatedAt": "2026-07-28T02:27:27.000Z",
+                          "uid": "35240-519ab065-e879-4557-8495-919db983a745"
+                        },
+                        {
+                          "id": "7c8d55ce-1d10-453e-b777-e2fbd47a6b6c",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/maintenance/:id/cancel",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "maintenance",
+                                ":id",
+                                "cancel"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:27.000Z",
+                          "updatedAt": "2026-07-28T02:27:27.000Z",
+                          "uid": "35240-7c8d55ce-1d10-453e-b777-e2fbd47a6b6c"
+                        },
+                        {
+                          "id": "10d72691-d72c-417b-b4b6-1c250e4ba2a7",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/maintenance/:id/cancel",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "maintenance",
+                                ":id",
+                                "cancel"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:27.000Z",
+                          "updatedAt": "2026-07-28T02:27:27.000Z",
+                          "uid": "35240-10d72691-d72c-417b-b4b6-1c250e4ba2a7"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:27.000Z",
+                      "updatedAt": "2026-07-28T02:27:27.000Z",
+                      "uid": "35240-25bc233e-c927-4fd2-9cb0-d237b3318fa8"
+                    }
+                  ],
+                  "id": "66e0b649-2da2-4e26-a71d-2358a9632f73",
+                  "createdAt": "2026-07-28T02:27:27.000Z",
+                  "updatedAt": "2026-07-28T02:27:27.000Z",
+                  "uid": "35240-66e0b649-2da2-4e26-a71d-2358a9632f73"
+                },
+                {
+                  "name": "Get maintenance",
+                  "id": "c1b5d8c3-6805-4600-b696-1203f2d0393c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/maintenance/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "maintenance",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "905fb329-0753-4982-919b-19ac5228f775",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier of the maintenance window."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the details of a specific maintenance window by its ID."
+                  },
+                  "response": [
+                    {
+                      "id": "654ce932-9b42-4d28-a9b6-1d5ce2acd28c",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/maintenance/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "maintenance",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"status\": \"cancelled\",\n    \"description\": \"<string>\",\n    \"time\": {\n      \"type\": \"<string>\",\n      \"startDate\": \"<dateTime>\",\n      \"endDate\": \"<dateTime>\"\n    },\n    \"rules\": [\n      {\n        \"entity\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      {\n        \"entity\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    ]\n  },\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:27.000Z",
+                      "updatedAt": "2026-07-28T02:27:27.000Z",
+                      "uid": "35240-654ce932-9b42-4d28-a9b6-1d5ce2acd28c"
+                    },
+                    {
+                      "id": "47ece64c-5865-4c1a-bedf-ffe28eb537d9",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/maintenance/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "maintenance",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:27.000Z",
+                      "updatedAt": "2026-07-28T02:27:27.000Z",
+                      "uid": "35240-47ece64c-5865-4c1a-bedf-ffe28eb537d9"
+                    },
+                    {
+                      "id": "73f48903-aa01-45cf-9f0e-f1b3ad4023ca",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/maintenance/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "maintenance",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:27.000Z",
+                      "updatedAt": "2026-07-28T02:27:27.000Z",
+                      "uid": "35240-73f48903-aa01-45cf-9f0e-f1b3ad4023ca"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:27.000Z",
+                  "updatedAt": "2026-07-28T02:27:27.000Z",
+                  "uid": "35240-c1b5d8c3-6805-4600-b696-1203f2d0393c"
+                },
+                {
+                  "name": "Delete maintenance",
+                  "id": "5da37a0c-1024-453c-92f8-235b7a11d4f0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/maintenance/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "maintenance",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "62554823-84ca-4c7d-b1c0-d5e230bb1083",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier of the maintenance window."
+                        }
+                      ]
+                    },
+                    "description": "Deletes the specified maintenance window."
+                  },
+                  "response": [
+                    {
+                      "id": "a17c966a-9566-4b0e-906e-84a52b17a34d",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/maintenance/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "maintenance",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"result\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:27.000Z",
+                      "updatedAt": "2026-07-28T02:27:27.000Z",
+                      "uid": "35240-a17c966a-9566-4b0e-906e-84a52b17a34d"
+                    },
+                    {
+                      "id": "9243e20c-f8e7-46b4-a6fe-eff0e601e838",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/maintenance/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "maintenance",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:27.000Z",
+                      "updatedAt": "2026-07-28T02:27:27.000Z",
+                      "uid": "35240-9243e20c-f8e7-46b4-a6fe-eff0e601e838"
+                    },
+                    {
+                      "id": "d44bba8c-415d-4c4a-ab8a-c0dad3f1b09f",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/maintenance/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "maintenance",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:27.000Z",
+                      "updatedAt": "2026-07-28T02:27:27.000Z",
+                      "uid": "35240-d44bba8c-415d-4c4a-ab8a-c0dad3f1b09f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:27.000Z",
+                  "updatedAt": "2026-07-28T02:27:27.000Z",
+                  "uid": "35240-5da37a0c-1024-453c-92f8-235b7a11d4f0"
+                }
+              ],
+              "id": "7e62a101-294d-45d9-8f19-c2d6150cfbf0",
+              "createdAt": "2026-07-28T02:27:27.000Z",
+              "updatedAt": "2026-07-28T02:27:27.000Z",
+              "uid": "35240-7e62a101-294d-45d9-8f19-c2d6150cfbf0"
+            },
+            {
+              "name": "Create maintenance",
+              "id": "89c4740f-fb8c-499e-90e1-624b25b5c299",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"time\": {\n    \"type\": \"for-30-minutes\",\n    \"startDate\": \"<dateTime>\",\n    \"endDate\": \"<dateTime>\"\n  },\n  \"rules\": [\n    {\n      \"entity\": {\n        \"id\": \"<string>\",\n        \"type\": \"integration\"\n      }\n    },\n    {\n      \"entity\": {\n        \"id\": \"<string>\",\n        \"type\": \"integration\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/maintenance",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "maintenance"
+                  ]
+                },
+                "description": "Creates a new maintenance window that suppresses alert notifications during the specified time period."
+              },
+              "response": [
+                {
+                  "id": "4304c6d4-6731-4726-8981-a3e6b7f2d59d",
+                  "name": "Created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"<string>\",\n  \"time\": {\n    \"type\": \"for-30-minutes\",\n    \"startDate\": \"<dateTime>\",\n    \"endDate\": \"<dateTime>\"\n  },\n  \"rules\": [\n    {\n      \"entity\": {\n        \"id\": \"<string>\",\n        \"type\": \"integration\"\n      }\n    },\n    {\n      \"entity\": {\n        \"id\": \"<string>\",\n        \"type\": \"integration\"\n      }\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/maintenance",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "maintenance"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"status\": \"cancelled\",\n    \"description\": \"<string>\",\n    \"time\": {\n      \"type\": \"<string>\",\n      \"startDate\": \"<dateTime>\",\n      \"endDate\": \"<dateTime>\"\n    },\n    \"rules\": [\n      {\n        \"entity\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      {\n        \"entity\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    ]\n  },\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:27.000Z",
+                  "updatedAt": "2026-07-28T02:27:27.000Z",
+                  "uid": "35240-4304c6d4-6731-4726-8981-a3e6b7f2d59d"
+                },
+                {
+                  "id": "d060851a-460a-4387-9d2c-bcfe6d82b870",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"<string>\",\n  \"time\": {\n    \"type\": \"for-30-minutes\",\n    \"startDate\": \"<dateTime>\",\n    \"endDate\": \"<dateTime>\"\n  },\n  \"rules\": [\n    {\n      \"entity\": {\n        \"id\": \"<string>\",\n        \"type\": \"integration\"\n      }\n    },\n    {\n      \"entity\": {\n        \"id\": \"<string>\",\n        \"type\": \"integration\"\n      }\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/maintenance",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "maintenance"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:27.000Z",
+                  "updatedAt": "2026-07-28T02:27:27.000Z",
+                  "uid": "35240-d060851a-460a-4387-9d2c-bcfe6d82b870"
+                },
+                {
+                  "id": "a10e09a7-08aa-492c-bd22-9e21c54f1358",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"<string>\",\n  \"time\": {\n    \"type\": \"for-30-minutes\",\n    \"startDate\": \"<dateTime>\",\n    \"endDate\": \"<dateTime>\"\n  },\n  \"rules\": [\n    {\n      \"entity\": {\n        \"id\": \"<string>\",\n        \"type\": \"integration\"\n      }\n    },\n    {\n      \"entity\": {\n        \"id\": \"<string>\",\n        \"type\": \"integration\"\n      }\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/maintenance",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "maintenance"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:27.000Z",
+                  "updatedAt": "2026-07-28T02:27:27.000Z",
+                  "uid": "35240-a10e09a7-08aa-492c-bd22-9e21c54f1358"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:27.000Z",
+              "updatedAt": "2026-07-28T02:27:27.000Z",
+              "uid": "35240-89c4740f-fb8c-499e-90e1-624b25b5c299"
+            },
+            {
+              "name": "List maintenances",
+              "id": "c381cc06-edb3-481b-b653-f09592289afe",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/maintenance?type=non-expired",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "maintenance"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by maintenance type. Non-expired returns active and future windows.",
+                      "key": "type",
+                      "value": "non-expired"
+                    }
+                  ]
+                },
+                "description": "Returns a list of maintenance windows filtered by type."
+              },
+              "response": [
+                {
+                  "id": "1fe06497-740e-4a93-9e2c-1f21eb67df25",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/maintenance?type=non-expired",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "maintenance"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by maintenance type. Non-expired returns active and future windows.",
+                          "key": "type",
+                          "value": "non-expired"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"status\": \"cancelled\",\n      \"description\": \"<string>\",\n      \"time\": {\n        \"type\": \"<string>\",\n        \"startDate\": \"<dateTime>\",\n        \"endDate\": \"<dateTime>\"\n      },\n      \"rules\": [\n        {\n          \"entity\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        },\n        {\n          \"entity\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"status\": \"planned\",\n      \"description\": \"<string>\",\n      \"time\": {\n        \"type\": \"<string>\",\n        \"startDate\": \"<dateTime>\",\n        \"endDate\": \"<dateTime>\"\n      },\n      \"rules\": [\n        {\n          \"entity\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        },\n        {\n          \"entity\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        }\n      ]\n    }\n  ],\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:27.000Z",
+                  "updatedAt": "2026-07-28T02:27:27.000Z",
+                  "uid": "35240-1fe06497-740e-4a93-9e2c-1f21eb67df25"
+                },
+                {
+                  "id": "df7a9886-fd13-478e-a374-98a67d55b01a",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/maintenance?type=non-expired",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "maintenance"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by maintenance type. Non-expired returns active and future windows.",
+                          "key": "type",
+                          "value": "non-expired"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:27.000Z",
+                  "updatedAt": "2026-07-28T02:27:27.000Z",
+                  "uid": "35240-df7a9886-fd13-478e-a374-98a67d55b01a"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:27.000Z",
+              "updatedAt": "2026-07-28T02:27:27.000Z",
+              "uid": "35240-c381cc06-edb3-481b-b653-f09592289afe"
+            }
+          ],
+          "id": "1663c197-2d6c-461e-b63c-500676da7fc2",
+          "createdAt": "2026-07-28T02:27:27.000Z",
+          "updatedAt": "2026-07-28T02:27:27.000Z",
+          "uid": "35240-1663c197-2d6c-461e-b63c-500676da7fc2"
+        }
+      ],
+      "id": "b2b81641-127a-4385-81d2-aaeee37f2b1e",
+      "createdAt": "2026-07-28T02:27:27.000Z",
+      "updatedAt": "2026-07-28T02:27:27.000Z",
+      "uid": "35240-b2b81641-127a-4385-81d2-aaeee37f2b1e"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.opsgenie.com"
+    }
+  ]
+}

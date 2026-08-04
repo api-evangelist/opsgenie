@@ -1,0 +1,1176 @@
+{
+  "info": {
+    "_postman_id": "17233272-8a91-4f5e-9b64-ea1b1b2462c1",
+    "name": "OpsGenie Account Escalations API",
+    "description": "The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.\n\nContact Support:\n Name: Atlassian Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:04.000Z",
+    "updatedAt": "2026-07-28T02:27:04.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-17233272-8a91-4f5e-9b64-ea1b1b2462c1"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "escalations",
+          "item": [
+            {
+              "name": "{identifier}",
+              "item": [
+                {
+                  "name": "Get escalation",
+                  "id": "8c64afc4-200d-40d2-b896-140a31dd6c76",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/escalations/:identifier?identifierType=id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "escalations",
+                        ":identifier"
+                      ],
+                      "query": [
+                        {
+                          "description": "Type of the identifier. Possible values are id or name.",
+                          "key": "identifierType",
+                          "value": "id"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "bc4e7565-b70e-4560-ab6b-7d1eb7162362",
+                          "key": "identifier",
+                          "value": "<string>",
+                          "description": "(Required) Identifier of the escalation, which can be the ID or name."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the details of a specific escalation policy."
+                  },
+                  "response": [
+                    {
+                      "id": "2b5177b7-848f-4551-b470-7cfbaf273f1c",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/escalations/:identifier?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "escalations",
+                            ":identifier"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or name.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"ownerTeam\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"rules\": [\n      {\n        \"condition\": \"if-not-closed\",\n        \"notifyType\": \"next\",\n        \"delay\": {\n          \"timeAmount\": \"<integer>\",\n          \"timeUnit\": \"minutes\"\n        },\n        \"recipient\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"username\": \"<string>\",\n          \"type\": \"schedule\"\n        }\n      },\n      {\n        \"condition\": \"if-not-acked\",\n        \"notifyType\": \"next\",\n        \"delay\": {\n          \"timeAmount\": \"<integer>\",\n          \"timeUnit\": \"minutes\"\n        },\n        \"recipient\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"username\": \"<string>\",\n          \"type\": \"team\"\n        }\n      }\n    ],\n    \"repeat\": {\n      \"waitInterval\": \"<integer>\",\n      \"count\": \"<integer>\",\n      \"resetRecipientStates\": \"<boolean>\",\n      \"closeAlertAfterAll\": \"<boolean>\"\n    }\n  },\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:04.000Z",
+                      "updatedAt": "2026-07-28T02:27:04.000Z",
+                      "uid": "35240-2b5177b7-848f-4551-b470-7cfbaf273f1c"
+                    },
+                    {
+                      "id": "7121cc9f-91d4-48b9-8e82-a15a05a9d86b",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/escalations/:identifier?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "escalations",
+                            ":identifier"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or name.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:04.000Z",
+                      "updatedAt": "2026-07-28T02:27:04.000Z",
+                      "uid": "35240-7121cc9f-91d4-48b9-8e82-a15a05a9d86b"
+                    },
+                    {
+                      "id": "efada242-84cb-434c-a910-f07207f8ea50",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/escalations/:identifier?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "escalations",
+                            ":identifier"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or name.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:04.000Z",
+                      "updatedAt": "2026-07-28T02:27:04.000Z",
+                      "uid": "35240-efada242-84cb-434c-a910-f07207f8ea50"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:04.000Z",
+                  "updatedAt": "2026-07-28T02:27:04.000Z",
+                  "uid": "35240-8c64afc4-200d-40d2-b896-140a31dd6c76"
+                },
+                {
+                  "name": "Update escalation",
+                  "id": "d2cde4fb-e264-40fc-b73c-9e24dbe2e3ae",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"ownerTeam\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"rules\": [\n    {\n      \"condition\": \"if-not-acked\",\n      \"notifyType\": \"next\",\n      \"delay\": {\n        \"timeAmount\": \"<integer>\",\n        \"timeUnit\": \"hours\"\n      },\n      \"recipient\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"username\": \"<string>\",\n        \"type\": \"schedule\"\n      }\n    },\n    {\n      \"condition\": \"if-not-acked\",\n      \"notifyType\": \"admins\",\n      \"delay\": {\n        \"timeAmount\": \"<integer>\",\n        \"timeUnit\": \"days\"\n      },\n      \"recipient\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"username\": \"<string>\",\n        \"type\": \"team\"\n      }\n    }\n  ],\n  \"repeat\": {\n    \"waitInterval\": \"<integer>\",\n    \"count\": \"<integer>\",\n    \"resetRecipientStates\": \"<boolean>\",\n    \"closeAlertAfterAll\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/escalations/:identifier?identifierType=id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "escalations",
+                        ":identifier"
+                      ],
+                      "query": [
+                        {
+                          "description": "Type of the identifier. Possible values are id or name.",
+                          "key": "identifierType",
+                          "value": "id"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "d5781391-9753-4bfd-895f-710020750e50",
+                          "key": "identifier",
+                          "value": "<string>",
+                          "description": "(Required) Identifier of the escalation, which can be the ID or name."
+                        }
+                      ]
+                    },
+                    "description": "Updates the specified escalation policy."
+                  },
+                  "response": [
+                    {
+                      "id": "65bfb61a-9c2f-4fac-9d75-436b01972f25",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"ownerTeam\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"rules\": [\n    {\n      \"condition\": \"if-not-acked\",\n      \"notifyType\": \"next\",\n      \"delay\": {\n        \"timeAmount\": \"<integer>\",\n        \"timeUnit\": \"hours\"\n      },\n      \"recipient\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"username\": \"<string>\",\n        \"type\": \"schedule\"\n      }\n    },\n    {\n      \"condition\": \"if-not-acked\",\n      \"notifyType\": \"admins\",\n      \"delay\": {\n        \"timeAmount\": \"<integer>\",\n        \"timeUnit\": \"days\"\n      },\n      \"recipient\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"username\": \"<string>\",\n        \"type\": \"team\"\n      }\n    }\n  ],\n  \"repeat\": {\n    \"waitInterval\": \"<integer>\",\n    \"count\": \"<integer>\",\n    \"resetRecipientStates\": \"<boolean>\",\n    \"closeAlertAfterAll\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/escalations/:identifier?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "escalations",
+                            ":identifier"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or name.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"result\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:04.000Z",
+                      "updatedAt": "2026-07-28T02:27:04.000Z",
+                      "uid": "35240-65bfb61a-9c2f-4fac-9d75-436b01972f25"
+                    },
+                    {
+                      "id": "4dd138b9-9b07-48b2-80e1-07448f609c0e",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"ownerTeam\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"rules\": [\n    {\n      \"condition\": \"if-not-acked\",\n      \"notifyType\": \"next\",\n      \"delay\": {\n        \"timeAmount\": \"<integer>\",\n        \"timeUnit\": \"hours\"\n      },\n      \"recipient\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"username\": \"<string>\",\n        \"type\": \"schedule\"\n      }\n    },\n    {\n      \"condition\": \"if-not-acked\",\n      \"notifyType\": \"admins\",\n      \"delay\": {\n        \"timeAmount\": \"<integer>\",\n        \"timeUnit\": \"days\"\n      },\n      \"recipient\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"username\": \"<string>\",\n        \"type\": \"team\"\n      }\n    }\n  ],\n  \"repeat\": {\n    \"waitInterval\": \"<integer>\",\n    \"count\": \"<integer>\",\n    \"resetRecipientStates\": \"<boolean>\",\n    \"closeAlertAfterAll\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/escalations/:identifier?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "escalations",
+                            ":identifier"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or name.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:04.000Z",
+                      "updatedAt": "2026-07-28T02:27:04.000Z",
+                      "uid": "35240-4dd138b9-9b07-48b2-80e1-07448f609c0e"
+                    },
+                    {
+                      "id": "e8f86c16-fcee-46f9-bb87-9b1c759a12bd",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"ownerTeam\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"rules\": [\n    {\n      \"condition\": \"if-not-acked\",\n      \"notifyType\": \"next\",\n      \"delay\": {\n        \"timeAmount\": \"<integer>\",\n        \"timeUnit\": \"hours\"\n      },\n      \"recipient\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"username\": \"<string>\",\n        \"type\": \"schedule\"\n      }\n    },\n    {\n      \"condition\": \"if-not-acked\",\n      \"notifyType\": \"admins\",\n      \"delay\": {\n        \"timeAmount\": \"<integer>\",\n        \"timeUnit\": \"days\"\n      },\n      \"recipient\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"username\": \"<string>\",\n        \"type\": \"team\"\n      }\n    }\n  ],\n  \"repeat\": {\n    \"waitInterval\": \"<integer>\",\n    \"count\": \"<integer>\",\n    \"resetRecipientStates\": \"<boolean>\",\n    \"closeAlertAfterAll\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/escalations/:identifier?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "escalations",
+                            ":identifier"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or name.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:04.000Z",
+                      "updatedAt": "2026-07-28T02:27:04.000Z",
+                      "uid": "35240-e8f86c16-fcee-46f9-bb87-9b1c759a12bd"
+                    },
+                    {
+                      "id": "a8eb3a24-dd9a-4299-b585-7840168fd525",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"ownerTeam\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"rules\": [\n    {\n      \"condition\": \"if-not-acked\",\n      \"notifyType\": \"next\",\n      \"delay\": {\n        \"timeAmount\": \"<integer>\",\n        \"timeUnit\": \"hours\"\n      },\n      \"recipient\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"username\": \"<string>\",\n        \"type\": \"schedule\"\n      }\n    },\n    {\n      \"condition\": \"if-not-acked\",\n      \"notifyType\": \"admins\",\n      \"delay\": {\n        \"timeAmount\": \"<integer>\",\n        \"timeUnit\": \"days\"\n      },\n      \"recipient\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"username\": \"<string>\",\n        \"type\": \"team\"\n      }\n    }\n  ],\n  \"repeat\": {\n    \"waitInterval\": \"<integer>\",\n    \"count\": \"<integer>\",\n    \"resetRecipientStates\": \"<boolean>\",\n    \"closeAlertAfterAll\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/escalations/:identifier?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "escalations",
+                            ":identifier"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or name.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:04.000Z",
+                      "updatedAt": "2026-07-28T02:27:04.000Z",
+                      "uid": "35240-a8eb3a24-dd9a-4299-b585-7840168fd525"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:04.000Z",
+                  "updatedAt": "2026-07-28T02:27:04.000Z",
+                  "uid": "35240-d2cde4fb-e264-40fc-b73c-9e24dbe2e3ae"
+                },
+                {
+                  "name": "Delete escalation",
+                  "id": "6ba03c42-f175-49ac-ad1c-bc5c87fd4986",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/escalations/:identifier?identifierType=id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "escalations",
+                        ":identifier"
+                      ],
+                      "query": [
+                        {
+                          "description": "Type of the identifier. Possible values are id or name.",
+                          "key": "identifierType",
+                          "value": "id"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "f2abd8ad-f6e1-4976-8a21-be427c340fec",
+                          "key": "identifier",
+                          "value": "<string>",
+                          "description": "(Required) Identifier of the escalation, which can be the ID or name."
+                        }
+                      ]
+                    },
+                    "description": "Deletes the specified escalation policy."
+                  },
+                  "response": [
+                    {
+                      "id": "ddd51c97-e729-4084-a83d-c65c862b8943",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/escalations/:identifier?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "escalations",
+                            ":identifier"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or name.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"result\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:04.000Z",
+                      "updatedAt": "2026-07-28T02:27:04.000Z",
+                      "uid": "35240-ddd51c97-e729-4084-a83d-c65c862b8943"
+                    },
+                    {
+                      "id": "d228ba6d-2fc7-4fe9-b0f4-0fb3c6f89bbd",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/escalations/:identifier?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "escalations",
+                            ":identifier"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or name.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:04.000Z",
+                      "updatedAt": "2026-07-28T02:27:04.000Z",
+                      "uid": "35240-d228ba6d-2fc7-4fe9-b0f4-0fb3c6f89bbd"
+                    },
+                    {
+                      "id": "2b651b07-8b7c-43d8-afb8-c8643fdb4cd6",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/escalations/:identifier?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "escalations",
+                            ":identifier"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or name.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:04.000Z",
+                      "updatedAt": "2026-07-28T02:27:04.000Z",
+                      "uid": "35240-2b651b07-8b7c-43d8-afb8-c8643fdb4cd6"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:04.000Z",
+                  "updatedAt": "2026-07-28T02:27:04.000Z",
+                  "uid": "35240-6ba03c42-f175-49ac-ad1c-bc5c87fd4986"
+                }
+              ],
+              "id": "7ab96d3a-ba6d-4a24-b6fd-d19f46a1dfad",
+              "createdAt": "2026-07-28T02:27:04.000Z",
+              "updatedAt": "2026-07-28T02:27:04.000Z",
+              "uid": "35240-7ab96d3a-ba6d-4a24-b6fd-d19f46a1dfad"
+            },
+            {
+              "name": "Create escalation",
+              "id": "ed91d33b-c95a-4f15-9073-9492dc46f0d6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"rules\": [\n    {\n      \"condition\": \"if-not-closed\",\n      \"notifyType\": \"users\",\n      \"delay\": {\n        \"timeAmount\": \"<integer>\",\n        \"timeUnit\": \"days\"\n      },\n      \"recipient\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"username\": \"<string>\",\n        \"type\": \"team\"\n      }\n    },\n    {\n      \"condition\": \"if-not-acked\",\n      \"notifyType\": \"next\",\n      \"delay\": {\n        \"timeAmount\": \"<integer>\",\n        \"timeUnit\": \"minutes\"\n      },\n      \"recipient\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"username\": \"<string>\",\n        \"type\": \"team\"\n      }\n    }\n  ],\n  \"description\": \"<string>\",\n  \"ownerTeam\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"repeat\": {\n    \"waitInterval\": \"<integer>\",\n    \"count\": \"<integer>\",\n    \"resetRecipientStates\": \"<boolean>\",\n    \"closeAlertAfterAll\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/escalations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "escalations"
+                  ]
+                },
+                "description": "Creates a new escalation policy with the specified rules and notification sequence."
+              },
+              "response": [
+                {
+                  "id": "f6446955-173c-440a-8393-34097ed7f5b7",
+                  "name": "Created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"rules\": [\n    {\n      \"condition\": \"if-not-closed\",\n      \"notifyType\": \"users\",\n      \"delay\": {\n        \"timeAmount\": \"<integer>\",\n        \"timeUnit\": \"days\"\n      },\n      \"recipient\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"username\": \"<string>\",\n        \"type\": \"team\"\n      }\n    },\n    {\n      \"condition\": \"if-not-acked\",\n      \"notifyType\": \"next\",\n      \"delay\": {\n        \"timeAmount\": \"<integer>\",\n        \"timeUnit\": \"minutes\"\n      },\n      \"recipient\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"username\": \"<string>\",\n        \"type\": \"team\"\n      }\n    }\n  ],\n  \"description\": \"<string>\",\n  \"ownerTeam\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"repeat\": {\n    \"waitInterval\": \"<integer>\",\n    \"count\": \"<integer>\",\n    \"resetRecipientStates\": \"<boolean>\",\n    \"closeAlertAfterAll\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/escalations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "escalations"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"result\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:04.000Z",
+                  "updatedAt": "2026-07-28T02:27:04.000Z",
+                  "uid": "35240-f6446955-173c-440a-8393-34097ed7f5b7"
+                },
+                {
+                  "id": "3eee830c-b23b-4880-925d-d373340efda9",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"rules\": [\n    {\n      \"condition\": \"if-not-closed\",\n      \"notifyType\": \"users\",\n      \"delay\": {\n        \"timeAmount\": \"<integer>\",\n        \"timeUnit\": \"days\"\n      },\n      \"recipient\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"username\": \"<string>\",\n        \"type\": \"team\"\n      }\n    },\n    {\n      \"condition\": \"if-not-acked\",\n      \"notifyType\": \"next\",\n      \"delay\": {\n        \"timeAmount\": \"<integer>\",\n        \"timeUnit\": \"minutes\"\n      },\n      \"recipient\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"username\": \"<string>\",\n        \"type\": \"team\"\n      }\n    }\n  ],\n  \"description\": \"<string>\",\n  \"ownerTeam\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"repeat\": {\n    \"waitInterval\": \"<integer>\",\n    \"count\": \"<integer>\",\n    \"resetRecipientStates\": \"<boolean>\",\n    \"closeAlertAfterAll\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/escalations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "escalations"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:04.000Z",
+                  "updatedAt": "2026-07-28T02:27:04.000Z",
+                  "uid": "35240-3eee830c-b23b-4880-925d-d373340efda9"
+                },
+                {
+                  "id": "b4d8924e-64ff-44eb-bb3b-40308c6b9b3b",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"rules\": [\n    {\n      \"condition\": \"if-not-closed\",\n      \"notifyType\": \"users\",\n      \"delay\": {\n        \"timeAmount\": \"<integer>\",\n        \"timeUnit\": \"days\"\n      },\n      \"recipient\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"username\": \"<string>\",\n        \"type\": \"team\"\n      }\n    },\n    {\n      \"condition\": \"if-not-acked\",\n      \"notifyType\": \"next\",\n      \"delay\": {\n        \"timeAmount\": \"<integer>\",\n        \"timeUnit\": \"minutes\"\n      },\n      \"recipient\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"username\": \"<string>\",\n        \"type\": \"team\"\n      }\n    }\n  ],\n  \"description\": \"<string>\",\n  \"ownerTeam\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"repeat\": {\n    \"waitInterval\": \"<integer>\",\n    \"count\": \"<integer>\",\n    \"resetRecipientStates\": \"<boolean>\",\n    \"closeAlertAfterAll\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/escalations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "escalations"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:04.000Z",
+                  "updatedAt": "2026-07-28T02:27:04.000Z",
+                  "uid": "35240-b4d8924e-64ff-44eb-bb3b-40308c6b9b3b"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:04.000Z",
+              "updatedAt": "2026-07-28T02:27:04.000Z",
+              "uid": "35240-ed91d33b-c95a-4f15-9073-9492dc46f0d6"
+            },
+            {
+              "name": "List escalations",
+              "id": "757a182f-bf39-418a-a72b-984eba08c94d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/escalations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "escalations"
+                  ]
+                },
+                "description": "Returns a list of all escalation policies in the account."
+              },
+              "response": [
+                {
+                  "id": "3bc8a0fe-987f-4a74-b9b1-99830808ca80",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/escalations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "escalations"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"ownerTeam\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"rules\": [\n        {\n          \"condition\": \"if-not-acked\",\n          \"notifyType\": \"all\",\n          \"delay\": {\n            \"timeAmount\": \"<integer>\",\n            \"timeUnit\": \"days\"\n          },\n          \"recipient\": {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"username\": \"<string>\",\n            \"type\": \"team\"\n          }\n        },\n        {\n          \"condition\": \"if-not-acked\",\n          \"notifyType\": \"next\",\n          \"delay\": {\n            \"timeAmount\": \"<integer>\",\n            \"timeUnit\": \"hours\"\n          },\n          \"recipient\": {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"username\": \"<string>\",\n            \"type\": \"user\"\n          }\n        }\n      ],\n      \"repeat\": {\n        \"waitInterval\": \"<integer>\",\n        \"count\": \"<integer>\",\n        \"resetRecipientStates\": \"<boolean>\",\n        \"closeAlertAfterAll\": \"<boolean>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"ownerTeam\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"rules\": [\n        {\n          \"condition\": \"if-not-acked\",\n          \"notifyType\": \"previous\",\n          \"delay\": {\n            \"timeAmount\": \"<integer>\",\n            \"timeUnit\": \"days\"\n          },\n          \"recipient\": {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"username\": \"<string>\",\n            \"type\": \"team\"\n          }\n        },\n        {\n          \"condition\": \"if-not-closed\",\n          \"notifyType\": \"random\",\n          \"delay\": {\n            \"timeAmount\": \"<integer>\",\n            \"timeUnit\": \"days\"\n          },\n          \"recipient\": {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"username\": \"<string>\",\n            \"type\": \"user\"\n          }\n        }\n      ],\n      \"repeat\": {\n        \"waitInterval\": \"<integer>\",\n        \"count\": \"<integer>\",\n        \"resetRecipientStates\": \"<boolean>\",\n        \"closeAlertAfterAll\": \"<boolean>\"\n      }\n    }\n  ],\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:04.000Z",
+                  "updatedAt": "2026-07-28T02:27:04.000Z",
+                  "uid": "35240-3bc8a0fe-987f-4a74-b9b1-99830808ca80"
+                },
+                {
+                  "id": "1fea8b6b-4b98-42af-8dbe-743fcc4275b2",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/escalations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "escalations"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:04.000Z",
+                  "updatedAt": "2026-07-28T02:27:04.000Z",
+                  "uid": "35240-1fea8b6b-4b98-42af-8dbe-743fcc4275b2"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:04.000Z",
+              "updatedAt": "2026-07-28T02:27:04.000Z",
+              "uid": "35240-757a182f-bf39-418a-a72b-984eba08c94d"
+            }
+          ],
+          "id": "9ec27010-b027-4c3f-a250-31d9ea5007ce",
+          "createdAt": "2026-07-28T02:27:04.000Z",
+          "updatedAt": "2026-07-28T02:27:04.000Z",
+          "uid": "35240-9ec27010-b027-4c3f-a250-31d9ea5007ce"
+        }
+      ],
+      "id": "b65aeb51-1b04-444d-9b34-73a619a07e4b",
+      "createdAt": "2026-07-28T02:27:04.000Z",
+      "updatedAt": "2026-07-28T02:27:04.000Z",
+      "uid": "35240-b65aeb51-1b04-444d-9b34-73a619a07e4b"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.opsgenie.com"
+    }
+  ]
+}

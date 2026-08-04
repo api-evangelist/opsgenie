@@ -1,0 +1,950 @@
+openapi: 3.1.0
+info:
+  title: OpsGenie Notification Rule API
+  description: >-
+    The OpsGenie Notification Rule API allows developers to manage
+    notification rules that control how and when users receive alert
+    notifications. It provides endpoints for creating, updating, and
+    deleting notification rules, including defining conditions, time
+    restrictions, and notification channels such as email, SMS, push
+    notifications, and voice calls. This API enables fine-grained control
+    over notification behavior for individual users.
+  version: '2.0.0'
+  contact:
+    name: Atlassian Support
+    url: https://support.atlassian.com/opsgenie/
+  termsOfService: https://www.atlassian.com/legal/cloud-terms-of-service
+externalDocs:
+  description: OpsGenie Notification Rule API Documentation
+  url: https://docs.opsgenie.com/docs/notification-rule-api
+servers:
+  - url: https://api.opsgenie.com
+    description: Production Server
+  - url: https://api.eu.opsgenie.com
+    description: EU Production Server
+tags:
+  - name: Notification Rules
+    description: >-
+      Operations for managing user notification rules and their steps.
+security:
+  - genieKey: []
+paths:
+  /v2/users/{identifier}/notification-rules:
+    post:
+      operationId: createNotificationRule
+      summary: Create notification rule
+      description: >-
+        Creates a new notification rule for the specified user.
+      tags:
+        - Notification Rules
+      parameters:
+        - $ref: '#/components/parameters/UserIdentifier'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateNotificationRuleRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateNotificationRuleResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      operationId: listNotificationRules
+      summary: List notification rules
+      description: >-
+        Returns a list of notification rules for the specified user.
+      tags:
+        - Notification Rules
+      parameters:
+        - $ref: '#/components/parameters/UserIdentifier'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListNotificationRulesResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/users/{identifier}/notification-rules/{ruleId}:
+    get:
+      operationId: getNotificationRule
+      summary: Get notification rule
+      description: >-
+        Retrieves the details of a specific notification rule.
+      tags:
+        - Notification Rules
+      parameters:
+        - $ref: '#/components/parameters/UserIdentifier'
+        - $ref: '#/components/parameters/RuleId'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetNotificationRuleResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    patch:
+      operationId: updateNotificationRule
+      summary: Update notification rule
+      description: >-
+        Updates the specified notification rule.
+      tags:
+        - Notification Rules
+      parameters:
+        - $ref: '#/components/parameters/UserIdentifier'
+        - $ref: '#/components/parameters/RuleId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateNotificationRuleRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetNotificationRuleResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteNotificationRule
+      summary: Delete notification rule
+      description: >-
+        Deletes the specified notification rule.
+      tags:
+        - Notification Rules
+      parameters:
+        - $ref: '#/components/parameters/UserIdentifier'
+        - $ref: '#/components/parameters/RuleId'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/users/{identifier}/notification-rules/{ruleId}/enable:
+    post:
+      operationId: enableNotificationRule
+      summary: Enable notification rule
+      description: >-
+        Enables the specified notification rule.
+      tags:
+        - Notification Rules
+      parameters:
+        - $ref: '#/components/parameters/UserIdentifier'
+        - $ref: '#/components/parameters/RuleId'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/users/{identifier}/notification-rules/{ruleId}/disable:
+    post:
+      operationId: disableNotificationRule
+      summary: Disable notification rule
+      description: >-
+        Disables the specified notification rule.
+      tags:
+        - Notification Rules
+      parameters:
+        - $ref: '#/components/parameters/UserIdentifier'
+        - $ref: '#/components/parameters/RuleId'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/users/{identifier}/notification-rules/{ruleId}/steps:
+    post:
+      operationId: createNotificationRuleStep
+      summary: Create notification rule step
+      description: >-
+        Adds a notification step to the specified notification rule. Steps
+        define the notification method and timing.
+      tags:
+        - Notification Rules
+      parameters:
+        - $ref: '#/components/parameters/UserIdentifier'
+        - $ref: '#/components/parameters/RuleId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateNotificationRuleStepRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      operationId: listNotificationRuleSteps
+      summary: List notification rule steps
+      description: >-
+        Lists the notification steps for the specified rule.
+      tags:
+        - Notification Rules
+      parameters:
+        - $ref: '#/components/parameters/UserIdentifier'
+        - $ref: '#/components/parameters/RuleId'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListNotificationRuleStepsResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/users/{identifier}/notification-rules/{ruleId}/steps/{stepId}:
+    get:
+      operationId: getNotificationRuleStep
+      summary: Get notification rule step
+      description: >-
+        Retrieves the details of a specific notification step.
+      tags:
+        - Notification Rules
+      parameters:
+        - $ref: '#/components/parameters/UserIdentifier'
+        - $ref: '#/components/parameters/RuleId'
+        - $ref: '#/components/parameters/StepId'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetNotificationRuleStepResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    patch:
+      operationId: updateNotificationRuleStep
+      summary: Update notification rule step
+      description: >-
+        Updates the specified notification step.
+      tags:
+        - Notification Rules
+      parameters:
+        - $ref: '#/components/parameters/UserIdentifier'
+        - $ref: '#/components/parameters/RuleId'
+        - $ref: '#/components/parameters/StepId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateNotificationRuleStepRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteNotificationRuleStep
+      summary: Delete notification rule step
+      description: >-
+        Deletes the specified notification step.
+      tags:
+        - Notification Rules
+      parameters:
+        - $ref: '#/components/parameters/UserIdentifier'
+        - $ref: '#/components/parameters/RuleId'
+        - $ref: '#/components/parameters/StepId'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  securitySchemes:
+    genieKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        API key authentication using the GenieKey scheme.
+  parameters:
+    UserIdentifier:
+      name: identifier
+      in: path
+      required: true
+      description: >-
+        Identifier of the user (user ID or username/email).
+      schema:
+        type: string
+    RuleId:
+      name: ruleId
+      in: path
+      required: true
+      description: >-
+        Unique identifier of the notification rule.
+      schema:
+        type: string
+    StepId:
+      name: stepId
+      in: path
+      required: true
+      description: >-
+        Unique identifier of the notification step.
+      schema:
+        type: string
+  schemas:
+    CreateNotificationRuleRequest:
+      type: object
+      required:
+        - name
+        - actionType
+      properties:
+        name:
+          type: string
+          description: >-
+            Name of the notification rule.
+        actionType:
+          type: string
+          enum:
+            - create-alert
+            - acknowledged-alert
+            - closed-alert
+            - assigned-alert
+            - add-note
+            - schedule-start
+            - schedule-end
+            - incoming-call-routing
+          description: >-
+            Action type that triggers this notification rule.
+        criteria:
+          $ref: '#/components/schemas/NotificationCriteria'
+        notificationTime:
+          type: array
+          items:
+            type: string
+            enum:
+              - just-before
+              - 15-minutes-ago
+              - 1-hour-ago
+              - 1-day-ago
+          description: >-
+            Notification time preferences.
+        timeRestriction:
+          $ref: '#/components/schemas/TimeRestriction'
+        schedules:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: >-
+                  Schedule ID.
+              name:
+                type: string
+                description: >-
+                  Schedule name.
+              type:
+                type: string
+                description: >-
+                  Type (schedule).
+          description: >-
+            Schedules this rule applies to.
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationRuleStep'
+          description: >-
+            Notification steps.
+        order:
+          type: integer
+          description: >-
+            Order of the rule.
+        repeat:
+          type: object
+          properties:
+            loopAfter:
+              type: integer
+              description: >-
+                Number of steps after which to loop back.
+            enabled:
+              type: boolean
+              description: >-
+                Whether repeat is enabled.
+          description: >-
+            Repeat configuration.
+        enabled:
+          type: boolean
+          description: >-
+            Whether the rule is enabled.
+    UpdateNotificationRuleRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: >-
+            Updated rule name.
+        criteria:
+          $ref: '#/components/schemas/NotificationCriteria'
+        notificationTime:
+          type: array
+          items:
+            type: string
+          description: >-
+            Updated notification time preferences.
+        timeRestriction:
+          $ref: '#/components/schemas/TimeRestriction'
+        schedules:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: >-
+                  Schedule ID.
+              name:
+                type: string
+                description: >-
+                  Schedule name.
+          description: >-
+            Updated schedules.
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationRuleStep'
+          description: >-
+            Updated notification steps.
+        order:
+          type: integer
+          description: >-
+            Updated order.
+        repeat:
+          type: object
+          properties:
+            loopAfter:
+              type: integer
+              description: >-
+                Steps after which to loop.
+            enabled:
+              type: boolean
+              description: >-
+                Repeat enabled.
+          description: >-
+            Updated repeat configuration.
+        enabled:
+          type: boolean
+          description: >-
+            Updated enabled status.
+    NotificationCriteria:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - match-all
+            - match-any-condition
+            - match-all-conditions
+          description: >-
+            Criteria type for matching alerts.
+        conditions:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: >-
+                  Alert field to evaluate.
+              operation:
+                type: string
+                enum:
+                  - matches
+                  - contains
+                  - starts-with
+                  - ends-with
+                  - equals
+                  - contains-key
+                  - contains-value
+                  - greater-than
+                  - less-than
+                  - is-empty
+                  - equals-ignore-whitespace
+                description: >-
+                  Comparison operation.
+              key:
+                type: string
+                description: >-
+                  Key for key-value fields.
+              not:
+                type: boolean
+                description: >-
+                  Whether to negate the condition.
+              expectedValue:
+                type: string
+                description: >-
+                  Expected value to compare against.
+              order:
+                type: integer
+                description: >-
+                  Order of the condition.
+          description: >-
+            List of conditions.
+    TimeRestriction:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - time-of-day
+            - weekday-and-time-of-day
+          description: >-
+            Type of time restriction.
+        restrictions:
+          type: array
+          items:
+            type: object
+            properties:
+              startDay:
+                type: string
+                description: >-
+                  Start day of the week.
+              startHour:
+                type: integer
+                description: >-
+                  Start hour.
+              startMin:
+                type: integer
+                description: >-
+                  Start minute.
+              endDay:
+                type: string
+                description: >-
+                  End day of the week.
+              endHour:
+                type: integer
+                description: >-
+                  End hour.
+              endMin:
+                type: integer
+                description: >-
+                  End minute.
+          description: >-
+            Time restriction definitions.
+    NotificationRuleStep:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Step ID.
+        contact:
+          type: object
+          properties:
+            method:
+              type: string
+              enum:
+                - email
+                - sms
+                - voice
+                - mobile
+              description: >-
+                Notification delivery method.
+            to:
+              type: string
+              description: >-
+                Contact address (email, phone number, etc.).
+          description: >-
+            Contact information for the step.
+        sendAfter:
+          type: object
+          properties:
+            timeAmount:
+              type: integer
+              description: >-
+                Amount of time to wait before sending.
+            timeUnit:
+              type: string
+              enum:
+                - minutes
+                - hours
+                - days
+              description: >-
+                Time unit.
+          description: >-
+            Delay before sending this step's notification.
+        enabled:
+          type: boolean
+          description: >-
+            Whether the step is enabled.
+    CreateNotificationRuleStepRequest:
+      type: object
+      required:
+        - contact
+      properties:
+        contact:
+          type: object
+          required:
+            - method
+            - to
+          properties:
+            method:
+              type: string
+              enum:
+                - email
+                - sms
+                - voice
+                - mobile
+              description: >-
+                Notification delivery method.
+            to:
+              type: string
+              description: >-
+                Contact address.
+          description: >-
+            Contact for the notification step.
+        sendAfter:
+          type: object
+          properties:
+            timeAmount:
+              type: integer
+              description: >-
+                Time to wait.
+            timeUnit:
+              type: string
+              enum:
+                - minutes
+                - hours
+                - days
+              description: >-
+                Time unit.
+          description: >-
+            Delay before sending.
+        enabled:
+          type: boolean
+          description: >-
+            Whether the step is enabled.
+    UpdateNotificationRuleStepRequest:
+      type: object
+      properties:
+        contact:
+          type: object
+          properties:
+            method:
+              type: string
+              enum:
+                - email
+                - sms
+                - voice
+                - mobile
+              description: >-
+                Updated delivery method.
+            to:
+              type: string
+              description: >-
+                Updated contact address.
+          description: >-
+            Updated contact.
+        sendAfter:
+          type: object
+          properties:
+            timeAmount:
+              type: integer
+              description: >-
+                Updated wait time.
+            timeUnit:
+              type: string
+              enum:
+                - minutes
+                - hours
+                - days
+              description: >-
+                Updated time unit.
+          description: >-
+            Updated delay.
+        enabled:
+          type: boolean
+          description: >-
+            Updated enabled status.
+    NotificationRule:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier.
+        name:
+          type: string
+          description: >-
+            Rule name.
+        actionType:
+          type: string
+          description: >-
+            Action type that triggers this rule.
+        order:
+          type: integer
+          description: >-
+            Rule order.
+        enabled:
+          type: boolean
+          description: >-
+            Whether the rule is enabled.
+        criteria:
+          $ref: '#/components/schemas/NotificationCriteria'
+        timeRestriction:
+          $ref: '#/components/schemas/TimeRestriction'
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationRuleStep'
+          description: >-
+            Notification steps.
+        repeat:
+          type: object
+          properties:
+            loopAfter:
+              type: integer
+              description: >-
+                Steps after which to loop.
+            enabled:
+              type: boolean
+              description: >-
+                Repeat enabled.
+    CreateNotificationRuleResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: >-
+                ID of the created rule.
+            name:
+              type: string
+              description: >-
+                Name of the created rule.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    ListNotificationRulesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationRule'
+          description: >-
+            List of notification rules.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    GetNotificationRuleResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/NotificationRule'
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    ListNotificationRuleStepsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationRuleStep'
+          description: >-
+            List of notification steps.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    GetNotificationRuleStepResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/NotificationRuleStep'
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: >-
+            Result message.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: >-
+            Error message.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.

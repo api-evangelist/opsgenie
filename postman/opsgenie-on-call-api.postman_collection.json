@@ -1,0 +1,336 @@
+{
+  "info": {
+    "_postman_id": "26ae3173-7588-4d28-a334-017295d776fa",
+    "name": "OpsGenie Account On-Call API",
+    "description": "The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.\n\nContact Support:\n Name: Atlassian Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:29.000Z",
+    "updatedAt": "2026-07-28T02:27:29.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-26ae3173-7588-4d28-a334-017295d776fa"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "schedules",
+          "item": [
+            {
+              "name": "{identifier}",
+              "item": [
+                {
+                  "name": "on-calls",
+                  "item": [
+                    {
+                      "name": "Get on-call participants",
+                      "id": "92621fb4-b581-49e4-89d2-357eebf53dcb",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/schedules/:identifier/on-calls?identifierType=id&flat=<boolean>&date=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "schedules",
+                            ":identifier",
+                            "on-calls"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or name.",
+                              "key": "identifierType",
+                              "value": "id"
+                            },
+                            {
+                              "description": "If true, returns a flat list of on-call participants.",
+                              "key": "flat",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Date to check on-call for, in ISO 8601 format.",
+                              "key": "date",
+                              "value": "<dateTime>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "56b770d5-5145-4520-a5c5-1145bade74a0",
+                              "key": "identifier",
+                              "value": "<string>",
+                              "description": "(Required) Identifier of the schedule, which can be the schedule ID or name."
+                            }
+                          ]
+                        },
+                        "description": "Retrieves the current on-call participants for the specified schedule."
+                      },
+                      "response": [
+                        {
+                          "id": "927f579c-c274-4b20-9272-0180130940be",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/schedules/:identifier/on-calls?identifierType=id&flat=<boolean>&date=<dateTime>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "schedules",
+                                ":identifier",
+                                "on-calls"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or name.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                },
+                                {
+                                  "description": "If true, returns a flat list of on-call participants.",
+                                  "key": "flat",
+                                  "value": "<boolean>"
+                                },
+                                {
+                                  "description": "Date to check on-call for, in ISO 8601 format.",
+                                  "key": "date",
+                                  "value": "<dateTime>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": {\n    \"onCallParticipants\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ]\n  },\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:30.000Z",
+                          "updatedAt": "2026-07-28T02:27:30.000Z",
+                          "uid": "35240-927f579c-c274-4b20-9272-0180130940be"
+                        },
+                        {
+                          "id": "d411b25f-ae54-4ab9-a9b4-d815c7851aa8",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/schedules/:identifier/on-calls?identifierType=id&flat=<boolean>&date=<dateTime>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "schedules",
+                                ":identifier",
+                                "on-calls"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or name.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                },
+                                {
+                                  "description": "If true, returns a flat list of on-call participants.",
+                                  "key": "flat",
+                                  "value": "<boolean>"
+                                },
+                                {
+                                  "description": "Date to check on-call for, in ISO 8601 format.",
+                                  "key": "date",
+                                  "value": "<dateTime>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:30.000Z",
+                          "updatedAt": "2026-07-28T02:27:30.000Z",
+                          "uid": "35240-d411b25f-ae54-4ab9-a9b4-d815c7851aa8"
+                        },
+                        {
+                          "id": "348429a9-d923-4a71-b703-d480fca881fe",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/schedules/:identifier/on-calls?identifierType=id&flat=<boolean>&date=<dateTime>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "schedules",
+                                ":identifier",
+                                "on-calls"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or name.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                },
+                                {
+                                  "description": "If true, returns a flat list of on-call participants.",
+                                  "key": "flat",
+                                  "value": "<boolean>"
+                                },
+                                {
+                                  "description": "Date to check on-call for, in ISO 8601 format.",
+                                  "key": "date",
+                                  "value": "<dateTime>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:30.000Z",
+                          "updatedAt": "2026-07-28T02:27:30.000Z",
+                          "uid": "35240-348429a9-d923-4a71-b703-d480fca881fe"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:30.000Z",
+                      "updatedAt": "2026-07-28T02:27:30.000Z",
+                      "uid": "35240-92621fb4-b581-49e4-89d2-357eebf53dcb"
+                    }
+                  ],
+                  "id": "31fc5ea5-c1bc-4732-aaca-59f420ba1472",
+                  "createdAt": "2026-07-28T02:27:30.000Z",
+                  "updatedAt": "2026-07-28T02:27:30.000Z",
+                  "uid": "35240-31fc5ea5-c1bc-4732-aaca-59f420ba1472"
+                }
+              ],
+              "id": "575d608e-f955-43a0-b425-a12d5831255c",
+              "createdAt": "2026-07-28T02:27:30.000Z",
+              "updatedAt": "2026-07-28T02:27:30.000Z",
+              "uid": "35240-575d608e-f955-43a0-b425-a12d5831255c"
+            }
+          ],
+          "id": "f1498ed2-eb91-4cdf-b328-726d5fb0379a",
+          "createdAt": "2026-07-28T02:27:30.000Z",
+          "updatedAt": "2026-07-28T02:27:30.000Z",
+          "uid": "35240-f1498ed2-eb91-4cdf-b328-726d5fb0379a"
+        }
+      ],
+      "id": "ac0e919f-50f0-4b14-b4eb-d9447f543bbb",
+      "createdAt": "2026-07-28T02:27:30.000Z",
+      "updatedAt": "2026-07-28T02:27:30.000Z",
+      "uid": "35240-ac0e919f-50f0-4b14-b4eb-d9447f543bbb"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.opsgenie.com"
+    }
+  ]
+}

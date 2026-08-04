@@ -1,0 +1,1826 @@
+{
+  "info": {
+    "_postman_id": "e6cdcc43-069c-4362-8f6a-618b6d97183a",
+    "name": "OpsGenie Account Users API",
+    "description": "The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.\n\nContact Support:\n Name: Atlassian Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:57.000Z",
+    "updatedAt": "2026-07-28T02:27:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e6cdcc43-069c-4362-8f6a-618b6d97183a"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "users",
+          "item": [
+            {
+              "name": "{identifier}",
+              "item": [
+                {
+                  "name": "escalations",
+                  "item": [
+                    {
+                      "name": "List user escalations",
+                      "id": "6c5a15ef-d9df-4c62-bf3f-6ea5b93f39b9",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/users/:identifier/escalations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "users",
+                            ":identifier",
+                            "escalations"
+                          ],
+                          "variable": [
+                            {
+                              "id": "2d4c07ad-3565-4cba-be47-138b02fc3a13",
+                              "key": "identifier",
+                              "value": "<string>",
+                              "description": "(Required) Identifier of the user, which can be the user ID or username (email)."
+                            }
+                          ]
+                        },
+                        "description": "Lists the escalation policies that include the specified user."
+                      },
+                      "response": [
+                        {
+                          "id": "967a950c-7675-434c-a8a3-7c41de76b053",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/users/:identifier/escalations",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "users",
+                                ":identifier",
+                                "escalations"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:58.000Z",
+                          "updatedAt": "2026-07-28T02:27:58.000Z",
+                          "uid": "35240-967a950c-7675-434c-a8a3-7c41de76b053"
+                        },
+                        {
+                          "id": "bdfe5851-44db-407a-9444-a054f7cb83cb",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/users/:identifier/escalations",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "users",
+                                ":identifier",
+                                "escalations"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:58.000Z",
+                          "updatedAt": "2026-07-28T02:27:58.000Z",
+                          "uid": "35240-bdfe5851-44db-407a-9444-a054f7cb83cb"
+                        },
+                        {
+                          "id": "9902d98d-ebe8-4c22-9cc2-7bcf41a7c3fe",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/users/:identifier/escalations",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "users",
+                                ":identifier",
+                                "escalations"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:58.000Z",
+                          "updatedAt": "2026-07-28T02:27:58.000Z",
+                          "uid": "35240-9902d98d-ebe8-4c22-9cc2-7bcf41a7c3fe"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:58.000Z",
+                      "updatedAt": "2026-07-28T02:27:58.000Z",
+                      "uid": "35240-6c5a15ef-d9df-4c62-bf3f-6ea5b93f39b9"
+                    }
+                  ],
+                  "id": "5e3eb7d8-0563-426f-bcf9-d50e70b430d9",
+                  "createdAt": "2026-07-28T02:27:58.000Z",
+                  "updatedAt": "2026-07-28T02:27:58.000Z",
+                  "uid": "35240-5e3eb7d8-0563-426f-bcf9-d50e70b430d9"
+                },
+                {
+                  "name": "teams",
+                  "item": [
+                    {
+                      "name": "List user teams",
+                      "id": "7894546f-469f-46ff-98ed-c72f997d8aaf",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/users/:identifier/teams",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "users",
+                            ":identifier",
+                            "teams"
+                          ],
+                          "variable": [
+                            {
+                              "id": "0382b999-5647-4896-af8f-55a4daf451d0",
+                              "key": "identifier",
+                              "value": "<string>",
+                              "description": "(Required) Identifier of the user, which can be the user ID or username (email)."
+                            }
+                          ]
+                        },
+                        "description": "Lists the teams that the specified user belongs to."
+                      },
+                      "response": [
+                        {
+                          "id": "0c11c008-815a-45ac-a11f-4e3a92807599",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/users/:identifier/teams",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "users",
+                                ":identifier",
+                                "teams"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:58.000Z",
+                          "updatedAt": "2026-07-28T02:27:58.000Z",
+                          "uid": "35240-0c11c008-815a-45ac-a11f-4e3a92807599"
+                        },
+                        {
+                          "id": "2f1e43d0-0c7b-4825-a048-a33035bbce33",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/users/:identifier/teams",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "users",
+                                ":identifier",
+                                "teams"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:58.000Z",
+                          "updatedAt": "2026-07-28T02:27:58.000Z",
+                          "uid": "35240-2f1e43d0-0c7b-4825-a048-a33035bbce33"
+                        },
+                        {
+                          "id": "f1a3879c-ca98-46e1-8d8d-8e8ac76055a7",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/users/:identifier/teams",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "users",
+                                ":identifier",
+                                "teams"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:58.000Z",
+                          "updatedAt": "2026-07-28T02:27:58.000Z",
+                          "uid": "35240-f1a3879c-ca98-46e1-8d8d-8e8ac76055a7"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:58.000Z",
+                      "updatedAt": "2026-07-28T02:27:58.000Z",
+                      "uid": "35240-7894546f-469f-46ff-98ed-c72f997d8aaf"
+                    }
+                  ],
+                  "id": "f974a8f6-fb4b-4902-9942-f5aa679d8de7",
+                  "createdAt": "2026-07-28T02:27:58.000Z",
+                  "updatedAt": "2026-07-28T02:27:58.000Z",
+                  "uid": "35240-f974a8f6-fb4b-4902-9942-f5aa679d8de7"
+                },
+                {
+                  "name": "schedules",
+                  "item": [
+                    {
+                      "name": "List user schedules",
+                      "id": "b3959708-d9e3-4f0d-8775-53c5fe8b2b65",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/users/:identifier/schedules",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "users",
+                            ":identifier",
+                            "schedules"
+                          ],
+                          "variable": [
+                            {
+                              "id": "2b7f0782-35d1-428a-9b92-d12761475661",
+                              "key": "identifier",
+                              "value": "<string>",
+                              "description": "(Required) Identifier of the user, which can be the user ID or username (email)."
+                            }
+                          ]
+                        },
+                        "description": "Lists the on-call schedules that include the specified user."
+                      },
+                      "response": [
+                        {
+                          "id": "617e0fe5-38c9-4b83-81e2-2ca14f9ec69e",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/users/:identifier/schedules",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "users",
+                                ":identifier",
+                                "schedules"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:58.000Z",
+                          "updatedAt": "2026-07-28T02:27:58.000Z",
+                          "uid": "35240-617e0fe5-38c9-4b83-81e2-2ca14f9ec69e"
+                        },
+                        {
+                          "id": "bfd46844-3e6d-4ab2-b525-fd26cc0719fc",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/users/:identifier/schedules",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "users",
+                                ":identifier",
+                                "schedules"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:58.000Z",
+                          "updatedAt": "2026-07-28T02:27:58.000Z",
+                          "uid": "35240-bfd46844-3e6d-4ab2-b525-fd26cc0719fc"
+                        },
+                        {
+                          "id": "6fc4de77-5c0d-4d99-a33c-ba6852c02dcb",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/users/:identifier/schedules",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "users",
+                                ":identifier",
+                                "schedules"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:58.000Z",
+                          "updatedAt": "2026-07-28T02:27:58.000Z",
+                          "uid": "35240-6fc4de77-5c0d-4d99-a33c-ba6852c02dcb"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:58.000Z",
+                      "updatedAt": "2026-07-28T02:27:58.000Z",
+                      "uid": "35240-b3959708-d9e3-4f0d-8775-53c5fe8b2b65"
+                    }
+                  ],
+                  "id": "30ef1a45-0b2a-4930-a955-97f49ec93971",
+                  "createdAt": "2026-07-28T02:27:58.000Z",
+                  "updatedAt": "2026-07-28T02:27:58.000Z",
+                  "uid": "35240-30ef1a45-0b2a-4930-a955-97f49ec93971"
+                },
+                {
+                  "name": "Get user",
+                  "id": "3554dd60-d747-42cf-a06a-0395d1dedb7c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/users/:identifier",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "users",
+                        ":identifier"
+                      ],
+                      "variable": [
+                        {
+                          "id": "834e098c-0849-49bd-bd36-aba6aa870aa2",
+                          "key": "identifier",
+                          "value": "<string>",
+                          "description": "(Required) Identifier of the user, which can be the user ID or username (email)."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves details of a specific user by ID or username."
+                  },
+                  "response": [
+                    {
+                      "id": "9aff482a-e466-4502-b156-be8e668d1a3c",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/users/:identifier",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "users",
+                            ":identifier"
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"username\": \"<email>\",\n    \"fullName\": \"<string>\",\n    \"role\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"blocked\": \"<boolean>\",\n    \"verified\": \"<boolean>\",\n    \"timeZone\": \"<string>\",\n    \"locale\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"mutedUntil\": \"<dateTime>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"details\": {\n      \"elit_b1\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"nulla_4\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"et_7\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:58.000Z",
+                      "updatedAt": "2026-07-28T02:27:58.000Z",
+                      "uid": "35240-9aff482a-e466-4502-b156-be8e668d1a3c"
+                    },
+                    {
+                      "id": "b7322f62-8364-43d7-9af6-763cb04140a0",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/users/:identifier",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "users",
+                            ":identifier"
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:58.000Z",
+                      "updatedAt": "2026-07-28T02:27:58.000Z",
+                      "uid": "35240-b7322f62-8364-43d7-9af6-763cb04140a0"
+                    },
+                    {
+                      "id": "0360f5e4-cc98-4588-a45c-39333f48cd1d",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/users/:identifier",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "users",
+                            ":identifier"
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:58.000Z",
+                      "updatedAt": "2026-07-28T02:27:58.000Z",
+                      "uid": "35240-0360f5e4-cc98-4588-a45c-39333f48cd1d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:58.000Z",
+                  "updatedAt": "2026-07-28T02:27:58.000Z",
+                  "uid": "35240-3554dd60-d747-42cf-a06a-0395d1dedb7c"
+                },
+                {
+                  "name": "Update user",
+                  "id": "d1af34e4-b010-421d-86e5-f0b010324bab",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"fullName\": \"<string>\",\n  \"role\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"skypeUsername\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"userAddress\": {\n    \"country\": \"<string>\",\n    \"state\": \"<string>\",\n    \"city\": \"<string>\",\n    \"line\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"details\": {\n    \"magna_38\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sunta\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"non_c6\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/users/:identifier",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "users",
+                        ":identifier"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6ad1b31e-9127-4b12-bc78-691e6fc7172b",
+                          "key": "identifier",
+                          "value": "<string>",
+                          "description": "(Required) Identifier of the user, which can be the user ID or username (email)."
+                        }
+                      ]
+                    },
+                    "description": "Updates the specified user's profile information."
+                  },
+                  "response": [
+                    {
+                      "id": "911ed459-2e49-463b-bfbd-79ba7769053f",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"fullName\": \"<string>\",\n  \"role\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"skypeUsername\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"userAddress\": {\n    \"country\": \"<string>\",\n    \"state\": \"<string>\",\n    \"city\": \"<string>\",\n    \"line\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"details\": {\n    \"magna_38\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sunta\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"non_c6\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/users/:identifier",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "users",
+                            ":identifier"
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"result\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:58.000Z",
+                      "updatedAt": "2026-07-28T02:27:58.000Z",
+                      "uid": "35240-911ed459-2e49-463b-bfbd-79ba7769053f"
+                    },
+                    {
+                      "id": "806d8f94-7399-4795-b46e-38e0972576fb",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"fullName\": \"<string>\",\n  \"role\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"skypeUsername\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"userAddress\": {\n    \"country\": \"<string>\",\n    \"state\": \"<string>\",\n    \"city\": \"<string>\",\n    \"line\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"details\": {\n    \"magna_38\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sunta\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"non_c6\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/users/:identifier",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "users",
+                            ":identifier"
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:58.000Z",
+                      "updatedAt": "2026-07-28T02:27:58.000Z",
+                      "uid": "35240-806d8f94-7399-4795-b46e-38e0972576fb"
+                    },
+                    {
+                      "id": "b82b5a34-f3d1-4952-acef-39ab4c44e212",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"fullName\": \"<string>\",\n  \"role\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"skypeUsername\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"userAddress\": {\n    \"country\": \"<string>\",\n    \"state\": \"<string>\",\n    \"city\": \"<string>\",\n    \"line\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"details\": {\n    \"magna_38\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sunta\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"non_c6\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/users/:identifier",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "users",
+                            ":identifier"
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:58.000Z",
+                      "updatedAt": "2026-07-28T02:27:58.000Z",
+                      "uid": "35240-b82b5a34-f3d1-4952-acef-39ab4c44e212"
+                    },
+                    {
+                      "id": "8e2606fe-c87d-4c65-af4e-2fc34c2b20d0",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"fullName\": \"<string>\",\n  \"role\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"skypeUsername\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"userAddress\": {\n    \"country\": \"<string>\",\n    \"state\": \"<string>\",\n    \"city\": \"<string>\",\n    \"line\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"details\": {\n    \"magna_38\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sunta\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"non_c6\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/users/:identifier",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "users",
+                            ":identifier"
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:58.000Z",
+                      "updatedAt": "2026-07-28T02:27:58.000Z",
+                      "uid": "35240-8e2606fe-c87d-4c65-af4e-2fc34c2b20d0"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:58.000Z",
+                  "updatedAt": "2026-07-28T02:27:58.000Z",
+                  "uid": "35240-d1af34e4-b010-421d-86e5-f0b010324bab"
+                },
+                {
+                  "name": "Delete user",
+                  "id": "f73af6c0-c6fb-41a1-862f-a406fd912537",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/users/:identifier",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "users",
+                        ":identifier"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d10bc5aa-9a8b-4e55-9c89-62cd052e8fd5",
+                          "key": "identifier",
+                          "value": "<string>",
+                          "description": "(Required) Identifier of the user, which can be the user ID or username (email)."
+                        }
+                      ]
+                    },
+                    "description": "Deletes the specified user from the OpsGenie account."
+                  },
+                  "response": [
+                    {
+                      "id": "5fd6eca9-ab52-4fb3-b64e-172ee23af9a1",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/users/:identifier",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "users",
+                            ":identifier"
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"result\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:58.000Z",
+                      "updatedAt": "2026-07-28T02:27:58.000Z",
+                      "uid": "35240-5fd6eca9-ab52-4fb3-b64e-172ee23af9a1"
+                    },
+                    {
+                      "id": "dd8a3afd-cbb4-49d2-9806-f7eba5c8cb87",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/users/:identifier",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "users",
+                            ":identifier"
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:58.000Z",
+                      "updatedAt": "2026-07-28T02:27:58.000Z",
+                      "uid": "35240-dd8a3afd-cbb4-49d2-9806-f7eba5c8cb87"
+                    },
+                    {
+                      "id": "d0d64f10-0724-4430-90ac-11c022666eb8",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/users/:identifier",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "users",
+                            ":identifier"
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:58.000Z",
+                      "updatedAt": "2026-07-28T02:27:58.000Z",
+                      "uid": "35240-d0d64f10-0724-4430-90ac-11c022666eb8"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:58.000Z",
+                  "updatedAt": "2026-07-28T02:27:58.000Z",
+                  "uid": "35240-f73af6c0-c6fb-41a1-862f-a406fd912537"
+                }
+              ],
+              "id": "79b33404-fc09-406f-926f-e78c76a92fd7",
+              "createdAt": "2026-07-28T02:27:58.000Z",
+              "updatedAt": "2026-07-28T02:27:58.000Z",
+              "uid": "35240-79b33404-fc09-406f-926f-e78c76a92fd7"
+            },
+            {
+              "name": "Create user",
+              "id": "032f2e70-9928-40bb-b9ef-e097eea8e46a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<email>\",\n  \"fullName\": \"<string>\",\n  \"role\": {\n    \"id\": \"<string>\",\n    \"name\": \"Observer\"\n  },\n  \"skypeUsername\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"userAddress\": {\n    \"country\": \"<string>\",\n    \"state\": \"<string>\",\n    \"city\": \"<string>\",\n    \"line\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"details\": {\n    \"incididuntce\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"invitationDisabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "users"
+                  ]
+                },
+                "description": "Creates a new user in the OpsGenie account."
+              },
+              "response": [
+                {
+                  "id": "79d29329-39fb-4591-a796-563ddca506a0",
+                  "name": "Created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"<email>\",\n  \"fullName\": \"<string>\",\n  \"role\": {\n    \"id\": \"<string>\",\n    \"name\": \"Observer\"\n  },\n  \"skypeUsername\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"userAddress\": {\n    \"country\": \"<string>\",\n    \"state\": \"<string>\",\n    \"city\": \"<string>\",\n    \"line\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"details\": {\n    \"incididuntce\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"invitationDisabled\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/users",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "users"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"result\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:58.000Z",
+                  "updatedAt": "2026-07-28T02:27:58.000Z",
+                  "uid": "35240-79d29329-39fb-4591-a796-563ddca506a0"
+                },
+                {
+                  "id": "292cb2cc-5ac0-43f4-8307-e6f5b9d85754",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"<email>\",\n  \"fullName\": \"<string>\",\n  \"role\": {\n    \"id\": \"<string>\",\n    \"name\": \"Observer\"\n  },\n  \"skypeUsername\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"userAddress\": {\n    \"country\": \"<string>\",\n    \"state\": \"<string>\",\n    \"city\": \"<string>\",\n    \"line\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"details\": {\n    \"incididuntce\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"invitationDisabled\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/users",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "users"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:58.000Z",
+                  "updatedAt": "2026-07-28T02:27:58.000Z",
+                  "uid": "35240-292cb2cc-5ac0-43f4-8307-e6f5b9d85754"
+                },
+                {
+                  "id": "d3ce5190-40c4-402d-9c30-4f670ceacc14",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"<email>\",\n  \"fullName\": \"<string>\",\n  \"role\": {\n    \"id\": \"<string>\",\n    \"name\": \"Observer\"\n  },\n  \"skypeUsername\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"userAddress\": {\n    \"country\": \"<string>\",\n    \"state\": \"<string>\",\n    \"city\": \"<string>\",\n    \"line\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"details\": {\n    \"incididuntce\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"invitationDisabled\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/users",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "users"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:58.000Z",
+                  "updatedAt": "2026-07-28T02:27:58.000Z",
+                  "uid": "35240-d3ce5190-40c4-402d-9c30-4f670ceacc14"
+                },
+                {
+                  "id": "90aa038a-b731-4efe-ba38-ed2de8378b62",
+                  "name": "Unprocessable Entity",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"<email>\",\n  \"fullName\": \"<string>\",\n  \"role\": {\n    \"id\": \"<string>\",\n    \"name\": \"Observer\"\n  },\n  \"skypeUsername\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"userAddress\": {\n    \"country\": \"<string>\",\n    \"state\": \"<string>\",\n    \"city\": \"<string>\",\n    \"line\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"details\": {\n    \"incididuntce\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"invitationDisabled\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/users",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "users"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:58.000Z",
+                  "updatedAt": "2026-07-28T02:27:58.000Z",
+                  "uid": "35240-90aa038a-b731-4efe-ba38-ed2de8378b62"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:58.000Z",
+              "updatedAt": "2026-07-28T02:27:58.000Z",
+              "uid": "35240-032f2e70-9928-40bb-b9ef-e097eea8e46a"
+            },
+            {
+              "name": "List users",
+              "id": "3e6837bd-9448-498e-ba9d-3636445005b8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/users?limit=20&offset=0&sort=insertedAt&order=asc&query=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "users"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of users to return.",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Starting index for pagination.",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Field to sort results by.",
+                      "key": "sort",
+                      "value": "insertedAt"
+                    },
+                    {
+                      "description": "Sort order for results.",
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "description": "Query to filter users by username, fullName, or blocked status.",
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Returns a list of users in the OpsGenie account."
+              },
+              "response": [
+                {
+                  "id": "fe53a64d-e874-41e6-85c9-e551d3fa36f2",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/users?limit=20&offset=0&sort=insertedAt&order=asc&query=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "users"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of users to return.",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Starting index for pagination.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Field to sort results by.",
+                          "key": "sort",
+                          "value": "insertedAt"
+                        },
+                        {
+                          "description": "Sort order for results.",
+                          "key": "order",
+                          "value": "asc"
+                        },
+                        {
+                          "description": "Query to filter users by username, fullName, or blocked status.",
+                          "key": "query",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"username\": \"<email>\",\n      \"fullName\": \"<string>\",\n      \"role\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"blocked\": \"<boolean>\",\n      \"verified\": \"<boolean>\",\n      \"timeZone\": \"<string>\",\n      \"locale\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"mutedUntil\": \"<dateTime>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"details\": {\n        \"mollit8c5\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"veniamc0d\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"username\": \"<email>\",\n      \"fullName\": \"<string>\",\n      \"role\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"blocked\": \"<boolean>\",\n      \"verified\": \"<boolean>\",\n      \"timeZone\": \"<string>\",\n      \"locale\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"mutedUntil\": \"<dateTime>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"details\": {\n        \"consequat_6\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"magna_d\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"eiusmodb17\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  ],\n  \"totalCount\": \"<integer>\",\n  \"paging\": {\n    \"next\": \"<string>\",\n    \"first\": \"<string>\"\n  },\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:58.000Z",
+                  "updatedAt": "2026-07-28T02:27:58.000Z",
+                  "uid": "35240-fe53a64d-e874-41e6-85c9-e551d3fa36f2"
+                },
+                {
+                  "id": "e9bd7b6a-6d6a-41dd-b267-540348acedc7",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/users?limit=20&offset=0&sort=insertedAt&order=asc&query=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "users"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of users to return.",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Starting index for pagination.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Field to sort results by.",
+                          "key": "sort",
+                          "value": "insertedAt"
+                        },
+                        {
+                          "description": "Sort order for results.",
+                          "key": "order",
+                          "value": "asc"
+                        },
+                        {
+                          "description": "Query to filter users by username, fullName, or blocked status.",
+                          "key": "query",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:58.000Z",
+                  "updatedAt": "2026-07-28T02:27:58.000Z",
+                  "uid": "35240-e9bd7b6a-6d6a-41dd-b267-540348acedc7"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:58.000Z",
+              "updatedAt": "2026-07-28T02:27:58.000Z",
+              "uid": "35240-3e6837bd-9448-498e-ba9d-3636445005b8"
+            }
+          ],
+          "id": "6d5872a2-eb2d-4000-b80b-74a48f19b548",
+          "createdAt": "2026-07-28T02:27:58.000Z",
+          "updatedAt": "2026-07-28T02:27:58.000Z",
+          "uid": "35240-6d5872a2-eb2d-4000-b80b-74a48f19b548"
+        }
+      ],
+      "id": "5011ec8e-c682-41a6-b6b7-2dd179f6af0a",
+      "createdAt": "2026-07-28T02:27:58.000Z",
+      "updatedAt": "2026-07-28T02:27:58.000Z",
+      "uid": "35240-5011ec8e-c682-41a6-b6b7-2dd179f6af0a"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.opsgenie.com"
+    }
+  ]
+}

@@ -1,0 +1,1372 @@
+{
+  "info": {
+    "_postman_id": "8ad982f9-9070-4511-a75e-cb53214e5e54",
+    "name": "OpsGenie Account Rotations API",
+    "description": "The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.\n\nContact Support:\n Name: Atlassian Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:32.000Z",
+    "updatedAt": "2026-07-28T02:27:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8ad982f9-9070-4511-a75e-cb53214e5e54"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "schedules",
+          "item": [
+            {
+              "name": "{identifier}",
+              "item": [
+                {
+                  "name": "rotations",
+                  "item": [
+                    {
+                      "name": "{rotationId}",
+                      "item": [
+                        {
+                          "name": "Get schedule rotation",
+                          "id": "38c75ffa-330b-465a-aa6f-aa3b36585570",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/schedules/:identifier/rotations/:rotationId?identifierType=id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "schedules",
+                                ":identifier",
+                                "rotations",
+                                ":rotationId"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or name.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "3b53b419-dd71-40f2-95c5-0df04843014d",
+                                  "key": "identifier",
+                                  "value": "<string>",
+                                  "description": "(Required) Identifier of the schedule, which can be the schedule ID or name."
+                                },
+                                {
+                                  "id": "960dcb9d-b138-4e4d-a280-154958e50af2",
+                                  "key": "rotationId",
+                                  "value": "<string>",
+                                  "description": "(Required) Identifier of the rotation."
+                                }
+                              ]
+                            },
+                            "description": "Retrieves the details of a specific rotation."
+                          },
+                          "response": [
+                            {
+                              "id": "b8266395-ef96-4654-9a5e-3ce7a5687556",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/schedules/:identifier/rotations/:rotationId?identifierType=id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "schedules",
+                                    ":identifier",
+                                    "rotations",
+                                    ":rotationId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Type of the identifier. Possible values are id or name.",
+                                      "key": "identifierType",
+                                      "value": "id"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "identifier"
+                                    },
+                                    {
+                                      "key": "rotationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"data\": {\n    \"type\": \"daily\",\n    \"participants\": [\n      {\n        \"type\": \"team\",\n        \"id\": \"<string>\",\n        \"username\": \"<string>\"\n      },\n      {\n        \"type\": \"team\",\n        \"id\": \"<string>\",\n        \"username\": \"<string>\"\n      }\n    ],\n    \"startDate\": \"<dateTime>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"endDate\": \"<dateTime>\",\n    \"length\": \"<integer>\",\n    \"timeRestriction\": {\n      \"type\": \"time-of-day\",\n      \"restrictions\": [\n        {\n          \"startDay\": \"<string>\",\n          \"startHour\": \"<integer>\",\n          \"startMin\": \"<integer>\",\n          \"endDay\": \"<string>\",\n          \"endHour\": \"<integer>\",\n          \"endMin\": \"<integer>\"\n        },\n        {\n          \"startDay\": \"<string>\",\n          \"startHour\": \"<integer>\",\n          \"startMin\": \"<integer>\",\n          \"endDay\": \"<string>\",\n          \"endHour\": \"<integer>\",\n          \"endMin\": \"<integer>\"\n        }\n      ]\n    }\n  },\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:32.000Z",
+                              "updatedAt": "2026-07-28T02:27:32.000Z",
+                              "uid": "35240-b8266395-ef96-4654-9a5e-3ce7a5687556"
+                            },
+                            {
+                              "id": "e1805833-ea37-431a-bd32-524bd83ca46c",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/schedules/:identifier/rotations/:rotationId?identifierType=id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "schedules",
+                                    ":identifier",
+                                    "rotations",
+                                    ":rotationId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Type of the identifier. Possible values are id or name.",
+                                      "key": "identifierType",
+                                      "value": "id"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "identifier"
+                                    },
+                                    {
+                                      "key": "rotationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:32.000Z",
+                              "updatedAt": "2026-07-28T02:27:32.000Z",
+                              "uid": "35240-e1805833-ea37-431a-bd32-524bd83ca46c"
+                            },
+                            {
+                              "id": "8027bae0-2a06-4489-98be-eb686c5a9651",
+                              "name": "Not Found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/schedules/:identifier/rotations/:rotationId?identifierType=id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "schedules",
+                                    ":identifier",
+                                    "rotations",
+                                    ":rotationId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Type of the identifier. Possible values are id or name.",
+                                      "key": "identifierType",
+                                      "value": "id"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "identifier"
+                                    },
+                                    {
+                                      "key": "rotationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:32.000Z",
+                              "updatedAt": "2026-07-28T02:27:32.000Z",
+                              "uid": "35240-8027bae0-2a06-4489-98be-eb686c5a9651"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:27:32.000Z",
+                          "updatedAt": "2026-07-28T02:27:32.000Z",
+                          "uid": "35240-38c75ffa-330b-465a-aa6f-aa3b36585570"
+                        },
+                        {
+                          "name": "Update schedule rotation",
+                          "id": "5e2abbfc-8a82-4aea-8606-5ccf0e6ede97",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"hourly\",\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"length\": \"<integer>\",\n  \"participants\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\",\n      \"username\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\",\n      \"username\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/schedules/:identifier/rotations/:rotationId?identifierType=id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "schedules",
+                                ":identifier",
+                                "rotations",
+                                ":rotationId"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or name.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "a9bb56c8-3dc5-48c2-aad0-46eb2b742136",
+                                  "key": "identifier",
+                                  "value": "<string>",
+                                  "description": "(Required) Identifier of the schedule, which can be the schedule ID or name."
+                                },
+                                {
+                                  "id": "6ce6e168-4821-4075-8ea8-d52f1ad260ba",
+                                  "key": "rotationId",
+                                  "value": "<string>",
+                                  "description": "(Required) Identifier of the rotation."
+                                }
+                              ]
+                            },
+                            "description": "Updates the specified rotation within a schedule."
+                          },
+                          "response": [
+                            {
+                              "id": "0ea8689e-b5ce-43a9-8a30-9777a99c7237",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"hourly\",\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"length\": \"<integer>\",\n  \"participants\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\",\n      \"username\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\",\n      \"username\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/schedules/:identifier/rotations/:rotationId?identifierType=id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "schedules",
+                                    ":identifier",
+                                    "rotations",
+                                    ":rotationId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Type of the identifier. Possible values are id or name.",
+                                      "key": "identifierType",
+                                      "value": "id"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "identifier"
+                                    },
+                                    {
+                                      "key": "rotationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"result\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:32.000Z",
+                              "updatedAt": "2026-07-28T02:27:32.000Z",
+                              "uid": "35240-0ea8689e-b5ce-43a9-8a30-9777a99c7237"
+                            },
+                            {
+                              "id": "b854a855-41a5-4bf4-bc63-f66da20f48d7",
+                              "name": "Bad Request",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"hourly\",\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"length\": \"<integer>\",\n  \"participants\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\",\n      \"username\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\",\n      \"username\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/schedules/:identifier/rotations/:rotationId?identifierType=id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "schedules",
+                                    ":identifier",
+                                    "rotations",
+                                    ":rotationId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Type of the identifier. Possible values are id or name.",
+                                      "key": "identifierType",
+                                      "value": "id"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "identifier"
+                                    },
+                                    {
+                                      "key": "rotationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:32.000Z",
+                              "updatedAt": "2026-07-28T02:27:32.000Z",
+                              "uid": "35240-b854a855-41a5-4bf4-bc63-f66da20f48d7"
+                            },
+                            {
+                              "id": "121f4ffa-776b-45f0-8585-33b8371bdd87",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"hourly\",\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"length\": \"<integer>\",\n  \"participants\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\",\n      \"username\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\",\n      \"username\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/schedules/:identifier/rotations/:rotationId?identifierType=id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "schedules",
+                                    ":identifier",
+                                    "rotations",
+                                    ":rotationId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Type of the identifier. Possible values are id or name.",
+                                      "key": "identifierType",
+                                      "value": "id"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "identifier"
+                                    },
+                                    {
+                                      "key": "rotationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:32.000Z",
+                              "updatedAt": "2026-07-28T02:27:32.000Z",
+                              "uid": "35240-121f4ffa-776b-45f0-8585-33b8371bdd87"
+                            },
+                            {
+                              "id": "fe842885-ce90-4b96-8baf-4eb29b615327",
+                              "name": "Not Found",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"hourly\",\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"length\": \"<integer>\",\n  \"participants\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\",\n      \"username\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\",\n      \"username\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/schedules/:identifier/rotations/:rotationId?identifierType=id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "schedules",
+                                    ":identifier",
+                                    "rotations",
+                                    ":rotationId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Type of the identifier. Possible values are id or name.",
+                                      "key": "identifierType",
+                                      "value": "id"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "identifier"
+                                    },
+                                    {
+                                      "key": "rotationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:32.000Z",
+                              "updatedAt": "2026-07-28T02:27:32.000Z",
+                              "uid": "35240-fe842885-ce90-4b96-8baf-4eb29b615327"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:27:32.000Z",
+                          "updatedAt": "2026-07-28T02:27:32.000Z",
+                          "uid": "35240-5e2abbfc-8a82-4aea-8606-5ccf0e6ede97"
+                        },
+                        {
+                          "name": "Delete schedule rotation",
+                          "id": "96d7f83b-fe2d-41ab-bf89-79834bdcc58d",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/schedules/:identifier/rotations/:rotationId?identifierType=id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "schedules",
+                                ":identifier",
+                                "rotations",
+                                ":rotationId"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or name.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "70362168-096c-448f-b365-2e4da7eb663a",
+                                  "key": "identifier",
+                                  "value": "<string>",
+                                  "description": "(Required) Identifier of the schedule, which can be the schedule ID or name."
+                                },
+                                {
+                                  "id": "ca219ea6-6f71-4a6e-9786-fde87564ac47",
+                                  "key": "rotationId",
+                                  "value": "<string>",
+                                  "description": "(Required) Identifier of the rotation."
+                                }
+                              ]
+                            },
+                            "description": "Deletes the specified rotation from the schedule."
+                          },
+                          "response": [
+                            {
+                              "id": "73856025-0b4e-4f79-9959-e22133ad655a",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/schedules/:identifier/rotations/:rotationId?identifierType=id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "schedules",
+                                    ":identifier",
+                                    "rotations",
+                                    ":rotationId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Type of the identifier. Possible values are id or name.",
+                                      "key": "identifierType",
+                                      "value": "id"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "identifier"
+                                    },
+                                    {
+                                      "key": "rotationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"result\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:32.000Z",
+                              "updatedAt": "2026-07-28T02:27:32.000Z",
+                              "uid": "35240-73856025-0b4e-4f79-9959-e22133ad655a"
+                            },
+                            {
+                              "id": "42a008ad-ae38-4785-9cf7-b2b2fd1ebf00",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/schedules/:identifier/rotations/:rotationId?identifierType=id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "schedules",
+                                    ":identifier",
+                                    "rotations",
+                                    ":rotationId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Type of the identifier. Possible values are id or name.",
+                                      "key": "identifierType",
+                                      "value": "id"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "identifier"
+                                    },
+                                    {
+                                      "key": "rotationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:32.000Z",
+                              "updatedAt": "2026-07-28T02:27:32.000Z",
+                              "uid": "35240-42a008ad-ae38-4785-9cf7-b2b2fd1ebf00"
+                            },
+                            {
+                              "id": "0144fb5c-d16d-45f1-9102-c6914c56885a",
+                              "name": "Not Found",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/schedules/:identifier/rotations/:rotationId?identifierType=id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "schedules",
+                                    ":identifier",
+                                    "rotations",
+                                    ":rotationId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Type of the identifier. Possible values are id or name.",
+                                      "key": "identifierType",
+                                      "value": "id"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "identifier"
+                                    },
+                                    {
+                                      "key": "rotationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:32.000Z",
+                              "updatedAt": "2026-07-28T02:27:32.000Z",
+                              "uid": "35240-0144fb5c-d16d-45f1-9102-c6914c56885a"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:27:32.000Z",
+                          "updatedAt": "2026-07-28T02:27:32.000Z",
+                          "uid": "35240-96d7f83b-fe2d-41ab-bf89-79834bdcc58d"
+                        }
+                      ],
+                      "id": "5e1352bc-61cc-4587-a4b8-1023e2e7a2c9",
+                      "createdAt": "2026-07-28T02:27:32.000Z",
+                      "updatedAt": "2026-07-28T02:27:32.000Z",
+                      "uid": "35240-5e1352bc-61cc-4587-a4b8-1023e2e7a2c9"
+                    },
+                    {
+                      "name": "Create schedule rotation",
+                      "id": "ca49608c-42c4-4e46-b299-02dd3a8fc151",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"daily\",\n  \"participants\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\",\n      \"username\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\",\n      \"username\": \"<string>\"\n    }\n  ],\n  \"startDate\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"endDate\": \"<dateTime>\",\n  \"length\": \"<integer>\",\n  \"timeRestriction\": {\n    \"type\": \"<string>\",\n    \"restrictions\": [\n      {\n        \"startDay\": \"<string>\",\n        \"startHour\": \"<integer>\",\n        \"startMin\": \"<integer>\",\n        \"endDay\": \"<string>\",\n        \"endHour\": \"<integer>\",\n        \"endMin\": \"<integer>\"\n      },\n      {\n        \"startDay\": \"<string>\",\n        \"startHour\": \"<integer>\",\n        \"startMin\": \"<integer>\",\n        \"endDay\": \"<string>\",\n        \"endHour\": \"<integer>\",\n        \"endMin\": \"<integer>\"\n      }\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/schedules/:identifier/rotations?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "schedules",
+                            ":identifier",
+                            "rotations"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or name.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "5aff7484-a0f3-4b80-8787-b4284d64b398",
+                              "key": "identifier",
+                              "value": "<string>",
+                              "description": "(Required) Identifier of the schedule, which can be the schedule ID or name."
+                            }
+                          ]
+                        },
+                        "description": "Creates a new rotation within the specified schedule."
+                      },
+                      "response": [
+                        {
+                          "id": "d5276c5c-8273-47af-859b-b9ea785768ee",
+                          "name": "Created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"type\": \"daily\",\n  \"participants\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\",\n      \"username\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\",\n      \"username\": \"<string>\"\n    }\n  ],\n  \"startDate\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"endDate\": \"<dateTime>\",\n  \"length\": \"<integer>\",\n  \"timeRestriction\": {\n    \"type\": \"<string>\",\n    \"restrictions\": [\n      {\n        \"startDay\": \"<string>\",\n        \"startHour\": \"<integer>\",\n        \"startMin\": \"<integer>\",\n        \"endDay\": \"<string>\",\n        \"endHour\": \"<integer>\",\n        \"endMin\": \"<integer>\"\n      },\n      {\n        \"startDay\": \"<string>\",\n        \"startHour\": \"<integer>\",\n        \"startMin\": \"<integer>\",\n        \"endDay\": \"<string>\",\n        \"endHour\": \"<integer>\",\n        \"endMin\": \"<integer>\"\n      }\n    ]\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/schedules/:identifier/rotations?identifierType=id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "schedules",
+                                ":identifier",
+                                "rotations"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or name.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"result\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:32.000Z",
+                          "updatedAt": "2026-07-28T02:27:32.000Z",
+                          "uid": "35240-d5276c5c-8273-47af-859b-b9ea785768ee"
+                        },
+                        {
+                          "id": "f144ca2a-925a-44fd-b7d1-0e9034f5f9e0",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"type\": \"daily\",\n  \"participants\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\",\n      \"username\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\",\n      \"username\": \"<string>\"\n    }\n  ],\n  \"startDate\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"endDate\": \"<dateTime>\",\n  \"length\": \"<integer>\",\n  \"timeRestriction\": {\n    \"type\": \"<string>\",\n    \"restrictions\": [\n      {\n        \"startDay\": \"<string>\",\n        \"startHour\": \"<integer>\",\n        \"startMin\": \"<integer>\",\n        \"endDay\": \"<string>\",\n        \"endHour\": \"<integer>\",\n        \"endMin\": \"<integer>\"\n      },\n      {\n        \"startDay\": \"<string>\",\n        \"startHour\": \"<integer>\",\n        \"startMin\": \"<integer>\",\n        \"endDay\": \"<string>\",\n        \"endHour\": \"<integer>\",\n        \"endMin\": \"<integer>\"\n      }\n    ]\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/schedules/:identifier/rotations?identifierType=id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "schedules",
+                                ":identifier",
+                                "rotations"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or name.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:32.000Z",
+                          "updatedAt": "2026-07-28T02:27:32.000Z",
+                          "uid": "35240-f144ca2a-925a-44fd-b7d1-0e9034f5f9e0"
+                        },
+                        {
+                          "id": "7852635b-3b82-4528-a10c-4372c92297e4",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"type\": \"daily\",\n  \"participants\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\",\n      \"username\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\",\n      \"username\": \"<string>\"\n    }\n  ],\n  \"startDate\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"endDate\": \"<dateTime>\",\n  \"length\": \"<integer>\",\n  \"timeRestriction\": {\n    \"type\": \"<string>\",\n    \"restrictions\": [\n      {\n        \"startDay\": \"<string>\",\n        \"startHour\": \"<integer>\",\n        \"startMin\": \"<integer>\",\n        \"endDay\": \"<string>\",\n        \"endHour\": \"<integer>\",\n        \"endMin\": \"<integer>\"\n      },\n      {\n        \"startDay\": \"<string>\",\n        \"startHour\": \"<integer>\",\n        \"startMin\": \"<integer>\",\n        \"endDay\": \"<string>\",\n        \"endHour\": \"<integer>\",\n        \"endMin\": \"<integer>\"\n      }\n    ]\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/schedules/:identifier/rotations?identifierType=id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "schedules",
+                                ":identifier",
+                                "rotations"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or name.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:32.000Z",
+                          "updatedAt": "2026-07-28T02:27:32.000Z",
+                          "uid": "35240-7852635b-3b82-4528-a10c-4372c92297e4"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:32.000Z",
+                      "updatedAt": "2026-07-28T02:27:32.000Z",
+                      "uid": "35240-ca49608c-42c4-4e46-b299-02dd3a8fc151"
+                    },
+                    {
+                      "name": "List schedule rotations",
+                      "id": "d27c393a-cc93-4299-bf0b-2f9405a9b489",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/schedules/:identifier/rotations?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "schedules",
+                            ":identifier",
+                            "rotations"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or name.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "2783ebcf-48cd-45b5-9d0c-a23ac2cbbee4",
+                              "key": "identifier",
+                              "value": "<string>",
+                              "description": "(Required) Identifier of the schedule, which can be the schedule ID or name."
+                            }
+                          ]
+                        },
+                        "description": "Lists the rotations within the specified schedule."
+                      },
+                      "response": [
+                        {
+                          "id": "01f3bc04-b081-41c8-b800-01acfc003928",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/schedules/:identifier/rotations?identifierType=id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "schedules",
+                                ":identifier",
+                                "rotations"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or name.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": [\n    {\n      \"type\": \"daily\",\n      \"participants\": [\n        {\n          \"type\": \"user\",\n          \"id\": \"<string>\",\n          \"username\": \"<string>\"\n        },\n        {\n          \"type\": \"user\",\n          \"id\": \"<string>\",\n          \"username\": \"<string>\"\n        }\n      ],\n      \"startDate\": \"<dateTime>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"endDate\": \"<dateTime>\",\n      \"length\": \"<integer>\",\n      \"timeRestriction\": {\n        \"type\": \"weekday-and-time-of-day\",\n        \"restrictions\": [\n          {\n            \"startDay\": \"<string>\",\n            \"startHour\": \"<integer>\",\n            \"startMin\": \"<integer>\",\n            \"endDay\": \"<string>\",\n            \"endHour\": \"<integer>\",\n            \"endMin\": \"<integer>\"\n          },\n          {\n            \"startDay\": \"<string>\",\n            \"startHour\": \"<integer>\",\n            \"startMin\": \"<integer>\",\n            \"endDay\": \"<string>\",\n            \"endHour\": \"<integer>\",\n            \"endMin\": \"<integer>\"\n          }\n        ]\n      }\n    },\n    {\n      \"type\": \"daily\",\n      \"participants\": [\n        {\n          \"type\": \"user\",\n          \"id\": \"<string>\",\n          \"username\": \"<string>\"\n        },\n        {\n          \"type\": \"none\",\n          \"id\": \"<string>\",\n          \"username\": \"<string>\"\n        }\n      ],\n      \"startDate\": \"<dateTime>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"endDate\": \"<dateTime>\",\n      \"length\": \"<integer>\",\n      \"timeRestriction\": {\n        \"type\": \"time-of-day\",\n        \"restrictions\": [\n          {\n            \"startDay\": \"<string>\",\n            \"startHour\": \"<integer>\",\n            \"startMin\": \"<integer>\",\n            \"endDay\": \"<string>\",\n            \"endHour\": \"<integer>\",\n            \"endMin\": \"<integer>\"\n          },\n          {\n            \"startDay\": \"<string>\",\n            \"startHour\": \"<integer>\",\n            \"startMin\": \"<integer>\",\n            \"endDay\": \"<string>\",\n            \"endHour\": \"<integer>\",\n            \"endMin\": \"<integer>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:32.000Z",
+                          "updatedAt": "2026-07-28T02:27:32.000Z",
+                          "uid": "35240-01f3bc04-b081-41c8-b800-01acfc003928"
+                        },
+                        {
+                          "id": "6c578ca9-faa7-41b4-95c1-b336dad721bb",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/schedules/:identifier/rotations?identifierType=id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "schedules",
+                                ":identifier",
+                                "rotations"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or name.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:32.000Z",
+                          "updatedAt": "2026-07-28T02:27:32.000Z",
+                          "uid": "35240-6c578ca9-faa7-41b4-95c1-b336dad721bb"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:32.000Z",
+                      "updatedAt": "2026-07-28T02:27:32.000Z",
+                      "uid": "35240-d27c393a-cc93-4299-bf0b-2f9405a9b489"
+                    }
+                  ],
+                  "id": "98117ccd-46b7-493d-8f45-b85110437884",
+                  "createdAt": "2026-07-28T02:27:32.000Z",
+                  "updatedAt": "2026-07-28T02:27:32.000Z",
+                  "uid": "35240-98117ccd-46b7-493d-8f45-b85110437884"
+                }
+              ],
+              "id": "709d2ebe-5d41-4d0e-a306-6c194a8fc9f8",
+              "createdAt": "2026-07-28T02:27:32.000Z",
+              "updatedAt": "2026-07-28T02:27:32.000Z",
+              "uid": "35240-709d2ebe-5d41-4d0e-a306-6c194a8fc9f8"
+            }
+          ],
+          "id": "86a71d0c-813c-48be-adae-f80126fa34a2",
+          "createdAt": "2026-07-28T02:27:32.000Z",
+          "updatedAt": "2026-07-28T02:27:32.000Z",
+          "uid": "35240-86a71d0c-813c-48be-adae-f80126fa34a2"
+        }
+      ],
+      "id": "0ee94f96-cb45-4d87-987a-2a076bd288f9",
+      "createdAt": "2026-07-28T02:27:32.000Z",
+      "updatedAt": "2026-07-28T02:27:32.000Z",
+      "uid": "35240-0ee94f96-cb45-4d87-987a-2a076bd288f9"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.opsgenie.com"
+    }
+  ]
+}

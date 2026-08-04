@@ -1,0 +1,524 @@
+openapi: 3.1.0
+info:
+  title: OpsGenie Team API
+  description: >-
+    The OpsGenie Team API allows developers to manage teams within the
+    OpsGenie platform programmatically. It provides endpoints for creating,
+    updating, retrieving, and deleting teams, as well as managing team
+    members and their roles. Teams are a core organizational unit in
+    OpsGenie used to route alerts and assign on-call responsibilities
+    to groups of users.
+  version: '2.0.0'
+  contact:
+    name: Atlassian Support
+    url: https://support.atlassian.com/opsgenie/
+  termsOfService: https://www.atlassian.com/legal/cloud-terms-of-service
+externalDocs:
+  description: OpsGenie Team API Documentation
+  url: https://docs.opsgenie.com/docs/team-api
+servers:
+  - url: https://api.opsgenie.com
+    description: Production Server
+  - url: https://api.eu.opsgenie.com
+    description: EU Production Server
+tags:
+  - name: Teams
+    description: >-
+      Operations for creating, retrieving, updating, and deleting teams
+      and managing team membership.
+security:
+  - genieKey: []
+paths:
+  /v2/teams:
+    post:
+      operationId: createTeam
+      summary: Create team
+      description: >-
+        Creates a new team in OpsGenie with the specified members and roles.
+      tags:
+        - Teams
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTeamRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      operationId: listTeams
+      summary: List teams
+      description: >-
+        Returns a list of all teams in the OpsGenie account.
+      tags:
+        - Teams
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListTeamsResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/teams/{identifier}:
+    get:
+      operationId: getTeam
+      summary: Get team
+      description: >-
+        Retrieves the details of a specific team by its ID or name.
+      tags:
+        - Teams
+      parameters:
+        - $ref: '#/components/parameters/TeamIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTeamResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    patch:
+      operationId: updateTeam
+      summary: Update team
+      description: >-
+        Updates the specified team's information including name, description,
+        and members.
+      tags:
+        - Teams
+      parameters:
+        - $ref: '#/components/parameters/TeamIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTeamRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteTeam
+      summary: Delete team
+      description: >-
+        Deletes the specified team from the OpsGenie account.
+      tags:
+        - Teams
+      parameters:
+        - $ref: '#/components/parameters/TeamIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/teams/{identifier}/members:
+    get:
+      operationId: listTeamMembers
+      summary: List team members
+      description: >-
+        Lists the members of the specified team.
+      tags:
+        - Teams
+      parameters:
+        - $ref: '#/components/parameters/TeamIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListTeamMembersResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/teams/{identifier}/logs:
+    get:
+      operationId: listTeamLogs
+      summary: List team logs
+      description: >-
+        Lists the activity logs for the specified team.
+      tags:
+        - Teams
+      parameters:
+        - $ref: '#/components/parameters/TeamIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+        - name: limit
+          in: query
+          description: >-
+            Maximum number of log entries to return.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: offset
+          in: query
+          description: >-
+            Starting index for pagination.
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+        - name: order
+          in: query
+          description: >-
+            Sort order.
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            default: desc
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListTeamLogsResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  securitySchemes:
+    genieKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        API key authentication using the GenieKey scheme.
+  parameters:
+    TeamIdentifier:
+      name: identifier
+      in: path
+      required: true
+      description: >-
+        Identifier of the team, which can be the team ID or name.
+      schema:
+        type: string
+    IdentifierType:
+      name: identifierType
+      in: query
+      description: >-
+        Type of the identifier. Possible values are id or name. Default is id.
+      schema:
+        type: string
+        enum:
+          - id
+          - name
+        default: id
+  schemas:
+    CreateTeamRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: >-
+            Name of the team.
+        description:
+          type: string
+          description: >-
+            Description of the team.
+        members:
+          type: array
+          description: >-
+            List of team members with their roles.
+          items:
+            $ref: '#/components/schemas/TeamMember'
+    UpdateTeamRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: >-
+            Updated name for the team.
+        description:
+          type: string
+          description: >-
+            Updated description.
+        members:
+          type: array
+          description: >-
+            Updated list of team members.
+          items:
+            $ref: '#/components/schemas/TeamMember'
+    TeamMember:
+      type: object
+      required:
+        - user
+        - role
+      properties:
+        user:
+          type: object
+          description: >-
+            User reference.
+          properties:
+            id:
+              type: string
+              description: >-
+                User ID.
+            username:
+              type: string
+              description: >-
+                Username (email) of the user.
+        role:
+          type: string
+          enum:
+            - admin
+            - user
+          description: >-
+            Role of the member within the team.
+    Team:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier of the team.
+        name:
+          type: string
+          description: >-
+            Name of the team.
+        description:
+          type: string
+          description: >-
+            Description of the team.
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/TeamMember'
+          description: >-
+            Members of the team.
+        links:
+          type: object
+          properties:
+            web:
+              type: string
+              format: uri
+              description: >-
+                URL to the team dashboard in the OpsGenie web UI.
+            api:
+              type: string
+              format: uri
+              description: >-
+                API URL for this team.
+          description: >-
+            Related links.
+    ListTeamsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Team'
+          description: >-
+            List of teams.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    GetTeamResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Team'
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    ListTeamMembersResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TeamMember'
+          description: >-
+            List of team members.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    ListTeamLogsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              log:
+                type: string
+                description: >-
+                  Log message.
+              owner:
+                type: string
+                description: >-
+                  User who triggered the action.
+              createdAt:
+                type: string
+                format: date-time
+                description: >-
+                  When the log entry was created.
+          description: >-
+            List of log entries.
+        paging:
+          type: object
+          properties:
+            next:
+              type: string
+              description: >-
+                URL for the next page.
+            first:
+              type: string
+              description: >-
+                URL for the first page.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: >-
+            Result message.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: >-
+            Error message.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.

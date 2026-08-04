@@ -1,0 +1,504 @@
+openapi: 3.1.0
+info:
+  title: OpsGenie Escalation API
+  description: >-
+    The OpsGenie Escalation API allows developers to manage escalation
+    policies that define how alerts are routed when initial responders do
+    not acknowledge them. It provides endpoints for creating, updating,
+    retrieving, and deleting escalation configurations. Escalation rules
+    define the sequence of notifications sent to teams, users, and
+    schedules with configurable delay intervals to ensure incidents are
+    addressed in a timely manner.
+  version: '2.0.0'
+  contact:
+    name: Atlassian Support
+    url: https://support.atlassian.com/opsgenie/
+  termsOfService: https://www.atlassian.com/legal/cloud-terms-of-service
+externalDocs:
+  description: OpsGenie Escalation API Documentation
+  url: https://docs.opsgenie.com/docs/escalation-api
+servers:
+  - url: https://api.opsgenie.com
+    description: Production Server
+  - url: https://api.eu.opsgenie.com
+    description: EU Production Server
+tags:
+  - name: Escalations
+    description: >-
+      Operations for creating, retrieving, updating, and deleting
+      escalation policies.
+security:
+  - genieKey: []
+paths:
+  /v2/escalations:
+    post:
+      operationId: createEscalation
+      summary: Create escalation
+      description: >-
+        Creates a new escalation policy with the specified rules and
+        notification sequence.
+      tags:
+        - Escalations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEscalationRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      operationId: listEscalations
+      summary: List escalations
+      description: >-
+        Returns a list of all escalation policies in the account.
+      tags:
+        - Escalations
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListEscalationsResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/escalations/{identifier}:
+    get:
+      operationId: getEscalation
+      summary: Get escalation
+      description: >-
+        Retrieves the details of a specific escalation policy.
+      tags:
+        - Escalations
+      parameters:
+        - $ref: '#/components/parameters/EscalationIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetEscalationResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    patch:
+      operationId: updateEscalation
+      summary: Update escalation
+      description: >-
+        Updates the specified escalation policy.
+      tags:
+        - Escalations
+      parameters:
+        - $ref: '#/components/parameters/EscalationIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateEscalationRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteEscalation
+      summary: Delete escalation
+      description: >-
+        Deletes the specified escalation policy.
+      tags:
+        - Escalations
+      parameters:
+        - $ref: '#/components/parameters/EscalationIdentifier'
+        - $ref: '#/components/parameters/IdentifierType'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  securitySchemes:
+    genieKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        API key authentication using the GenieKey scheme.
+  parameters:
+    EscalationIdentifier:
+      name: identifier
+      in: path
+      required: true
+      description: >-
+        Identifier of the escalation, which can be the ID or name.
+      schema:
+        type: string
+    IdentifierType:
+      name: identifierType
+      in: query
+      description: >-
+        Type of the identifier. Possible values are id or name.
+      schema:
+        type: string
+        enum:
+          - id
+          - name
+        default: id
+  schemas:
+    CreateEscalationRequest:
+      type: object
+      required:
+        - name
+        - rules
+      properties:
+        name:
+          type: string
+          description: >-
+            Name of the escalation policy.
+        description:
+          type: string
+          description: >-
+            Description of the escalation policy.
+        ownerTeam:
+          type: object
+          description: >-
+            Team that owns the escalation.
+          properties:
+            id:
+              type: string
+              description: >-
+                Team ID.
+            name:
+              type: string
+              description: >-
+                Team name.
+        rules:
+          type: array
+          description: >-
+            Escalation rules defining the notification sequence.
+          items:
+            $ref: '#/components/schemas/EscalationRule'
+        repeat:
+          type: object
+          description: >-
+            Repeat configuration for the escalation.
+          properties:
+            waitInterval:
+              type: integer
+              description: >-
+                Wait interval in minutes before repeating.
+            count:
+              type: integer
+              description: >-
+                Number of times to repeat.
+            resetRecipientStates:
+              type: boolean
+              description: >-
+                Whether to reset recipient notification states on repeat.
+            closeAlertAfterAll:
+              type: boolean
+              description: >-
+                Whether to close the alert after all repeats.
+    UpdateEscalationRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: >-
+            Updated name.
+        description:
+          type: string
+          description: >-
+            Updated description.
+        ownerTeam:
+          type: object
+          description: >-
+            Updated owner team.
+          properties:
+            id:
+              type: string
+              description: >-
+                Team ID.
+            name:
+              type: string
+              description: >-
+                Team name.
+        rules:
+          type: array
+          description: >-
+            Updated escalation rules.
+          items:
+            $ref: '#/components/schemas/EscalationRule'
+        repeat:
+          type: object
+          description: >-
+            Updated repeat configuration.
+          properties:
+            waitInterval:
+              type: integer
+              description: >-
+                Wait interval in minutes.
+            count:
+              type: integer
+              description: >-
+                Number of times to repeat.
+            resetRecipientStates:
+              type: boolean
+              description: >-
+                Reset states on repeat.
+            closeAlertAfterAll:
+              type: boolean
+              description: >-
+                Close alert after all repeats.
+    EscalationRule:
+      type: object
+      required:
+        - condition
+        - notifyType
+        - delay
+        - recipient
+      properties:
+        condition:
+          type: string
+          enum:
+            - if-not-acked
+            - if-not-closed
+          description: >-
+            Condition that triggers the escalation rule.
+        notifyType:
+          type: string
+          enum:
+            - default
+            - next
+            - previous
+            - users
+            - admins
+            - random
+            - all
+          description: >-
+            Type of notification to send.
+        delay:
+          type: object
+          description: >-
+            Delay before this rule is triggered.
+          properties:
+            timeAmount:
+              type: integer
+              description: >-
+                Amount of time to wait.
+            timeUnit:
+              type: string
+              enum:
+                - minutes
+                - hours
+                - days
+              description: >-
+                Unit of time for the delay.
+        recipient:
+          type: object
+          description: >-
+            Recipient of the escalation notification.
+          properties:
+            id:
+              type: string
+              description: >-
+                Recipient ID.
+            name:
+              type: string
+              description: >-
+                Recipient name.
+            username:
+              type: string
+              description: >-
+                Username for user recipients.
+            type:
+              type: string
+              enum:
+                - user
+                - team
+                - schedule
+              description: >-
+                Type of recipient.
+    Escalation:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier.
+        name:
+          type: string
+          description: >-
+            Name of the escalation.
+        description:
+          type: string
+          description: >-
+            Description.
+        ownerTeam:
+          type: object
+          properties:
+            id:
+              type: string
+              description: >-
+                Team ID.
+            name:
+              type: string
+              description: >-
+                Team name.
+          description: >-
+            Owner team.
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/EscalationRule'
+          description: >-
+            Escalation rules.
+        repeat:
+          type: object
+          properties:
+            waitInterval:
+              type: integer
+              description: >-
+                Wait interval in minutes.
+            count:
+              type: integer
+              description: >-
+                Repeat count.
+            resetRecipientStates:
+              type: boolean
+              description: >-
+                Reset recipient states.
+            closeAlertAfterAll:
+              type: boolean
+              description: >-
+                Close alert after all repeats.
+          description: >-
+            Repeat configuration.
+    ListEscalationsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Escalation'
+          description: >-
+            List of escalations.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    GetEscalationResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Escalation'
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: >-
+            Result message.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: >-
+            Error message.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.

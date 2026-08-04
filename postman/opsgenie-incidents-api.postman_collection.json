@@ -1,0 +1,1765 @@
+{
+  "info": {
+    "_postman_id": "7e660e74-9084-4c10-9c05-a3fcdf3c9f9c",
+    "name": "OpsGenie Account Incidents API",
+    "description": "The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.\n\nContact Support:\n Name: Atlassian Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:21.000Z",
+    "updatedAt": "2026-07-28T02:27:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7e660e74-9084-4c10-9c05-a3fcdf3c9f9c"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "incidents",
+          "item": [
+            {
+              "name": "create",
+              "item": [
+                {
+                  "name": "Create incident",
+                  "id": "d2bd2e68-b977-4df0-a6cc-beda6fcda74b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"responders\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"team\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"team\"\n    }\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"details\": {\n    \"in_6_1\": \"<string>\",\n    \"elit_932\": \"<string>\"\n  },\n  \"priority\": \"P3\",\n  \"impactedServices\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"statusPageEntry\": {\n    \"title\": \"<string>\",\n    \"detail\": \"<string>\"\n  },\n  \"notifyStakeholders\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/incidents/create",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "incidents",
+                        "create"
+                      ]
+                    },
+                    "description": "Creates a new incident in OpsGenie. The request is processed asynchronously and returns a request ID that can be used to track the status of the incident creation. Available to Standard and Enterprise plan users."
+                  },
+                  "response": [
+                    {
+                      "id": "28627233-cf19-4832-bb5d-802d1c8b083a",
+                      "name": "Accepted",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"responders\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"team\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"team\"\n    }\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"details\": {\n    \"in_6_1\": \"<string>\",\n    \"elit_932\": \"<string>\"\n  },\n  \"priority\": \"P3\",\n  \"impactedServices\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"statusPageEntry\": {\n    \"title\": \"<string>\",\n    \"detail\": \"<string>\"\n  },\n  \"notifyStakeholders\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/incidents/create",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "incidents",
+                            "create"
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"result\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:21.000Z",
+                      "updatedAt": "2026-07-28T02:27:21.000Z",
+                      "uid": "35240-28627233-cf19-4832-bb5d-802d1c8b083a"
+                    },
+                    {
+                      "id": "a5134ed9-1c88-4897-9d3a-55575ba9e7c8",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"responders\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"team\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"team\"\n    }\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"details\": {\n    \"in_6_1\": \"<string>\",\n    \"elit_932\": \"<string>\"\n  },\n  \"priority\": \"P3\",\n  \"impactedServices\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"statusPageEntry\": {\n    \"title\": \"<string>\",\n    \"detail\": \"<string>\"\n  },\n  \"notifyStakeholders\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/incidents/create",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "incidents",
+                            "create"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:21.000Z",
+                      "updatedAt": "2026-07-28T02:27:21.000Z",
+                      "uid": "35240-a5134ed9-1c88-4897-9d3a-55575ba9e7c8"
+                    },
+                    {
+                      "id": "5b9f9855-5937-4b12-94f9-396f749ba458",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"responders\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"team\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"team\"\n    }\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"details\": {\n    \"in_6_1\": \"<string>\",\n    \"elit_932\": \"<string>\"\n  },\n  \"priority\": \"P3\",\n  \"impactedServices\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"statusPageEntry\": {\n    \"title\": \"<string>\",\n    \"detail\": \"<string>\"\n  },\n  \"notifyStakeholders\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/incidents/create",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "incidents",
+                            "create"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:21.000Z",
+                      "updatedAt": "2026-07-28T02:27:21.000Z",
+                      "uid": "35240-5b9f9855-5937-4b12-94f9-396f749ba458"
+                    },
+                    {
+                      "id": "90e882fa-9c51-442e-8a41-41553439b773",
+                      "name": "Unprocessable Entity",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"responders\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"team\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"team\"\n    }\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"details\": {\n    \"in_6_1\": \"<string>\",\n    \"elit_932\": \"<string>\"\n  },\n  \"priority\": \"P3\",\n  \"impactedServices\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"statusPageEntry\": {\n    \"title\": \"<string>\",\n    \"detail\": \"<string>\"\n  },\n  \"notifyStakeholders\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/incidents/create",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "incidents",
+                            "create"
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:21.000Z",
+                      "updatedAt": "2026-07-28T02:27:21.000Z",
+                      "uid": "35240-90e882fa-9c51-442e-8a41-41553439b773"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:21.000Z",
+                  "updatedAt": "2026-07-28T02:27:21.000Z",
+                  "uid": "35240-d2bd2e68-b977-4df0-a6cc-beda6fcda74b"
+                }
+              ],
+              "id": "db3000f9-6544-408c-85fe-8053daf7d3a9",
+              "createdAt": "2026-07-28T02:27:21.000Z",
+              "updatedAt": "2026-07-28T02:27:21.000Z",
+              "uid": "35240-db3000f9-6544-408c-85fe-8053daf7d3a9"
+            },
+            {
+              "name": "{identifier}",
+              "item": [
+                {
+                  "name": "close",
+                  "item": [
+                    {
+                      "name": "Close incident",
+                      "id": "53125137-3e1d-4f0a-b63f-dbac06602ce4",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"note\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/incidents/:identifier/close?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "incidents",
+                            ":identifier",
+                            "close"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or tiny. Default is id.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "e4ac4b83-99db-485d-b94b-c34deadd98e0",
+                              "key": "identifier",
+                              "value": "<string>",
+                              "description": "(Required) Identifier of the incident, which can be the incident ID or tiny ID."
+                            }
+                          ]
+                        },
+                        "description": "Closes the specified incident. The request is processed asynchronously."
+                      },
+                      "response": [
+                        {
+                          "id": "9225b420-5962-42ce-b351-c736ac70739a",
+                          "name": "Accepted",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"note\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/incidents/:identifier/close?identifierType=id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "incidents",
+                                ":identifier",
+                                "close"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or tiny. Default is id.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"result\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:21.000Z",
+                          "updatedAt": "2026-07-28T02:27:21.000Z",
+                          "uid": "35240-9225b420-5962-42ce-b351-c736ac70739a"
+                        },
+                        {
+                          "id": "1e8e8b2e-7db4-4561-836f-24fc5169af11",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"note\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/incidents/:identifier/close?identifierType=id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "incidents",
+                                ":identifier",
+                                "close"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or tiny. Default is id.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:21.000Z",
+                          "updatedAt": "2026-07-28T02:27:21.000Z",
+                          "uid": "35240-1e8e8b2e-7db4-4561-836f-24fc5169af11"
+                        },
+                        {
+                          "id": "c7312ef5-d657-4316-b0da-59585959edb3",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"note\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/incidents/:identifier/close?identifierType=id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "incidents",
+                                ":identifier",
+                                "close"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or tiny. Default is id.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:21.000Z",
+                          "updatedAt": "2026-07-28T02:27:21.000Z",
+                          "uid": "35240-c7312ef5-d657-4316-b0da-59585959edb3"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:21.000Z",
+                      "updatedAt": "2026-07-28T02:27:21.000Z",
+                      "uid": "35240-53125137-3e1d-4f0a-b63f-dbac06602ce4"
+                    }
+                  ],
+                  "id": "a70a89dc-f9a3-47b2-89b8-e3d29cae2cc0",
+                  "createdAt": "2026-07-28T02:27:21.000Z",
+                  "updatedAt": "2026-07-28T02:27:21.000Z",
+                  "uid": "35240-a70a89dc-f9a3-47b2-89b8-e3d29cae2cc0"
+                },
+                {
+                  "name": "resolve",
+                  "item": [
+                    {
+                      "name": "Resolve incident",
+                      "id": "c578da8a-a441-4814-9c98-cb291e5aae1c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"note\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/incidents/:identifier/resolve?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "incidents",
+                            ":identifier",
+                            "resolve"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or tiny. Default is id.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "78088d75-d5da-444a-90d9-43eb5eb5dce4",
+                              "key": "identifier",
+                              "value": "<string>",
+                              "description": "(Required) Identifier of the incident, which can be the incident ID or tiny ID."
+                            }
+                          ]
+                        },
+                        "description": "Resolves the specified incident. The request is processed asynchronously."
+                      },
+                      "response": [
+                        {
+                          "id": "b087adfc-fa7e-4821-8715-33c0092a0c35",
+                          "name": "Accepted",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"note\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/incidents/:identifier/resolve?identifierType=id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "incidents",
+                                ":identifier",
+                                "resolve"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or tiny. Default is id.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"result\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:21.000Z",
+                          "updatedAt": "2026-07-28T02:27:21.000Z",
+                          "uid": "35240-b087adfc-fa7e-4821-8715-33c0092a0c35"
+                        },
+                        {
+                          "id": "6ea5c3c5-ab52-4c5e-88aa-ad65be73a23a",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"note\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/incidents/:identifier/resolve?identifierType=id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "incidents",
+                                ":identifier",
+                                "resolve"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or tiny. Default is id.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:21.000Z",
+                          "updatedAt": "2026-07-28T02:27:21.000Z",
+                          "uid": "35240-6ea5c3c5-ab52-4c5e-88aa-ad65be73a23a"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:21.000Z",
+                      "updatedAt": "2026-07-28T02:27:21.000Z",
+                      "uid": "35240-c578da8a-a441-4814-9c98-cb291e5aae1c"
+                    }
+                  ],
+                  "id": "2a7777a0-5349-4168-a22c-5dde7e92e5b5",
+                  "createdAt": "2026-07-28T02:27:21.000Z",
+                  "updatedAt": "2026-07-28T02:27:21.000Z",
+                  "uid": "35240-2a7777a0-5349-4168-a22c-5dde7e92e5b5"
+                },
+                {
+                  "name": "Get incident",
+                  "id": "33c90523-3a71-4550-94e9-33886497a762",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/incidents/:identifier?identifierType=id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "incidents",
+                        ":identifier"
+                      ],
+                      "query": [
+                        {
+                          "description": "Type of the identifier. Possible values are id or tiny. Default is id.",
+                          "key": "identifierType",
+                          "value": "id"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "bbabcf21-1ca2-4025-a026-bae2f87eb274",
+                          "key": "identifier",
+                          "value": "<string>",
+                          "description": "(Required) Identifier of the incident, which can be the incident ID or tiny ID."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the details of a specific incident identified by its ID."
+                  },
+                  "response": [
+                    {
+                      "id": "d9b90f44-6e48-43e4-a185-5bdb212f9a61",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/incidents/:identifier?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "incidents",
+                            ":identifier"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or tiny. Default is id.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"tinyId\": \"<string>\",\n    \"message\": \"<string>\",\n    \"status\": \"open\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"priority\": \"P5\",\n    \"ownerTeam\": \"<string>\",\n    \"responders\": [\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"impactedServices\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"description\": \"<string>\",\n    \"details\": {\n      \"laborisdd\": \"<string>\",\n      \"Ute\": \"<string>\"\n    }\n  },\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:21.000Z",
+                      "updatedAt": "2026-07-28T02:27:21.000Z",
+                      "uid": "35240-d9b90f44-6e48-43e4-a185-5bdb212f9a61"
+                    },
+                    {
+                      "id": "06695057-c298-491b-af8e-66a5a6dd92db",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/incidents/:identifier?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "incidents",
+                            ":identifier"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or tiny. Default is id.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:21.000Z",
+                      "updatedAt": "2026-07-28T02:27:21.000Z",
+                      "uid": "35240-06695057-c298-491b-af8e-66a5a6dd92db"
+                    },
+                    {
+                      "id": "3937ea95-4f02-44b4-ba68-65a9d0718a58",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/incidents/:identifier?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "incidents",
+                            ":identifier"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or tiny. Default is id.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:21.000Z",
+                      "updatedAt": "2026-07-28T02:27:21.000Z",
+                      "uid": "35240-3937ea95-4f02-44b4-ba68-65a9d0718a58"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:21.000Z",
+                  "updatedAt": "2026-07-28T02:27:21.000Z",
+                  "uid": "35240-33c90523-3a71-4550-94e9-33886497a762"
+                },
+                {
+                  "name": "Delete incident",
+                  "id": "c75f91ac-172c-4572-b91c-5055741fa660",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/incidents/:identifier?identifierType=id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "incidents",
+                        ":identifier"
+                      ],
+                      "query": [
+                        {
+                          "description": "Type of the identifier. Possible values are id or tiny. Default is id.",
+                          "key": "identifierType",
+                          "value": "id"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "054da47b-be57-4c98-b342-c77894995001",
+                          "key": "identifier",
+                          "value": "<string>",
+                          "description": "(Required) Identifier of the incident, which can be the incident ID or tiny ID."
+                        }
+                      ]
+                    },
+                    "description": "Deletes the specified incident. The request is processed asynchronously."
+                  },
+                  "response": [
+                    {
+                      "id": "a5f1ec24-1891-462c-a62f-d6e0944d4fb3",
+                      "name": "Accepted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/incidents/:identifier?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "incidents",
+                            ":identifier"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or tiny. Default is id.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"result\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:21.000Z",
+                      "updatedAt": "2026-07-28T02:27:21.000Z",
+                      "uid": "35240-a5f1ec24-1891-462c-a62f-d6e0944d4fb3"
+                    },
+                    {
+                      "id": "5ce9d8b7-fdc4-4639-82f4-18fba28d3d92",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/incidents/:identifier?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "incidents",
+                            ":identifier"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or tiny. Default is id.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:21.000Z",
+                      "updatedAt": "2026-07-28T02:27:21.000Z",
+                      "uid": "35240-5ce9d8b7-fdc4-4639-82f4-18fba28d3d92"
+                    },
+                    {
+                      "id": "e42cda90-06d7-409b-814c-635433b00238",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/incidents/:identifier?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "incidents",
+                            ":identifier"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or tiny. Default is id.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:21.000Z",
+                      "updatedAt": "2026-07-28T02:27:21.000Z",
+                      "uid": "35240-e42cda90-06d7-409b-814c-635433b00238"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:21.000Z",
+                  "updatedAt": "2026-07-28T02:27:21.000Z",
+                  "uid": "35240-c75f91ac-172c-4572-b91c-5055741fa660"
+                }
+              ],
+              "id": "bc9ec9f7-2ad4-4f92-8fb6-be02eac61c62",
+              "createdAt": "2026-07-28T02:27:21.000Z",
+              "updatedAt": "2026-07-28T02:27:21.000Z",
+              "uid": "35240-bc9ec9f7-2ad4-4f92-8fb6-be02eac61c62"
+            },
+            {
+              "name": "requests",
+              "item": [
+                {
+                  "name": "{requestId}",
+                  "item": [
+                    {
+                      "name": "Get incident request status",
+                      "id": "1b31f58c-742e-48ea-8c9a-ac61fe210093",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/incidents/requests/:requestId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "incidents",
+                            "requests",
+                            ":requestId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "391af8f8-80c8-476c-8926-a075c27dfb55",
+                              "key": "requestId",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the asynchronous request to check status for."
+                            }
+                          ]
+                        },
+                        "description": "Retrieves the status and incident details of an asynchronous request using the request ID returned from incident action endpoints."
+                      },
+                      "response": [
+                        {
+                          "id": "120ea043-6860-423d-b6d1-ec0f2ac24723",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/incidents/requests/:requestId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "incidents",
+                                "requests",
+                                ":requestId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "requestId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": {\n    \"success\": \"<boolean>\",\n    \"action\": \"<string>\",\n    \"processedAt\": \"<dateTime>\",\n    \"status\": \"<string>\",\n    \"incidentId\": \"<string>\"\n  },\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:21.000Z",
+                          "updatedAt": "2026-07-28T02:27:21.000Z",
+                          "uid": "35240-120ea043-6860-423d-b6d1-ec0f2ac24723"
+                        },
+                        {
+                          "id": "4838cb6e-109a-4467-9994-6334cb138e9b",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/incidents/requests/:requestId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "incidents",
+                                "requests",
+                                ":requestId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "requestId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:21.000Z",
+                          "updatedAt": "2026-07-28T02:27:21.000Z",
+                          "uid": "35240-4838cb6e-109a-4467-9994-6334cb138e9b"
+                        },
+                        {
+                          "id": "d21ec554-bef2-4c15-a5f6-b417270fdd44",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/incidents/requests/:requestId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "incidents",
+                                "requests",
+                                ":requestId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "requestId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:21.000Z",
+                          "updatedAt": "2026-07-28T02:27:21.000Z",
+                          "uid": "35240-d21ec554-bef2-4c15-a5f6-b417270fdd44"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:21.000Z",
+                      "updatedAt": "2026-07-28T02:27:21.000Z",
+                      "uid": "35240-1b31f58c-742e-48ea-8c9a-ac61fe210093"
+                    }
+                  ],
+                  "id": "24405ebb-d935-40f6-9562-51ac99e478be",
+                  "createdAt": "2026-07-28T02:27:21.000Z",
+                  "updatedAt": "2026-07-28T02:27:21.000Z",
+                  "uid": "35240-24405ebb-d935-40f6-9562-51ac99e478be"
+                }
+              ],
+              "id": "bfa481d3-a81b-4a3b-b0d6-a45e63c8fc5d",
+              "createdAt": "2026-07-28T02:27:21.000Z",
+              "updatedAt": "2026-07-28T02:27:21.000Z",
+              "uid": "35240-bfa481d3-a81b-4a3b-b0d6-a45e63c8fc5d"
+            },
+            {
+              "name": "List incidents",
+              "id": "47506e6b-3b1a-4d8a-99c9-150eff927586",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/incidents?query=<string>&offset=0&limit=20&sort=createdAt&order=desc",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "incidents"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Search query to filter incidents using OpsGenie query language.",
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Starting index for pagination.",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of items to return.",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Field to sort results by.",
+                      "key": "sort",
+                      "value": "createdAt"
+                    },
+                    {
+                      "description": "Sort order for the results.",
+                      "key": "order",
+                      "value": "desc"
+                    }
+                  ]
+                },
+                "description": "Returns a list of incidents matching the specified search criteria."
+              },
+              "response": [
+                {
+                  "id": "44a44479-06ff-4614-9cdd-db87040f102f",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/incidents?query=<string>&offset=0&limit=20&sort=createdAt&order=desc",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "incidents"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Search query to filter incidents using OpsGenie query language.",
+                          "key": "query",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Starting index for pagination.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of items to return.",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Field to sort results by.",
+                          "key": "sort",
+                          "value": "createdAt"
+                        },
+                        {
+                          "description": "Sort order for the results.",
+                          "key": "order",
+                          "value": "desc"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"tinyId\": \"<string>\",\n      \"message\": \"<string>\",\n      \"status\": \"closed\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"priority\": \"P2\",\n      \"ownerTeam\": \"<string>\",\n      \"responders\": [\n        {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"impactedServices\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"description\": \"<string>\",\n      \"details\": {\n        \"esse_d\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"tinyId\": \"<string>\",\n      \"message\": \"<string>\",\n      \"status\": \"resolved\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"priority\": \"P2\",\n      \"ownerTeam\": \"<string>\",\n      \"responders\": [\n        {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"impactedServices\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"description\": \"<string>\",\n      \"details\": {\n        \"qui_2\": \"<string>\"\n      }\n    }\n  ],\n  \"paging\": {\n    \"next\": \"<string>\",\n    \"first\": \"<string>\"\n  },\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:21.000Z",
+                  "updatedAt": "2026-07-28T02:27:21.000Z",
+                  "uid": "35240-44a44479-06ff-4614-9cdd-db87040f102f"
+                },
+                {
+                  "id": "12691553-d64f-44c2-835b-003ed9977f44",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/incidents?query=<string>&offset=0&limit=20&sort=createdAt&order=desc",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "incidents"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Search query to filter incidents using OpsGenie query language.",
+                          "key": "query",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Starting index for pagination.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of items to return.",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Field to sort results by.",
+                          "key": "sort",
+                          "value": "createdAt"
+                        },
+                        {
+                          "description": "Sort order for the results.",
+                          "key": "order",
+                          "value": "desc"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:21.000Z",
+                  "updatedAt": "2026-07-28T02:27:21.000Z",
+                  "uid": "35240-12691553-d64f-44c2-835b-003ed9977f44"
+                },
+                {
+                  "id": "687f5441-da76-49b7-80ae-975da2fe7789",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/incidents?query=<string>&offset=0&limit=20&sort=createdAt&order=desc",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "incidents"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Search query to filter incidents using OpsGenie query language.",
+                          "key": "query",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Starting index for pagination.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of items to return.",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Field to sort results by.",
+                          "key": "sort",
+                          "value": "createdAt"
+                        },
+                        {
+                          "description": "Sort order for the results.",
+                          "key": "order",
+                          "value": "desc"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:21.000Z",
+                  "updatedAt": "2026-07-28T02:27:21.000Z",
+                  "uid": "35240-687f5441-da76-49b7-80ae-975da2fe7789"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:21.000Z",
+              "updatedAt": "2026-07-28T02:27:21.000Z",
+              "uid": "35240-47506e6b-3b1a-4d8a-99c9-150eff927586"
+            }
+          ],
+          "id": "d53d5b4a-fbf3-40df-a5fc-46ea48a2ac73",
+          "createdAt": "2026-07-28T02:27:21.000Z",
+          "updatedAt": "2026-07-28T02:27:21.000Z",
+          "uid": "35240-d53d5b4a-fbf3-40df-a5fc-46ea48a2ac73"
+        }
+      ],
+      "id": "a7d6638e-ea2c-4767-bffc-64406346cea4",
+      "createdAt": "2026-07-28T02:27:21.000Z",
+      "updatedAt": "2026-07-28T02:27:21.000Z",
+      "uid": "35240-a7d6638e-ea2c-4767-bffc-64406346cea4"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.opsgenie.com"
+    }
+  ]
+}

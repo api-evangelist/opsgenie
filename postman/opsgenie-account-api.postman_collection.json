@@ -1,0 +1,176 @@
+{
+  "info": {
+    "_postman_id": "e27bb44c-8646-4c54-9f84-9dbef908b214",
+    "name": "OpsGenie Account API",
+    "description": "The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.\n\nContact Support:\n Name: Atlassian Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:26:52.000Z",
+    "updatedAt": "2026-07-28T02:26:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e27bb44c-8646-4c54-9f84-9dbef908b214"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "account",
+          "item": [
+            {
+              "name": "Get account info",
+              "id": "91444d25-321e-4fde-ab76-70e8a82a0e74",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/account",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "account"
+                  ]
+                },
+                "description": "Retrieves account-level information including the account name, plan details, and user count."
+              },
+              "response": [
+                {
+                  "id": "644db76d-77e2-4c23-aed1-fc796e77d636",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/account",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "account"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"name\": \"<string>\",\n    \"userCount\": \"<integer>\",\n    \"plan\": {\n      \"maxUserCount\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"isYearly\": \"<boolean>\"\n    }\n  },\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:26:53.000Z",
+                  "updatedAt": "2026-07-28T02:26:53.000Z",
+                  "uid": "35240-644db76d-77e2-4c23-aed1-fc796e77d636"
+                },
+                {
+                  "id": "36302bd3-5d84-479a-b4f8-9e6872ea4bd8",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/account",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "account"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:26:53.000Z",
+                  "updatedAt": "2026-07-28T02:26:53.000Z",
+                  "uid": "35240-36302bd3-5d84-479a-b4f8-9e6872ea4bd8"
+                }
+              ],
+              "createdAt": "2026-07-28T02:26:53.000Z",
+              "updatedAt": "2026-07-28T02:26:53.000Z",
+              "uid": "35240-91444d25-321e-4fde-ab76-70e8a82a0e74"
+            }
+          ],
+          "id": "23985370-5596-4149-a20f-9a0a38f566c4",
+          "createdAt": "2026-07-28T02:26:53.000Z",
+          "updatedAt": "2026-07-28T02:26:53.000Z",
+          "uid": "35240-23985370-5596-4149-a20f-9a0a38f566c4"
+        }
+      ],
+      "id": "ecf4415f-4224-4e22-b9d5-972a54336176",
+      "createdAt": "2026-07-28T02:26:53.000Z",
+      "updatedAt": "2026-07-28T02:26:53.000Z",
+      "uid": "35240-ecf4415f-4224-4e22-b9d5-972a54336176"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.opsgenie.com"
+    }
+  ]
+}

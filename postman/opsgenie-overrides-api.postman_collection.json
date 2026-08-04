@@ -1,0 +1,1372 @@
+{
+  "info": {
+    "_postman_id": "4e3c2301-5d69-4fca-8515-30941b4435a8",
+    "name": "OpsGenie Account Overrides API",
+    "description": "The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.\n\nContact Support:\n Name: Atlassian Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:31.000Z",
+    "updatedAt": "2026-07-28T02:27:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4e3c2301-5d69-4fca-8515-30941b4435a8"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "schedules",
+          "item": [
+            {
+              "name": "{identifier}",
+              "item": [
+                {
+                  "name": "overrides",
+                  "item": [
+                    {
+                      "name": "{alias}",
+                      "item": [
+                        {
+                          "name": "Get schedule override",
+                          "id": "483a9031-442d-44c0-a191-ff93e8dc7d11",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/schedules/:identifier/overrides/:alias?identifierType=id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "schedules",
+                                ":identifier",
+                                "overrides",
+                                ":alias"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or name.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "9a4f1936-7bb6-41c3-a431-aed0119c7e30",
+                                  "key": "identifier",
+                                  "value": "<string>",
+                                  "description": "(Required) Identifier of the schedule, which can be the schedule ID or name."
+                                },
+                                {
+                                  "id": "ada7acd1-b399-4fc4-aab9-5cd245dda702",
+                                  "key": "alias",
+                                  "value": "<string>",
+                                  "description": "(Required) Alias of the override."
+                                }
+                              ]
+                            },
+                            "description": "Retrieves the details of a specific schedule override."
+                          },
+                          "response": [
+                            {
+                              "id": "48310025-f6dd-4c3c-9221-4d7f07316c6b",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/schedules/:identifier/overrides/:alias?identifierType=id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "schedules",
+                                    ":identifier",
+                                    "overrides",
+                                    ":alias"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Type of the identifier. Possible values are id or name.",
+                                      "key": "identifierType",
+                                      "value": "id"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "identifier"
+                                    },
+                                    {
+                                      "key": "alias"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"data\": {\n    \"alias\": \"<string>\",\n    \"user\": {\n      \"id\": \"<string>\",\n      \"username\": \"<string>\"\n    },\n    \"startDate\": \"<dateTime>\",\n    \"endDate\": \"<dateTime>\",\n    \"rotations\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  },\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:31.000Z",
+                              "updatedAt": "2026-07-28T02:27:31.000Z",
+                              "uid": "35240-48310025-f6dd-4c3c-9221-4d7f07316c6b"
+                            },
+                            {
+                              "id": "b0111e60-c247-40a7-b938-9862bb7c37c9",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/schedules/:identifier/overrides/:alias?identifierType=id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "schedules",
+                                    ":identifier",
+                                    "overrides",
+                                    ":alias"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Type of the identifier. Possible values are id or name.",
+                                      "key": "identifierType",
+                                      "value": "id"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "identifier"
+                                    },
+                                    {
+                                      "key": "alias"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:31.000Z",
+                              "updatedAt": "2026-07-28T02:27:31.000Z",
+                              "uid": "35240-b0111e60-c247-40a7-b938-9862bb7c37c9"
+                            },
+                            {
+                              "id": "b868e579-2608-4c5d-b692-fe2b8a747860",
+                              "name": "Not Found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/schedules/:identifier/overrides/:alias?identifierType=id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "schedules",
+                                    ":identifier",
+                                    "overrides",
+                                    ":alias"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Type of the identifier. Possible values are id or name.",
+                                      "key": "identifierType",
+                                      "value": "id"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "identifier"
+                                    },
+                                    {
+                                      "key": "alias"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:31.000Z",
+                              "updatedAt": "2026-07-28T02:27:31.000Z",
+                              "uid": "35240-b868e579-2608-4c5d-b692-fe2b8a747860"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:27:31.000Z",
+                          "updatedAt": "2026-07-28T02:27:31.000Z",
+                          "uid": "35240-483a9031-442d-44c0-a191-ff93e8dc7d11"
+                        },
+                        {
+                          "name": "Update schedule override",
+                          "id": "6c2d5f7d-42b6-40bb-a77d-b385b8dc6f60",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"user\": {\n    \"id\": \"<string>\",\n    \"username\": \"<string>\"\n  },\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"rotations\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/schedules/:identifier/overrides/:alias?identifierType=id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "schedules",
+                                ":identifier",
+                                "overrides",
+                                ":alias"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or name.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "79299fe8-f518-46a3-aa56-19bdef1bf529",
+                                  "key": "identifier",
+                                  "value": "<string>",
+                                  "description": "(Required) Identifier of the schedule, which can be the schedule ID or name."
+                                },
+                                {
+                                  "id": "271cecac-aaaa-4d45-9a75-37c934b215be",
+                                  "key": "alias",
+                                  "value": "<string>",
+                                  "description": "(Required) Alias of the override."
+                                }
+                              ]
+                            },
+                            "description": "Updates an existing schedule override."
+                          },
+                          "response": [
+                            {
+                              "id": "83e293a5-aa4f-4a08-9b13-80822aed096a",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"user\": {\n    \"id\": \"<string>\",\n    \"username\": \"<string>\"\n  },\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"rotations\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/schedules/:identifier/overrides/:alias?identifierType=id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "schedules",
+                                    ":identifier",
+                                    "overrides",
+                                    ":alias"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Type of the identifier. Possible values are id or name.",
+                                      "key": "identifierType",
+                                      "value": "id"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "identifier"
+                                    },
+                                    {
+                                      "key": "alias"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"result\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:31.000Z",
+                              "updatedAt": "2026-07-28T02:27:31.000Z",
+                              "uid": "35240-83e293a5-aa4f-4a08-9b13-80822aed096a"
+                            },
+                            {
+                              "id": "19bd4449-ceb4-4cd1-a6bb-01d14a7ac776",
+                              "name": "Bad Request",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"user\": {\n    \"id\": \"<string>\",\n    \"username\": \"<string>\"\n  },\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"rotations\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/schedules/:identifier/overrides/:alias?identifierType=id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "schedules",
+                                    ":identifier",
+                                    "overrides",
+                                    ":alias"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Type of the identifier. Possible values are id or name.",
+                                      "key": "identifierType",
+                                      "value": "id"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "identifier"
+                                    },
+                                    {
+                                      "key": "alias"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:31.000Z",
+                              "updatedAt": "2026-07-28T02:27:31.000Z",
+                              "uid": "35240-19bd4449-ceb4-4cd1-a6bb-01d14a7ac776"
+                            },
+                            {
+                              "id": "71f84afb-8ed7-4d81-b858-c86831ec56df",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"user\": {\n    \"id\": \"<string>\",\n    \"username\": \"<string>\"\n  },\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"rotations\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/schedules/:identifier/overrides/:alias?identifierType=id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "schedules",
+                                    ":identifier",
+                                    "overrides",
+                                    ":alias"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Type of the identifier. Possible values are id or name.",
+                                      "key": "identifierType",
+                                      "value": "id"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "identifier"
+                                    },
+                                    {
+                                      "key": "alias"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:31.000Z",
+                              "updatedAt": "2026-07-28T02:27:31.000Z",
+                              "uid": "35240-71f84afb-8ed7-4d81-b858-c86831ec56df"
+                            },
+                            {
+                              "id": "9387c6ec-b3dc-412a-96b4-a631e513a2a5",
+                              "name": "Not Found",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"user\": {\n    \"id\": \"<string>\",\n    \"username\": \"<string>\"\n  },\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"rotations\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/schedules/:identifier/overrides/:alias?identifierType=id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "schedules",
+                                    ":identifier",
+                                    "overrides",
+                                    ":alias"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Type of the identifier. Possible values are id or name.",
+                                      "key": "identifierType",
+                                      "value": "id"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "identifier"
+                                    },
+                                    {
+                                      "key": "alias"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:31.000Z",
+                              "updatedAt": "2026-07-28T02:27:31.000Z",
+                              "uid": "35240-9387c6ec-b3dc-412a-96b4-a631e513a2a5"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:27:31.000Z",
+                          "updatedAt": "2026-07-28T02:27:31.000Z",
+                          "uid": "35240-6c2d5f7d-42b6-40bb-a77d-b385b8dc6f60"
+                        },
+                        {
+                          "name": "Delete schedule override",
+                          "id": "4056ce83-4d58-4968-9b13-0f307ed85ea2",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/schedules/:identifier/overrides/:alias?identifierType=id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "schedules",
+                                ":identifier",
+                                "overrides",
+                                ":alias"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or name.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "ab404f2c-61c8-476b-a600-ec396c73169b",
+                                  "key": "identifier",
+                                  "value": "<string>",
+                                  "description": "(Required) Identifier of the schedule, which can be the schedule ID or name."
+                                },
+                                {
+                                  "id": "8f83e78d-a361-4171-8c4e-da9f83a5abae",
+                                  "key": "alias",
+                                  "value": "<string>",
+                                  "description": "(Required) Alias of the override."
+                                }
+                              ]
+                            },
+                            "description": "Deletes the specified schedule override."
+                          },
+                          "response": [
+                            {
+                              "id": "3653414b-f345-4bfa-8f3f-e6646d6be95e",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/schedules/:identifier/overrides/:alias?identifierType=id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "schedules",
+                                    ":identifier",
+                                    "overrides",
+                                    ":alias"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Type of the identifier. Possible values are id or name.",
+                                      "key": "identifierType",
+                                      "value": "id"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "identifier"
+                                    },
+                                    {
+                                      "key": "alias"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"result\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:31.000Z",
+                              "updatedAt": "2026-07-28T02:27:31.000Z",
+                              "uid": "35240-3653414b-f345-4bfa-8f3f-e6646d6be95e"
+                            },
+                            {
+                              "id": "dc35676b-7cfc-4f7f-9004-a3d6b807e56e",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/schedules/:identifier/overrides/:alias?identifierType=id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "schedules",
+                                    ":identifier",
+                                    "overrides",
+                                    ":alias"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Type of the identifier. Possible values are id or name.",
+                                      "key": "identifierType",
+                                      "value": "id"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "identifier"
+                                    },
+                                    {
+                                      "key": "alias"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:31.000Z",
+                              "updatedAt": "2026-07-28T02:27:31.000Z",
+                              "uid": "35240-dc35676b-7cfc-4f7f-9004-a3d6b807e56e"
+                            },
+                            {
+                              "id": "da31dec5-9953-4bd9-a657-25ae33939cbb",
+                              "name": "Not Found",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/schedules/:identifier/overrides/:alias?identifierType=id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "schedules",
+                                    ":identifier",
+                                    "overrides",
+                                    ":alias"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Type of the identifier. Possible values are id or name.",
+                                      "key": "identifierType",
+                                      "value": "id"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "identifier"
+                                    },
+                                    {
+                                      "key": "alias"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:31.000Z",
+                              "updatedAt": "2026-07-28T02:27:31.000Z",
+                              "uid": "35240-da31dec5-9953-4bd9-a657-25ae33939cbb"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:27:31.000Z",
+                          "updatedAt": "2026-07-28T02:27:31.000Z",
+                          "uid": "35240-4056ce83-4d58-4968-9b13-0f307ed85ea2"
+                        }
+                      ],
+                      "id": "6f6462f9-15b1-4fc0-bc53-b4346bb2e294",
+                      "createdAt": "2026-07-28T02:27:31.000Z",
+                      "updatedAt": "2026-07-28T02:27:31.000Z",
+                      "uid": "35240-6f6462f9-15b1-4fc0-bc53-b4346bb2e294"
+                    },
+                    {
+                      "name": "Create schedule override",
+                      "id": "b8cb937f-fbe6-42e7-bb3c-c4a03aa7166b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"user\": {\n    \"id\": \"<string>\",\n    \"username\": \"<string>\"\n  },\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"rotations\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/schedules/:identifier/overrides?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "schedules",
+                            ":identifier",
+                            "overrides"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or name.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "af1dfcd1-3f10-4848-8432-585204fda99b",
+                              "key": "identifier",
+                              "value": "<string>",
+                              "description": "(Required) Identifier of the schedule, which can be the schedule ID or name."
+                            }
+                          ]
+                        },
+                        "description": "Creates a temporary override for the specified schedule, allowing a different user to take on-call duty for a specific time period."
+                      },
+                      "response": [
+                        {
+                          "id": "6469d2a8-8d17-4933-bcec-ea0b4ead2a3c",
+                          "name": "Created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"user\": {\n    \"id\": \"<string>\",\n    \"username\": \"<string>\"\n  },\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"rotations\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/schedules/:identifier/overrides?identifierType=id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "schedules",
+                                ":identifier",
+                                "overrides"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or name.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"result\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:31.000Z",
+                          "updatedAt": "2026-07-28T02:27:31.000Z",
+                          "uid": "35240-6469d2a8-8d17-4933-bcec-ea0b4ead2a3c"
+                        },
+                        {
+                          "id": "ee8dc601-cc74-4a99-8668-88144761d07f",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"user\": {\n    \"id\": \"<string>\",\n    \"username\": \"<string>\"\n  },\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"rotations\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/schedules/:identifier/overrides?identifierType=id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "schedules",
+                                ":identifier",
+                                "overrides"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or name.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:31.000Z",
+                          "updatedAt": "2026-07-28T02:27:31.000Z",
+                          "uid": "35240-ee8dc601-cc74-4a99-8668-88144761d07f"
+                        },
+                        {
+                          "id": "027f40a3-1bbf-402c-b357-ff94fdfe9ad2",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"user\": {\n    \"id\": \"<string>\",\n    \"username\": \"<string>\"\n  },\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"rotations\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/schedules/:identifier/overrides?identifierType=id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "schedules",
+                                ":identifier",
+                                "overrides"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or name.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:31.000Z",
+                          "updatedAt": "2026-07-28T02:27:31.000Z",
+                          "uid": "35240-027f40a3-1bbf-402c-b357-ff94fdfe9ad2"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:31.000Z",
+                      "updatedAt": "2026-07-28T02:27:31.000Z",
+                      "uid": "35240-b8cb937f-fbe6-42e7-bb3c-c4a03aa7166b"
+                    },
+                    {
+                      "name": "List schedule overrides",
+                      "id": "17ba890c-1e7e-4f15-be06-4635b9e04378",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/schedules/:identifier/overrides?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "schedules",
+                            ":identifier",
+                            "overrides"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or name.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "3e0d47d3-c10d-4e3b-a71b-7385460bd94c",
+                              "key": "identifier",
+                              "value": "<string>",
+                              "description": "(Required) Identifier of the schedule, which can be the schedule ID or name."
+                            }
+                          ]
+                        },
+                        "description": "Lists the overrides for the specified schedule."
+                      },
+                      "response": [
+                        {
+                          "id": "a0b5f8ea-2dfa-4797-bfaa-68691016ced2",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/schedules/:identifier/overrides?identifierType=id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "schedules",
+                                ":identifier",
+                                "overrides"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or name.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": [\n    {\n      \"alias\": \"<string>\",\n      \"user\": {\n        \"id\": \"<string>\",\n        \"username\": \"<string>\"\n      },\n      \"startDate\": \"<dateTime>\",\n      \"endDate\": \"<dateTime>\"\n    },\n    {\n      \"alias\": \"<string>\",\n      \"user\": {\n        \"id\": \"<string>\",\n        \"username\": \"<string>\"\n      },\n      \"startDate\": \"<dateTime>\",\n      \"endDate\": \"<dateTime>\"\n    }\n  ],\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:31.000Z",
+                          "updatedAt": "2026-07-28T02:27:31.000Z",
+                          "uid": "35240-a0b5f8ea-2dfa-4797-bfaa-68691016ced2"
+                        },
+                        {
+                          "id": "c332aa3b-d22f-46d3-86a4-84b54d7c8ee8",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/schedules/:identifier/overrides?identifierType=id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "schedules",
+                                ":identifier",
+                                "overrides"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or name.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:31.000Z",
+                          "updatedAt": "2026-07-28T02:27:31.000Z",
+                          "uid": "35240-c332aa3b-d22f-46d3-86a4-84b54d7c8ee8"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:31.000Z",
+                      "updatedAt": "2026-07-28T02:27:31.000Z",
+                      "uid": "35240-17ba890c-1e7e-4f15-be06-4635b9e04378"
+                    }
+                  ],
+                  "id": "4cc06650-eb3c-4f51-9bb7-3c54469c7691",
+                  "createdAt": "2026-07-28T02:27:31.000Z",
+                  "updatedAt": "2026-07-28T02:27:31.000Z",
+                  "uid": "35240-4cc06650-eb3c-4f51-9bb7-3c54469c7691"
+                }
+              ],
+              "id": "10d6bb18-a939-4fd4-b802-59791a331656",
+              "createdAt": "2026-07-28T02:27:31.000Z",
+              "updatedAt": "2026-07-28T02:27:31.000Z",
+              "uid": "35240-10d6bb18-a939-4fd4-b802-59791a331656"
+            }
+          ],
+          "id": "fab8c677-93b7-4491-b33d-20656d252e75",
+          "createdAt": "2026-07-28T02:27:31.000Z",
+          "updatedAt": "2026-07-28T02:27:31.000Z",
+          "uid": "35240-fab8c677-93b7-4491-b33d-20656d252e75"
+        }
+      ],
+      "id": "4ef62c6e-658c-4da8-91f1-90663b3c5108",
+      "createdAt": "2026-07-28T02:27:31.000Z",
+      "updatedAt": "2026-07-28T02:27:31.000Z",
+      "uid": "35240-4ef62c6e-658c-4da8-91f1-90663b3c5108"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.opsgenie.com"
+    }
+  ]
+}

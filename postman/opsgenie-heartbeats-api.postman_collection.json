@@ -1,0 +1,1688 @@
+{
+  "info": {
+    "_postman_id": "f759f128-897f-436e-b9bd-f6b3fba6635d",
+    "name": "OpsGenie Account Heartbeats API",
+    "description": "The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.\n\nContact Support:\n Name: Atlassian Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:05.000Z",
+    "updatedAt": "2026-07-28T02:27:05.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f759f128-897f-436e-b9bd-f6b3fba6635d"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "heartbeats",
+          "item": [
+            {
+              "name": "{name}",
+              "item": [
+                {
+                  "name": "ping",
+                  "item": [
+                    {
+                      "name": "Ping heartbeat",
+                      "id": "25842ddb-a65d-4ce4-ab7e-2082df9fb4eb",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/heartbeats/:name/ping",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "heartbeats",
+                            ":name",
+                            "ping"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ed788078-b080-45d8-9569-8386f04c0ad8",
+                              "key": "name",
+                              "value": "<string>",
+                              "description": "(Required) Name of the heartbeat monitor."
+                            }
+                          ]
+                        },
+                        "description": "Sends a ping to the specified heartbeat to indicate the monitored system is healthy. If no ping is received within the configured interval, OpsGenie generates an alert."
+                      },
+                      "response": [
+                        {
+                          "id": "be522359-d710-487f-a021-fb7feb09fe89",
+                          "name": "Accepted",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/heartbeats/:name/ping",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "heartbeats",
+                                ":name",
+                                "ping"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"result\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:05.000Z",
+                          "updatedAt": "2026-07-28T02:27:05.000Z",
+                          "uid": "35240-be522359-d710-487f-a021-fb7feb09fe89"
+                        },
+                        {
+                          "id": "6361f411-e259-4d24-a3c6-ef8372a074d0",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/heartbeats/:name/ping",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "heartbeats",
+                                ":name",
+                                "ping"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:05.000Z",
+                          "updatedAt": "2026-07-28T02:27:05.000Z",
+                          "uid": "35240-6361f411-e259-4d24-a3c6-ef8372a074d0"
+                        },
+                        {
+                          "id": "bd7b6cec-efec-4ef5-8b44-86a7d1d5950a",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/heartbeats/:name/ping",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "heartbeats",
+                                ":name",
+                                "ping"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:05.000Z",
+                          "updatedAt": "2026-07-28T02:27:05.000Z",
+                          "uid": "35240-bd7b6cec-efec-4ef5-8b44-86a7d1d5950a"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:05.000Z",
+                      "updatedAt": "2026-07-28T02:27:05.000Z",
+                      "uid": "35240-25842ddb-a65d-4ce4-ab7e-2082df9fb4eb"
+                    }
+                  ],
+                  "id": "95015bc8-9d53-4085-90d4-a12b39a3243d",
+                  "createdAt": "2026-07-28T02:27:05.000Z",
+                  "updatedAt": "2026-07-28T02:27:05.000Z",
+                  "uid": "35240-95015bc8-9d53-4085-90d4-a12b39a3243d"
+                },
+                {
+                  "name": "enable",
+                  "item": [
+                    {
+                      "name": "Enable heartbeat",
+                      "id": "b3dde8a7-7c54-4998-b455-dfe5e7b0494e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/heartbeats/:name/enable",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "heartbeats",
+                            ":name",
+                            "enable"
+                          ],
+                          "variable": [
+                            {
+                              "id": "a7ddc6f1-d8ed-4ec9-a8dc-b13748f35e30",
+                              "key": "name",
+                              "value": "<string>",
+                              "description": "(Required) Name of the heartbeat monitor."
+                            }
+                          ]
+                        },
+                        "description": "Enables the specified heartbeat monitor."
+                      },
+                      "response": [
+                        {
+                          "id": "3db81012-f02b-448f-bf9d-10c2c3535dc4",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/heartbeats/:name/enable",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "heartbeats",
+                                ":name",
+                                "enable"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"interval\": \"<integer>\",\n    \"intervalUnit\": \"hours\",\n    \"enabled\": \"<boolean>\",\n    \"expired\": \"<boolean>\",\n    \"lastPingTime\": \"<dateTime>\",\n    \"ownerTeam\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"alertMessage\": \"<string>\",\n    \"alertTags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"alertPriority\": \"<string>\"\n  },\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:05.000Z",
+                          "updatedAt": "2026-07-28T02:27:05.000Z",
+                          "uid": "35240-3db81012-f02b-448f-bf9d-10c2c3535dc4"
+                        },
+                        {
+                          "id": "69a29a66-51bc-4a23-b14d-9a5b1ae4feec",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/heartbeats/:name/enable",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "heartbeats",
+                                ":name",
+                                "enable"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:05.000Z",
+                          "updatedAt": "2026-07-28T02:27:05.000Z",
+                          "uid": "35240-69a29a66-51bc-4a23-b14d-9a5b1ae4feec"
+                        },
+                        {
+                          "id": "1824fd3f-ecb7-494f-9831-82743d3448f8",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/heartbeats/:name/enable",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "heartbeats",
+                                ":name",
+                                "enable"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:05.000Z",
+                          "updatedAt": "2026-07-28T02:27:05.000Z",
+                          "uid": "35240-1824fd3f-ecb7-494f-9831-82743d3448f8"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:05.000Z",
+                      "updatedAt": "2026-07-28T02:27:05.000Z",
+                      "uid": "35240-b3dde8a7-7c54-4998-b455-dfe5e7b0494e"
+                    }
+                  ],
+                  "id": "1672b6e4-3d15-4fbe-860f-d4d47efc328f",
+                  "createdAt": "2026-07-28T02:27:05.000Z",
+                  "updatedAt": "2026-07-28T02:27:05.000Z",
+                  "uid": "35240-1672b6e4-3d15-4fbe-860f-d4d47efc328f"
+                },
+                {
+                  "name": "disable",
+                  "item": [
+                    {
+                      "name": "Disable heartbeat",
+                      "id": "8ecb402a-ccd3-4498-b8e4-7570714087d3",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/heartbeats/:name/disable",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "heartbeats",
+                            ":name",
+                            "disable"
+                          ],
+                          "variable": [
+                            {
+                              "id": "19018423-2453-4f3d-991a-4955e6204003",
+                              "key": "name",
+                              "value": "<string>",
+                              "description": "(Required) Name of the heartbeat monitor."
+                            }
+                          ]
+                        },
+                        "description": "Disables the specified heartbeat monitor."
+                      },
+                      "response": [
+                        {
+                          "id": "d5ff6eda-d5e9-473a-ba7c-43e3903d8cfa",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/heartbeats/:name/disable",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "heartbeats",
+                                ":name",
+                                "disable"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"interval\": \"<integer>\",\n    \"intervalUnit\": \"hours\",\n    \"enabled\": \"<boolean>\",\n    \"expired\": \"<boolean>\",\n    \"lastPingTime\": \"<dateTime>\",\n    \"ownerTeam\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"alertMessage\": \"<string>\",\n    \"alertTags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"alertPriority\": \"<string>\"\n  },\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:05.000Z",
+                          "updatedAt": "2026-07-28T02:27:05.000Z",
+                          "uid": "35240-d5ff6eda-d5e9-473a-ba7c-43e3903d8cfa"
+                        },
+                        {
+                          "id": "441bdb64-accb-4b8c-90b3-5a37347db127",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/heartbeats/:name/disable",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "heartbeats",
+                                ":name",
+                                "disable"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:05.000Z",
+                          "updatedAt": "2026-07-28T02:27:05.000Z",
+                          "uid": "35240-441bdb64-accb-4b8c-90b3-5a37347db127"
+                        },
+                        {
+                          "id": "a9a9a6c8-af5e-4cb3-b07b-379656b7e7b0",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/heartbeats/:name/disable",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "heartbeats",
+                                ":name",
+                                "disable"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:05.000Z",
+                          "updatedAt": "2026-07-28T02:27:05.000Z",
+                          "uid": "35240-a9a9a6c8-af5e-4cb3-b07b-379656b7e7b0"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:05.000Z",
+                      "updatedAt": "2026-07-28T02:27:05.000Z",
+                      "uid": "35240-8ecb402a-ccd3-4498-b8e4-7570714087d3"
+                    }
+                  ],
+                  "id": "48cccfb7-bbe2-42e9-bebc-60b92a39091d",
+                  "createdAt": "2026-07-28T02:27:05.000Z",
+                  "updatedAt": "2026-07-28T02:27:05.000Z",
+                  "uid": "35240-48cccfb7-bbe2-42e9-bebc-60b92a39091d"
+                },
+                {
+                  "name": "Get heartbeat",
+                  "id": "d1d467f6-8748-494d-a2f7-81d164ec7454",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/heartbeats/:name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "heartbeats",
+                        ":name"
+                      ],
+                      "variable": [
+                        {
+                          "id": "88f8e662-667f-4ce2-ba1d-39cae712d0f8",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) Name of the heartbeat monitor."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the details of a specific heartbeat by its name."
+                  },
+                  "response": [
+                    {
+                      "id": "425b3d60-0b0a-4d6c-b59d-ec67a275b3d8",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/heartbeats/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "heartbeats",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"interval\": \"<integer>\",\n    \"intervalUnit\": \"hours\",\n    \"enabled\": \"<boolean>\",\n    \"expired\": \"<boolean>\",\n    \"lastPingTime\": \"<dateTime>\",\n    \"ownerTeam\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"alertMessage\": \"<string>\",\n    \"alertTags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"alertPriority\": \"<string>\"\n  },\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:05.000Z",
+                      "updatedAt": "2026-07-28T02:27:05.000Z",
+                      "uid": "35240-425b3d60-0b0a-4d6c-b59d-ec67a275b3d8"
+                    },
+                    {
+                      "id": "be80168a-20ce-443f-9e6a-a8da65b6e95e",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/heartbeats/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "heartbeats",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:05.000Z",
+                      "updatedAt": "2026-07-28T02:27:05.000Z",
+                      "uid": "35240-be80168a-20ce-443f-9e6a-a8da65b6e95e"
+                    },
+                    {
+                      "id": "ce18416e-b5b6-43d0-9ffb-5d11db58c420",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/heartbeats/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "heartbeats",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:05.000Z",
+                      "updatedAt": "2026-07-28T02:27:05.000Z",
+                      "uid": "35240-ce18416e-b5b6-43d0-9ffb-5d11db58c420"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:05.000Z",
+                  "updatedAt": "2026-07-28T02:27:05.000Z",
+                  "uid": "35240-d1d467f6-8748-494d-a2f7-81d164ec7454"
+                },
+                {
+                  "name": "Update heartbeat",
+                  "id": "f1da0034-5d2f-4aed-b16a-7251c6212135",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"<string>\",\n  \"interval\": \"<integer>\",\n  \"intervalUnit\": \"hours\",\n  \"enabled\": \"<boolean>\",\n  \"ownerTeam\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"alertMessage\": \"<string>\",\n  \"alertTags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"alertPriority\": \"P5\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/heartbeats/:name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "heartbeats",
+                        ":name"
+                      ],
+                      "variable": [
+                        {
+                          "id": "fa5be160-806f-4f93-bcd3-180cad41fa57",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) Name of the heartbeat monitor."
+                        }
+                      ]
+                    },
+                    "description": "Updates the specified heartbeat's configuration."
+                  },
+                  "response": [
+                    {
+                      "id": "11e12ca2-a7fb-499c-bcbd-a1152ca75083",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"description\": \"<string>\",\n  \"interval\": \"<integer>\",\n  \"intervalUnit\": \"hours\",\n  \"enabled\": \"<boolean>\",\n  \"ownerTeam\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"alertMessage\": \"<string>\",\n  \"alertTags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"alertPriority\": \"P5\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/heartbeats/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "heartbeats",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"interval\": \"<integer>\",\n    \"intervalUnit\": \"hours\",\n    \"enabled\": \"<boolean>\",\n    \"expired\": \"<boolean>\",\n    \"lastPingTime\": \"<dateTime>\",\n    \"ownerTeam\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"alertMessage\": \"<string>\",\n    \"alertTags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"alertPriority\": \"<string>\"\n  },\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:05.000Z",
+                      "updatedAt": "2026-07-28T02:27:05.000Z",
+                      "uid": "35240-11e12ca2-a7fb-499c-bcbd-a1152ca75083"
+                    },
+                    {
+                      "id": "ed2378c9-9a8b-43dd-af16-eec459870103",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"description\": \"<string>\",\n  \"interval\": \"<integer>\",\n  \"intervalUnit\": \"hours\",\n  \"enabled\": \"<boolean>\",\n  \"ownerTeam\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"alertMessage\": \"<string>\",\n  \"alertTags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"alertPriority\": \"P5\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/heartbeats/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "heartbeats",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:05.000Z",
+                      "updatedAt": "2026-07-28T02:27:05.000Z",
+                      "uid": "35240-ed2378c9-9a8b-43dd-af16-eec459870103"
+                    },
+                    {
+                      "id": "7722dd98-2d4f-420f-8263-b49296b72ec4",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"description\": \"<string>\",\n  \"interval\": \"<integer>\",\n  \"intervalUnit\": \"hours\",\n  \"enabled\": \"<boolean>\",\n  \"ownerTeam\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"alertMessage\": \"<string>\",\n  \"alertTags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"alertPriority\": \"P5\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/heartbeats/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "heartbeats",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:05.000Z",
+                      "updatedAt": "2026-07-28T02:27:05.000Z",
+                      "uid": "35240-7722dd98-2d4f-420f-8263-b49296b72ec4"
+                    },
+                    {
+                      "id": "130ec48e-cca8-4a11-85e7-ea0a31709d40",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"description\": \"<string>\",\n  \"interval\": \"<integer>\",\n  \"intervalUnit\": \"hours\",\n  \"enabled\": \"<boolean>\",\n  \"ownerTeam\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"alertMessage\": \"<string>\",\n  \"alertTags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"alertPriority\": \"P5\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/heartbeats/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "heartbeats",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:05.000Z",
+                      "updatedAt": "2026-07-28T02:27:05.000Z",
+                      "uid": "35240-130ec48e-cca8-4a11-85e7-ea0a31709d40"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:05.000Z",
+                  "updatedAt": "2026-07-28T02:27:05.000Z",
+                  "uid": "35240-f1da0034-5d2f-4aed-b16a-7251c6212135"
+                },
+                {
+                  "name": "Delete heartbeat",
+                  "id": "0e31cca2-39fa-40bd-8930-cce02c68073c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/heartbeats/:name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "heartbeats",
+                        ":name"
+                      ],
+                      "variable": [
+                        {
+                          "id": "22add5e2-7b48-4256-b590-60043a869efb",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) Name of the heartbeat monitor."
+                        }
+                      ]
+                    },
+                    "description": "Deletes the specified heartbeat monitor."
+                  },
+                  "response": [
+                    {
+                      "id": "36fcf5c1-be09-493b-b42c-a1e0972e407a",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/heartbeats/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "heartbeats",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"result\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:05.000Z",
+                      "updatedAt": "2026-07-28T02:27:05.000Z",
+                      "uid": "35240-36fcf5c1-be09-493b-b42c-a1e0972e407a"
+                    },
+                    {
+                      "id": "61c0a5e0-b6a2-4d8f-b000-d6c9dd6dc071",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/heartbeats/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "heartbeats",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:05.000Z",
+                      "updatedAt": "2026-07-28T02:27:05.000Z",
+                      "uid": "35240-61c0a5e0-b6a2-4d8f-b000-d6c9dd6dc071"
+                    },
+                    {
+                      "id": "7426c84d-e7cd-479f-ac4b-3280401d09fa",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/heartbeats/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "heartbeats",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:05.000Z",
+                      "updatedAt": "2026-07-28T02:27:05.000Z",
+                      "uid": "35240-7426c84d-e7cd-479f-ac4b-3280401d09fa"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:05.000Z",
+                  "updatedAt": "2026-07-28T02:27:05.000Z",
+                  "uid": "35240-0e31cca2-39fa-40bd-8930-cce02c68073c"
+                }
+              ],
+              "id": "6430cf77-520a-4671-a85e-dc0fed717794",
+              "createdAt": "2026-07-28T02:27:05.000Z",
+              "updatedAt": "2026-07-28T02:27:05.000Z",
+              "uid": "35240-6430cf77-520a-4671-a85e-dc0fed717794"
+            },
+            {
+              "name": "Create heartbeat",
+              "id": "cc5f9837-6d34-412c-9066-8974984751b2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"interval\": \"<integer>\",\n  \"intervalUnit\": \"days\",\n  \"enabled\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"ownerTeam\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"alertMessage\": \"<string>\",\n  \"alertTags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"alertPriority\": \"P2\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/heartbeats",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "heartbeats"
+                  ]
+                },
+                "description": "Creates a new heartbeat monitor with the specified configuration including name, interval, and alert settings."
+              },
+              "response": [
+                {
+                  "id": "4332e127-ea27-4912-8b81-b86d89baaeb1",
+                  "name": "Created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"interval\": \"<integer>\",\n  \"intervalUnit\": \"days\",\n  \"enabled\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"ownerTeam\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"alertMessage\": \"<string>\",\n  \"alertTags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"alertPriority\": \"P2\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/heartbeats",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "heartbeats"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"interval\": \"<integer>\",\n    \"intervalUnit\": \"hours\",\n    \"enabled\": \"<boolean>\",\n    \"expired\": \"<boolean>\",\n    \"lastPingTime\": \"<dateTime>\",\n    \"ownerTeam\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"alertMessage\": \"<string>\",\n    \"alertTags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"alertPriority\": \"<string>\"\n  },\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:05.000Z",
+                  "updatedAt": "2026-07-28T02:27:05.000Z",
+                  "uid": "35240-4332e127-ea27-4912-8b81-b86d89baaeb1"
+                },
+                {
+                  "id": "d8bbb6cc-dade-4d61-bc62-8a1fb9801201",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"interval\": \"<integer>\",\n  \"intervalUnit\": \"days\",\n  \"enabled\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"ownerTeam\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"alertMessage\": \"<string>\",\n  \"alertTags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"alertPriority\": \"P2\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/heartbeats",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "heartbeats"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:05.000Z",
+                  "updatedAt": "2026-07-28T02:27:05.000Z",
+                  "uid": "35240-d8bbb6cc-dade-4d61-bc62-8a1fb9801201"
+                },
+                {
+                  "id": "7eafe7ca-2087-48d2-a1f1-8e5b178819e9",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"interval\": \"<integer>\",\n  \"intervalUnit\": \"days\",\n  \"enabled\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"ownerTeam\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"alertMessage\": \"<string>\",\n  \"alertTags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"alertPriority\": \"P2\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/heartbeats",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "heartbeats"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:05.000Z",
+                  "updatedAt": "2026-07-28T02:27:05.000Z",
+                  "uid": "35240-7eafe7ca-2087-48d2-a1f1-8e5b178819e9"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:05.000Z",
+              "updatedAt": "2026-07-28T02:27:05.000Z",
+              "uid": "35240-cc5f9837-6d34-412c-9066-8974984751b2"
+            },
+            {
+              "name": "List heartbeats",
+              "id": "2a2794cf-450d-4544-b4d6-865fbab1fcb6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/heartbeats",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "heartbeats"
+                  ]
+                },
+                "description": "Returns a list of all heartbeat monitors in the account."
+              },
+              "response": [
+                {
+                  "id": "f787c553-6020-484e-8703-8e15629566bd",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/heartbeats",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "heartbeats"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"heartbeats\": [\n      {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"interval\": \"<integer>\",\n        \"intervalUnit\": \"days\",\n        \"enabled\": \"<boolean>\",\n        \"expired\": \"<boolean>\",\n        \"lastPingTime\": \"<dateTime>\",\n        \"ownerTeam\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"alertMessage\": \"<string>\",\n        \"alertTags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"alertPriority\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"interval\": \"<integer>\",\n        \"intervalUnit\": \"minutes\",\n        \"enabled\": \"<boolean>\",\n        \"expired\": \"<boolean>\",\n        \"lastPingTime\": \"<dateTime>\",\n        \"ownerTeam\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"alertMessage\": \"<string>\",\n        \"alertTags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"alertPriority\": \"<string>\"\n      }\n    ]\n  },\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:05.000Z",
+                  "updatedAt": "2026-07-28T02:27:05.000Z",
+                  "uid": "35240-f787c553-6020-484e-8703-8e15629566bd"
+                },
+                {
+                  "id": "3474ceca-a4eb-487d-ab46-e08a88cdec98",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/heartbeats",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "heartbeats"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:05.000Z",
+                  "updatedAt": "2026-07-28T02:27:05.000Z",
+                  "uid": "35240-3474ceca-a4eb-487d-ab46-e08a88cdec98"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:05.000Z",
+              "updatedAt": "2026-07-28T02:27:05.000Z",
+              "uid": "35240-2a2794cf-450d-4544-b4d6-865fbab1fcb6"
+            }
+          ],
+          "id": "5bebfa72-cfb1-4882-9b87-fd5bce582744",
+          "createdAt": "2026-07-28T02:27:05.000Z",
+          "updatedAt": "2026-07-28T02:27:05.000Z",
+          "uid": "35240-5bebfa72-cfb1-4882-9b87-fd5bce582744"
+        }
+      ],
+      "id": "5e2f8916-b58d-4884-92d7-86e4b9746560",
+      "createdAt": "2026-07-28T02:27:05.000Z",
+      "updatedAt": "2026-07-28T02:27:05.000Z",
+      "uid": "35240-5e2f8916-b58d-4884-92d7-86e4b9746560"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.opsgenie.com"
+    }
+  ]
+}

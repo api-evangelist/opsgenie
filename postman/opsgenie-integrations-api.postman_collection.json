@@ -1,0 +1,1659 @@
+{
+  "info": {
+    "_postman_id": "ec53cbc0-f6e8-4025-a57d-75f603485db8",
+    "name": "OpsGenie Account Integrations API",
+    "description": "The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.\n\nContact Support:\n Name: Atlassian Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:25.000Z",
+    "updatedAt": "2026-07-28T02:27:25.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ec53cbc0-f6e8-4025-a57d-75f603485db8"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "integrations",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "enable",
+                  "item": [
+                    {
+                      "name": "Enable integration",
+                      "id": "a7fc8b05-509e-4df4-a6f4-ab4e9cfef928",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/integrations/:id/enable",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "integrations",
+                            ":id",
+                            "enable"
+                          ],
+                          "variable": [
+                            {
+                              "id": "4c4d317a-8e8a-4ea5-970b-a3ce0e860628",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier of the integration."
+                            }
+                          ]
+                        },
+                        "description": "Enables the specified integration so it can process incoming events."
+                      },
+                      "response": [
+                        {
+                          "id": "63057121-8f06-470c-9546-5b94d13d4a15",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/integrations/:id/enable",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "integrations",
+                                ":id",
+                                "enable"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"result\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:26.000Z",
+                          "updatedAt": "2026-07-28T02:27:26.000Z",
+                          "uid": "35240-63057121-8f06-470c-9546-5b94d13d4a15"
+                        },
+                        {
+                          "id": "e4def70e-5587-4c5f-8bca-9f0c583eaa89",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/integrations/:id/enable",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "integrations",
+                                ":id",
+                                "enable"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:26.000Z",
+                          "updatedAt": "2026-07-28T02:27:26.000Z",
+                          "uid": "35240-e4def70e-5587-4c5f-8bca-9f0c583eaa89"
+                        },
+                        {
+                          "id": "37c31047-a134-4783-adb9-5b82ec8c1d9a",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/integrations/:id/enable",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "integrations",
+                                ":id",
+                                "enable"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:26.000Z",
+                          "updatedAt": "2026-07-28T02:27:26.000Z",
+                          "uid": "35240-37c31047-a134-4783-adb9-5b82ec8c1d9a"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-a7fc8b05-509e-4df4-a6f4-ab4e9cfef928"
+                    }
+                  ],
+                  "id": "664914a1-54db-4978-a0cd-05e9bfbe7dd8",
+                  "createdAt": "2026-07-28T02:27:26.000Z",
+                  "updatedAt": "2026-07-28T02:27:26.000Z",
+                  "uid": "35240-664914a1-54db-4978-a0cd-05e9bfbe7dd8"
+                },
+                {
+                  "name": "disable",
+                  "item": [
+                    {
+                      "name": "Disable integration",
+                      "id": "a239b542-3835-45a0-89ac-87e15a0c7fb2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/integrations/:id/disable",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "integrations",
+                            ":id",
+                            "disable"
+                          ],
+                          "variable": [
+                            {
+                              "id": "b5f85471-0b46-432f-ae2f-6dddad8ccf1d",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier of the integration."
+                            }
+                          ]
+                        },
+                        "description": "Disables the specified integration so it stops processing events."
+                      },
+                      "response": [
+                        {
+                          "id": "0d1b435d-9f32-4a8d-af7b-32f7068ff540",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/integrations/:id/disable",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "integrations",
+                                ":id",
+                                "disable"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"result\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:26.000Z",
+                          "updatedAt": "2026-07-28T02:27:26.000Z",
+                          "uid": "35240-0d1b435d-9f32-4a8d-af7b-32f7068ff540"
+                        },
+                        {
+                          "id": "e215d4f3-f154-439a-a18c-2967cd782e92",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/integrations/:id/disable",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "integrations",
+                                ":id",
+                                "disable"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:26.000Z",
+                          "updatedAt": "2026-07-28T02:27:26.000Z",
+                          "uid": "35240-e215d4f3-f154-439a-a18c-2967cd782e92"
+                        },
+                        {
+                          "id": "91d954d8-4990-4947-8986-4f053f00a697",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/integrations/:id/disable",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "integrations",
+                                ":id",
+                                "disable"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:26.000Z",
+                          "updatedAt": "2026-07-28T02:27:26.000Z",
+                          "uid": "35240-91d954d8-4990-4947-8986-4f053f00a697"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-a239b542-3835-45a0-89ac-87e15a0c7fb2"
+                    }
+                  ],
+                  "id": "371c73d6-f037-4a34-9941-f2a21cd63a78",
+                  "createdAt": "2026-07-28T02:27:26.000Z",
+                  "updatedAt": "2026-07-28T02:27:26.000Z",
+                  "uid": "35240-371c73d6-f037-4a34-9941-f2a21cd63a78"
+                },
+                {
+                  "name": "Get integration",
+                  "id": "5e587380-e668-4557-8a5d-97b963328659",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/integrations/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "integrations",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "1390e01e-f15e-4adf-98e6-a05b86933179",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier of the integration."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the details of a specific integration by its ID."
+                  },
+                  "response": [
+                    {
+                      "id": "8e915309-9f1c-44db-b4e4-0d3aad05ca26",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/integrations/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "integrations",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"type\": \"<string>\",\n    \"enabled\": \"<boolean>\",\n    \"ownerTeam\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"isGlobal\": \"<boolean>\",\n    \"allowWriteAccess\": \"<boolean>\",\n    \"allowConfigurationAccess\": \"<boolean>\",\n    \"responders\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ]\n  },\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-8e915309-9f1c-44db-b4e4-0d3aad05ca26"
+                    },
+                    {
+                      "id": "b5a2a650-39fe-4ffd-94f8-c9cec89d99aa",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/integrations/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "integrations",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-b5a2a650-39fe-4ffd-94f8-c9cec89d99aa"
+                    },
+                    {
+                      "id": "ce14e0bd-c1f2-4057-a583-1c3b3bf4dfec",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/integrations/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "integrations",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-ce14e0bd-c1f2-4057-a583-1c3b3bf4dfec"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:26.000Z",
+                  "updatedAt": "2026-07-28T02:27:26.000Z",
+                  "uid": "35240-5e587380-e668-4557-8a5d-97b963328659"
+                },
+                {
+                  "name": "Update integration",
+                  "id": "cff373e0-5e37-4460-a2c8-4f5956b8cce4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"ownerTeam\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"allowWriteAccess\": \"<boolean>\",\n  \"allowConfigurationAccess\": \"<boolean>\",\n  \"ignoreRespondersFromPayload\": \"<boolean>\",\n  \"suppressNotifications\": \"<boolean>\",\n  \"responders\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/integrations/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "integrations",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "df73f5df-a747-415b-83a6-7be60f0e17c4",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier of the integration."
+                        }
+                      ]
+                    },
+                    "description": "Updates the specified integration's configuration."
+                  },
+                  "response": [
+                    {
+                      "id": "11f6dfce-813e-4427-b81e-e389ca7f38c3",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"ownerTeam\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"allowWriteAccess\": \"<boolean>\",\n  \"allowConfigurationAccess\": \"<boolean>\",\n  \"ignoreRespondersFromPayload\": \"<boolean>\",\n  \"suppressNotifications\": \"<boolean>\",\n  \"responders\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/integrations/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "integrations",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"result\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-11f6dfce-813e-4427-b81e-e389ca7f38c3"
+                    },
+                    {
+                      "id": "a7ef9d02-69a4-4ce0-8d4e-85494f064070",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"ownerTeam\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"allowWriteAccess\": \"<boolean>\",\n  \"allowConfigurationAccess\": \"<boolean>\",\n  \"ignoreRespondersFromPayload\": \"<boolean>\",\n  \"suppressNotifications\": \"<boolean>\",\n  \"responders\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/integrations/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "integrations",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-a7ef9d02-69a4-4ce0-8d4e-85494f064070"
+                    },
+                    {
+                      "id": "8317ccd6-61c8-4749-8f1c-5e46d370cf86",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"ownerTeam\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"allowWriteAccess\": \"<boolean>\",\n  \"allowConfigurationAccess\": \"<boolean>\",\n  \"ignoreRespondersFromPayload\": \"<boolean>\",\n  \"suppressNotifications\": \"<boolean>\",\n  \"responders\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/integrations/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "integrations",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-8317ccd6-61c8-4749-8f1c-5e46d370cf86"
+                    },
+                    {
+                      "id": "5188d575-4834-4abb-9f2e-25612e51fb5f",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"ownerTeam\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"allowWriteAccess\": \"<boolean>\",\n  \"allowConfigurationAccess\": \"<boolean>\",\n  \"ignoreRespondersFromPayload\": \"<boolean>\",\n  \"suppressNotifications\": \"<boolean>\",\n  \"responders\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/integrations/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "integrations",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-5188d575-4834-4abb-9f2e-25612e51fb5f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:26.000Z",
+                  "updatedAt": "2026-07-28T02:27:26.000Z",
+                  "uid": "35240-cff373e0-5e37-4460-a2c8-4f5956b8cce4"
+                },
+                {
+                  "name": "Delete integration",
+                  "id": "f05b096d-a633-430b-a566-640e01b25752",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/integrations/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "integrations",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "70ef919b-f2fe-4a41-ad66-1c9f573549f6",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier of the integration."
+                        }
+                      ]
+                    },
+                    "description": "Deletes the specified integration."
+                  },
+                  "response": [
+                    {
+                      "id": "27456105-9c54-4f5f-b49b-e05dbbb793da",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/integrations/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "integrations",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"result\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-27456105-9c54-4f5f-b49b-e05dbbb793da"
+                    },
+                    {
+                      "id": "7be1d0c6-e312-4082-95db-4bcc5589026b",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/integrations/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "integrations",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-7be1d0c6-e312-4082-95db-4bcc5589026b"
+                    },
+                    {
+                      "id": "6e326020-c408-4076-9e1a-64470cc75611",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/integrations/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "integrations",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-6e326020-c408-4076-9e1a-64470cc75611"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:26.000Z",
+                  "updatedAt": "2026-07-28T02:27:26.000Z",
+                  "uid": "35240-f05b096d-a633-430b-a566-640e01b25752"
+                }
+              ],
+              "id": "0058c2ce-be7d-4276-a029-b68dd4053485",
+              "createdAt": "2026-07-28T02:27:26.000Z",
+              "updatedAt": "2026-07-28T02:27:26.000Z",
+              "uid": "35240-0058c2ce-be7d-4276-a029-b68dd4053485"
+            },
+            {
+              "name": "authenticate",
+              "item": [
+                {
+                  "name": "Authenticate integration",
+                  "id": "a4c8162b-b12f-4cf0-80c1-2e5463f61189",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"type\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/integrations/authenticate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "integrations",
+                        "authenticate"
+                      ]
+                    },
+                    "description": "Authenticates an integration using the provided API key and returns the integration details if the key is valid."
+                  },
+                  "response": [
+                    {
+                      "id": "061f7623-74a7-4d6d-85d0-2fb157038c35",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/integrations/authenticate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "integrations",
+                            "authenticate"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"type\": \"<string>\",\n    \"enabled\": \"<boolean>\",\n    \"ownerTeam\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"isGlobal\": \"<boolean>\",\n    \"allowWriteAccess\": \"<boolean>\",\n    \"allowConfigurationAccess\": \"<boolean>\",\n    \"responders\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ]\n  },\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-061f7623-74a7-4d6d-85d0-2fb157038c35"
+                    },
+                    {
+                      "id": "3a19bccb-7c7f-4892-b497-1d1b4f1e6453",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/integrations/authenticate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "integrations",
+                            "authenticate"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-3a19bccb-7c7f-4892-b497-1d1b4f1e6453"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:26.000Z",
+                  "updatedAt": "2026-07-28T02:27:26.000Z",
+                  "uid": "35240-a4c8162b-b12f-4cf0-80c1-2e5463f61189"
+                }
+              ],
+              "id": "7911977f-31ff-49b4-a47f-b72edd0dcced",
+              "createdAt": "2026-07-28T02:27:26.000Z",
+              "updatedAt": "2026-07-28T02:27:26.000Z",
+              "uid": "35240-7911977f-31ff-49b4-a47f-b72edd0dcced"
+            },
+            {
+              "name": "Create integration",
+              "id": "ff9f5fda-8b4f-4c6b-867f-b3e613426002",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"ownerTeam\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"allowWriteAccess\": \"<boolean>\",\n  \"allowConfigurationAccess\": \"<boolean>\",\n  \"ignoreRespondersFromPayload\": \"<boolean>\",\n  \"suppressNotifications\": \"<boolean>\",\n  \"responders\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"escalation\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"team\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/integrations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "integrations"
+                  ]
+                },
+                "description": "Creates a new integration in OpsGenie. The type of integration determines the configuration options available."
+              },
+              "response": [
+                {
+                  "id": "98262a48-2d2d-43dc-ab36-dae8d55a2180",
+                  "name": "Created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"ownerTeam\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"allowWriteAccess\": \"<boolean>\",\n  \"allowConfigurationAccess\": \"<boolean>\",\n  \"ignoreRespondersFromPayload\": \"<boolean>\",\n  \"suppressNotifications\": \"<boolean>\",\n  \"responders\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"escalation\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"team\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/integrations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "integrations"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"enabled\": \"<boolean>\",\n    \"type\": \"<string>\",\n    \"apiKey\": \"<string>\"\n  },\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:26.000Z",
+                  "updatedAt": "2026-07-28T02:27:26.000Z",
+                  "uid": "35240-98262a48-2d2d-43dc-ab36-dae8d55a2180"
+                },
+                {
+                  "id": "32b57495-68f5-409b-97f4-96f503b24f8f",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"ownerTeam\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"allowWriteAccess\": \"<boolean>\",\n  \"allowConfigurationAccess\": \"<boolean>\",\n  \"ignoreRespondersFromPayload\": \"<boolean>\",\n  \"suppressNotifications\": \"<boolean>\",\n  \"responders\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"escalation\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"team\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/integrations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "integrations"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:26.000Z",
+                  "updatedAt": "2026-07-28T02:27:26.000Z",
+                  "uid": "35240-32b57495-68f5-409b-97f4-96f503b24f8f"
+                },
+                {
+                  "id": "e15df6ad-af3e-4e6b-9970-1adae42590b6",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"ownerTeam\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"allowWriteAccess\": \"<boolean>\",\n  \"allowConfigurationAccess\": \"<boolean>\",\n  \"ignoreRespondersFromPayload\": \"<boolean>\",\n  \"suppressNotifications\": \"<boolean>\",\n  \"responders\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"escalation\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"team\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/integrations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "integrations"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:26.000Z",
+                  "updatedAt": "2026-07-28T02:27:26.000Z",
+                  "uid": "35240-e15df6ad-af3e-4e6b-9970-1adae42590b6"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:26.000Z",
+              "updatedAt": "2026-07-28T02:27:26.000Z",
+              "uid": "35240-ff9f5fda-8b4f-4c6b-867f-b3e613426002"
+            },
+            {
+              "name": "List integrations",
+              "id": "df2ad71d-4489-4985-bf4d-42d0ddc64bf9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/integrations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "integrations"
+                  ]
+                },
+                "description": "Returns a list of all integrations configured in the account."
+              },
+              "response": [
+                {
+                  "id": "5b2938b2-0be0-409e-af1e-cdef94836cb4",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/integrations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "integrations"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"ownerTeam\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"isGlobal\": \"<boolean>\",\n      \"allowWriteAccess\": \"<boolean>\",\n      \"allowConfigurationAccess\": \"<boolean>\",\n      \"responders\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"ownerTeam\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"isGlobal\": \"<boolean>\",\n      \"allowWriteAccess\": \"<boolean>\",\n      \"allowConfigurationAccess\": \"<boolean>\",\n      \"responders\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:26.000Z",
+                  "updatedAt": "2026-07-28T02:27:26.000Z",
+                  "uid": "35240-5b2938b2-0be0-409e-af1e-cdef94836cb4"
+                },
+                {
+                  "id": "98b99e0c-ca37-4058-9dc5-12bb7e7393db",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/integrations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "integrations"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:26.000Z",
+                  "updatedAt": "2026-07-28T02:27:26.000Z",
+                  "uid": "35240-98b99e0c-ca37-4058-9dc5-12bb7e7393db"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:26.000Z",
+              "updatedAt": "2026-07-28T02:27:26.000Z",
+              "uid": "35240-df2ad71d-4489-4985-bf4d-42d0ddc64bf9"
+            }
+          ],
+          "id": "697b1adc-f765-43fe-9149-2d1ec5cc8ec3",
+          "createdAt": "2026-07-28T02:27:26.000Z",
+          "updatedAt": "2026-07-28T02:27:26.000Z",
+          "uid": "35240-697b1adc-f765-43fe-9149-2d1ec5cc8ec3"
+        }
+      ],
+      "id": "30398c19-4922-4e34-9d23-8726a80e0e10",
+      "createdAt": "2026-07-28T02:27:26.000Z",
+      "updatedAt": "2026-07-28T02:27:26.000Z",
+      "uid": "35240-30398c19-4922-4e34-9d23-8726a80e0e10"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.opsgenie.com"
+    }
+  ]
+}

@@ -1,0 +1,539 @@
+openapi: 3.1.0
+info:
+  title: OpsGenie Heartbeat API
+  description: >-
+    The OpsGenie Heartbeat API allows developers to set up and manage
+    heartbeat monitors that track the health and availability of systems
+    and services. Heartbeats work by expecting periodic pings from
+    monitored systems, and when a ping is not received within the
+    configured interval, OpsGenie generates an alert. The API provides
+    endpoints for creating, updating, deleting, and pinging heartbeats,
+    enabling automated health monitoring for infrastructure and
+    applications.
+  version: '2.0.0'
+  contact:
+    name: Atlassian Support
+    url: https://support.atlassian.com/opsgenie/
+  termsOfService: https://www.atlassian.com/legal/cloud-terms-of-service
+externalDocs:
+  description: OpsGenie Heartbeat API Documentation
+  url: https://docs.opsgenie.com/docs/heartbeat-api
+servers:
+  - url: https://api.opsgenie.com
+    description: Production Server
+  - url: https://api.eu.opsgenie.com
+    description: EU Production Server
+tags:
+  - name: Heartbeats
+    description: >-
+      Operations for creating, managing, and pinging heartbeat monitors.
+security:
+  - genieKey: []
+paths:
+  /v2/heartbeats:
+    post:
+      operationId: createHeartbeat
+      summary: Create heartbeat
+      description: >-
+        Creates a new heartbeat monitor with the specified configuration
+        including name, interval, and alert settings.
+      tags:
+        - Heartbeats
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateHeartbeatRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeartbeatResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      operationId: listHeartbeats
+      summary: List heartbeats
+      description: >-
+        Returns a list of all heartbeat monitors in the account.
+      tags:
+        - Heartbeats
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListHeartbeatsResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/heartbeats/{name}:
+    get:
+      operationId: getHeartbeat
+      summary: Get heartbeat
+      description: >-
+        Retrieves the details of a specific heartbeat by its name.
+      tags:
+        - Heartbeats
+      parameters:
+        - $ref: '#/components/parameters/HeartbeatName'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeartbeatResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    patch:
+      operationId: updateHeartbeat
+      summary: Update heartbeat
+      description: >-
+        Updates the specified heartbeat's configuration.
+      tags:
+        - Heartbeats
+      parameters:
+        - $ref: '#/components/parameters/HeartbeatName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateHeartbeatRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeartbeatResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteHeartbeat
+      summary: Delete heartbeat
+      description: >-
+        Deletes the specified heartbeat monitor.
+      tags:
+        - Heartbeats
+      parameters:
+        - $ref: '#/components/parameters/HeartbeatName'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/heartbeats/{name}/ping:
+    get:
+      operationId: pingHeartbeat
+      summary: Ping heartbeat
+      description: >-
+        Sends a ping to the specified heartbeat to indicate the monitored
+        system is healthy. If no ping is received within the configured
+        interval, OpsGenie generates an alert.
+      tags:
+        - Heartbeats
+      parameters:
+        - $ref: '#/components/parameters/HeartbeatName'
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/heartbeats/{name}/enable:
+    post:
+      operationId: enableHeartbeat
+      summary: Enable heartbeat
+      description: >-
+        Enables the specified heartbeat monitor.
+      tags:
+        - Heartbeats
+      parameters:
+        - $ref: '#/components/parameters/HeartbeatName'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeartbeatResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/heartbeats/{name}/disable:
+    post:
+      operationId: disableHeartbeat
+      summary: Disable heartbeat
+      description: >-
+        Disables the specified heartbeat monitor.
+      tags:
+        - Heartbeats
+      parameters:
+        - $ref: '#/components/parameters/HeartbeatName'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeartbeatResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  securitySchemes:
+    genieKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        API key authentication using the GenieKey scheme.
+  parameters:
+    HeartbeatName:
+      name: name
+      in: path
+      required: true
+      description: >-
+        Name of the heartbeat monitor.
+      schema:
+        type: string
+  schemas:
+    CreateHeartbeatRequest:
+      type: object
+      required:
+        - name
+        - interval
+        - intervalUnit
+        - enabled
+      properties:
+        name:
+          type: string
+          description: >-
+            Name of the heartbeat.
+        description:
+          type: string
+          description: >-
+            Description of what the heartbeat monitors.
+        interval:
+          type: integer
+          minimum: 1
+          description: >-
+            Interval duration for the heartbeat ping.
+        intervalUnit:
+          type: string
+          enum:
+            - minutes
+            - hours
+            - days
+          description: >-
+            Unit for the heartbeat interval.
+        enabled:
+          type: boolean
+          description: >-
+            Whether the heartbeat is active.
+        ownerTeam:
+          type: object
+          description: >-
+            Team that owns the heartbeat.
+          properties:
+            id:
+              type: string
+              description: >-
+                Team ID.
+            name:
+              type: string
+              description: >-
+                Team name.
+        alertMessage:
+          type: string
+          description: >-
+            Custom alert message when the heartbeat expires.
+        alertTags:
+          type: array
+          items:
+            type: string
+          description: >-
+            Tags to add to the alert created by an expired heartbeat.
+        alertPriority:
+          type: string
+          enum:
+            - P1
+            - P2
+            - P3
+            - P4
+            - P5
+          description: >-
+            Priority of the alert created by an expired heartbeat.
+    UpdateHeartbeatRequest:
+      type: object
+      properties:
+        description:
+          type: string
+          description: >-
+            Updated description.
+        interval:
+          type: integer
+          minimum: 1
+          description: >-
+            Updated interval.
+        intervalUnit:
+          type: string
+          enum:
+            - minutes
+            - hours
+            - days
+          description: >-
+            Updated interval unit.
+        enabled:
+          type: boolean
+          description: >-
+            Updated enabled status.
+        ownerTeam:
+          type: object
+          description: >-
+            Updated owner team.
+          properties:
+            id:
+              type: string
+              description: >-
+                Team ID.
+            name:
+              type: string
+              description: >-
+                Team name.
+        alertMessage:
+          type: string
+          description: >-
+            Updated alert message.
+        alertTags:
+          type: array
+          items:
+            type: string
+          description: >-
+            Updated alert tags.
+        alertPriority:
+          type: string
+          enum:
+            - P1
+            - P2
+            - P3
+            - P4
+            - P5
+          description: >-
+            Updated alert priority.
+    Heartbeat:
+      type: object
+      properties:
+        name:
+          type: string
+          description: >-
+            Name of the heartbeat.
+        description:
+          type: string
+          description: >-
+            Description of the heartbeat.
+        interval:
+          type: integer
+          description: >-
+            Heartbeat interval.
+        intervalUnit:
+          type: string
+          enum:
+            - minutes
+            - hours
+            - days
+          description: >-
+            Unit for the interval.
+        enabled:
+          type: boolean
+          description: >-
+            Whether the heartbeat is enabled.
+        expired:
+          type: boolean
+          description: >-
+            Whether the heartbeat has expired.
+        lastPingTime:
+          type: string
+          format: date-time
+          description: >-
+            Time of the last successful ping.
+        ownerTeam:
+          type: object
+          properties:
+            id:
+              type: string
+              description: >-
+                Team ID.
+            name:
+              type: string
+              description: >-
+                Team name.
+          description: >-
+            Owner team.
+        alertMessage:
+          type: string
+          description: >-
+            Alert message for expired heartbeats.
+        alertTags:
+          type: array
+          items:
+            type: string
+          description: >-
+            Alert tags.
+        alertPriority:
+          type: string
+          description: >-
+            Alert priority.
+    HeartbeatResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Heartbeat'
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    ListHeartbeatsResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            heartbeats:
+              type: array
+              items:
+                $ref: '#/components/schemas/Heartbeat'
+              description: >-
+                List of heartbeats.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: >-
+            Result message.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: >-
+            Error message.
+        took:
+          type: number
+          description: >-
+            Time taken in seconds.
+        requestId:
+          type: string
+          description: >-
+            Unique identifier for the request.

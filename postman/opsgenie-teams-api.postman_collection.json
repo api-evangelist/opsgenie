@@ -1,0 +1,1751 @@
+{
+  "info": {
+    "_postman_id": "6b3a2c37-dc6f-483c-8084-8d96283e0589",
+    "name": "OpsGenie Account Teams API",
+    "description": "The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.\n\nContact Support:\n Name: Atlassian Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:56.000Z",
+    "updatedAt": "2026-07-28T02:27:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6b3a2c37-dc6f-483c-8084-8d96283e0589"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "teams",
+          "item": [
+            {
+              "name": "{identifier}",
+              "item": [
+                {
+                  "name": "members",
+                  "item": [
+                    {
+                      "name": "List team members",
+                      "id": "82e8c508-9d1e-4bae-b1e7-ffdcdc1bc687",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/teams/:identifier/members?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "teams",
+                            ":identifier",
+                            "members"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or name. Default is id.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "a09f7782-6d41-4459-8dc2-1c02c98b2a60",
+                              "key": "identifier",
+                              "value": "<string>",
+                              "description": "(Required) Identifier of the team, which can be the team ID or name."
+                            }
+                          ]
+                        },
+                        "description": "Lists the members of the specified team."
+                      },
+                      "response": [
+                        {
+                          "id": "c3ae06ea-27f5-48e4-8f7d-5e3630c4ce7b",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/teams/:identifier/members?identifierType=id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "teams",
+                                ":identifier",
+                                "members"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or name. Default is id.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": [\n    {\n      \"user\": {\n        \"id\": \"<string>\",\n        \"username\": \"<string>\"\n      },\n      \"role\": \"user\"\n    },\n    {\n      \"user\": {\n        \"id\": \"<string>\",\n        \"username\": \"<string>\"\n      },\n      \"role\": \"user\"\n    }\n  ],\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:57.000Z",
+                          "updatedAt": "2026-07-28T02:27:57.000Z",
+                          "uid": "35240-c3ae06ea-27f5-48e4-8f7d-5e3630c4ce7b"
+                        },
+                        {
+                          "id": "206e334f-48d1-44ed-971a-28314e1fd744",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/teams/:identifier/members?identifierType=id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "teams",
+                                ":identifier",
+                                "members"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or name. Default is id.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:57.000Z",
+                          "updatedAt": "2026-07-28T02:27:57.000Z",
+                          "uid": "35240-206e334f-48d1-44ed-971a-28314e1fd744"
+                        },
+                        {
+                          "id": "2ebba63e-7a9e-4e33-8c11-8d0e523fd18a",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/teams/:identifier/members?identifierType=id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "teams",
+                                ":identifier",
+                                "members"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or name. Default is id.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:57.000Z",
+                          "updatedAt": "2026-07-28T02:27:57.000Z",
+                          "uid": "35240-2ebba63e-7a9e-4e33-8c11-8d0e523fd18a"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:57.000Z",
+                      "updatedAt": "2026-07-28T02:27:57.000Z",
+                      "uid": "35240-82e8c508-9d1e-4bae-b1e7-ffdcdc1bc687"
+                    }
+                  ],
+                  "id": "2cb8d14e-e50c-466b-a74f-0b5a97eef587",
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-2cb8d14e-e50c-466b-a74f-0b5a97eef587"
+                },
+                {
+                  "name": "logs",
+                  "item": [
+                    {
+                      "name": "List team logs",
+                      "id": "53642341-54a6-4d49-bd81-e1b225b62d2f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/teams/:identifier/logs?identifierType=id&limit=20&offset=0&order=desc",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "teams",
+                            ":identifier",
+                            "logs"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or name. Default is id.",
+                              "key": "identifierType",
+                              "value": "id"
+                            },
+                            {
+                              "description": "Maximum number of log entries to return.",
+                              "key": "limit",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Starting index for pagination.",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Sort order.",
+                              "key": "order",
+                              "value": "desc"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "f4fb5bba-c3c3-47c9-b1b4-206d5865aac0",
+                              "key": "identifier",
+                              "value": "<string>",
+                              "description": "(Required) Identifier of the team, which can be the team ID or name."
+                            }
+                          ]
+                        },
+                        "description": "Lists the activity logs for the specified team."
+                      },
+                      "response": [
+                        {
+                          "id": "d6e9a433-2bb5-452c-9a18-df544c947598",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/teams/:identifier/logs?identifierType=id&limit=20&offset=0&order=desc",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "teams",
+                                ":identifier",
+                                "logs"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or name. Default is id.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                },
+                                {
+                                  "description": "Maximum number of log entries to return.",
+                                  "key": "limit",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "Starting index for pagination.",
+                                  "key": "offset",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "Sort order.",
+                                  "key": "order",
+                                  "value": "desc"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": [\n    {\n      \"log\": \"<string>\",\n      \"owner\": \"<string>\",\n      \"createdAt\": \"<dateTime>\"\n    },\n    {\n      \"log\": \"<string>\",\n      \"owner\": \"<string>\",\n      \"createdAt\": \"<dateTime>\"\n    }\n  ],\n  \"paging\": {\n    \"next\": \"<string>\",\n    \"first\": \"<string>\"\n  },\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:57.000Z",
+                          "updatedAt": "2026-07-28T02:27:57.000Z",
+                          "uid": "35240-d6e9a433-2bb5-452c-9a18-df544c947598"
+                        },
+                        {
+                          "id": "a5a98c85-56c8-4ef3-ac22-46f4e6a2a2d7",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/teams/:identifier/logs?identifierType=id&limit=20&offset=0&order=desc",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "teams",
+                                ":identifier",
+                                "logs"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or name. Default is id.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                },
+                                {
+                                  "description": "Maximum number of log entries to return.",
+                                  "key": "limit",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "Starting index for pagination.",
+                                  "key": "offset",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "Sort order.",
+                                  "key": "order",
+                                  "value": "desc"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:57.000Z",
+                          "updatedAt": "2026-07-28T02:27:57.000Z",
+                          "uid": "35240-a5a98c85-56c8-4ef3-ac22-46f4e6a2a2d7"
+                        },
+                        {
+                          "id": "597adc92-d013-42c0-a5f1-2dca1e1e8515",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/teams/:identifier/logs?identifierType=id&limit=20&offset=0&order=desc",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "teams",
+                                ":identifier",
+                                "logs"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of the identifier. Possible values are id or name. Default is id.",
+                                  "key": "identifierType",
+                                  "value": "id"
+                                },
+                                {
+                                  "description": "Maximum number of log entries to return.",
+                                  "key": "limit",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "Starting index for pagination.",
+                                  "key": "offset",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "Sort order.",
+                                  "key": "order",
+                                  "value": "desc"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:57.000Z",
+                          "updatedAt": "2026-07-28T02:27:57.000Z",
+                          "uid": "35240-597adc92-d013-42c0-a5f1-2dca1e1e8515"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:57.000Z",
+                      "updatedAt": "2026-07-28T02:27:57.000Z",
+                      "uid": "35240-53642341-54a6-4d49-bd81-e1b225b62d2f"
+                    }
+                  ],
+                  "id": "af786d54-c5bf-4af8-a3c5-c442c9cef61c",
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-af786d54-c5bf-4af8-a3c5-c442c9cef61c"
+                },
+                {
+                  "name": "Get team",
+                  "id": "12ab1927-41d1-454d-810c-b7ba64a10235",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/teams/:identifier?identifierType=id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "teams",
+                        ":identifier"
+                      ],
+                      "query": [
+                        {
+                          "description": "Type of the identifier. Possible values are id or name. Default is id.",
+                          "key": "identifierType",
+                          "value": "id"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "d1486649-50c3-418c-9b65-cc0574cf3317",
+                          "key": "identifier",
+                          "value": "<string>",
+                          "description": "(Required) Identifier of the team, which can be the team ID or name."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the details of a specific team by its ID or name."
+                  },
+                  "response": [
+                    {
+                      "id": "c87a0535-939a-4021-b259-b250cdb32662",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/teams/:identifier?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "teams",
+                            ":identifier"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or name. Default is id.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"members\": [\n      {\n        \"user\": {\n          \"id\": \"<string>\",\n          \"username\": \"<string>\"\n        },\n        \"role\": \"admin\"\n      },\n      {\n        \"user\": {\n          \"id\": \"<string>\",\n          \"username\": \"<string>\"\n        },\n        \"role\": \"user\"\n      }\n    ],\n    \"links\": {\n      \"web\": \"<uri>\",\n      \"api\": \"<uri>\"\n    }\n  },\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:57.000Z",
+                      "updatedAt": "2026-07-28T02:27:57.000Z",
+                      "uid": "35240-c87a0535-939a-4021-b259-b250cdb32662"
+                    },
+                    {
+                      "id": "4f8783c4-4ad1-4889-9f32-86136a03f620",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/teams/:identifier?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "teams",
+                            ":identifier"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or name. Default is id.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:57.000Z",
+                      "updatedAt": "2026-07-28T02:27:57.000Z",
+                      "uid": "35240-4f8783c4-4ad1-4889-9f32-86136a03f620"
+                    },
+                    {
+                      "id": "1aeecf76-65b2-4d3e-8873-36603a3a4aef",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/teams/:identifier?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "teams",
+                            ":identifier"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or name. Default is id.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:57.000Z",
+                      "updatedAt": "2026-07-28T02:27:57.000Z",
+                      "uid": "35240-1aeecf76-65b2-4d3e-8873-36603a3a4aef"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-12ab1927-41d1-454d-810c-b7ba64a10235"
+                },
+                {
+                  "name": "Update team",
+                  "id": "7a1db19b-c533-4fc5-9a79-c84d9744259a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"members\": [\n    {\n      \"user\": {\n        \"id\": \"<string>\",\n        \"username\": \"<string>\"\n      },\n      \"role\": \"user\"\n    },\n    {\n      \"user\": {\n        \"id\": \"<string>\",\n        \"username\": \"<string>\"\n      },\n      \"role\": \"admin\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/teams/:identifier?identifierType=id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "teams",
+                        ":identifier"
+                      ],
+                      "query": [
+                        {
+                          "description": "Type of the identifier. Possible values are id or name. Default is id.",
+                          "key": "identifierType",
+                          "value": "id"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "83ffc59b-55f6-48b5-97ad-72e75bb2f541",
+                          "key": "identifier",
+                          "value": "<string>",
+                          "description": "(Required) Identifier of the team, which can be the team ID or name."
+                        }
+                      ]
+                    },
+                    "description": "Updates the specified team's information including name, description, and members."
+                  },
+                  "response": [
+                    {
+                      "id": "3bd4e7e7-2794-4707-b7ec-88c64ccb100f",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"members\": [\n    {\n      \"user\": {\n        \"id\": \"<string>\",\n        \"username\": \"<string>\"\n      },\n      \"role\": \"user\"\n    },\n    {\n      \"user\": {\n        \"id\": \"<string>\",\n        \"username\": \"<string>\"\n      },\n      \"role\": \"admin\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/teams/:identifier?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "teams",
+                            ":identifier"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or name. Default is id.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"result\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:57.000Z",
+                      "updatedAt": "2026-07-28T02:27:57.000Z",
+                      "uid": "35240-3bd4e7e7-2794-4707-b7ec-88c64ccb100f"
+                    },
+                    {
+                      "id": "2e73dc01-c28d-46e8-b7a5-2f9b6992d51e",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"members\": [\n    {\n      \"user\": {\n        \"id\": \"<string>\",\n        \"username\": \"<string>\"\n      },\n      \"role\": \"user\"\n    },\n    {\n      \"user\": {\n        \"id\": \"<string>\",\n        \"username\": \"<string>\"\n      },\n      \"role\": \"admin\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/teams/:identifier?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "teams",
+                            ":identifier"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or name. Default is id.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:57.000Z",
+                      "updatedAt": "2026-07-28T02:27:57.000Z",
+                      "uid": "35240-2e73dc01-c28d-46e8-b7a5-2f9b6992d51e"
+                    },
+                    {
+                      "id": "f1d23a74-7e32-4b57-a12c-30c48504ca7b",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"members\": [\n    {\n      \"user\": {\n        \"id\": \"<string>\",\n        \"username\": \"<string>\"\n      },\n      \"role\": \"user\"\n    },\n    {\n      \"user\": {\n        \"id\": \"<string>\",\n        \"username\": \"<string>\"\n      },\n      \"role\": \"admin\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/teams/:identifier?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "teams",
+                            ":identifier"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or name. Default is id.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:57.000Z",
+                      "updatedAt": "2026-07-28T02:27:57.000Z",
+                      "uid": "35240-f1d23a74-7e32-4b57-a12c-30c48504ca7b"
+                    },
+                    {
+                      "id": "2b48ed88-b695-493e-82da-1d149df0b4e8",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"members\": [\n    {\n      \"user\": {\n        \"id\": \"<string>\",\n        \"username\": \"<string>\"\n      },\n      \"role\": \"user\"\n    },\n    {\n      \"user\": {\n        \"id\": \"<string>\",\n        \"username\": \"<string>\"\n      },\n      \"role\": \"admin\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/teams/:identifier?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "teams",
+                            ":identifier"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or name. Default is id.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:57.000Z",
+                      "updatedAt": "2026-07-28T02:27:57.000Z",
+                      "uid": "35240-2b48ed88-b695-493e-82da-1d149df0b4e8"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-7a1db19b-c533-4fc5-9a79-c84d9744259a"
+                },
+                {
+                  "name": "Delete team",
+                  "id": "52c1c9d0-8d6f-4950-b38a-2c1f0697b9ec",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/teams/:identifier?identifierType=id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "teams",
+                        ":identifier"
+                      ],
+                      "query": [
+                        {
+                          "description": "Type of the identifier. Possible values are id or name. Default is id.",
+                          "key": "identifierType",
+                          "value": "id"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "cead555e-1b6f-468b-8eb5-b89c926297ce",
+                          "key": "identifier",
+                          "value": "<string>",
+                          "description": "(Required) Identifier of the team, which can be the team ID or name."
+                        }
+                      ]
+                    },
+                    "description": "Deletes the specified team from the OpsGenie account."
+                  },
+                  "response": [
+                    {
+                      "id": "1f2b8170-4d68-4b74-94d3-7481694465f7",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/teams/:identifier?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "teams",
+                            ":identifier"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or name. Default is id.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"result\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:57.000Z",
+                      "updatedAt": "2026-07-28T02:27:57.000Z",
+                      "uid": "35240-1f2b8170-4d68-4b74-94d3-7481694465f7"
+                    },
+                    {
+                      "id": "3119646f-0848-4bee-b4a8-52492440c4b2",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/teams/:identifier?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "teams",
+                            ":identifier"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or name. Default is id.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:57.000Z",
+                      "updatedAt": "2026-07-28T02:27:57.000Z",
+                      "uid": "35240-3119646f-0848-4bee-b4a8-52492440c4b2"
+                    },
+                    {
+                      "id": "eb378c08-a7ad-4b2f-93e4-a34ffc28e214",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/teams/:identifier?identifierType=id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "teams",
+                            ":identifier"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of the identifier. Possible values are id or name. Default is id.",
+                              "key": "identifierType",
+                              "value": "id"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:57.000Z",
+                      "updatedAt": "2026-07-28T02:27:57.000Z",
+                      "uid": "35240-eb378c08-a7ad-4b2f-93e4-a34ffc28e214"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-52c1c9d0-8d6f-4950-b38a-2c1f0697b9ec"
+                }
+              ],
+              "id": "ccf3bbab-6bbd-43af-994f-60067414dc1b",
+              "createdAt": "2026-07-28T02:27:57.000Z",
+              "updatedAt": "2026-07-28T02:27:57.000Z",
+              "uid": "35240-ccf3bbab-6bbd-43af-994f-60067414dc1b"
+            },
+            {
+              "name": "Create team",
+              "id": "1f4240c4-7aa5-4c48-9f7a-3586b87ec5c7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"members\": [\n    {\n      \"user\": {\n        \"id\": \"<string>\",\n        \"username\": \"<string>\"\n      },\n      \"role\": \"admin\"\n    },\n    {\n      \"user\": {\n        \"id\": \"<string>\",\n        \"username\": \"<string>\"\n      },\n      \"role\": \"user\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/teams",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "teams"
+                  ]
+                },
+                "description": "Creates a new team in OpsGenie with the specified members and roles."
+              },
+              "response": [
+                {
+                  "id": "86f822a2-8dfb-41ff-bc8b-64bcfd5ea292",
+                  "name": "Created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"members\": [\n    {\n      \"user\": {\n        \"id\": \"<string>\",\n        \"username\": \"<string>\"\n      },\n      \"role\": \"admin\"\n    },\n    {\n      \"user\": {\n        \"id\": \"<string>\",\n        \"username\": \"<string>\"\n      },\n      \"role\": \"user\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/teams",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "teams"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"result\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-86f822a2-8dfb-41ff-bc8b-64bcfd5ea292"
+                },
+                {
+                  "id": "a51595ca-a32e-47e1-87c6-d4eba154ff33",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"members\": [\n    {\n      \"user\": {\n        \"id\": \"<string>\",\n        \"username\": \"<string>\"\n      },\n      \"role\": \"admin\"\n    },\n    {\n      \"user\": {\n        \"id\": \"<string>\",\n        \"username\": \"<string>\"\n      },\n      \"role\": \"user\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/teams",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "teams"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-a51595ca-a32e-47e1-87c6-d4eba154ff33"
+                },
+                {
+                  "id": "7d64d46c-9191-49d9-a787-a4118c77e1ac",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"members\": [\n    {\n      \"user\": {\n        \"id\": \"<string>\",\n        \"username\": \"<string>\"\n      },\n      \"role\": \"admin\"\n    },\n    {\n      \"user\": {\n        \"id\": \"<string>\",\n        \"username\": \"<string>\"\n      },\n      \"role\": \"user\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/teams",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "teams"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-7d64d46c-9191-49d9-a787-a4118c77e1ac"
+                },
+                {
+                  "id": "e8e08793-ef8e-4866-ac81-5634c529b72e",
+                  "name": "Unprocessable Entity",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"members\": [\n    {\n      \"user\": {\n        \"id\": \"<string>\",\n        \"username\": \"<string>\"\n      },\n      \"role\": \"admin\"\n    },\n    {\n      \"user\": {\n        \"id\": \"<string>\",\n        \"username\": \"<string>\"\n      },\n      \"role\": \"user\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/teams",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "teams"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-e8e08793-ef8e-4866-ac81-5634c529b72e"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:57.000Z",
+              "updatedAt": "2026-07-28T02:27:57.000Z",
+              "uid": "35240-1f4240c4-7aa5-4c48-9f7a-3586b87ec5c7"
+            },
+            {
+              "name": "List teams",
+              "id": "a0f93268-c228-4b90-9b1d-bfe5f205ac09",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/teams",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "teams"
+                  ]
+                },
+                "description": "Returns a list of all teams in the OpsGenie account."
+              },
+              "response": [
+                {
+                  "id": "d81ef5d0-22ba-466e-bcb8-08e685f81a17",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/teams",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "teams"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"members\": [\n        {\n          \"user\": {\n            \"id\": \"<string>\",\n            \"username\": \"<string>\"\n          },\n          \"role\": \"user\"\n        },\n        {\n          \"user\": {\n            \"id\": \"<string>\",\n            \"username\": \"<string>\"\n          },\n          \"role\": \"admin\"\n        }\n      ],\n      \"links\": {\n        \"web\": \"<uri>\",\n        \"api\": \"<uri>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"members\": [\n        {\n          \"user\": {\n            \"id\": \"<string>\",\n            \"username\": \"<string>\"\n          },\n          \"role\": \"admin\"\n        },\n        {\n          \"user\": {\n            \"id\": \"<string>\",\n            \"username\": \"<string>\"\n          },\n          \"role\": \"user\"\n        }\n      ],\n      \"links\": {\n        \"web\": \"<uri>\",\n        \"api\": \"<uri>\"\n      }\n    }\n  ],\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-d81ef5d0-22ba-466e-bcb8-08e685f81a17"
+                },
+                {
+                  "id": "f0d33613-ab85-4150-ad4e-293ce5a4f738",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/teams",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "teams"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"took\": \"<number>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-f0d33613-ab85-4150-ad4e-293ce5a4f738"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:57.000Z",
+              "updatedAt": "2026-07-28T02:27:57.000Z",
+              "uid": "35240-a0f93268-c228-4b90-9b1d-bfe5f205ac09"
+            }
+          ],
+          "id": "85179b65-e4fb-44dd-a01a-4888801f5ad8",
+          "createdAt": "2026-07-28T02:27:57.000Z",
+          "updatedAt": "2026-07-28T02:27:57.000Z",
+          "uid": "35240-85179b65-e4fb-44dd-a01a-4888801f5ad8"
+        }
+      ],
+      "id": "28c975a3-e8f0-49c1-bc79-8f38882e35d6",
+      "createdAt": "2026-07-28T02:27:57.000Z",
+      "updatedAt": "2026-07-28T02:27:57.000Z",
+      "uid": "35240-28c975a3-e8f0-49c1-bc79-8f38882e35d6"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.opsgenie.com"
+    }
+  ]
+}

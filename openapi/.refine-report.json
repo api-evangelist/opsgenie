@@ -1,0 +1,42 @@
+{
+  "provider": "opsgenie",
+  "sources": [
+    "opsgenie-account-api-openapi.yml",
+    "opsgenie-alerts-api-openapi.yml",
+    "opsgenie-escalations-api-openapi.yml",
+    "opsgenie-heartbeats-api-openapi.yml",
+    "opsgenie-incidents-api-openapi.yml",
+    "opsgenie-integrations-api-openapi.yml",
+    "opsgenie-maintenance-api-openapi.yml",
+    "opsgenie-notification-rules-api-openapi.yml",
+    "opsgenie-on-call-api-openapi.yml",
+    "opsgenie-overrides-api-openapi.yml",
+    "opsgenie-rotations-api-openapi.yml",
+    "opsgenie-schedules-api-openapi.yml",
+    "opsgenie-services-api-openapi.yml",
+    "opsgenie-teams-api-openapi.yml",
+    "opsgenie-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "opsgenie-account-api-openapi.yml",
+    "opsgenie-alerts-api-openapi.yml",
+    "opsgenie-escalations-api-openapi.yml",
+    "opsgenie-heartbeats-api-openapi.yml",
+    "opsgenie-incidents-api-openapi.yml",
+    "opsgenie-integrations-api-openapi.yml",
+    "opsgenie-maintenance-api-openapi.yml",
+    "opsgenie-notification-rules-api-openapi.yml",
+    "opsgenie-on-call-api-openapi.yml",
+    "opsgenie-overrides-api-openapi.yml",
+    "opsgenie-rotations-api-openapi.yml",
+    "opsgenie-schedules-api-openapi.yml",
+    "opsgenie-services-api-openapi.yml",
+    "opsgenie-teams-api-openapi.yml",
+    "opsgenie-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
