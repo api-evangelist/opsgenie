@@ -5,7 +5,7 @@
       "source": "https://atlassianblog.wpengine.com/feed",
       "feed_url": "https://atlassianblog.wpengine.com/feed",
       "title": "",
-      "saved": 0,
+      "saved": 5,
       "method": "feed"
     },
     {
@@ -13,9 +13,10 @@
       "feed_url": "https://support.atlassian.com/opsgenie/",
       "title": "",
       "saved": 0,
-      "method": "none"
+      "method": "none",
+      "error": "parse_failed"
     }
   ],
-  "post_count": 64,
-  "fetched": "2026-08-06T14:08:46Z"
+  "post_count": 69,
+  "fetched": "2026-08-15T12:11:08Z"
 }
