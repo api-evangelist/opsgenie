@@ -1,0 +1,2893 @@
+{
+  "item": [
+    {
+      "id": "0f694917-73ab-4f3c-bbb1-66237b0dffdf",
+      "name": "Notification Rules",
+      "description": {
+        "content": "Operations for managing user notification rules and their steps.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f702ad06-48f4-4e54-bcec-1e8342aaeca5",
+          "name": "Create notification rule",
+          "request": {
+            "name": "Create notification rule",
+            "description": {
+              "content": "Creates a new notification rule for the specified user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "users",
+                ":identifier",
+                "notification-rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) Identifier of the user (user ID or username/email)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"actionType\": \"<string>\",\n  \"criteria\": {\n    \"type\": \"<string>\",\n    \"conditions\": [\n      \"string\",\n      3201.043473702838\n    ]\n  },\n  \"notificationTime\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"timeRestriction\": {\n    \"type\": \"<string>\",\n    \"restrictions\": [\n      {\n        \"startDay\": \"<string>\",\n        \"startHour\": \"<integer>\",\n        \"startMin\": \"<integer>\",\n        \"endDay\": \"<string>\",\n        \"endHour\": \"<integer>\",\n        \"endMin\": \"<integer>\"\n      },\n      {\n        \"startDay\": \"<string>\",\n        \"startHour\": \"<integer>\",\n        \"startMin\": \"<integer>\",\n        \"endDay\": \"<string>\",\n        \"endHour\": \"<integer>\",\n        \"endMin\": \"<integer>\"\n      }\n    ]\n  },\n  \"schedules\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"steps\": [\n    {\n      \"id\": \"<string>\",\n      \"contact\": {\n        \"method\": \"<string>\",\n        \"to\": \"<string>\"\n      },\n      \"sendAfter\": {\n        \"timeAmount\": \"<integer>\",\n        \"timeUnit\": \"<string>\"\n      },\n      \"enabled\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"contact\": {\n        \"method\": \"<string>\",\n        \"to\": \"<string>\"\n      },\n      \"sendAfter\": {\n        \"timeAmount\": \"<integer>\",\n        \"timeUnit\": \"<string>\"\n      },\n      \"enabled\": \"<boolean>\"\n    }\n  ],\n  \"order\": \"<integer>\",\n  \"repeat\": {\n    \"loopAfter\": \"<integer>\",\n    \"enabled\": \"<boolean>\"\n  },\n  \"enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "85af04d3-f9aa-4aee-bb94-6c15304350af",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"actionType\": \"<string>\",\n  \"criteria\": {\n    \"type\": \"match-all-conditions\",\n    \"conditions\": [\n      3395.0422319000995,\n      []\n    ]\n  },\n  \"notificationTime\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"timeRestriction\": {\n    \"type\": \"weekday-and-time-of-day\",\n    \"restrictions\": [\n      {\n        \"startDay\": \"string\",\n        \"startHour\": 4949,\n        \"startMin\": 5906,\n        \"endDay\": \"string\",\n        \"endHour\": 4531,\n        \"endMin\": 9099\n      },\n      {\n        \"startDay\": \"string\",\n        \"startHour\": 7736,\n        \"startMin\": 9858,\n        \"endDay\": \"string\",\n        \"endHour\": 462,\n        \"endMin\": 1502\n      }\n    ]\n  },\n  \"schedules\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"steps\": [\n    {\n      \"id\": \"string\",\n      \"contact\": {\n        \"method\": \"voice\",\n        \"to\": \"string\"\n      },\n      \"sendAfter\": {\n        \"timeAmount\": 7640,\n        \"timeUnit\": \"hours\"\n      },\n      \"enabled\": false\n    },\n    {\n      \"id\": \"string\",\n      \"contact\": {\n        \"method\": \"email\",\n        \"to\": \"string\"\n      },\n      \"sendAfter\": {\n        \"timeAmount\": 5413,\n        \"timeUnit\": \"hours\"\n      },\n      \"enabled\": true\n    }\n  ],\n  \"order\": \"<integer>\",\n  \"repeat\": {\n    \"loopAfter\": \"<integer>\",\n    \"enabled\": \"<boolean>\"\n  },\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\"\n  },\n  \"took\": 3131.776267190001,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e2720ff-0976-4e20-a074-793dcb677db9",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"actionType\": \"<string>\",\n  \"criteria\": {\n    \"type\": \"match-all-conditions\",\n    \"conditions\": [\n      3395.0422319000995,\n      []\n    ]\n  },\n  \"notificationTime\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"timeRestriction\": {\n    \"type\": \"weekday-and-time-of-day\",\n    \"restrictions\": [\n      {\n        \"startDay\": \"string\",\n        \"startHour\": 4949,\n        \"startMin\": 5906,\n        \"endDay\": \"string\",\n        \"endHour\": 4531,\n        \"endMin\": 9099\n      },\n      {\n        \"startDay\": \"string\",\n        \"startHour\": 7736,\n        \"startMin\": 9858,\n        \"endDay\": \"string\",\n        \"endHour\": 462,\n        \"endMin\": 1502\n      }\n    ]\n  },\n  \"schedules\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"steps\": [\n    {\n      \"id\": \"string\",\n      \"contact\": {\n        \"method\": \"voice\",\n        \"to\": \"string\"\n      },\n      \"sendAfter\": {\n        \"timeAmount\": 7640,\n        \"timeUnit\": \"hours\"\n      },\n      \"enabled\": false\n    },\n    {\n      \"id\": \"string\",\n      \"contact\": {\n        \"method\": \"email\",\n        \"to\": \"string\"\n      },\n      \"sendAfter\": {\n        \"timeAmount\": 5413,\n        \"timeUnit\": \"hours\"\n      },\n      \"enabled\": true\n    }\n  ],\n  \"order\": \"<integer>\",\n  \"repeat\": {\n    \"loopAfter\": \"<integer>\",\n    \"enabled\": \"<boolean>\"\n  },\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"took\": 284.77271530844894,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a053e9b-e0ed-4016-a476-ae8944ac5e9d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"actionType\": \"<string>\",\n  \"criteria\": {\n    \"type\": \"match-all-conditions\",\n    \"conditions\": [\n      3395.0422319000995,\n      []\n    ]\n  },\n  \"notificationTime\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"timeRestriction\": {\n    \"type\": \"weekday-and-time-of-day\",\n    \"restrictions\": [\n      {\n        \"startDay\": \"string\",\n        \"startHour\": 4949,\n        \"startMin\": 5906,\n        \"endDay\": \"string\",\n        \"endHour\": 4531,\n        \"endMin\": 9099\n      },\n      {\n        \"startDay\": \"string\",\n        \"startHour\": 7736,\n        \"startMin\": 9858,\n        \"endDay\": \"string\",\n        \"endHour\": 462,\n        \"endMin\": 1502\n      }\n    ]\n  },\n  \"schedules\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"steps\": [\n    {\n      \"id\": \"string\",\n      \"contact\": {\n        \"method\": \"voice\",\n        \"to\": \"string\"\n      },\n      \"sendAfter\": {\n        \"timeAmount\": 7640,\n        \"timeUnit\": \"hours\"\n      },\n      \"enabled\": false\n    },\n    {\n      \"id\": \"string\",\n      \"contact\": {\n        \"method\": \"email\",\n        \"to\": \"string\"\n      },\n      \"sendAfter\": {\n        \"timeAmount\": 5413,\n        \"timeUnit\": \"hours\"\n      },\n      \"enabled\": true\n    }\n  ],\n  \"order\": \"<integer>\",\n  \"repeat\": {\n    \"loopAfter\": \"<integer>\",\n    \"enabled\": \"<boolean>\"\n  },\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"took\": 284.77271530844894,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2394b777-06dc-48b0-b396-58b27cd27a0a",
+          "name": "List notification rules",
+          "request": {
+            "name": "List notification rules",
+            "description": {
+              "content": "Returns a list of notification rules for the specified user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "users",
+                ":identifier",
+                "notification-rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) Identifier of the user (user ID or username/email)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eb98d1c4-4f42-4e88-a565-36405590b6b2",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"actionType\": \"string\",\n      \"order\": 5155,\n      \"enabled\": true,\n      \"criteria\": {\n        \"type\": \"match-all\",\n        \"conditions\": [\n          \"string\",\n          5853.957225552502\n        ]\n      },\n      \"timeRestriction\": {\n        \"type\": \"weekday-and-time-of-day\",\n        \"restrictions\": [\n          {\n            \"startDay\": \"string\",\n            \"startHour\": 4134,\n            \"startMin\": 1763,\n            \"endDay\": \"string\",\n            \"endHour\": 8943,\n            \"endMin\": 3489\n          },\n          {\n            \"startDay\": \"string\",\n            \"startHour\": 6113,\n            \"startMin\": 7770,\n            \"endDay\": \"string\",\n            \"endHour\": 3213,\n            \"endMin\": 1798\n          }\n        ]\n      },\n      \"steps\": [\n        {\n          \"id\": \"string\",\n          \"contact\": {\n            \"method\": \"voice\",\n            \"to\": \"string\"\n          },\n          \"sendAfter\": {\n            \"timeAmount\": 7608,\n            \"timeUnit\": \"minutes\"\n          },\n          \"enabled\": false\n        },\n        {\n          \"id\": \"string\",\n          \"contact\": {\n            \"method\": \"mobile\",\n            \"to\": \"string\"\n          },\n          \"sendAfter\": {\n            \"timeAmount\": 3205,\n            \"timeUnit\": \"days\"\n          },\n          \"enabled\": false\n        }\n      ],\n      \"repeat\": {\n        \"loopAfter\": 8004,\n        \"enabled\": false\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"actionType\": \"string\",\n      \"order\": 7549,\n      \"enabled\": false,\n      \"criteria\": {\n        \"type\": \"match-any-condition\",\n        \"conditions\": [\n          8066.067831466493,\n          \"string\"\n        ]\n      },\n      \"timeRestriction\": {\n        \"type\": \"weekday-and-time-of-day\",\n        \"restrictions\": [\n          {\n            \"startDay\": \"string\",\n            \"startHour\": 7357,\n            \"startMin\": 1886,\n            \"endDay\": \"string\",\n            \"endHour\": 6836,\n            \"endMin\": 9990\n          },\n          {\n            \"startDay\": \"string\",\n            \"startHour\": 5003,\n            \"startMin\": 3098,\n            \"endDay\": \"string\",\n            \"endHour\": 4360,\n            \"endMin\": 3519\n          }\n        ]\n      },\n      \"steps\": [\n        {\n          \"id\": \"string\",\n          \"contact\": {\n            \"method\": \"email\",\n            \"to\": \"string\"\n          },\n          \"sendAfter\": {\n            \"timeAmount\": 520,\n            \"timeUnit\": \"hours\"\n          },\n          \"enabled\": true\n        },\n        {\n          \"id\": \"string\",\n          \"contact\": {\n            \"method\": \"mobile\",\n            \"to\": \"string\"\n          },\n          \"sendAfter\": {\n            \"timeAmount\": 5198,\n            \"timeUnit\": \"minutes\"\n          },\n          \"enabled\": false\n        }\n      ],\n      \"repeat\": {\n        \"loopAfter\": 6368,\n        \"enabled\": false\n      }\n    }\n  ],\n  \"took\": 4758.789244612488,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc382cd8-8d78-444e-bfbf-b07ae51b6273",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"took\": 284.77271530844894,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d4ee61cd-6027-45c6-ad21-09407b2f4999",
+          "name": "Get notification rule",
+          "request": {
+            "name": "Get notification rule",
+            "description": {
+              "content": "Retrieves the details of a specific notification rule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "users",
+                ":identifier",
+                "notification-rules",
+                ":ruleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) Identifier of the user (user ID or username/email)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ruleId",
+                  "description": "(Required) Unique identifier of the notification rule."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2d8f4f08-8bb5-41f5-8689-b33b931fc9e8",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Unique identifier of the notification rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"actionType\": \"string\",\n    \"order\": 6502,\n    \"enabled\": true,\n    \"criteria\": {\n      \"type\": \"match-all\",\n      \"conditions\": [\n        null,\n        null\n      ]\n    },\n    \"timeRestriction\": {\n      \"type\": \"weekday-and-time-of-day\",\n      \"restrictions\": [\n        {\n          \"startDay\": \"string\",\n          \"startHour\": 3425,\n          \"startMin\": 4421,\n          \"endDay\": \"string\",\n          \"endHour\": 4438,\n          \"endMin\": 2969\n        },\n        {\n          \"startDay\": \"string\",\n          \"startHour\": 5215,\n          \"startMin\": 4252,\n          \"endDay\": \"string\",\n          \"endHour\": 8573,\n          \"endMin\": 8304\n        }\n      ]\n    },\n    \"steps\": [\n      {\n        \"id\": \"string\",\n        \"contact\": {\n          \"method\": \"voice\",\n          \"to\": \"string\"\n        },\n        \"sendAfter\": {\n          \"timeAmount\": 4623,\n          \"timeUnit\": \"minutes\"\n        },\n        \"enabled\": false\n      },\n      {\n        \"id\": \"string\",\n        \"contact\": {\n          \"method\": \"email\",\n          \"to\": \"string\"\n        },\n        \"sendAfter\": {\n          \"timeAmount\": 3536,\n          \"timeUnit\": \"minutes\"\n        },\n        \"enabled\": false\n      }\n    ],\n    \"repeat\": {\n      \"loopAfter\": 16,\n      \"enabled\": true\n    }\n  },\n  \"took\": 3660.2075398371803,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1d9a5a7-2350-470e-a490-30593898e33c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Unique identifier of the notification rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"took\": 284.77271530844894,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad771886-450a-41c0-866e-b8415848f48d",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Unique identifier of the notification rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"took\": 284.77271530844894,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f587478-07e6-40c0-9f72-4d52733e356c",
+          "name": "Update notification rule",
+          "request": {
+            "name": "Update notification rule",
+            "description": {
+              "content": "Updates the specified notification rule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "users",
+                ":identifier",
+                "notification-rules",
+                ":ruleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) Identifier of the user (user ID or username/email)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ruleId",
+                  "description": "(Required) Unique identifier of the notification rule."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"criteria\": {\n    \"type\": \"<string>\",\n    \"conditions\": [\n      null\n    ]\n  },\n  \"notificationTime\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"timeRestriction\": {\n    \"type\": \"<string>\",\n    \"restrictions\": [\n      {\n        \"startDay\": \"<string>\",\n        \"startHour\": \"<integer>\",\n        \"startMin\": \"<integer>\",\n        \"endDay\": \"<string>\",\n        \"endHour\": \"<integer>\",\n        \"endMin\": \"<integer>\"\n      },\n      {\n        \"startDay\": \"<string>\",\n        \"startHour\": \"<integer>\",\n        \"startMin\": \"<integer>\",\n        \"endDay\": \"<string>\",\n        \"endHour\": \"<integer>\",\n        \"endMin\": \"<integer>\"\n      }\n    ]\n  },\n  \"schedules\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"steps\": [\n    {\n      \"id\": \"<string>\",\n      \"contact\": {\n        \"method\": \"<string>\",\n        \"to\": \"<string>\"\n      },\n      \"sendAfter\": {\n        \"timeAmount\": \"<integer>\",\n        \"timeUnit\": \"<string>\"\n      },\n      \"enabled\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"contact\": {\n        \"method\": \"<string>\",\n        \"to\": \"<string>\"\n      },\n      \"sendAfter\": {\n        \"timeAmount\": \"<integer>\",\n        \"timeUnit\": \"<string>\"\n      },\n      \"enabled\": \"<boolean>\"\n    }\n  ],\n  \"order\": \"<integer>\",\n  \"repeat\": {\n    \"loopAfter\": \"<integer>\",\n    \"enabled\": \"<boolean>\"\n  },\n  \"enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a909b2d1-cecf-46ba-abea-e34c452c14f2",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Unique identifier of the notification rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"criteria\": {\n    \"type\": \"match-all-conditions\",\n    \"conditions\": [\n      []\n    ]\n  },\n  \"notificationTime\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"timeRestriction\": {\n    \"type\": \"time-of-day\",\n    \"restrictions\": [\n      {\n        \"startDay\": \"string\",\n        \"startHour\": 3868,\n        \"startMin\": 2083,\n        \"endDay\": \"string\",\n        \"endHour\": 3742,\n        \"endMin\": 7648\n      },\n      {\n        \"startDay\": \"string\",\n        \"startHour\": 8949,\n        \"startMin\": 1895,\n        \"endDay\": \"string\",\n        \"endHour\": 7275,\n        \"endMin\": 4170\n      }\n    ]\n  },\n  \"schedules\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"steps\": [\n    {\n      \"id\": \"string\",\n      \"contact\": {\n        \"method\": \"email\",\n        \"to\": \"string\"\n      },\n      \"sendAfter\": {\n        \"timeAmount\": 6450,\n        \"timeUnit\": \"minutes\"\n      },\n      \"enabled\": true\n    },\n    {\n      \"id\": \"string\",\n      \"contact\": {\n        \"method\": \"mobile\",\n        \"to\": \"string\"\n      },\n      \"sendAfter\": {\n        \"timeAmount\": 4333,\n        \"timeUnit\": \"days\"\n      },\n      \"enabled\": false\n    }\n  ],\n  \"order\": \"<integer>\",\n  \"repeat\": {\n    \"loopAfter\": \"<integer>\",\n    \"enabled\": \"<boolean>\"\n  },\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"actionType\": \"string\",\n    \"order\": 6502,\n    \"enabled\": true,\n    \"criteria\": {\n      \"type\": \"match-all\",\n      \"conditions\": [\n        null,\n        null\n      ]\n    },\n    \"timeRestriction\": {\n      \"type\": \"weekday-and-time-of-day\",\n      \"restrictions\": [\n        {\n          \"startDay\": \"string\",\n          \"startHour\": 3425,\n          \"startMin\": 4421,\n          \"endDay\": \"string\",\n          \"endHour\": 4438,\n          \"endMin\": 2969\n        },\n        {\n          \"startDay\": \"string\",\n          \"startHour\": 5215,\n          \"startMin\": 4252,\n          \"endDay\": \"string\",\n          \"endHour\": 8573,\n          \"endMin\": 8304\n        }\n      ]\n    },\n    \"steps\": [\n      {\n        \"id\": \"string\",\n        \"contact\": {\n          \"method\": \"voice\",\n          \"to\": \"string\"\n        },\n        \"sendAfter\": {\n          \"timeAmount\": 4623,\n          \"timeUnit\": \"minutes\"\n        },\n        \"enabled\": false\n      },\n      {\n        \"id\": \"string\",\n        \"contact\": {\n          \"method\": \"email\",\n          \"to\": \"string\"\n        },\n        \"sendAfter\": {\n          \"timeAmount\": 3536,\n          \"timeUnit\": \"minutes\"\n        },\n        \"enabled\": false\n      }\n    ],\n    \"repeat\": {\n      \"loopAfter\": 16,\n      \"enabled\": true\n    }\n  },\n  \"took\": 3660.2075398371803,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1b8c8d2-4fa0-4cc7-a60d-9ce43144939b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Unique identifier of the notification rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"criteria\": {\n    \"type\": \"match-all-conditions\",\n    \"conditions\": [\n      []\n    ]\n  },\n  \"notificationTime\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"timeRestriction\": {\n    \"type\": \"time-of-day\",\n    \"restrictions\": [\n      {\n        \"startDay\": \"string\",\n        \"startHour\": 3868,\n        \"startMin\": 2083,\n        \"endDay\": \"string\",\n        \"endHour\": 3742,\n        \"endMin\": 7648\n      },\n      {\n        \"startDay\": \"string\",\n        \"startHour\": 8949,\n        \"startMin\": 1895,\n        \"endDay\": \"string\",\n        \"endHour\": 7275,\n        \"endMin\": 4170\n      }\n    ]\n  },\n  \"schedules\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"steps\": [\n    {\n      \"id\": \"string\",\n      \"contact\": {\n        \"method\": \"email\",\n        \"to\": \"string\"\n      },\n      \"sendAfter\": {\n        \"timeAmount\": 6450,\n        \"timeUnit\": \"minutes\"\n      },\n      \"enabled\": true\n    },\n    {\n      \"id\": \"string\",\n      \"contact\": {\n        \"method\": \"mobile\",\n        \"to\": \"string\"\n      },\n      \"sendAfter\": {\n        \"timeAmount\": 4333,\n        \"timeUnit\": \"days\"\n      },\n      \"enabled\": false\n    }\n  ],\n  \"order\": \"<integer>\",\n  \"repeat\": {\n    \"loopAfter\": \"<integer>\",\n    \"enabled\": \"<boolean>\"\n  },\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"took\": 284.77271530844894,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f6b11b83-af4b-4b23-af8c-59f4d8e47f98",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Unique identifier of the notification rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"criteria\": {\n    \"type\": \"match-all-conditions\",\n    \"conditions\": [\n      []\n    ]\n  },\n  \"notificationTime\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"timeRestriction\": {\n    \"type\": \"time-of-day\",\n    \"restrictions\": [\n      {\n        \"startDay\": \"string\",\n        \"startHour\": 3868,\n        \"startMin\": 2083,\n        \"endDay\": \"string\",\n        \"endHour\": 3742,\n        \"endMin\": 7648\n      },\n      {\n        \"startDay\": \"string\",\n        \"startHour\": 8949,\n        \"startMin\": 1895,\n        \"endDay\": \"string\",\n        \"endHour\": 7275,\n        \"endMin\": 4170\n      }\n    ]\n  },\n  \"schedules\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"steps\": [\n    {\n      \"id\": \"string\",\n      \"contact\": {\n        \"method\": \"email\",\n        \"to\": \"string\"\n      },\n      \"sendAfter\": {\n        \"timeAmount\": 6450,\n        \"timeUnit\": \"minutes\"\n      },\n      \"enabled\": true\n    },\n    {\n      \"id\": \"string\",\n      \"contact\": {\n        \"method\": \"mobile\",\n        \"to\": \"string\"\n      },\n      \"sendAfter\": {\n        \"timeAmount\": 4333,\n        \"timeUnit\": \"days\"\n      },\n      \"enabled\": false\n    }\n  ],\n  \"order\": \"<integer>\",\n  \"repeat\": {\n    \"loopAfter\": \"<integer>\",\n    \"enabled\": \"<boolean>\"\n  },\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"took\": 284.77271530844894,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c3acc75-4e30-458d-9793-bf991122f0f5",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Unique identifier of the notification rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"criteria\": {\n    \"type\": \"match-all-conditions\",\n    \"conditions\": [\n      []\n    ]\n  },\n  \"notificationTime\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"timeRestriction\": {\n    \"type\": \"time-of-day\",\n    \"restrictions\": [\n      {\n        \"startDay\": \"string\",\n        \"startHour\": 3868,\n        \"startMin\": 2083,\n        \"endDay\": \"string\",\n        \"endHour\": 3742,\n        \"endMin\": 7648\n      },\n      {\n        \"startDay\": \"string\",\n        \"startHour\": 8949,\n        \"startMin\": 1895,\n        \"endDay\": \"string\",\n        \"endHour\": 7275,\n        \"endMin\": 4170\n      }\n    ]\n  },\n  \"schedules\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"steps\": [\n    {\n      \"id\": \"string\",\n      \"contact\": {\n        \"method\": \"email\",\n        \"to\": \"string\"\n      },\n      \"sendAfter\": {\n        \"timeAmount\": 6450,\n        \"timeUnit\": \"minutes\"\n      },\n      \"enabled\": true\n    },\n    {\n      \"id\": \"string\",\n      \"contact\": {\n        \"method\": \"mobile\",\n        \"to\": \"string\"\n      },\n      \"sendAfter\": {\n        \"timeAmount\": 4333,\n        \"timeUnit\": \"days\"\n      },\n      \"enabled\": false\n    }\n  ],\n  \"order\": \"<integer>\",\n  \"repeat\": {\n    \"loopAfter\": \"<integer>\",\n    \"enabled\": \"<boolean>\"\n  },\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"took\": 284.77271530844894,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8fb3d3ba-8872-4038-904a-bce720a58323",
+          "name": "Delete notification rule",
+          "request": {
+            "name": "Delete notification rule",
+            "description": {
+              "content": "Deletes the specified notification rule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "users",
+                ":identifier",
+                "notification-rules",
+                ":ruleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) Identifier of the user (user ID or username/email)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ruleId",
+                  "description": "(Required) Unique identifier of the notification rule."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f4402598-c4ea-452b-a510-5cc1a48724a2",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Unique identifier of the notification rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": \"string\",\n  \"took\": 2512.786812281462,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a14c55d-c4a4-452f-bef6-0c2030724639",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Unique identifier of the notification rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"took\": 284.77271530844894,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4c4b4b3-2706-422e-9a59-bc28b4acfda7",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Unique identifier of the notification rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"took\": 284.77271530844894,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4b8bb58c-9ed4-4dfc-a41d-2d973c9bb16c",
+          "name": "Enable notification rule",
+          "request": {
+            "name": "Enable notification rule",
+            "description": {
+              "content": "Enables the specified notification rule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "users",
+                ":identifier",
+                "notification-rules",
+                ":ruleId",
+                "enable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) Identifier of the user (user ID or username/email)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ruleId",
+                  "description": "(Required) Unique identifier of the notification rule."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "05e9ac11-2d6a-401d-a184-c4355c5343c8",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules",
+                    ":ruleId",
+                    "enable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Unique identifier of the notification rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": \"string\",\n  \"took\": 2512.786812281462,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7592510a-e2db-4142-974b-4ed25b59f3bf",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules",
+                    ":ruleId",
+                    "enable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Unique identifier of the notification rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"took\": 284.77271530844894,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f2314e6d-52a9-45c3-85a0-ae1cb7b4dccf",
+          "name": "Disable notification rule",
+          "request": {
+            "name": "Disable notification rule",
+            "description": {
+              "content": "Disables the specified notification rule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "users",
+                ":identifier",
+                "notification-rules",
+                ":ruleId",
+                "disable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) Identifier of the user (user ID or username/email)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ruleId",
+                  "description": "(Required) Unique identifier of the notification rule."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7337a556-85de-4a86-b0c7-08414e49134a",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules",
+                    ":ruleId",
+                    "disable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Unique identifier of the notification rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": \"string\",\n  \"took\": 2512.786812281462,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4e65eed-c817-4517-9372-f70552006e08",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules",
+                    ":ruleId",
+                    "disable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Unique identifier of the notification rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"took\": 284.77271530844894,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ef2b5d8-7f10-4a82-a46b-b7d245cf6965",
+          "name": "Create notification rule step",
+          "request": {
+            "name": "Create notification rule step",
+            "description": {
+              "content": "Adds a notification step to the specified notification rule. Steps define the notification method and timing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "users",
+                ":identifier",
+                "notification-rules",
+                ":ruleId",
+                "steps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) Identifier of the user (user ID or username/email)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ruleId",
+                  "description": "(Required) Unique identifier of the notification rule."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contact\": {\n    \"method\": \"<string>\",\n    \"to\": \"<string>\"\n  },\n  \"sendAfter\": {\n    \"timeAmount\": \"<integer>\",\n    \"timeUnit\": \"<string>\"\n  },\n  \"enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c70c6e57-b955-4d4d-a930-d88be1b5f798",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules",
+                    ":ruleId",
+                    "steps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Unique identifier of the notification rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact\": {\n    \"method\": \"<string>\",\n    \"to\": \"<string>\"\n  },\n  \"sendAfter\": {\n    \"timeAmount\": \"<integer>\",\n    \"timeUnit\": \"<string>\"\n  },\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": \"string\",\n  \"took\": 2512.786812281462,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c47e6371-0828-4919-973c-49fea81770dc",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules",
+                    ":ruleId",
+                    "steps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Unique identifier of the notification rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact\": {\n    \"method\": \"<string>\",\n    \"to\": \"<string>\"\n  },\n  \"sendAfter\": {\n    \"timeAmount\": \"<integer>\",\n    \"timeUnit\": \"<string>\"\n  },\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"took\": 284.77271530844894,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88064279-b1f6-4479-8f21-9b1eeff01367",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules",
+                    ":ruleId",
+                    "steps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Unique identifier of the notification rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact\": {\n    \"method\": \"<string>\",\n    \"to\": \"<string>\"\n  },\n  \"sendAfter\": {\n    \"timeAmount\": \"<integer>\",\n    \"timeUnit\": \"<string>\"\n  },\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"took\": 284.77271530844894,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a08c05b7-f6fb-4ff1-a5f7-20d78f46231d",
+          "name": "List notification rule steps",
+          "request": {
+            "name": "List notification rule steps",
+            "description": {
+              "content": "Lists the notification steps for the specified rule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "users",
+                ":identifier",
+                "notification-rules",
+                ":ruleId",
+                "steps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) Identifier of the user (user ID or username/email)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ruleId",
+                  "description": "(Required) Unique identifier of the notification rule."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6c2bcbab-fd1c-46df-849c-65524c3668c0",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules",
+                    ":ruleId",
+                    "steps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Unique identifier of the notification rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"contact\": {\n        \"method\": \"sms\",\n        \"to\": \"string\"\n      },\n      \"sendAfter\": {\n        \"timeAmount\": 3791,\n        \"timeUnit\": \"days\"\n      },\n      \"enabled\": false\n    },\n    {\n      \"id\": \"string\",\n      \"contact\": {\n        \"method\": \"voice\",\n        \"to\": \"string\"\n      },\n      \"sendAfter\": {\n        \"timeAmount\": 4078,\n        \"timeUnit\": \"minutes\"\n      },\n      \"enabled\": true\n    }\n  ],\n  \"took\": 2536.467122696332,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "197a974a-47d2-4de7-90da-5464fcbdc171",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules",
+                    ":ruleId",
+                    "steps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Unique identifier of the notification rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"took\": 284.77271530844894,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "510c47b8-f87b-404a-b319-83b11817b002",
+          "name": "Get notification rule step",
+          "request": {
+            "name": "Get notification rule step",
+            "description": {
+              "content": "Retrieves the details of a specific notification step.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "users",
+                ":identifier",
+                "notification-rules",
+                ":ruleId",
+                "steps",
+                ":stepId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) Identifier of the user (user ID or username/email)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ruleId",
+                  "description": "(Required) Unique identifier of the notification rule."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "stepId",
+                  "description": "(Required) Unique identifier of the notification step."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "84f6d4f3-f1d4-4af1-a942-2e35937e9197",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules",
+                    ":ruleId",
+                    "steps",
+                    ":stepId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Unique identifier of the notification rule."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stepId",
+                      "description": "(Required) Unique identifier of the notification step."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"contact\": {\n      \"method\": \"sms\",\n      \"to\": \"string\"\n    },\n    \"sendAfter\": {\n      \"timeAmount\": 1144,\n      \"timeUnit\": \"hours\"\n    },\n    \"enabled\": false\n  },\n  \"took\": 9077.258769435088,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "586262e3-2104-4d0e-a9b9-ffcf40557406",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules",
+                    ":ruleId",
+                    "steps",
+                    ":stepId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Unique identifier of the notification rule."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stepId",
+                      "description": "(Required) Unique identifier of the notification step."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"took\": 284.77271530844894,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e543426-3673-477b-9c89-b16791ad700a",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules",
+                    ":ruleId",
+                    "steps",
+                    ":stepId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Unique identifier of the notification rule."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stepId",
+                      "description": "(Required) Unique identifier of the notification step."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"took\": 284.77271530844894,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b637a0bf-06c7-42db-bb72-f1715b7bbe4a",
+          "name": "Update notification rule step",
+          "request": {
+            "name": "Update notification rule step",
+            "description": {
+              "content": "Updates the specified notification step.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "users",
+                ":identifier",
+                "notification-rules",
+                ":ruleId",
+                "steps",
+                ":stepId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) Identifier of the user (user ID or username/email)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ruleId",
+                  "description": "(Required) Unique identifier of the notification rule."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "stepId",
+                  "description": "(Required) Unique identifier of the notification step."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contact\": {\n    \"method\": \"<string>\",\n    \"to\": \"<string>\"\n  },\n  \"sendAfter\": {\n    \"timeAmount\": \"<integer>\",\n    \"timeUnit\": \"<string>\"\n  },\n  \"enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7b212fe2-09b6-4988-a70b-da919c5920b7",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules",
+                    ":ruleId",
+                    "steps",
+                    ":stepId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Unique identifier of the notification rule."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stepId",
+                      "description": "(Required) Unique identifier of the notification step."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact\": {\n    \"method\": \"<string>\",\n    \"to\": \"<string>\"\n  },\n  \"sendAfter\": {\n    \"timeAmount\": \"<integer>\",\n    \"timeUnit\": \"<string>\"\n  },\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": \"string\",\n  \"took\": 2512.786812281462,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "412752b3-041f-456f-b121-e6ace4e97a84",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules",
+                    ":ruleId",
+                    "steps",
+                    ":stepId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Unique identifier of the notification rule."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stepId",
+                      "description": "(Required) Unique identifier of the notification step."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact\": {\n    \"method\": \"<string>\",\n    \"to\": \"<string>\"\n  },\n  \"sendAfter\": {\n    \"timeAmount\": \"<integer>\",\n    \"timeUnit\": \"<string>\"\n  },\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"took\": 284.77271530844894,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ee5fdfc-092c-41f5-90d8-85a99c679550",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules",
+                    ":ruleId",
+                    "steps",
+                    ":stepId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Unique identifier of the notification rule."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stepId",
+                      "description": "(Required) Unique identifier of the notification step."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact\": {\n    \"method\": \"<string>\",\n    \"to\": \"<string>\"\n  },\n  \"sendAfter\": {\n    \"timeAmount\": \"<integer>\",\n    \"timeUnit\": \"<string>\"\n  },\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"took\": 284.77271530844894,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4ae350ec-a431-41b2-98c9-13927fa35d7f",
+          "name": "Delete notification rule step",
+          "request": {
+            "name": "Delete notification rule step",
+            "description": {
+              "content": "Deletes the specified notification step.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "users",
+                ":identifier",
+                "notification-rules",
+                ":ruleId",
+                "steps",
+                ":stepId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) Identifier of the user (user ID or username/email)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ruleId",
+                  "description": "(Required) Unique identifier of the notification rule."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "stepId",
+                  "description": "(Required) Unique identifier of the notification step."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea09a3f0-2829-40cb-a9b4-44d8b34cc19c",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules",
+                    ":ruleId",
+                    "steps",
+                    ":stepId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Unique identifier of the notification rule."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stepId",
+                      "description": "(Required) Unique identifier of the notification step."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": \"string\",\n  \"took\": 2512.786812281462,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c251f45-719b-4246-abd2-36ec1fbb62d8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":identifier",
+                    "notification-rules",
+                    ":ruleId",
+                    "steps",
+                    ":stepId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Identifier of the user (user ID or username/email)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Unique identifier of the notification rule."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stepId",
+                      "description": "(Required) Unique identifier of the notification step."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"took\": 284.77271530844894,\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.opsgenie.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0a08c643-85ec-4bf7-9454-4088b4f75f59",
+    "name": "OpsGenie Account Notification Rules API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.\n\nContact Support:\n Name: Atlassian Support",
+      "type": "text/plain"
+    }
+  }
+}

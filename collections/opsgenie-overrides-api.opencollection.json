@@ -1,0 +1,177 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpsGenie Account Overrides API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Overrides",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List schedule overrides",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/schedules/:identifier/overrides",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the schedule, which can be the schedule ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name."
+              }
+            ]
+          },
+          "docs": "Lists the overrides for the specified schedule."
+        },
+        {
+          "info": {
+            "name": "Create schedule override",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/schedules/:identifier/overrides",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the schedule, which can be the schedule ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a temporary override for the specified schedule, allowing a different user to take on-call duty for a specific time period."
+        },
+        {
+          "info": {
+            "name": "Get schedule override",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/schedules/:identifier/overrides/:alias",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the schedule, which can be the schedule ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name."
+              },
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path",
+                "description": "Alias of the override."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific schedule override."
+        },
+        {
+          "info": {
+            "name": "Update schedule override",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.opsgenie.com/v2/schedules/:identifier/overrides/:alias",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the schedule, which can be the schedule ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name."
+              },
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path",
+                "description": "Alias of the override."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing schedule override."
+        },
+        {
+          "info": {
+            "name": "Delete schedule override",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.opsgenie.com/v2/schedules/:identifier/overrides/:alias",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the schedule, which can be the schedule ID or name."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or name."
+              },
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path",
+                "description": "Alias of the override."
+              }
+            ]
+          },
+          "docs": "Deletes the specified schedule override."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,6 @@
+# Opsgenie Docs Documentation
+
+> Opsgenie is a modern incident management platform for operating always-on services, empowering Dev and Ops teams to plan for service disruptions and stay in control during incidents.
+
+## Guides
+- [API Overview](https://docs.opsgenie.com/docs/api-overview.md)

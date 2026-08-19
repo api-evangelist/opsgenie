@@ -1,0 +1,211 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpsGenie Account Incidents API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Incidents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create incident",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v1/incidents/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new incident in OpsGenie. The request is processed asynchronously and returns a request ID that can be used to track the status of the incident creation. Available to Standard and Enterprise plan users."
+        },
+        {
+          "info": {
+            "name": "List incidents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v1/incidents",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search query to filter incidents using OpsGenie query language."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting index for pagination."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort results by."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order for the results."
+              }
+            ]
+          },
+          "docs": "Returns a list of incidents matching the specified search criteria."
+        },
+        {
+          "info": {
+            "name": "Get incident",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v1/incidents/:identifier",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the incident, which can be the incident ID or tiny ID."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or tiny. Default is id."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific incident identified by its ID."
+        },
+        {
+          "info": {
+            "name": "Delete incident",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.opsgenie.com/v1/incidents/:identifier",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the incident, which can be the incident ID or tiny ID."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or tiny. Default is id."
+              }
+            ]
+          },
+          "docs": "Deletes the specified incident. The request is processed asynchronously."
+        },
+        {
+          "info": {
+            "name": "Close incident",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v1/incidents/:identifier/close",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the incident, which can be the incident ID or tiny ID."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or tiny. Default is id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Closes the specified incident. The request is processed asynchronously."
+        },
+        {
+          "info": {
+            "name": "Resolve incident",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v1/incidents/:identifier/resolve",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the incident, which can be the incident ID or tiny ID."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the identifier. Possible values are id or tiny. Default is id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Resolves the specified incident. The request is processed asynchronously."
+        },
+        {
+          "info": {
+            "name": "Get incident request status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v1/incidents/requests/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the asynchronous request to check status for."
+              }
+            ]
+          },
+          "docs": "Retrieves the status and incident details of an asynchronous request using the request ID returned from incident action endpoints."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

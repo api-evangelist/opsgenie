@@ -1,0 +1,348 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpsGenie Account Notification Rules API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Notification Rules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List notification rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/users/:identifier/notification-rules",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the user (user ID or username/email)."
+              }
+            ]
+          },
+          "docs": "Returns a list of notification rules for the specified user."
+        },
+        {
+          "info": {
+            "name": "Create notification rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/users/:identifier/notification-rules",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the user (user ID or username/email)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new notification rule for the specified user."
+        },
+        {
+          "info": {
+            "name": "Get notification rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/users/:identifier/notification-rules/:ruleId",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the user (user ID or username/email)."
+              },
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the notification rule."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific notification rule."
+        },
+        {
+          "info": {
+            "name": "Update notification rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.opsgenie.com/v2/users/:identifier/notification-rules/:ruleId",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the user (user ID or username/email)."
+              },
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the notification rule."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified notification rule."
+        },
+        {
+          "info": {
+            "name": "Delete notification rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.opsgenie.com/v2/users/:identifier/notification-rules/:ruleId",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the user (user ID or username/email)."
+              },
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the notification rule."
+              }
+            ]
+          },
+          "docs": "Deletes the specified notification rule."
+        },
+        {
+          "info": {
+            "name": "Enable notification rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/users/:identifier/notification-rules/:ruleId/enable",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the user (user ID or username/email)."
+              },
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the notification rule."
+              }
+            ]
+          },
+          "docs": "Enables the specified notification rule."
+        },
+        {
+          "info": {
+            "name": "Disable notification rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/users/:identifier/notification-rules/:ruleId/disable",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the user (user ID or username/email)."
+              },
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the notification rule."
+              }
+            ]
+          },
+          "docs": "Disables the specified notification rule."
+        },
+        {
+          "info": {
+            "name": "List notification rule steps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/users/:identifier/notification-rules/:ruleId/steps",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the user (user ID or username/email)."
+              },
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the notification rule."
+              }
+            ]
+          },
+          "docs": "Lists the notification steps for the specified rule."
+        },
+        {
+          "info": {
+            "name": "Create notification rule step",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v2/users/:identifier/notification-rules/:ruleId/steps",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the user (user ID or username/email)."
+              },
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the notification rule."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a notification step to the specified notification rule. Steps define the notification method and timing."
+        },
+        {
+          "info": {
+            "name": "Get notification rule step",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v2/users/:identifier/notification-rules/:ruleId/steps/:stepId",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the user (user ID or username/email)."
+              },
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the notification rule."
+              },
+              {
+                "name": "stepId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the notification step."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific notification step."
+        },
+        {
+          "info": {
+            "name": "Update notification rule step",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.opsgenie.com/v2/users/:identifier/notification-rules/:ruleId/steps/:stepId",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the user (user ID or username/email)."
+              },
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the notification rule."
+              },
+              {
+                "name": "stepId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the notification step."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified notification step."
+        },
+        {
+          "info": {
+            "name": "Delete notification rule step",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.opsgenie.com/v2/users/:identifier/notification-rules/:ruleId/steps/:stepId",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the user (user ID or username/email)."
+              },
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the notification rule."
+              },
+              {
+                "name": "stepId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the notification step."
+              }
+            ]
+          },
+          "docs": "Deletes the specified notification step."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpsGenie Account Maintenance API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Maintenance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List maintenances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v1/maintenance",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by maintenance type. Non-expired returns active and future windows."
+              }
+            ]
+          },
+          "docs": "Returns a list of maintenance windows filtered by type."
+        },
+        {
+          "info": {
+            "name": "Create maintenance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v1/maintenance",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new maintenance window that suppresses alert notifications during the specified time period."
+        },
+        {
+          "info": {
+            "name": "Get maintenance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opsgenie.com/v1/maintenance/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the maintenance window."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific maintenance window by its ID."
+        },
+        {
+          "info": {
+            "name": "Delete maintenance",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.opsgenie.com/v1/maintenance/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the maintenance window."
+              }
+            ]
+          },
+          "docs": "Deletes the specified maintenance window."
+        },
+        {
+          "info": {
+            "name": "Cancel maintenance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opsgenie.com/v1/maintenance/:id/cancel",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the maintenance window."
+              }
+            ]
+          },
+          "docs": "Cancels an active or scheduled maintenance window."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
