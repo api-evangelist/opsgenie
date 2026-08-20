@@ -28,6 +28,11 @@ tags:
 - Incident Management
 - Monitoring
 - On-Call
+tags_raw:
+- Alerts
+- Incident Management
+- Monitoring
+- On-Call
 - Operations
 created: '2025-03-01'
 modified: '2026-05-19'
@@ -263,6 +268,8 @@ apis:
   humanURL: https://docs.opsgenie.com/docs/alert-api
   baseURL: https://api.opsgenie.com
   tags:
+  - Integration
+  tags_raw:
   - Integrations
   properties:
   - type: OpenAPI
@@ -617,6 +624,8 @@ apis:
   humanURL: https://docs.opsgenie.com/docs/alert-api
   baseURL: https://api.opsgenie.com
   tags:
+  - Team
+  tags_raw:
   - Teams
   properties:
   - type: OpenAPI
@@ -662,6 +671,8 @@ apis:
   humanURL: https://docs.opsgenie.com/docs/alert-api
   baseURL: https://api.opsgenie.com
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
