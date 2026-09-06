@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: OpsGenie Account Teams API
   description: The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.
@@ -255,53 +255,54 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
-  parameters:
-    IdentifierType:
-      name: identifierType
-      in: query
-      description: Type of the identifier. Possible values are id or name. Default is id.
-      schema:
-        type: string
-        enum:
-        - id
-        - name
-        default: id
-    TeamIdentifier:
-      name: identifier
-      in: path
-      required: true
-      description: Identifier of the team, which can be the team ID or name.
-      schema:
-        type: string
   schemas:
-    ErrorResponse:
+    GetTeamResponse:
       type: object
       properties:
-        message:
-          type: string
-          description: Error message.
+        data:
+          $ref: '#/components/schemas/Team'
         took:
           type: number
           description: Time taken in seconds.
         requestId:
           type: string
           description: Unique identifier for the request.
-    CreateTeamRequest:
+    UpdateTeamRequest:
       type: object
-      required:
-      - name
       properties:
         name:
           type: string
-          description: Name of the team.
+          description: Updated name for the team.
         description:
           type: string
-          description: Description of the team.
+          description: Updated description.
         members:
           type: array
-          description: List of team members with their roles.
+          description: Updated list of team members.
           items:
             $ref: '#/components/schemas/TeamMember'
+    TeamMember:
+      type: object
+      required:
+      - user
+      - role
+      properties:
+        user:
+          type: object
+          description: User reference.
+          properties:
+            id:
+              type: string
+              description: User ID.
+            username:
+              type: string
+              description: Username (email) of the user.
+        role:
+          type: string
+          enum:
+          - admin
+          - user
+          description: Role of the member within the team.
     ListTeamLogsResponse:
       type: object
       properties:
@@ -336,50 +337,57 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
-    TeamMember:
+    CreateTeamRequest:
       type: object
       required:
-      - user
-      - role
-      properties:
-        user:
-          type: object
-          description: User reference.
-          properties:
-            id:
-              type: string
-              description: User ID.
-            username:
-              type: string
-              description: Username (email) of the user.
-        role:
-          type: string
-          enum:
-          - admin
-          - user
-          description: Role of the member within the team.
-    UpdateTeamRequest:
-      type: object
+      - name
       properties:
         name:
           type: string
-          description: Updated name for the team.
+          description: Name of the team.
         description:
           type: string
-          description: Updated description.
+          description: Description of the team.
         members:
           type: array
-          description: Updated list of team members.
+          description: List of team members with their roles.
           items:
             $ref: '#/components/schemas/TeamMember'
-    ListTeamMembersResponse:
+    Team:
       type: object
       properties:
-        data:
+        id:
+          type: string
+          description: Unique identifier of the team.
+        name:
+          type: string
+          description: Name of the team.
+        description:
+          type: string
+          description: Description of the team.
+        members:
           type: array
           items:
             $ref: '#/components/schemas/TeamMember'
-          description: List of team members.
+          description: Members of the team.
+        links:
+          type: object
+          properties:
+            web:
+              type: string
+              format: uri
+              description: URL to the team dashboard in the OpsGenie web UI.
+            api:
+              type: string
+              format: uri
+              description: API URL for this team.
+          description: Related links.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
         took:
           type: number
           description: Time taken in seconds.
@@ -412,46 +420,38 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
-    Team:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier of the team.
-        name:
-          type: string
-          description: Name of the team.
-        description:
-          type: string
-          description: Description of the team.
-        members:
-          type: array
-          items:
-            $ref: '#/components/schemas/TeamMember'
-          description: Members of the team.
-        links:
-          type: object
-          properties:
-            web:
-              type: string
-              format: uri
-              description: URL to the team dashboard in the OpsGenie web UI.
-            api:
-              type: string
-              format: uri
-              description: API URL for this team.
-          description: Related links.
-    GetTeamResponse:
+    ListTeamMembersResponse:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/Team'
+          type: array
+          items:
+            $ref: '#/components/schemas/TeamMember'
+          description: List of team members.
         took:
           type: number
           description: Time taken in seconds.
         requestId:
           type: string
           description: Unique identifier for the request.
+  parameters:
+    TeamIdentifier:
+      name: identifier
+      in: path
+      required: true
+      description: Identifier of the team, which can be the team ID or name.
+      schema:
+        type: string
+    IdentifierType:
+      name: identifierType
+      in: query
+      description: Type of the identifier. Possible values are id or name. Default is id.
+      schema:
+        type: string
+        enum:
+        - id
+        - name
+        default: id
   securitySchemes:
     genieKey:
       type: apiKey

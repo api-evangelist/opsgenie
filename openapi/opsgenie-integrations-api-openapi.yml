@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: OpsGenie Account Integrations API
   description: The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.
@@ -278,6 +278,112 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ListIntegrationsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Integration'
+          description: List of integrations.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    Integration:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier.
+        name:
+          type: string
+          description: Name of the integration.
+        type:
+          type: string
+          description: Type of the integration.
+        enabled:
+          type: boolean
+          description: Whether the integration is currently enabled.
+        ownerTeam:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Team ID.
+            name:
+              type: string
+              description: Team name.
+          description: Owner team.
+        isGlobal:
+          type: boolean
+          description: Whether this is a global (account-level) integration.
+        allowWriteAccess:
+          type: boolean
+          description: Whether write access is enabled.
+        allowConfigurationAccess:
+          type: boolean
+          description: Whether configuration access is enabled.
+        responders:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Responder ID.
+              name:
+                type: string
+                description: Responder name.
+              type:
+                type: string
+                description: Responder type.
+          description: Default responders.
+    UpdateIntegrationRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated integration name.
+        ownerTeam:
+          type: object
+          description: Updated owner team.
+          properties:
+            id:
+              type: string
+              description: Team ID.
+            name:
+              type: string
+              description: Team name.
+        allowWriteAccess:
+          type: boolean
+          description: Updated write access setting.
+        allowConfigurationAccess:
+          type: boolean
+          description: Updated configuration access setting.
+        ignoreRespondersFromPayload:
+          type: boolean
+          description: Updated responder ignore setting.
+        suppressNotifications:
+          type: boolean
+          description: Updated notification suppression setting.
+        responders:
+          type: array
+          description: Updated default responders.
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Responder ID.
+              name:
+                type: string
+                description: Responder name.
+              type:
+                type: string
+                description: Responder type.
     CreateIntegrationRequest:
       type: object
       required:
@@ -344,49 +450,29 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
-    UpdateIntegrationRequest:
+    GetIntegrationResponse:
       type: object
       properties:
-        name:
+        data:
+          $ref: '#/components/schemas/Integration'
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
           type: string
-          description: Updated integration name.
-        ownerTeam:
-          type: object
-          description: Updated owner team.
-          properties:
-            id:
-              type: string
-              description: Team ID.
-            name:
-              type: string
-              description: Team name.
-        allowWriteAccess:
-          type: boolean
-          description: Updated write access setting.
-        allowConfigurationAccess:
-          type: boolean
-          description: Updated configuration access setting.
-        ignoreRespondersFromPayload:
-          type: boolean
-          description: Updated responder ignore setting.
-        suppressNotifications:
-          type: boolean
-          description: Updated notification suppression setting.
-        responders:
-          type: array
-          description: Updated default responders.
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: Responder ID.
-              name:
-                type: string
-                description: Responder name.
-              type:
-                type: string
-                description: Responder type.
+          description: Unique identifier for the request.
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Result message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
     CreateIntegrationResponse:
       type: object
       properties:
@@ -414,92 +500,6 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
-    GetIntegrationResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Integration'
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    ListIntegrationsResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Integration'
-          description: List of integrations.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    SuccessResponse:
-      type: object
-      properties:
-        result:
-          type: string
-          description: Result message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    Integration:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier.
-        name:
-          type: string
-          description: Name of the integration.
-        type:
-          type: string
-          description: Type of the integration.
-        enabled:
-          type: boolean
-          description: Whether the integration is currently enabled.
-        ownerTeam:
-          type: object
-          properties:
-            id:
-              type: string
-              description: Team ID.
-            name:
-              type: string
-              description: Team name.
-          description: Owner team.
-        isGlobal:
-          type: boolean
-          description: Whether this is a global (account-level) integration.
-        allowWriteAccess:
-          type: boolean
-          description: Whether write access is enabled.
-        allowConfigurationAccess:
-          type: boolean
-          description: Whether configuration access is enabled.
-        responders:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: Responder ID.
-              name:
-                type: string
-                description: Responder name.
-              type:
-                type: string
-                description: Responder type.
-          description: Default responders.
   securitySchemes:
     genieKey:
       type: apiKey

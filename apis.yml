@@ -787,3 +787,5 @@ common:
 maintainers:
 - FN: API Evangelist
   email: info@apievangelist.com
+x-parent: atlassian
+x-relationship: acquisition

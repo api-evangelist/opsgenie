@@ -37,6 +37,23 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "opsgenie-account-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "opsgenie-alerts-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "opsgenie-escalations-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "opsgenie-heartbeats-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "opsgenie-incidents-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "opsgenie-integrations-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "opsgenie-maintenance-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "opsgenie-notification-rules-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "opsgenie-on-call-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "opsgenie-overrides-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "opsgenie-rotations-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "opsgenie-schedules-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "opsgenie-services-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "opsgenie-teams-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "opsgenie-users-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }

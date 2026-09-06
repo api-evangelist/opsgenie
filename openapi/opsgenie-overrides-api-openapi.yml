@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: OpsGenie Account Overrides API
   description: The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.
@@ -191,37 +191,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
-  parameters:
-    IdentifierType:
-      name: identifierType
-      in: query
-      description: Type of the identifier. Possible values are id or name.
-      schema:
-        type: string
-        enum:
-        - id
-        - name
-        default: id
-    ScheduleIdentifier:
-      name: identifier
-      in: path
-      required: true
-      description: Identifier of the schedule, which can be the schedule ID or name.
-      schema:
-        type: string
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
     ListOverridesResponse:
       type: object
       properties:
@@ -257,92 +227,6 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
-    UpdateOverrideRequest:
-      type: object
-      required:
-      - user
-      - startDate
-      - endDate
-      properties:
-        user:
-          type: object
-          description: User for the override.
-          properties:
-            id:
-              type: string
-              description: User ID.
-            username:
-              type: string
-              description: Username (email).
-        startDate:
-          type: string
-          format: date-time
-          description: Updated start date.
-        endDate:
-          type: string
-          format: date-time
-          description: Updated end date.
-        rotations:
-          type: array
-          description: Specific rotations to override.
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: Rotation ID.
-              name:
-                type: string
-                description: Rotation name.
-    SuccessResponse:
-      type: object
-      properties:
-        result:
-          type: string
-          description: Result message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    CreateOverrideRequest:
-      type: object
-      required:
-      - user
-      - startDate
-      - endDate
-      properties:
-        user:
-          type: object
-          description: User who will take over the on-call duty.
-          properties:
-            id:
-              type: string
-              description: User ID.
-            username:
-              type: string
-              description: Username (email).
-        startDate:
-          type: string
-          format: date-time
-          description: Start date and time of the override.
-        endDate:
-          type: string
-          format: date-time
-          description: End date and time of the override.
-        rotations:
-          type: array
-          description: Specific rotations to override. If not provided, all rotations are overridden.
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: Rotation ID.
-              name:
-                type: string
-                description: Rotation name.
     GetOverrideResponse:
       type: object
       properties:
@@ -386,6 +270,122 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
+    UpdateOverrideRequest:
+      type: object
+      required:
+      - user
+      - startDate
+      - endDate
+      properties:
+        user:
+          type: object
+          description: User for the override.
+          properties:
+            id:
+              type: string
+              description: User ID.
+            username:
+              type: string
+              description: Username (email).
+        startDate:
+          type: string
+          format: date-time
+          description: Updated start date.
+        endDate:
+          type: string
+          format: date-time
+          description: Updated end date.
+        rotations:
+          type: array
+          description: Specific rotations to override.
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Rotation ID.
+              name:
+                type: string
+                description: Rotation name.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    CreateOverrideRequest:
+      type: object
+      required:
+      - user
+      - startDate
+      - endDate
+      properties:
+        user:
+          type: object
+          description: User who will take over the on-call duty.
+          properties:
+            id:
+              type: string
+              description: User ID.
+            username:
+              type: string
+              description: Username (email).
+        startDate:
+          type: string
+          format: date-time
+          description: Start date and time of the override.
+        endDate:
+          type: string
+          format: date-time
+          description: End date and time of the override.
+        rotations:
+          type: array
+          description: Specific rotations to override. If not provided, all rotations are overridden.
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Rotation ID.
+              name:
+                type: string
+                description: Rotation name.
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Result message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+  parameters:
+    IdentifierType:
+      name: identifierType
+      in: query
+      description: Type of the identifier. Possible values are id or name.
+      schema:
+        type: string
+        enum:
+        - id
+        - name
+        default: id
+    ScheduleIdentifier:
+      name: identifier
+      in: path
+      required: true
+      description: Identifier of the schedule, which can be the schedule ID or name.
+      schema:
+        type: string
   securitySchemes:
     genieKey:
       type: apiKey

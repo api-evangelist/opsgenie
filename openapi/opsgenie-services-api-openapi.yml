@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: OpsGenie Account Services API
   description: The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.
@@ -220,29 +220,6 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
-    ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    GetServiceResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Service'
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
     CreateServiceRequest:
       type: object
       required:
@@ -295,12 +272,35 @@ components:
         isExternal:
           type: boolean
           description: Whether the service is external.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
     SuccessResponse:
       type: object
       properties:
         result:
           type: string
           description: Result message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    GetServiceResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Service'
         took:
           type: number
           description: Time taken in seconds.
