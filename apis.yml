@@ -547,6 +547,8 @@ apis:
   humanURL: https://docs.opsgenie.com/docs/alert-api
   baseURL: https://api.opsgenie.com
   tags:
+  - Schedule
+  tags_raw:
   - Schedules
   properties:
   - type: OpenAPI
