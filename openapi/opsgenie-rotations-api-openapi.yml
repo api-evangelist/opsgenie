@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
-  title: OpsGenie Account Rotations API
-  description: The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.
+  title: OpsGenie Schedule Rotations API
+  description: The OpsGenie Schedule API enables developers to programmatically manage on-call schedules and rotations. It provides endpoints for creating, updating, and deleting schedules, as well as managing schedule rotations and overrides. Developers can query who is currently on call for a given schedule, making it possible to build custom dashboards and integrations that reflect real-time on-call status.
   version: 2.0.0
   contact:
     name: Atlassian Support
@@ -192,70 +192,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ListRotationsResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rotation'
-          description: List of rotations.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    UpdateRotationRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Updated rotation name.
-        type:
-          type: string
-          enum:
-          - daily
-          - weekly
-          - hourly
-          description: Updated rotation type.
-        startDate:
-          type: string
-          format: date-time
-          description: Updated start date.
-        endDate:
-          type: string
-          format: date-time
-          description: Updated end date.
-        length:
-          type: integer
-          description: Updated rotation length.
-        participants:
-          type: array
-          description: Updated participants.
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-                description: Participant type.
-              id:
-                type: string
-                description: Participant ID.
-              username:
-                type: string
-                description: Username for user participants.
-    GetRotationResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Rotation'
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
     CreateRotationRequest:
       type: object
       required:
@@ -329,18 +265,6 @@ components:
                   endMin:
                     type: integer
                     description: End minute.
-    ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
     Rotation:
       type: object
       required:
@@ -425,6 +349,43 @@ components:
                   endMin:
                     type: integer
                     description: End minute.
+    ListRotationsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rotation'
+          description: List of rotations.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    GetRotationResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Rotation'
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
     SuccessResponse:
       type: object
       properties:
@@ -437,7 +398,53 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
+    UpdateRotationRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated rotation name.
+        type:
+          type: string
+          enum:
+          - daily
+          - weekly
+          - hourly
+          description: Updated rotation type.
+        startDate:
+          type: string
+          format: date-time
+          description: Updated start date.
+        endDate:
+          type: string
+          format: date-time
+          description: Updated end date.
+        length:
+          type: integer
+          description: Updated rotation length.
+        participants:
+          type: array
+          description: Updated participants.
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                description: Participant type.
+              id:
+                type: string
+                description: Participant ID.
+              username:
+                type: string
+                description: Username for user participants.
   parameters:
+    ScheduleIdentifier:
+      name: identifier
+      in: path
+      required: true
+      description: Identifier of the schedule, which can be the schedule ID or name.
+      schema:
+        type: string
     IdentifierType:
       name: identifierType
       in: query
@@ -448,13 +455,6 @@ components:
         - id
         - name
         default: id
-    ScheduleIdentifier:
-      name: identifier
-      in: path
-      required: true
-      description: Identifier of the schedule, which can be the schedule ID or name.
-      schema:
-        type: string
   securitySchemes:
     genieKey:
       type: apiKey
@@ -462,5 +462,5 @@ components:
       name: Authorization
       description: API key authentication using the GenieKey scheme.
 externalDocs:
-  description: OpsGenie Account API Documentation
-  url: https://docs.opsgenie.com/docs/account-api
+  description: OpsGenie Schedule API Documentation
+  url: https://docs.opsgenie.com/docs/schedule-api

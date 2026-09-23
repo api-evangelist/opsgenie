@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
-  title: OpsGenie Account Users API
-  description: The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.
+  title: OpsGenie User Users API
+  description: The OpsGenie User API provides endpoints for managing user accounts within the OpsGenie platform. Developers can create, retrieve, update, and delete users, as well as list users and retrieve escalations associated with specific users. The API supports managing user roles, contact methods, and notification preferences to ensure the right people are reached during incidents.
   version: 2.0.0
   contact:
     name: Atlassian Support
@@ -315,82 +315,6 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
-    User:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier of the user.
-        username:
-          type: string
-          format: email
-          description: Email address and login identifier.
-        fullName:
-          type: string
-          description: Full name of the user.
-        role:
-          type: object
-          properties:
-            id:
-              type: string
-              description: Role ID.
-            name:
-              type: string
-              description: Role name.
-          description: Role of the user.
-        blocked:
-          type: boolean
-          description: Whether the user is blocked.
-        verified:
-          type: boolean
-          description: Whether the user has verified their account.
-        timeZone:
-          type: string
-          description: Timezone of the user.
-        locale:
-          type: string
-          description: Locale of the user.
-        createdAt:
-          type: string
-          format: date-time
-          description: Date and time when the user was created.
-        mutedUntil:
-          type: string
-          format: date-time
-          description: Date and time until which the user is muted.
-        tags:
-          type: array
-          items:
-            type: string
-          description: Tags associated with the user.
-        details:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-          description: Custom details for the user.
-    ListUserSchedulesResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: Schedule ID.
-              name:
-                type: string
-                description: Schedule name.
-          description: List of schedules the user belongs to.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
     ListUserEscalationsResponse:
       type: object
       properties:
@@ -412,67 +336,44 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
-    UpdateUserRequest:
-      type: object
-      properties:
-        fullName:
-          type: string
-          description: Full name of the user.
-        role:
-          type: object
-          description: Role assigned to the user.
-          properties:
-            id:
-              type: string
-              description: Role ID.
-            name:
-              type: string
-              description: Role name.
-        skypeUsername:
-          type: string
-          description: Skype username of the user.
-        timeZone:
-          type: string
-          description: Timezone of the user.
-        locale:
-          type: string
-          description: Locale of the user.
-        userAddress:
-          type: object
-          description: Physical address of the user.
-          properties:
-            country:
-              type: string
-              description: Country.
-            state:
-              type: string
-              description: State or province.
-            city:
-              type: string
-              description: City.
-            line:
-              type: string
-              description: Street address line.
-            zipCode:
-              type: string
-              description: ZIP or postal code.
-        tags:
-          type: array
-          description: Tags associated with the user.
-          items:
-            type: string
-        details:
-          type: object
-          description: Custom key-value details for the user.
-          additionalProperties:
-            type: array
-            items:
-              type: string
     GetUserResponse:
       type: object
       properties:
         data:
           $ref: '#/components/schemas/User'
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    ListUserSchedulesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Schedule ID.
+              name:
+                type: string
+                description: Schedule name.
+          description: List of schedules the user belongs to.
         took:
           type: number
           description: Time taken in seconds.
@@ -552,6 +453,61 @@ components:
         invitationDisabled:
           type: boolean
           description: If true, the user will not receive an invitation email.
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the user.
+        username:
+          type: string
+          format: email
+          description: Email address and login identifier.
+        fullName:
+          type: string
+          description: Full name of the user.
+        role:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Role ID.
+            name:
+              type: string
+              description: Role name.
+          description: Role of the user.
+        blocked:
+          type: boolean
+          description: Whether the user is blocked.
+        verified:
+          type: boolean
+          description: Whether the user has verified their account.
+        timeZone:
+          type: string
+          description: Timezone of the user.
+        locale:
+          type: string
+          description: Locale of the user.
+        createdAt:
+          type: string
+          format: date-time
+          description: Date and time when the user was created.
+        mutedUntil:
+          type: string
+          format: date-time
+          description: Date and time until which the user is muted.
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags associated with the user.
+        details:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          description: Custom details for the user.
     ListUsersResponse:
       type: object
       properties:
@@ -578,18 +534,6 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
-    ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
     SuccessResponse:
       type: object
       properties:
@@ -602,6 +546,62 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
+    UpdateUserRequest:
+      type: object
+      properties:
+        fullName:
+          type: string
+          description: Full name of the user.
+        role:
+          type: object
+          description: Role assigned to the user.
+          properties:
+            id:
+              type: string
+              description: Role ID.
+            name:
+              type: string
+              description: Role name.
+        skypeUsername:
+          type: string
+          description: Skype username of the user.
+        timeZone:
+          type: string
+          description: Timezone of the user.
+        locale:
+          type: string
+          description: Locale of the user.
+        userAddress:
+          type: object
+          description: Physical address of the user.
+          properties:
+            country:
+              type: string
+              description: Country.
+            state:
+              type: string
+              description: State or province.
+            city:
+              type: string
+              description: City.
+            line:
+              type: string
+              description: Street address line.
+            zipCode:
+              type: string
+              description: ZIP or postal code.
+        tags:
+          type: array
+          description: Tags associated with the user.
+          items:
+            type: string
+        details:
+          type: object
+          description: Custom key-value details for the user.
+          additionalProperties:
+            type: array
+            items:
+              type: string
   parameters:
     UserIdentifier:
       name: identifier
@@ -617,5 +617,5 @@ components:
       name: Authorization
       description: API key authentication using the GenieKey scheme.
 externalDocs:
-  description: OpsGenie Account API Documentation
-  url: https://docs.opsgenie.com/docs/account-api
+  description: OpsGenie User API Documentation
+  url: https://docs.opsgenie.com/docs/user-api

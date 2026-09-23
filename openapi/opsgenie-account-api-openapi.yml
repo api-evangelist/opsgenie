@@ -40,17 +40,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    GetAccountResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Account'
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
     Account:
       type: object
       properties:
@@ -73,6 +62,17 @@ components:
               type: boolean
               description: Whether the plan is billed yearly.
           description: Plan information for the account.
+    GetAccountResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Account'
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
     ErrorResponse:
       type: object
       properties:

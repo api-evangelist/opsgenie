@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
-  title: OpsGenie Account On Call API
-  description: The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.
+  title: OpsGenie Schedule On Call API
+  description: The OpsGenie Schedule API enables developers to programmatically manage on-call schedules and rotations. It provides endpoints for creating, updating, and deleting schedules, as well as managing schedule rotations and overrides. Developers can query who is currently on call for a given schedule, making it possible to build custom dashboards and integrations that reflect real-time on-call status.
   version: 2.0.0
   contact:
     name: Atlassian Support
@@ -15,7 +15,7 @@ servers:
 security:
 - genieKey: []
 tags:
-- name: On-Call
+- name: On Call
   description: Operations for querying on-call participants.
 paths:
   /v2/schedules/{identifier}/on-calls:
@@ -24,7 +24,7 @@ paths:
       summary: Get on-call participants
       description: Retrieves the current on-call participants for the specified schedule.
       tags:
-      - On-Call
+      - On Call
       parameters:
       - $ref: '#/components/parameters/ScheduleIdentifier'
       - $ref: '#/components/parameters/IdentifierType'
@@ -59,24 +59,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
-  parameters:
-    IdentifierType:
-      name: identifierType
-      in: query
-      description: Type of the identifier. Possible values are id or name.
-      schema:
-        type: string
-        enum:
-        - id
-        - name
-        default: id
-    ScheduleIdentifier:
-      name: identifier
-      in: path
-      required: true
-      description: Identifier of the schedule, which can be the schedule ID or name.
-      schema:
-        type: string
   schemas:
     GetOnCallsResponse:
       type: object
@@ -117,6 +99,24 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
+  parameters:
+    ScheduleIdentifier:
+      name: identifier
+      in: path
+      required: true
+      description: Identifier of the schedule, which can be the schedule ID or name.
+      schema:
+        type: string
+    IdentifierType:
+      name: identifierType
+      in: query
+      description: Type of the identifier. Possible values are id or name.
+      schema:
+        type: string
+        enum:
+        - id
+        - name
+        default: id
   securitySchemes:
     genieKey:
       type: apiKey
@@ -124,5 +124,5 @@ components:
       name: Authorization
       description: API key authentication using the GenieKey scheme.
 externalDocs:
-  description: OpsGenie Account API Documentation
-  url: https://docs.opsgenie.com/docs/account-api
+  description: OpsGenie Schedule API Documentation
+  url: https://docs.opsgenie.com/docs/schedule-api

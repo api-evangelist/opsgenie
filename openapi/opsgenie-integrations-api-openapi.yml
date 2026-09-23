@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
-  title: OpsGenie Account Integrations API
-  description: The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.
+  title: OpsGenie Integration Integrations API
+  description: The OpsGenie Integration API enables developers to programmatically manage integrations that connect OpsGenie with third-party monitoring, ticketing, and communication tools. It provides endpoints for creating, enabling, disabling, and configuring integrations and their associated actions. Note that the Integration API does not support Zendesk, Slack, or Incoming Call integrations, which must be configured through the OpsGenie web interface.
   version: 2.0.0
   contact:
     name: Atlassian Support
@@ -292,55 +292,45 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
-    Integration:
+    CreateIntegrationResponse:
       type: object
       properties:
-        id:
-          type: string
-          description: Unique identifier.
-        name:
-          type: string
-          description: Name of the integration.
-        type:
-          type: string
-          description: Type of the integration.
-        enabled:
-          type: boolean
-          description: Whether the integration is currently enabled.
-        ownerTeam:
+        data:
           type: object
           properties:
             id:
               type: string
-              description: Team ID.
+              description: ID of the created integration.
             name:
               type: string
-              description: Team name.
-          description: Owner team.
-        isGlobal:
-          type: boolean
-          description: Whether this is a global (account-level) integration.
-        allowWriteAccess:
-          type: boolean
-          description: Whether write access is enabled.
-        allowConfigurationAccess:
-          type: boolean
-          description: Whether configuration access is enabled.
-        responders:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: Responder ID.
-              name:
-                type: string
-                description: Responder name.
-              type:
-                type: string
-                description: Responder type.
-          description: Default responders.
+              description: Name of the integration.
+            enabled:
+              type: boolean
+              description: Whether the integration is enabled.
+            type:
+              type: string
+              description: Integration type.
+            apiKey:
+              type: string
+              description: API key for the integration.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
     UpdateIntegrationRequest:
       type: object
       properties:
@@ -384,6 +374,18 @@ components:
               type:
                 type: string
                 description: Responder type.
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Result message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
     CreateIntegrationRequest:
       type: object
       required:
@@ -438,62 +440,60 @@ components:
                 - escalation
                 - schedule
                 description: Responder type.
-    ErrorResponse:
+    Integration:
       type: object
       properties:
-        message:
+        id:
           type: string
-          description: Error message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
+          description: Unique identifier.
+        name:
           type: string
-          description: Unique identifier for the request.
+          description: Name of the integration.
+        type:
+          type: string
+          description: Type of the integration.
+        enabled:
+          type: boolean
+          description: Whether the integration is currently enabled.
+        ownerTeam:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Team ID.
+            name:
+              type: string
+              description: Team name.
+          description: Owner team.
+        isGlobal:
+          type: boolean
+          description: Whether this is a global (account-level) integration.
+        allowWriteAccess:
+          type: boolean
+          description: Whether write access is enabled.
+        allowConfigurationAccess:
+          type: boolean
+          description: Whether configuration access is enabled.
+        responders:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Responder ID.
+              name:
+                type: string
+                description: Responder name.
+              type:
+                type: string
+                description: Responder type.
+          description: Default responders.
     GetIntegrationResponse:
       type: object
       properties:
         data:
           $ref: '#/components/schemas/Integration'
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    SuccessResponse:
-      type: object
-      properties:
-        result:
-          type: string
-          description: Result message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    CreateIntegrationResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-              description: ID of the created integration.
-            name:
-              type: string
-              description: Name of the integration.
-            enabled:
-              type: boolean
-              description: Whether the integration is enabled.
-            type:
-              type: string
-              description: Integration type.
-            apiKey:
-              type: string
-              description: API key for the integration.
         took:
           type: number
           description: Time taken in seconds.
@@ -507,5 +507,5 @@ components:
       name: Authorization
       description: API key authentication using the GenieKey scheme.
 externalDocs:
-  description: OpsGenie Account API Documentation
-  url: https://docs.opsgenie.com/docs/account-api
+  description: OpsGenie Integration API Documentation
+  url: https://docs.opsgenie.com/docs/integration-api

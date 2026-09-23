@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: OpsGenie Account Maintenance API
-  description: The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.
-  version: 2.0.0
+  title: OpsGenie Maintenance API
+  description: The OpsGenie Maintenance API allows developers to manage maintenance windows that suppress alert notifications during planned maintenance periods. It provides endpoints for creating, updating, listing, and deleting maintenance windows with configurable time ranges and rules for which integrations or policies are affected. This helps operations teams avoid unnecessary alerting during scheduled downtime.
+  version: 1.0.0
   contact:
     name: Atlassian Support
     url: https://support.atlassian.com/opsgenie/
@@ -180,54 +180,18 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    Maintenance:
+    ErrorResponse:
       type: object
       properties:
-        id:
+        message:
           type: string
-          description: Unique identifier.
-        status:
+          description: Error message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
           type: string
-          enum:
-          - active
-          - planned
-          - past
-          - cancelled
-          description: Current status of the maintenance.
-        description:
-          type: string
-          description: Description of the maintenance window.
-        time:
-          type: object
-          properties:
-            type:
-              type: string
-              description: Type of maintenance duration.
-            startDate:
-              type: string
-              format: date-time
-              description: Start date.
-            endDate:
-              type: string
-              format: date-time
-              description: End date.
-          description: Time configuration.
-        rules:
-          type: array
-          items:
-            type: object
-            properties:
-              entity:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    description: Entity ID.
-                  type:
-                    type: string
-                    description: Entity type.
-                description: Affected entity.
-          description: Maintenance rules.
+          description: Unique identifier for the request.
     CreateMaintenanceRequest:
       type: object
       required:
@@ -280,6 +244,77 @@ components:
                     - policy
                     description: Type of entity affected.
                 description: Entity affected by the maintenance rule.
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Result message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    Maintenance:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier.
+        status:
+          type: string
+          enum:
+          - active
+          - planned
+          - past
+          - cancelled
+          description: Current status of the maintenance.
+        description:
+          type: string
+          description: Description of the maintenance window.
+        time:
+          type: object
+          properties:
+            type:
+              type: string
+              description: Type of maintenance duration.
+            startDate:
+              type: string
+              format: date-time
+              description: Start date.
+            endDate:
+              type: string
+              format: date-time
+              description: End date.
+          description: Time configuration.
+        rules:
+          type: array
+          items:
+            type: object
+            properties:
+              entity:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Entity ID.
+                  type:
+                    type: string
+                    description: Entity type.
+                description: Affected entity.
+          description: Maintenance rules.
+    GetMaintenanceResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Maintenance'
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
     ListMaintenancesResponse:
       type: object
       properties:
@@ -294,41 +329,6 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
-    ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    SuccessResponse:
-      type: object
-      properties:
-        result:
-          type: string
-          description: Result message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    GetMaintenanceResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Maintenance'
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
   securitySchemes:
     genieKey:
       type: apiKey
@@ -336,5 +336,5 @@ components:
       name: Authorization
       description: API key authentication using the GenieKey scheme.
 externalDocs:
-  description: OpsGenie Account API Documentation
-  url: https://docs.opsgenie.com/docs/account-api
+  description: OpsGenie Maintenance API Documentation
+  url: https://docs.opsgenie.com/docs/maintenance-api

@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
-  title: OpsGenie Account Alerts API
-  description: The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.
+  title: OpsGenie Alert Alerts API
+  description: The OpsGenie Alert API allows developers to programmatically create, update, close, and manage alerts within the OpsGenie incident management platform. Alert creation, deletion, and action requests are processed asynchronously to provide higher availability and scalability. The API supports setting alert priorities, adding responders such as teams, users, escalations, and schedules, attaching tags and custom details, and managing alert notes and acknowledgments.
   version: 2.0.0
   contact:
     name: Atlassian Support
@@ -664,11 +664,19 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   parameters:
-    AlertIdentifier:
-      name: identifier
-      in: path
-      required: true
-      description: Identifier of the alert, which can be the alert ID, tiny ID, or alias.
+    SearchIdentifierType:
+      name: searchIdentifierType
+      in: query
+      description: Type of the saved search identifier. Possible values are id or name.
+      schema:
+        type: string
+        enum:
+        - id
+        - name
+    SearchIdentifier:
+      name: searchIdentifier
+      in: query
+      description: Identifier of a saved search to use for filtering alerts.
       schema:
         type: string
     Limit:
@@ -680,6 +688,23 @@ components:
         minimum: 1
         maximum: 100
         default: 20
+    AlertIdentifier:
+      name: identifier
+      in: path
+      required: true
+      description: Identifier of the alert, which can be the alert ID, tiny ID, or alias.
+      schema:
+        type: string
+    Order:
+      name: order
+      in: query
+      description: Sort order for the results. Possible values are desc and asc.
+      schema:
+        type: string
+        enum:
+        - desc
+        - asc
+        default: desc
     IdentifierType:
       name: identifierType
       in: query
@@ -710,31 +735,6 @@ components:
         - count
         - lastOccurredAt
         - owner
-    SearchIdentifier:
-      name: searchIdentifier
-      in: query
-      description: Identifier of a saved search to use for filtering alerts.
-      schema:
-        type: string
-    Order:
-      name: order
-      in: query
-      description: Sort order for the results. Possible values are desc and asc.
-      schema:
-        type: string
-        enum:
-        - desc
-        - asc
-        default: desc
-    SearchIdentifierType:
-      name: searchIdentifierType
-      in: query
-      description: Type of the saved search identifier. Possible values are id or name.
-      schema:
-        type: string
-        enum:
-        - id
-        - name
     AlertQuery:
       name: query
       in: query
@@ -750,141 +750,141 @@ components:
         minimum: 0
         default: 0
   schemas:
-    CreateAlertRequest:
+    ErrorResponse:
       type: object
-      required:
-      - message
       properties:
         message:
           type: string
-          maxLength: 130
-          description: The message of the alert, limited to 130 characters.
-        alias:
-          type: string
-          maxLength: 512
-          description: Client-defined identifier for the alert, used for deduplication.
-        description:
-          type: string
-          maxLength: 15000
-          description: A detailed description of the alert.
-        responders:
-          type: array
-          description: Teams, users, escalations, and schedules that the alert is routed to.
-          items:
-            $ref: '#/components/schemas/Responder'
-        visibleTo:
-          type: array
-          description: Teams and users that the alert will become visible to without sending notifications.
-          items:
-            $ref: '#/components/schemas/Responder'
-        actions:
-          type: array
-          description: Custom actions available for the alert.
-          items:
-            type: string
-          maxItems: 10
-        tags:
-          type: array
-          description: Tags to attach to the alert.
-          items:
-            type: string
-          maxItems: 20
-        details:
-          type: object
-          description: Custom key-value pairs to attach to the alert.
-          additionalProperties:
-            type: string
-        entity:
-          type: string
-          maxLength: 512
-          description: Entity field of the alert, used to specify the domain of the alert.
-        source:
-          type: string
-          maxLength: 100
-          description: Source field of the alert, used to specify the source of the alert.
-        priority:
-          type: string
-          enum:
-          - P1
-          - P2
-          - P3
-          - P4
-          - P5
-          description: Priority level of the alert. P1 is the highest, P5 is the lowest.
-        user:
-          type: string
-          maxLength: 100
-          description: Display name of the request owner.
-        note:
-          type: string
-          maxLength: 25000
-          description: Additional note to add to the alert when created.
-    AsyncRequestResponse:
-      type: object
-      properties:
-        result:
-          type: string
-          description: Result message.
-        took:
-          type: number
-          description: Time taken to process the request in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the asynchronous request that can be used to track the status.
-    EscalateAlertRequest:
-      type: object
-      required:
-      - escalation
-      properties:
-        escalation:
-          $ref: '#/components/schemas/Responder'
-        user:
-          type: string
-          description: Display name of the request owner.
-        source:
-          type: string
-          description: Source of the escalation action.
-        note:
-          type: string
-          description: Additional note to add with the escalation.
-    SnoozeAlertRequest:
-      type: object
-      required:
-      - endTime
-      properties:
-        endTime:
-          type: string
-          format: date-time
-          description: The date and time when the snooze will end, in ISO 8601 format.
-        user:
-          type: string
-          description: Display name of the request owner.
-        source:
-          type: string
-          description: Source of the snooze action.
-        note:
-          type: string
-          description: Additional note to add with the snooze.
-    SuccessResponse:
-      type: object
-      properties:
-        result:
-          type: string
-          description: Result message.
+          description: Error message describing what went wrong.
         took:
           type: number
           description: Time taken to process the request in seconds.
         requestId:
           type: string
           description: Unique identifier for the request.
-    ListAlertsResponse:
+    AddNoteRequest:
+      type: object
+      required:
+      - note
+      properties:
+        note:
+          type: string
+          maxLength: 25000
+          description: The note text to add to the alert.
+        user:
+          type: string
+          description: Display name of the request owner.
+        source:
+          type: string
+          description: Source of the action.
+    Paging:
+      type: object
+      properties:
+        next:
+          type: string
+          description: URL for the next page of results.
+        first:
+          type: string
+          description: URL for the first page of results.
+        last:
+          type: string
+          description: URL for the last page of results.
+    AddDetailsRequest:
+      type: object
+      required:
+      - details
+      properties:
+        details:
+          type: object
+          description: Key-value pairs to add to the alert details.
+          additionalProperties:
+            type: string
+        user:
+          type: string
+          description: Display name of the request owner.
+        source:
+          type: string
+          description: Source of the action.
+        note:
+          type: string
+          description: Additional note to add with the details.
+    AddTagsRequest:
+      type: object
+      required:
+      - tags
+      properties:
+        tags:
+          type: array
+          description: List of tags to add to the alert.
+          items:
+            type: string
+        user:
+          type: string
+          description: Display name of the request owner.
+        source:
+          type: string
+          description: Source of the action.
+        note:
+          type: string
+          description: Additional note to add with the tags.
+    ListAlertRecipientsResponse:
       type: object
       properties:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/Alert'
-          description: List of alerts.
+            type: object
+            properties:
+              user:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: User ID.
+                  username:
+                    type: string
+                    description: Username of the recipient.
+              state:
+                type: string
+                description: State of the notification to the recipient.
+              method:
+                type: string
+                description: Notification method used.
+              createdAt:
+                type: string
+                format: date-time
+                description: Date and time when the notification was created.
+              updatedAt:
+                type: string
+                format: date-time
+                description: Date and time when the notification was last updated.
+        took:
+          type: number
+          description: Time taken to process the request in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    ListAlertNotesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              note:
+                type: string
+                description: Text content of the note.
+              owner:
+                type: string
+                description: User who created the note.
+              createdAt:
+                type: string
+                format: date-time
+                description: Date and time when the note was created.
+              offset:
+                type: string
+                description: Offset value for pagination.
         paging:
           $ref: '#/components/schemas/Paging'
         took:
@@ -893,70 +893,28 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
-    CloseAlertRequest:
+    Responder:
       type: object
+      required:
+      - type
       properties:
-        user:
+        id:
           type: string
-          description: Display name of the request owner.
-        source:
+          description: ID of the responder.
+        name:
           type: string
-          description: Source of the close action.
-        note:
+          description: Name of the responder (for teams and schedules).
+        username:
           type: string
-          description: Additional note to add when closing the alert.
-    RequestStatusResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            success:
-              type: boolean
-              description: Whether the request was successful.
-            action:
-              type: string
-              description: The action that was performed.
-            processedAt:
-              type: string
-              format: date-time
-              description: The date and time when the request was processed.
-            integrationId:
-              type: string
-              description: ID of the integration.
-            isSuccess:
-              type: boolean
-              description: Whether the operation succeeded.
-            status:
-              type: string
-              description: Status of the request.
-            alertId:
-              type: string
-              description: ID of the alert created or affected.
-            alias:
-              type: string
-              description: Alias of the alert.
-        took:
-          type: number
-          description: Time taken to process the request in seconds.
-        requestId:
+          description: Username of the responder (for users).
+        type:
           type: string
-          description: Unique identifier for the request.
-    CountAlertsResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            count:
-              type: integer
-              description: Count of alerts matching the query.
-        took:
-          type: number
-          description: Time taken to process the request in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
+          enum:
+          - team
+          - user
+          - escalation
+          - schedule
+          description: Type of the responder entity.
     AlertActionRequest:
       type: object
       properties:
@@ -969,37 +927,18 @@ components:
         note:
           type: string
           description: Additional note to add with the action.
-    GetAlertResponse:
+    CloseAlertRequest:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/Alert'
-        took:
-          type: number
-          description: Time taken to process the request in seconds.
-        requestId:
+        user:
           type: string
-          description: Unique identifier for the request.
-    ListAttachmentsResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Name of the attachment file.
-              id:
-                type: string
-                description: Unique identifier of the attachment.
-        took:
-          type: number
-          description: Time taken to process the request in seconds.
-        requestId:
+          description: Display name of the request owner.
+        source:
           type: string
-          description: Unique identifier for the request.
+          description: Source of the close action.
+        note:
+          type: string
+          description: Additional note to add when closing the alert.
     Alert:
       type: object
       properties:
@@ -1119,44 +1058,147 @@ components:
           additionalProperties:
             type: string
           description: Custom key-value pairs attached to the alert.
-    AddDetailsRequest:
+    AddResponderRequest:
       type: object
       required:
-      - details
+      - responder
       properties:
-        details:
+        responder:
+          $ref: '#/components/schemas/Responder'
+        user:
+          type: string
+          description: Display name of the request owner.
+        source:
+          type: string
+          description: Source of the action.
+        note:
+          type: string
+          description: Additional note to add with the responder.
+    RequestStatusResponse:
+      type: object
+      properties:
+        data:
           type: object
-          description: Key-value pairs to add to the alert details.
-          additionalProperties:
-            type: string
-        user:
+          properties:
+            success:
+              type: boolean
+              description: Whether the request was successful.
+            action:
+              type: string
+              description: The action that was performed.
+            processedAt:
+              type: string
+              format: date-time
+              description: The date and time when the request was processed.
+            integrationId:
+              type: string
+              description: ID of the integration.
+            isSuccess:
+              type: boolean
+              description: Whether the operation succeeded.
+            status:
+              type: string
+              description: Status of the request.
+            alertId:
+              type: string
+              description: ID of the alert created or affected.
+            alias:
+              type: string
+              description: Alias of the alert.
+        took:
+          type: number
+          description: Time taken to process the request in seconds.
+        requestId:
           type: string
-          description: Display name of the request owner.
-        source:
+          description: Unique identifier for the request.
+    ListAlertsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Alert'
+          description: List of alerts.
+        paging:
+          $ref: '#/components/schemas/Paging'
+        took:
+          type: number
+          description: Time taken to process the request in seconds.
+        requestId:
           type: string
-          description: Source of the action.
-        note:
+          description: Unique identifier for the request.
+    CountAlertsResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            count:
+              type: integer
+              description: Count of alerts matching the query.
+        took:
+          type: number
+          description: Time taken to process the request in seconds.
+        requestId:
           type: string
-          description: Additional note to add with the details.
-    AddTagsRequest:
+          description: Unique identifier for the request.
+    EscalateAlertRequest:
       type: object
       required:
-      - tags
+      - escalation
       properties:
-        tags:
-          type: array
-          description: List of tags to add to the alert.
-          items:
-            type: string
+        escalation:
+          $ref: '#/components/schemas/Responder'
         user:
           type: string
           description: Display name of the request owner.
         source:
           type: string
-          description: Source of the action.
+          description: Source of the escalation action.
         note:
           type: string
-          description: Additional note to add with the tags.
+          description: Additional note to add with the escalation.
+    SnoozeAlertRequest:
+      type: object
+      required:
+      - endTime
+      properties:
+        endTime:
+          type: string
+          format: date-time
+          description: The date and time when the snooze will end, in ISO 8601 format.
+        user:
+          type: string
+          description: Display name of the request owner.
+        source:
+          type: string
+          description: Source of the snooze action.
+        note:
+          type: string
+          description: Additional note to add with the snooze.
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Result message.
+        took:
+          type: number
+          description: Time taken to process the request in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    GetAlertResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Alert'
+        took:
+          type: number
+          description: Time taken to process the request in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
     ListAlertLogsResponse:
       type: object
       properties:
@@ -1189,108 +1231,87 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
-    ListAlertRecipientsResponse:
+    AsyncRequestResponse:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              user:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    description: User ID.
-                  username:
-                    type: string
-                    description: Username of the recipient.
-              state:
-                type: string
-                description: State of the notification to the recipient.
-              method:
-                type: string
-                description: Notification method used.
-              createdAt:
-                type: string
-                format: date-time
-                description: Date and time when the notification was created.
-              updatedAt:
-                type: string
-                format: date-time
-                description: Date and time when the notification was last updated.
+        result:
+          type: string
+          description: Result message.
         took:
           type: number
           description: Time taken to process the request in seconds.
         requestId:
           type: string
-          description: Unique identifier for the request.
-    AddResponderRequest:
+          description: Unique identifier for the asynchronous request that can be used to track the status.
+    CreateAlertRequest:
       type: object
       required:
-      - responder
-      properties:
-        responder:
-          $ref: '#/components/schemas/Responder'
-        user:
-          type: string
-          description: Display name of the request owner.
-        source:
-          type: string
-          description: Source of the action.
-        note:
-          type: string
-          description: Additional note to add with the responder.
-    AddNoteRequest:
-      type: object
-      required:
-      - note
-      properties:
-        note:
-          type: string
-          maxLength: 25000
-          description: The note text to add to the alert.
-        user:
-          type: string
-          description: Display name of the request owner.
-        source:
-          type: string
-          description: Source of the action.
-    Responder:
-      type: object
-      required:
-      - type
-      properties:
-        id:
-          type: string
-          description: ID of the responder.
-        name:
-          type: string
-          description: Name of the responder (for teams and schedules).
-        username:
-          type: string
-          description: Username of the responder (for users).
-        type:
-          type: string
-          enum:
-          - team
-          - user
-          - escalation
-          - schedule
-          description: Type of the responder entity.
-    ErrorResponse:
-      type: object
+      - message
       properties:
         message:
           type: string
-          description: Error message describing what went wrong.
-        took:
-          type: number
-          description: Time taken to process the request in seconds.
-        requestId:
+          maxLength: 130
+          description: The message of the alert, limited to 130 characters.
+        alias:
           type: string
-          description: Unique identifier for the request.
+          maxLength: 512
+          description: Client-defined identifier for the alert, used for deduplication.
+        description:
+          type: string
+          maxLength: 15000
+          description: A detailed description of the alert.
+        responders:
+          type: array
+          description: Teams, users, escalations, and schedules that the alert is routed to.
+          items:
+            $ref: '#/components/schemas/Responder'
+        visibleTo:
+          type: array
+          description: Teams and users that the alert will become visible to without sending notifications.
+          items:
+            $ref: '#/components/schemas/Responder'
+        actions:
+          type: array
+          description: Custom actions available for the alert.
+          items:
+            type: string
+          maxItems: 10
+        tags:
+          type: array
+          description: Tags to attach to the alert.
+          items:
+            type: string
+          maxItems: 20
+        details:
+          type: object
+          description: Custom key-value pairs to attach to the alert.
+          additionalProperties:
+            type: string
+        entity:
+          type: string
+          maxLength: 512
+          description: Entity field of the alert, used to specify the domain of the alert.
+        source:
+          type: string
+          maxLength: 100
+          description: Source field of the alert, used to specify the source of the alert.
+        priority:
+          type: string
+          enum:
+          - P1
+          - P2
+          - P3
+          - P4
+          - P5
+          description: Priority level of the alert. P1 is the highest, P5 is the lowest.
+        user:
+          type: string
+          maxLength: 100
+          description: Display name of the request owner.
+        note:
+          type: string
+          maxLength: 25000
+          description: Additional note to add to the alert when created.
     AssignAlertRequest:
       type: object
       required:
@@ -1315,7 +1336,7 @@ components:
         note:
           type: string
           description: Additional note to add with the assignment.
-    ListAlertNotesResponse:
+    ListAttachmentsResponse:
       type: object
       properties:
         data:
@@ -1323,45 +1344,24 @@ components:
           items:
             type: object
             properties:
-              note:
+              name:
                 type: string
-                description: Text content of the note.
-              owner:
+                description: Name of the attachment file.
+              id:
                 type: string
-                description: User who created the note.
-              createdAt:
-                type: string
-                format: date-time
-                description: Date and time when the note was created.
-              offset:
-                type: string
-                description: Offset value for pagination.
-        paging:
-          $ref: '#/components/schemas/Paging'
+                description: Unique identifier of the attachment.
         took:
           type: number
           description: Time taken to process the request in seconds.
         requestId:
           type: string
           description: Unique identifier for the request.
-    Paging:
-      type: object
-      properties:
-        next:
-          type: string
-          description: URL for the next page of results.
-        first:
-          type: string
-          description: URL for the first page of results.
-        last:
-          type: string
-          description: URL for the last page of results.
   securitySchemes:
     genieKey:
       type: apiKey
       in: header
       name: Authorization
-      description: API key authentication using the GenieKey scheme.
+      description: API key authentication using the GenieKey scheme. The value should be in the format 'GenieKey your-api-key'.
 externalDocs:
-  description: OpsGenie Account API Documentation
-  url: https://docs.opsgenie.com/docs/account-api
+  description: OpsGenie Alert API Documentation
+  url: https://docs.opsgenie.com/docs/alert-api

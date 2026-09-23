@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: OpsGenie Account Services API
-  description: The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.
-  version: 2.0.0
+  title: OpsGenie Service Services API
+  description: The OpsGenie Service API enables developers to manage services within the OpsGenie platform. Services represent business-critical applications and components that can be associated with incidents to track their impact. The API provides endpoints for creating, updating, retrieving, and deleting services. The Service API is available to Standard and Enterprise plan users and is used in conjunction with the Incident API to identify which services are affected during an outage.
+  version: 1.0.0
   contact:
     name: Atlassian Support
     url: https://support.atlassian.com/opsgenie/
@@ -194,32 +194,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ListServicesResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Service'
-          description: List of services.
-        paging:
-          type: object
-          properties:
-            next:
-              type: string
-              description: URL for the next page.
-            first:
-              type: string
-              description: URL for the first page.
-        totalCount:
-          type: integer
-          description: Total number of services.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
     CreateServiceRequest:
       type: object
       required:
@@ -246,6 +220,37 @@ components:
           items:
             type: string
           description: Tags associated with the service.
+    GetServiceResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Service'
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    UpdateServiceRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated service name.
+        description:
+          type: string
+          description: Updated description.
+        visibility:
+          type: string
+          enum:
+          - TEAM_MEMBERS
+          - OPSGENIE_USERS
+          description: Updated visibility.
+        tags:
+          type: array
+          items:
+            type: string
+          description: Updated tags.
     Service:
       type: object
       properties:
@@ -296,37 +301,32 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
-    GetServiceResponse:
+    ListServicesResponse:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/Service'
+          type: array
+          items:
+            $ref: '#/components/schemas/Service'
+          description: List of services.
+        paging:
+          type: object
+          properties:
+            next:
+              type: string
+              description: URL for the next page.
+            first:
+              type: string
+              description: URL for the first page.
+        totalCount:
+          type: integer
+          description: Total number of services.
         took:
           type: number
           description: Time taken in seconds.
         requestId:
           type: string
           description: Unique identifier for the request.
-    UpdateServiceRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Updated service name.
-        description:
-          type: string
-          description: Updated description.
-        visibility:
-          type: string
-          enum:
-          - TEAM_MEMBERS
-          - OPSGENIE_USERS
-          description: Updated visibility.
-        tags:
-          type: array
-          items:
-            type: string
-          description: Updated tags.
   parameters:
     ServiceIdentifier:
       name: identifier
@@ -342,5 +342,5 @@ components:
       name: Authorization
       description: API key authentication using the GenieKey scheme.
 externalDocs:
-  description: OpsGenie Account API Documentation
-  url: https://docs.opsgenie.com/docs/account-api
+  description: OpsGenie Service API Documentation
+  url: https://docs.opsgenie.com/docs/service-api

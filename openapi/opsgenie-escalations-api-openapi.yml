@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
-  title: OpsGenie Account Escalations API
-  description: The OpsGenie Account API provides endpoints for retrieving account-level information and configuration settings. Developers can use this API to access details about their OpsGenie account, including plan information and account metadata. It serves as a foundational API for administrative operations and account management within the OpsGenie platform.
+  title: OpsGenie Escalation Escalations API
+  description: The OpsGenie Escalation API allows developers to manage escalation policies that define how alerts are routed when initial responders do not acknowledge them. It provides endpoints for creating, updating, retrieving, and deleting escalation configurations. Escalation rules define the sequence of notifications sent to teams, users, and schedules with configurable delay intervals to ensure incidents are addressed in a timely manner.
   version: 2.0.0
   contact:
     name: Atlassian Support
@@ -211,6 +211,29 @@ components:
               type: boolean
               description: Close alert after all repeats.
           description: Repeat configuration.
+    GetEscalationResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Escalation'
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
     EscalationRule:
       type: object
       required:
@@ -270,31 +293,6 @@ components:
               - team
               - schedule
               description: Type of recipient.
-    ListEscalationsResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Escalation'
-          description: List of escalations.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    GetEscalationResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Escalation'
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
     CreateEscalationRequest:
       type: object
       required:
@@ -338,12 +336,26 @@ components:
             closeAlertAfterAll:
               type: boolean
               description: Whether to close the alert after all repeats.
-    ErrorResponse:
+    SuccessResponse:
       type: object
       properties:
-        message:
+        result:
           type: string
-          description: Error message.
+          description: Result message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    ListEscalationsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Escalation'
+          description: List of escalations.
         took:
           type: number
           description: Time taken in seconds.
@@ -390,18 +402,6 @@ components:
             closeAlertAfterAll:
               type: boolean
               description: Close alert after all repeats.
-    SuccessResponse:
-      type: object
-      properties:
-        result:
-          type: string
-          description: Result message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
   parameters:
     EscalationIdentifier:
       name: identifier
@@ -427,5 +427,5 @@ components:
       name: Authorization
       description: API key authentication using the GenieKey scheme.
 externalDocs:
-  description: OpsGenie Account API Documentation
-  url: https://docs.opsgenie.com/docs/account-api
+  description: OpsGenie Escalation API Documentation
+  url: https://docs.opsgenie.com/docs/escalation-api
