@@ -66,8 +66,6 @@ apis:
     url: https://docs.opsgenie.com/docs/alert-api
   - type: JSONSchema
     url: json-schema/opsgenie-alert-schema.json
-  - type: GraphQL
-    url: graphql/opsgenie-graphql.md
   - type: Documentation
     url: https://docs.opsgenie.com/docs/incident-api
   - type: JSONSchema
@@ -111,8 +109,6 @@ apis:
     url: https://docs.opsgenie.com/docs/alert-api
   - type: JSONSchema
     url: json-schema/opsgenie-alert-schema.json
-  - type: GraphQL
-    url: graphql/opsgenie-graphql.md
   - type: Documentation
     url: https://docs.opsgenie.com/docs/incident-api
   - type: JSONSchema
@@ -155,8 +151,6 @@ apis:
     url: https://docs.opsgenie.com/docs/alert-api
   - type: JSONSchema
     url: json-schema/opsgenie-alert-schema.json
-  - type: GraphQL
-    url: graphql/opsgenie-graphql.md
   - type: Documentation
     url: https://docs.opsgenie.com/docs/incident-api
   - type: JSONSchema
@@ -199,8 +193,6 @@ apis:
     url: https://docs.opsgenie.com/docs/alert-api
   - type: JSONSchema
     url: json-schema/opsgenie-alert-schema.json
-  - type: GraphQL
-    url: graphql/opsgenie-graphql.md
   - type: Documentation
     url: https://docs.opsgenie.com/docs/incident-api
   - type: JSONSchema
@@ -245,8 +237,6 @@ apis:
     url: https://docs.opsgenie.com/docs/alert-api
   - type: JSONSchema
     url: json-schema/opsgenie-alert-schema.json
-  - type: GraphQL
-    url: graphql/opsgenie-graphql.md
   - type: Documentation
     url: https://docs.opsgenie.com/docs/incident-api
   - type: JSONSchema
@@ -291,8 +281,6 @@ apis:
     url: https://docs.opsgenie.com/docs/alert-api
   - type: JSONSchema
     url: json-schema/opsgenie-alert-schema.json
-  - type: GraphQL
-    url: graphql/opsgenie-graphql.md
   - type: Documentation
     url: https://docs.opsgenie.com/docs/incident-api
   - type: JSONSchema
@@ -335,8 +323,6 @@ apis:
     url: https://docs.opsgenie.com/docs/alert-api
   - type: JSONSchema
     url: json-schema/opsgenie-alert-schema.json
-  - type: GraphQL
-    url: graphql/opsgenie-graphql.md
   - type: Documentation
     url: https://docs.opsgenie.com/docs/incident-api
   - type: JSONSchema
@@ -379,8 +365,6 @@ apis:
     url: https://docs.opsgenie.com/docs/alert-api
   - type: JSONSchema
     url: json-schema/opsgenie-alert-schema.json
-  - type: GraphQL
-    url: graphql/opsgenie-graphql.md
   - type: Documentation
     url: https://docs.opsgenie.com/docs/incident-api
   - type: JSONSchema
@@ -423,8 +407,6 @@ apis:
     url: https://docs.opsgenie.com/docs/alert-api
   - type: JSONSchema
     url: json-schema/opsgenie-alert-schema.json
-  - type: GraphQL
-    url: graphql/opsgenie-graphql.md
   - type: Documentation
     url: https://docs.opsgenie.com/docs/incident-api
   - type: JSONSchema
@@ -467,8 +449,6 @@ apis:
     url: https://docs.opsgenie.com/docs/alert-api
   - type: JSONSchema
     url: json-schema/opsgenie-alert-schema.json
-  - type: GraphQL
-    url: graphql/opsgenie-graphql.md
   - type: Documentation
     url: https://docs.opsgenie.com/docs/incident-api
   - type: JSONSchema
@@ -511,8 +491,6 @@ apis:
     url: https://docs.opsgenie.com/docs/alert-api
   - type: JSONSchema
     url: json-schema/opsgenie-alert-schema.json
-  - type: GraphQL
-    url: graphql/opsgenie-graphql.md
   - type: Documentation
     url: https://docs.opsgenie.com/docs/incident-api
   - type: JSONSchema
@@ -557,8 +535,6 @@ apis:
     url: https://docs.opsgenie.com/docs/alert-api
   - type: JSONSchema
     url: json-schema/opsgenie-alert-schema.json
-  - type: GraphQL
-    url: graphql/opsgenie-graphql.md
   - type: Documentation
     url: https://docs.opsgenie.com/docs/incident-api
   - type: JSONSchema
@@ -602,8 +578,6 @@ apis:
     url: https://docs.opsgenie.com/docs/alert-api
   - type: JSONSchema
     url: json-schema/opsgenie-alert-schema.json
-  - type: GraphQL
-    url: graphql/opsgenie-graphql.md
   - type: Documentation
     url: https://docs.opsgenie.com/docs/incident-api
   - type: JSONSchema
@@ -649,8 +623,6 @@ apis:
     url: https://docs.opsgenie.com/docs/alert-api
   - type: JSONSchema
     url: json-schema/opsgenie-alert-schema.json
-  - type: GraphQL
-    url: graphql/opsgenie-graphql.md
   - type: Documentation
     url: https://docs.opsgenie.com/docs/incident-api
   - type: JSONSchema
@@ -696,8 +668,6 @@ apis:
     url: https://docs.opsgenie.com/docs/alert-api
   - type: JSONSchema
     url: json-schema/opsgenie-alert-schema.json
-  - type: GraphQL
-    url: graphql/opsgenie-graphql.md
   - type: Documentation
     url: https://docs.opsgenie.com/docs/incident-api
   - type: JSONSchema
