@@ -192,43 +192,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    CreateOverrideRequest:
-      type: object
-      required:
-      - user
-      - startDate
-      - endDate
-      properties:
-        user:
-          type: object
-          description: User who will take over the on-call duty.
-          properties:
-            id:
-              type: string
-              description: User ID.
-            username:
-              type: string
-              description: Username (email).
-        startDate:
-          type: string
-          format: date-time
-          description: Start date and time of the override.
-        endDate:
-          type: string
-          format: date-time
-          description: End date and time of the override.
-        rotations:
-          type: array
-          description: Specific rotations to override. If not provided, all rotations are overridden.
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: Rotation ID.
-              name:
-                type: string
-                description: Rotation name.
     UpdateOverrideRequest:
       type: object
       required:
@@ -309,6 +272,55 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Result message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    CreateOverrideRequest:
+      type: object
+      required:
+      - user
+      - startDate
+      - endDate
+      properties:
+        user:
+          type: object
+          description: User who will take over the on-call duty.
+          properties:
+            id:
+              type: string
+              description: User ID.
+            username:
+              type: string
+              description: Username (email).
+        startDate:
+          type: string
+          format: date-time
+          description: Start date and time of the override.
+        endDate:
+          type: string
+          format: date-time
+          description: End date and time of the override.
+        rotations:
+          type: array
+          description: Specific rotations to override. If not provided, all rotations are overridden.
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Rotation ID.
+              name:
+                type: string
+                description: Rotation name.
     ErrorResponse:
       type: object
       properties:
@@ -350,18 +362,6 @@ components:
                 format: date-time
                 description: End date.
           description: List of overrides.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    SuccessResponse:
-      type: object
-      properties:
-        result:
-          type: string
-          description: Result message.
         took:
           type: number
           description: Time taken in seconds.

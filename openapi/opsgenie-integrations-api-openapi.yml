@@ -278,20 +278,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ListIntegrationsResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Integration'
-          description: List of integrations.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
     CreateIntegrationResponse:
       type: object
       properties:
@@ -319,27 +305,23 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
-    ErrorResponse:
+    Integration:
       type: object
       properties:
-        message:
+        id:
           type: string
-          description: Error message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    UpdateIntegrationRequest:
-      type: object
-      properties:
+          description: Unique identifier.
         name:
           type: string
-          description: Updated integration name.
+          description: Name of the integration.
+        type:
+          type: string
+          description: Type of the integration.
+        enabled:
+          type: boolean
+          description: Whether the integration is currently enabled.
         ownerTeam:
           type: object
-          description: Updated owner team.
           properties:
             id:
               type: string
@@ -347,21 +329,18 @@ components:
             name:
               type: string
               description: Team name.
+          description: Owner team.
+        isGlobal:
+          type: boolean
+          description: Whether this is a global (account-level) integration.
         allowWriteAccess:
           type: boolean
-          description: Updated write access setting.
+          description: Whether write access is enabled.
         allowConfigurationAccess:
           type: boolean
-          description: Updated configuration access setting.
-        ignoreRespondersFromPayload:
-          type: boolean
-          description: Updated responder ignore setting.
-        suppressNotifications:
-          type: boolean
-          description: Updated notification suppression setting.
+          description: Whether configuration access is enabled.
         responders:
           type: array
-          description: Updated default responders.
           items:
             type: object
             properties:
@@ -374,6 +353,18 @@ components:
               type:
                 type: string
                 description: Responder type.
+          description: Default responders.
+    GetIntegrationResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Integration'
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
     SuccessResponse:
       type: object
       properties:
@@ -440,23 +431,41 @@ components:
                 - escalation
                 - schedule
                 description: Responder type.
-    Integration:
+    ListIntegrationsResponse:
       type: object
       properties:
-        id:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Integration'
+          description: List of integrations.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
           type: string
-          description: Unique identifier.
+          description: Unique identifier for the request.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    UpdateIntegrationRequest:
+      type: object
+      properties:
         name:
           type: string
-          description: Name of the integration.
-        type:
-          type: string
-          description: Type of the integration.
-        enabled:
-          type: boolean
-          description: Whether the integration is currently enabled.
+          description: Updated integration name.
         ownerTeam:
           type: object
+          description: Updated owner team.
           properties:
             id:
               type: string
@@ -464,18 +473,21 @@ components:
             name:
               type: string
               description: Team name.
-          description: Owner team.
-        isGlobal:
-          type: boolean
-          description: Whether this is a global (account-level) integration.
         allowWriteAccess:
           type: boolean
-          description: Whether write access is enabled.
+          description: Updated write access setting.
         allowConfigurationAccess:
           type: boolean
-          description: Whether configuration access is enabled.
+          description: Updated configuration access setting.
+        ignoreRespondersFromPayload:
+          type: boolean
+          description: Updated responder ignore setting.
+        suppressNotifications:
+          type: boolean
+          description: Updated notification suppression setting.
         responders:
           type: array
+          description: Updated default responders.
           items:
             type: object
             properties:
@@ -488,18 +500,6 @@ components:
               type:
                 type: string
                 description: Responder type.
-          description: Default responders.
-    GetIntegrationResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Integration'
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
   securitySchemes:
     genieKey:
       type: apiKey

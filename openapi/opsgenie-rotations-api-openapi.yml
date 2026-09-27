@@ -192,6 +192,82 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ListRotationsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rotation'
+          description: List of rotations.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    GetRotationResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Rotation'
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    UpdateRotationRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated rotation name.
+        type:
+          type: string
+          enum:
+          - daily
+          - weekly
+          - hourly
+          description: Updated rotation type.
+        startDate:
+          type: string
+          format: date-time
+          description: Updated start date.
+        endDate:
+          type: string
+          format: date-time
+          description: Updated end date.
+        length:
+          type: integer
+          description: Updated rotation length.
+        participants:
+          type: array
+          description: Updated participants.
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                description: Participant type.
+              id:
+                type: string
+                description: Participant ID.
+              username:
+                type: string
+                description: Username for user participants.
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Result message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
     CreateRotationRequest:
       type: object
       required:
@@ -349,20 +425,6 @@ components:
                   endMin:
                     type: integer
                     description: End minute.
-    ListRotationsResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rotation'
-          description: List of rotations.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
     ErrorResponse:
       type: object
       properties:
@@ -375,68 +437,6 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
-    GetRotationResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Rotation'
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    SuccessResponse:
-      type: object
-      properties:
-        result:
-          type: string
-          description: Result message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    UpdateRotationRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Updated rotation name.
-        type:
-          type: string
-          enum:
-          - daily
-          - weekly
-          - hourly
-          description: Updated rotation type.
-        startDate:
-          type: string
-          format: date-time
-          description: Updated start date.
-        endDate:
-          type: string
-          format: date-time
-          description: Updated end date.
-        length:
-          type: integer
-          description: Updated rotation length.
-        participants:
-          type: array
-          description: Updated participants.
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-                description: Participant type.
-              id:
-                type: string
-                description: Participant ID.
-              username:
-                type: string
-                description: Username for user participants.
   parameters:
     ScheduleIdentifier:
       name: identifier

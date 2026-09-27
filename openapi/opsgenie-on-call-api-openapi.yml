@@ -59,7 +59,37 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
+  parameters:
+    ScheduleIdentifier:
+      name: identifier
+      in: path
+      required: true
+      description: Identifier of the schedule, which can be the schedule ID or name.
+      schema:
+        type: string
+    IdentifierType:
+      name: identifierType
+      in: query
+      description: Type of the identifier. Possible values are id or name.
+      schema:
+        type: string
+        enum:
+        - id
+        - name
+        default: id
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
     GetOnCallsResponse:
       type: object
       properties:
@@ -87,36 +117,6 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
-    ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-  parameters:
-    ScheduleIdentifier:
-      name: identifier
-      in: path
-      required: true
-      description: Identifier of the schedule, which can be the schedule ID or name.
-      schema:
-        type: string
-    IdentifierType:
-      name: identifierType
-      in: query
-      description: Type of the identifier. Possible values are id or name.
-      schema:
-        type: string
-        enum:
-        - id
-        - name
-        default: id
   securitySchemes:
     genieKey:
       type: apiKey

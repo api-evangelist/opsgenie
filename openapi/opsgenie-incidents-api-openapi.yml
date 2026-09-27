@@ -279,6 +279,121 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    GetIncidentResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Incident'
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    ListIncidentsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Incident'
+          description: List of incidents.
+        paging:
+          type: object
+          properties:
+            next:
+              type: string
+              description: URL for the next page of results.
+            first:
+              type: string
+              description: URL for the first page of results.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    Incident:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the incident.
+        tinyId:
+          type: string
+          description: Short, human-readable identifier of the incident.
+        message:
+          type: string
+          description: Message of the incident.
+        status:
+          type: string
+          enum:
+          - open
+          - resolved
+          - closed
+          description: Current status of the incident.
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags attached to the incident.
+        createdAt:
+          type: string
+          format: date-time
+          description: Date and time when the incident was created.
+        updatedAt:
+          type: string
+          format: date-time
+          description: Date and time when the incident was last updated.
+        priority:
+          type: string
+          enum:
+          - P1
+          - P2
+          - P3
+          - P4
+          - P5
+          description: Priority level of the incident.
+        ownerTeam:
+          type: string
+          description: The owner team of the incident.
+        responders:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Responder team ID.
+              type:
+                type: string
+                description: Responder type.
+          description: Responders assigned to the incident.
+        impactedServices:
+          type: array
+          items:
+            type: string
+          description: IDs of services impacted by the incident.
+        description:
+          type: string
+          description: Detailed description of the incident.
+        details:
+          type: object
+          additionalProperties:
+            type: string
+          description: Custom key-value pairs attached to the incident.
+    AsyncRequestResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Result message.
+        took:
+          type: number
+          description: Time taken to process the request in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the asynchronous request.
     RequestStatusResponse:
       type: object
       properties:
@@ -375,6 +490,12 @@ components:
         notifyStakeholders:
           type: boolean
           description: Whether to send notifications to stakeholders.
+    CloseIncidentRequest:
+      type: object
+      properties:
+        note:
+          type: string
+          description: Additional note to add when closing the incident.
     IncidentActionRequest:
       type: object
       properties:
@@ -393,135 +514,7 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
-    AsyncRequestResponse:
-      type: object
-      properties:
-        result:
-          type: string
-          description: Result message.
-        took:
-          type: number
-          description: Time taken to process the request in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the asynchronous request.
-    Incident:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier of the incident.
-        tinyId:
-          type: string
-          description: Short, human-readable identifier of the incident.
-        message:
-          type: string
-          description: Message of the incident.
-        status:
-          type: string
-          enum:
-          - open
-          - resolved
-          - closed
-          description: Current status of the incident.
-        tags:
-          type: array
-          items:
-            type: string
-          description: Tags attached to the incident.
-        createdAt:
-          type: string
-          format: date-time
-          description: Date and time when the incident was created.
-        updatedAt:
-          type: string
-          format: date-time
-          description: Date and time when the incident was last updated.
-        priority:
-          type: string
-          enum:
-          - P1
-          - P2
-          - P3
-          - P4
-          - P5
-          description: Priority level of the incident.
-        ownerTeam:
-          type: string
-          description: The owner team of the incident.
-        responders:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: Responder team ID.
-              type:
-                type: string
-                description: Responder type.
-          description: Responders assigned to the incident.
-        impactedServices:
-          type: array
-          items:
-            type: string
-          description: IDs of services impacted by the incident.
-        description:
-          type: string
-          description: Detailed description of the incident.
-        details:
-          type: object
-          additionalProperties:
-            type: string
-          description: Custom key-value pairs attached to the incident.
-    ListIncidentsResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Incident'
-          description: List of incidents.
-        paging:
-          type: object
-          properties:
-            next:
-              type: string
-              description: URL for the next page of results.
-            first:
-              type: string
-              description: URL for the first page of results.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    GetIncidentResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Incident'
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    CloseIncidentRequest:
-      type: object
-      properties:
-        note:
-          type: string
-          description: Additional note to add when closing the incident.
   parameters:
-    IncidentIdentifier:
-      name: identifier
-      in: path
-      required: true
-      description: Identifier of the incident, which can be the incident ID or tiny ID.
-      schema:
-        type: string
     IdentifierType:
       name: identifierType
       in: query
@@ -532,6 +525,13 @@ components:
         - id
         - tiny
         default: id
+    IncidentIdentifier:
+      name: identifier
+      in: path
+      required: true
+      description: Identifier of the incident, which can be the incident ID or tiny ID.
+      schema:
+        type: string
   securitySchemes:
     genieKey:
       type: apiKey

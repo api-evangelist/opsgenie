@@ -194,95 +194,11 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    CreateServiceRequest:
-      type: object
-      required:
-      - name
-      - teamId
-      properties:
-        name:
-          type: string
-          description: Name of the service.
-        description:
-          type: string
-          description: Description of the service.
-        teamId:
-          type: string
-          description: ID of the team that owns the service.
-        visibility:
-          type: string
-          enum:
-          - TEAM_MEMBERS
-          - OPSGENIE_USERS
-          description: Visibility level of the service.
-        tags:
-          type: array
-          items:
-            type: string
-          description: Tags associated with the service.
     GetServiceResponse:
       type: object
       properties:
         data:
           $ref: '#/components/schemas/Service'
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    UpdateServiceRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Updated service name.
-        description:
-          type: string
-          description: Updated description.
-        visibility:
-          type: string
-          enum:
-          - TEAM_MEMBERS
-          - OPSGENIE_USERS
-          description: Updated visibility.
-        tags:
-          type: array
-          items:
-            type: string
-          description: Updated tags.
-    Service:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier.
-        name:
-          type: string
-          description: Name of the service.
-        description:
-          type: string
-          description: Description of the service.
-        teamId:
-          type: string
-          description: ID of the owning team.
-        visibility:
-          type: string
-          description: Visibility level.
-        tags:
-          type: array
-          items:
-            type: string
-          description: Tags.
-        isExternal:
-          type: boolean
-          description: Whether the service is external.
-    ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message.
         took:
           type: number
           description: Time taken in seconds.
@@ -327,6 +243,90 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
+    Service:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier.
+        name:
+          type: string
+          description: Name of the service.
+        description:
+          type: string
+          description: Description of the service.
+        teamId:
+          type: string
+          description: ID of the owning team.
+        visibility:
+          type: string
+          description: Visibility level.
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags.
+        isExternal:
+          type: boolean
+          description: Whether the service is external.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    UpdateServiceRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated service name.
+        description:
+          type: string
+          description: Updated description.
+        visibility:
+          type: string
+          enum:
+          - TEAM_MEMBERS
+          - OPSGENIE_USERS
+          description: Updated visibility.
+        tags:
+          type: array
+          items:
+            type: string
+          description: Updated tags.
+    CreateServiceRequest:
+      type: object
+      required:
+      - name
+      - teamId
+      properties:
+        name:
+          type: string
+          description: Name of the service.
+        description:
+          type: string
+          description: Description of the service.
+        teamId:
+          type: string
+          description: ID of the team that owns the service.
+        visibility:
+          type: string
+          enum:
+          - TEAM_MEMBERS
+          - OPSGENIE_USERS
+          description: Visibility level of the service.
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags associated with the service.
   parameters:
     ServiceIdentifier:
       name: identifier
