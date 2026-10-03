@@ -205,18 +205,26 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
-    SuccessResponse:
+    UpdateServiceRequest:
       type: object
       properties:
-        result:
+        name:
           type: string
-          description: Result message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
+          description: Updated service name.
+        description:
           type: string
-          description: Unique identifier for the request.
+          description: Updated description.
+        visibility:
+          type: string
+          enum:
+          - TEAM_MEMBERS
+          - OPSGENIE_USERS
+          description: Updated visibility.
+        tags:
+          type: array
+          items:
+            type: string
+          description: Updated tags.
     ListServicesResponse:
       type: object
       properties:
@@ -269,38 +277,18 @@ components:
         isExternal:
           type: boolean
           description: Whether the service is external.
-    ErrorResponse:
+    SuccessResponse:
       type: object
       properties:
-        message:
+        result:
           type: string
-          description: Error message.
+          description: Result message.
         took:
           type: number
           description: Time taken in seconds.
         requestId:
           type: string
           description: Unique identifier for the request.
-    UpdateServiceRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Updated service name.
-        description:
-          type: string
-          description: Updated description.
-        visibility:
-          type: string
-          enum:
-          - TEAM_MEMBERS
-          - OPSGENIE_USERS
-          description: Updated visibility.
-        tags:
-          type: array
-          items:
-            type: string
-          description: Updated tags.
     CreateServiceRequest:
       type: object
       required:
@@ -327,6 +315,18 @@ components:
           items:
             type: string
           description: Tags associated with the service.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
   parameters:
     ServiceIdentifier:
       name: identifier

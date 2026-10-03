@@ -278,27 +278,23 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    CreateIntegrationResponse:
+    GetIntegrationResponse:
       type: object
       properties:
         data:
-          type: object
-          properties:
-            id:
-              type: string
-              description: ID of the created integration.
-            name:
-              type: string
-              description: Name of the integration.
-            enabled:
-              type: boolean
-              description: Whether the integration is enabled.
-            type:
-              type: string
-              description: Integration type.
-            apiKey:
-              type: string
-              description: API key for the integration.
+          $ref: '#/components/schemas/Integration'
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Result message.
         took:
           type: number
           description: Time taken in seconds.
@@ -354,23 +350,96 @@ components:
                 type: string
                 description: Responder type.
           description: Default responders.
-    GetIntegrationResponse:
+    CreateIntegrationResponse:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/Integration'
+          type: object
+          properties:
+            id:
+              type: string
+              description: ID of the created integration.
+            name:
+              type: string
+              description: Name of the integration.
+            enabled:
+              type: boolean
+              description: Whether the integration is enabled.
+            type:
+              type: string
+              description: Integration type.
+            apiKey:
+              type: string
+              description: API key for the integration.
         took:
           type: number
           description: Time taken in seconds.
         requestId:
           type: string
           description: Unique identifier for the request.
-    SuccessResponse:
+    UpdateIntegrationRequest:
       type: object
       properties:
-        result:
+        name:
           type: string
-          description: Result message.
+          description: Updated integration name.
+        ownerTeam:
+          type: object
+          description: Updated owner team.
+          properties:
+            id:
+              type: string
+              description: Team ID.
+            name:
+              type: string
+              description: Team name.
+        allowWriteAccess:
+          type: boolean
+          description: Updated write access setting.
+        allowConfigurationAccess:
+          type: boolean
+          description: Updated configuration access setting.
+        ignoreRespondersFromPayload:
+          type: boolean
+          description: Updated responder ignore setting.
+        suppressNotifications:
+          type: boolean
+          description: Updated notification suppression setting.
+        responders:
+          type: array
+          description: Updated default responders.
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Responder ID.
+              name:
+                type: string
+                description: Responder name.
+              type:
+                type: string
+                description: Responder type.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    ListIntegrationsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Integration'
+          description: List of integrations.
         took:
           type: number
           description: Time taken in seconds.
@@ -430,75 +499,6 @@ components:
                 - user
                 - escalation
                 - schedule
-                description: Responder type.
-    ListIntegrationsResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Integration'
-          description: List of integrations.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    UpdateIntegrationRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Updated integration name.
-        ownerTeam:
-          type: object
-          description: Updated owner team.
-          properties:
-            id:
-              type: string
-              description: Team ID.
-            name:
-              type: string
-              description: Team name.
-        allowWriteAccess:
-          type: boolean
-          description: Updated write access setting.
-        allowConfigurationAccess:
-          type: boolean
-          description: Updated configuration access setting.
-        ignoreRespondersFromPayload:
-          type: boolean
-          description: Updated responder ignore setting.
-        suppressNotifications:
-          type: boolean
-          description: Updated notification suppression setting.
-        responders:
-          type: array
-          description: Updated default responders.
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: Responder ID.
-              name:
-                type: string
-                description: Responder name.
-              type:
-                type: string
                 description: Responder type.
   securitySchemes:
     genieKey:

@@ -192,7 +192,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    UpdateOverrideRequest:
+    CreateOverrideRequest:
       type: object
       required:
       - user
@@ -201,7 +201,7 @@ components:
       properties:
         user:
           type: object
-          description: User for the override.
+          description: User who will take over the on-call duty.
           properties:
             id:
               type: string
@@ -212,14 +212,14 @@ components:
         startDate:
           type: string
           format: date-time
-          description: Updated start date.
+          description: Start date and time of the override.
         endDate:
           type: string
           format: date-time
-          description: Updated end date.
+          description: End date and time of the override.
         rotations:
           type: array
-          description: Specific rotations to override.
+          description: Specific rotations to override. If not provided, all rotations are overridden.
           items:
             type: object
             properties:
@@ -229,6 +229,18 @@ components:
               name:
                 type: string
                 description: Rotation name.
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Result message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
     GetOverrideResponse:
       type: object
       properties:
@@ -272,55 +284,6 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
-    SuccessResponse:
-      type: object
-      properties:
-        result:
-          type: string
-          description: Result message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    CreateOverrideRequest:
-      type: object
-      required:
-      - user
-      - startDate
-      - endDate
-      properties:
-        user:
-          type: object
-          description: User who will take over the on-call duty.
-          properties:
-            id:
-              type: string
-              description: User ID.
-            username:
-              type: string
-              description: Username (email).
-        startDate:
-          type: string
-          format: date-time
-          description: Start date and time of the override.
-        endDate:
-          type: string
-          format: date-time
-          description: End date and time of the override.
-        rotations:
-          type: array
-          description: Specific rotations to override. If not provided, all rotations are overridden.
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: Rotation ID.
-              name:
-                type: string
-                description: Rotation name.
     ErrorResponse:
       type: object
       properties:
@@ -333,6 +296,43 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
+    UpdateOverrideRequest:
+      type: object
+      required:
+      - user
+      - startDate
+      - endDate
+      properties:
+        user:
+          type: object
+          description: User for the override.
+          properties:
+            id:
+              type: string
+              description: User ID.
+            username:
+              type: string
+              description: Username (email).
+        startDate:
+          type: string
+          format: date-time
+          description: Updated start date.
+        endDate:
+          type: string
+          format: date-time
+          description: Updated end date.
+        rotations:
+          type: array
+          description: Specific rotations to override.
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Rotation ID.
+              name:
+                type: string
+                description: Rotation name.
     ListOverridesResponse:
       type: object
       properties:

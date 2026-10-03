@@ -40,28 +40,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    Account:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the OpsGenie account.
-        userCount:
-          type: integer
-          description: Number of users in the account.
-        plan:
-          type: object
-          properties:
-            maxUserCount:
-              type: integer
-              description: Maximum number of users allowed by the plan.
-            name:
-              type: string
-              description: Name of the current plan.
-            isYearly:
-              type: boolean
-              description: Whether the plan is billed yearly.
-          description: Plan information for the account.
     GetAccountResponse:
       type: object
       properties:
@@ -85,6 +63,28 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
+    Account:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the OpsGenie account.
+        userCount:
+          type: integer
+          description: Number of users in the account.
+        plan:
+          type: object
+          properties:
+            maxUserCount:
+              type: integer
+              description: Maximum number of users allowed by the plan.
+            name:
+              type: string
+              description: Name of the current plan.
+            isYearly:
+              type: boolean
+              description: Whether the plan is billed yearly.
+          description: Plan information for the account.
   securitySchemes:
     genieKey:
       type: apiKey
