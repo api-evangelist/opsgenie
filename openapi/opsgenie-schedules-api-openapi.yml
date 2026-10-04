@@ -223,6 +223,95 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    CreateScheduleRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Name of the schedule.
+        description:
+          type: string
+          description: Description of the schedule.
+        timezone:
+          type: string
+          description: Timezone of the schedule, e.g. America/New_York.
+        enabled:
+          type: boolean
+          description: Whether the schedule is active.
+          default: true
+        ownerTeam:
+          type: object
+          description: Team that owns the schedule.
+          properties:
+            id:
+              type: string
+              description: Team ID.
+            name:
+              type: string
+              description: Team name.
+        rotations:
+          type: array
+          description: Initial rotations for the schedule.
+          items:
+            $ref: '#/components/schemas/Rotation'
+    Schedule:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the schedule.
+        name:
+          type: string
+          description: Name of the schedule.
+        description:
+          type: string
+          description: Description of the schedule.
+        timezone:
+          type: string
+          description: Timezone of the schedule.
+        enabled:
+          type: boolean
+          description: Whether the schedule is active.
+        ownerTeam:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Team ID.
+            name:
+              type: string
+              description: Team name.
+          description: Owner team of the schedule.
+        rotations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rotation'
+          description: Rotations within the schedule.
+    GetScheduleResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Schedule'
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
     Rotation:
       type: object
       required:
@@ -326,29 +415,6 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
-    SuccessResponse:
-      type: object
-      properties:
-        result:
-          type: string
-          description: Result message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    GetScheduleResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Schedule'
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
     UpdateScheduleRequest:
       type: object
       properties:
@@ -374,84 +440,6 @@ components:
             name:
               type: string
               description: Team name.
-    ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    Schedule:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier of the schedule.
-        name:
-          type: string
-          description: Name of the schedule.
-        description:
-          type: string
-          description: Description of the schedule.
-        timezone:
-          type: string
-          description: Timezone of the schedule.
-        enabled:
-          type: boolean
-          description: Whether the schedule is active.
-        ownerTeam:
-          type: object
-          properties:
-            id:
-              type: string
-              description: Team ID.
-            name:
-              type: string
-              description: Team name.
-          description: Owner team of the schedule.
-        rotations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rotation'
-          description: Rotations within the schedule.
-    CreateScheduleRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Name of the schedule.
-        description:
-          type: string
-          description: Description of the schedule.
-        timezone:
-          type: string
-          description: Timezone of the schedule, e.g. America/New_York.
-        enabled:
-          type: boolean
-          description: Whether the schedule is active.
-          default: true
-        ownerTeam:
-          type: object
-          description: Team that owns the schedule.
-          properties:
-            id:
-              type: string
-              description: Team ID.
-            name:
-              type: string
-              description: Team name.
-        rotations:
-          type: array
-          description: Initial rotations for the schedule.
-          items:
-            $ref: '#/components/schemas/Rotation'
     ScheduleTimelineResponse:
       type: object
       properties:
@@ -511,14 +499,19 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Result message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
   parameters:
-    ScheduleIdentifier:
-      name: identifier
-      in: path
-      required: true
-      description: Identifier of the schedule, which can be the schedule ID or name.
-      schema:
-        type: string
     IdentifierType:
       name: identifierType
       in: query
@@ -529,6 +522,13 @@ components:
         - id
         - name
         default: id
+    ScheduleIdentifier:
+      name: identifier
+      in: path
+      required: true
+      description: Identifier of the schedule, which can be the schedule ID or name.
+      schema:
+        type: string
   securitySchemes:
     genieKey:
       type: apiKey

@@ -191,7 +191,110 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
+  parameters:
+    IdentifierType:
+      name: identifierType
+      in: query
+      description: Type of the identifier. Possible values are id or name.
+      schema:
+        type: string
+        enum:
+        - id
+        - name
+        default: id
+    ScheduleIdentifier:
+      name: identifier
+      in: path
+      required: true
+      description: Identifier of the schedule, which can be the schedule ID or name.
+      schema:
+        type: string
   schemas:
+    CreateRotationRequest:
+      type: object
+      required:
+      - type
+      - participants
+      - startDate
+      properties:
+        name:
+          type: string
+          description: Name of the rotation.
+        type:
+          type: string
+          enum:
+          - daily
+          - weekly
+          - hourly
+          description: Type of rotation cycle.
+        startDate:
+          type: string
+          format: date-time
+          description: Start date and time of the rotation.
+        endDate:
+          type: string
+          format: date-time
+          description: End date and time of the rotation.
+        length:
+          type: integer
+          description: Length of the rotation cycle.
+        participants:
+          type: array
+          description: Participants in the rotation.
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                description: Participant type.
+              id:
+                type: string
+                description: Participant ID.
+              username:
+                type: string
+                description: Username for user participants.
+        timeRestriction:
+          type: object
+          description: Time restriction for the rotation.
+          properties:
+            type:
+              type: string
+              description: Type of restriction.
+            restrictions:
+              type: array
+              items:
+                type: object
+                properties:
+                  startDay:
+                    type: string
+                    description: Start day.
+                  startHour:
+                    type: integer
+                    description: Start hour.
+                  startMin:
+                    type: integer
+                    description: Start minute.
+                  endDay:
+                    type: string
+                    description: End day.
+                  endHour:
+                    type: integer
+                    description: End hour.
+                  endMin:
+                    type: integer
+                    description: End minute.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
     Rotation:
       type: object
       required:
@@ -276,49 +379,11 @@ components:
                   endMin:
                     type: integer
                     description: End minute.
-    SuccessResponse:
-      type: object
-      properties:
-        result:
-          type: string
-          description: Result message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
     GetRotationResponse:
       type: object
       properties:
         data:
           $ref: '#/components/schemas/Rotation'
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    ListRotationsResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rotation'
-          description: List of rotations.
         took:
           type: number
           description: Time taken in seconds.
@@ -364,97 +429,32 @@ components:
               username:
                 type: string
                 description: Username for user participants.
-    CreateRotationRequest:
+    SuccessResponse:
       type: object
-      required:
-      - type
-      - participants
-      - startDate
       properties:
-        name:
+        result:
           type: string
-          description: Name of the rotation.
-        type:
+          description: Result message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
           type: string
-          enum:
-          - daily
-          - weekly
-          - hourly
-          description: Type of rotation cycle.
-        startDate:
-          type: string
-          format: date-time
-          description: Start date and time of the rotation.
-        endDate:
-          type: string
-          format: date-time
-          description: End date and time of the rotation.
-        length:
-          type: integer
-          description: Length of the rotation cycle.
-        participants:
+          description: Unique identifier for the request.
+    ListRotationsResponse:
+      type: object
+      properties:
+        data:
           type: array
-          description: Participants in the rotation.
           items:
-            type: object
-            properties:
-              type:
-                type: string
-                description: Participant type.
-              id:
-                type: string
-                description: Participant ID.
-              username:
-                type: string
-                description: Username for user participants.
-        timeRestriction:
-          type: object
-          description: Time restriction for the rotation.
-          properties:
-            type:
-              type: string
-              description: Type of restriction.
-            restrictions:
-              type: array
-              items:
-                type: object
-                properties:
-                  startDay:
-                    type: string
-                    description: Start day.
-                  startHour:
-                    type: integer
-                    description: Start hour.
-                  startMin:
-                    type: integer
-                    description: Start minute.
-                  endDay:
-                    type: string
-                    description: End day.
-                  endHour:
-                    type: integer
-                    description: End hour.
-                  endMin:
-                    type: integer
-                    description: End minute.
-  parameters:
-    ScheduleIdentifier:
-      name: identifier
-      in: path
-      required: true
-      description: Identifier of the schedule, which can be the schedule ID or name.
-      schema:
-        type: string
-    IdentifierType:
-      name: identifierType
-      in: query
-      description: Type of the identifier. Possible values are id or name.
-      schema:
-        type: string
-        enum:
-        - id
-        - name
-        default: id
+            $ref: '#/components/schemas/Rotation'
+          description: List of rotations.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
   securitySchemes:
     genieKey:
       type: apiKey

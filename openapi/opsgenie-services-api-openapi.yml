@@ -194,37 +194,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    GetServiceResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Service'
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    UpdateServiceRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Updated service name.
-        description:
-          type: string
-          description: Updated description.
-        visibility:
-          type: string
-          enum:
-          - TEAM_MEMBERS
-          - OPSGENIE_USERS
-          description: Updated visibility.
-        tags:
-          type: array
-          items:
-            type: string
-          description: Updated tags.
     ListServicesResponse:
       type: object
       properties:
@@ -245,6 +214,29 @@ components:
         totalCount:
           type: integer
           description: Total number of services.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    GetServiceResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Service'
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
         took:
           type: number
           description: Time taken in seconds.
@@ -289,6 +281,26 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
+    UpdateServiceRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated service name.
+        description:
+          type: string
+          description: Updated description.
+        visibility:
+          type: string
+          enum:
+          - TEAM_MEMBERS
+          - OPSGENIE_USERS
+          description: Updated visibility.
+        tags:
+          type: array
+          items:
+            type: string
+          description: Updated tags.
     CreateServiceRequest:
       type: object
       required:
@@ -315,18 +327,6 @@ components:
           items:
             type: string
           description: Tags associated with the service.
-    ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
   parameters:
     ServiceIdentifier:
       name: identifier
