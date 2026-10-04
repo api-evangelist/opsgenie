@@ -697,6 +697,9 @@ apis:
   - type: Documentation
     url: https://docs.opsgenie.com/docs/maintenance-api
 common:
+- type: CapabilityMap
+  url: capabilities/opsgenie-capability-edges.yml
+  name: OpsGenie Business Capability Map
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/opsgenie/overview
 - type: AgenticAccess
