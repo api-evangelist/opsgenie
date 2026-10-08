@@ -697,6 +697,12 @@ apis:
   - type: Documentation
     url: https://docs.opsgenie.com/docs/maintenance-api
 common:
+- type: Plans
+  url: plans/opsgenie-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/opsgenie-rate-limits.yml
+- type: FinOps
+  url: finops/opsgenie-finops.yml
 - type: CapabilityMap
   url: capabilities/opsgenie-capability-edges.yml
   name: OpsGenie Business Capability Map
