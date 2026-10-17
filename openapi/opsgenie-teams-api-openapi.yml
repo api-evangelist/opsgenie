@@ -256,41 +256,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    GetTeamResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Team'
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    SuccessResponse:
-      type: object
-      properties:
-        result:
-          type: string
-          description: Result message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
     CreateTeamRequest:
       type: object
       required:
@@ -307,84 +272,14 @@ components:
           description: List of team members with their roles.
           items:
             $ref: '#/components/schemas/TeamMember'
-    TeamMember:
-      type: object
-      required:
-      - user
-      - role
-      properties:
-        user:
-          type: object
-          description: User reference.
-          properties:
-            id:
-              type: string
-              description: User ID.
-            username:
-              type: string
-              description: Username (email) of the user.
-        role:
-          type: string
-          enum:
-          - admin
-          - user
-          description: Role of the member within the team.
-    UpdateTeamRequest:
+    ListTeamMembersResponse:
       type: object
       properties:
-        name:
-          type: string
-          description: Updated name for the team.
-        description:
-          type: string
-          description: Updated description.
-        members:
+        data:
           type: array
-          description: Updated list of team members.
           items:
             $ref: '#/components/schemas/TeamMember'
-    ListTeamsResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Team'
-          description: List of teams.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    ListTeamLogsResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              log:
-                type: string
-                description: Log message.
-              owner:
-                type: string
-                description: User who triggered the action.
-              createdAt:
-                type: string
-                format: date-time
-                description: When the log entry was created.
-          description: List of log entries.
-        paging:
-          type: object
-          properties:
-            next:
-              type: string
-              description: URL for the next page.
-            first:
-              type: string
-              description: URL for the first page.
+          description: List of team members.
         took:
           type: number
           description: Time taken in seconds.
@@ -420,14 +315,119 @@ components:
               format: uri
               description: API URL for this team.
           description: Related links.
-    ListTeamMembersResponse:
+    UpdateTeamRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated name for the team.
+        description:
+          type: string
+          description: Updated description.
+        members:
+          type: array
+          description: Updated list of team members.
+          items:
+            $ref: '#/components/schemas/TeamMember'
+    ListTeamLogsResponse:
       type: object
       properties:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/TeamMember'
-          description: List of team members.
+            type: object
+            properties:
+              log:
+                type: string
+                description: Log message.
+              owner:
+                type: string
+                description: User who triggered the action.
+              createdAt:
+                type: string
+                format: date-time
+                description: When the log entry was created.
+          description: List of log entries.
+        paging:
+          type: object
+          properties:
+            next:
+              type: string
+              description: URL for the next page.
+            first:
+              type: string
+              description: URL for the first page.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    GetTeamResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Team'
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Result message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    TeamMember:
+      type: object
+      required:
+      - user
+      - role
+      properties:
+        user:
+          type: object
+          description: User reference.
+          properties:
+            id:
+              type: string
+              description: User ID.
+            username:
+              type: string
+              description: Username (email) of the user.
+        role:
+          type: string
+          enum:
+          - admin
+          - user
+          description: Role of the member within the team.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    ListTeamsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Team'
+          description: List of teams.
         took:
           type: number
           description: Time taken in seconds.

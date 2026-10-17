@@ -363,12 +363,27 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    NotificationRuleStep:
+    CreateNotificationRuleResponse:
       type: object
       properties:
-        id:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: ID of the created rule.
+            name:
+              type: string
+              description: Name of the created rule.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
           type: string
-          description: Step ID.
+          description: Unique identifier for the request.
+    UpdateNotificationRuleStepRequest:
+      type: object
+      properties:
         contact:
           type: object
           properties:
@@ -379,28 +394,28 @@ components:
               - sms
               - voice
               - mobile
-              description: Notification delivery method.
+              description: Updated delivery method.
             to:
               type: string
-              description: Contact address (email, phone number, etc.).
-          description: Contact information for the step.
+              description: Updated contact address.
+          description: Updated contact.
         sendAfter:
           type: object
           properties:
             timeAmount:
               type: integer
-              description: Amount of time to wait before sending.
+              description: Updated wait time.
             timeUnit:
               type: string
               enum:
               - minutes
               - hours
               - days
-              description: Time unit.
-          description: Delay before sending this step's notification.
+              description: Updated time unit.
+          description: Updated delay.
         enabled:
           type: boolean
-          description: Whether the step is enabled.
+          description: Updated enabled status.
     UpdateNotificationRuleRequest:
       type: object
       properties:
@@ -449,6 +464,176 @@ components:
         enabled:
           type: boolean
           description: Updated enabled status.
+    GetNotificationRuleStepResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/NotificationRuleStep'
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    NotificationRuleStep:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Step ID.
+        contact:
+          type: object
+          properties:
+            method:
+              type: string
+              enum:
+              - email
+              - sms
+              - voice
+              - mobile
+              description: Notification delivery method.
+            to:
+              type: string
+              description: Contact address (email, phone number, etc.).
+          description: Contact information for the step.
+        sendAfter:
+          type: object
+          properties:
+            timeAmount:
+              type: integer
+              description: Amount of time to wait before sending.
+            timeUnit:
+              type: string
+              enum:
+              - minutes
+              - hours
+              - days
+              description: Time unit.
+          description: Delay before sending this step's notification.
+        enabled:
+          type: boolean
+          description: Whether the step is enabled.
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Result message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    ListNotificationRuleStepsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationRuleStep'
+          description: List of notification steps.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    NotificationRule:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier.
+        name:
+          type: string
+          description: Rule name.
+        actionType:
+          type: string
+          description: Action type that triggers this rule.
+        order:
+          type: integer
+          description: Rule order.
+        enabled:
+          type: boolean
+          description: Whether the rule is enabled.
+        criteria:
+          $ref: '#/components/schemas/NotificationCriteria'
+        timeRestriction:
+          $ref: '#/components/schemas/TimeRestriction'
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationRuleStep'
+          description: Notification steps.
+        repeat:
+          type: object
+          properties:
+            loopAfter:
+              type: integer
+              description: Steps after which to loop.
+            enabled:
+              type: boolean
+              description: Repeat enabled.
+    TimeRestriction:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - time-of-day
+          - weekday-and-time-of-day
+          description: Type of time restriction.
+        restrictions:
+          type: array
+          items:
+            type: object
+            properties:
+              startDay:
+                type: string
+                description: Start day of the week.
+              startHour:
+                type: integer
+                description: Start hour.
+              startMin:
+                type: integer
+                description: Start minute.
+              endDay:
+                type: string
+                description: End day of the week.
+              endHour:
+                type: integer
+                description: End hour.
+              endMin:
+                type: integer
+                description: End minute.
+          description: Time restriction definitions.
+    ListNotificationRulesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationRule'
+          description: List of notification rules.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
     CreateNotificationRuleRequest:
       type: object
       required:
@@ -520,20 +705,46 @@ components:
         enabled:
           type: boolean
           description: Whether the rule is enabled.
-    ListNotificationRuleStepsResponse:
+    CreateNotificationRuleStepRequest:
       type: object
+      required:
+      - contact
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/NotificationRuleStep'
-          description: List of notification steps.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
+        contact:
+          type: object
+          required:
+          - method
+          - to
+          properties:
+            method:
+              type: string
+              enum:
+              - email
+              - sms
+              - voice
+              - mobile
+              description: Notification delivery method.
+            to:
+              type: string
+              description: Contact address.
+          description: Contact for the notification step.
+        sendAfter:
+          type: object
+          properties:
+            timeAmount:
+              type: integer
+              description: Time to wait.
+            timeUnit:
+              type: string
+              enum:
+              - minutes
+              - hours
+              - days
+              description: Time unit.
+          description: Delay before sending.
+        enabled:
+          type: boolean
+          description: Whether the step is enabled.
     GetNotificationRuleResponse:
       type: object
       properties:
@@ -591,217 +802,6 @@ components:
                 type: integer
                 description: Order of the condition.
           description: List of conditions.
-    NotificationRule:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier.
-        name:
-          type: string
-          description: Rule name.
-        actionType:
-          type: string
-          description: Action type that triggers this rule.
-        order:
-          type: integer
-          description: Rule order.
-        enabled:
-          type: boolean
-          description: Whether the rule is enabled.
-        criteria:
-          $ref: '#/components/schemas/NotificationCriteria'
-        timeRestriction:
-          $ref: '#/components/schemas/TimeRestriction'
-        steps:
-          type: array
-          items:
-            $ref: '#/components/schemas/NotificationRuleStep'
-          description: Notification steps.
-        repeat:
-          type: object
-          properties:
-            loopAfter:
-              type: integer
-              description: Steps after which to loop.
-            enabled:
-              type: boolean
-              description: Repeat enabled.
-    ListNotificationRulesResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/NotificationRule'
-          description: List of notification rules.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    UpdateNotificationRuleStepRequest:
-      type: object
-      properties:
-        contact:
-          type: object
-          properties:
-            method:
-              type: string
-              enum:
-              - email
-              - sms
-              - voice
-              - mobile
-              description: Updated delivery method.
-            to:
-              type: string
-              description: Updated contact address.
-          description: Updated contact.
-        sendAfter:
-          type: object
-          properties:
-            timeAmount:
-              type: integer
-              description: Updated wait time.
-            timeUnit:
-              type: string
-              enum:
-              - minutes
-              - hours
-              - days
-              description: Updated time unit.
-          description: Updated delay.
-        enabled:
-          type: boolean
-          description: Updated enabled status.
-    CreateNotificationRuleResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-              description: ID of the created rule.
-            name:
-              type: string
-              description: Name of the created rule.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    CreateNotificationRuleStepRequest:
-      type: object
-      required:
-      - contact
-      properties:
-        contact:
-          type: object
-          required:
-          - method
-          - to
-          properties:
-            method:
-              type: string
-              enum:
-              - email
-              - sms
-              - voice
-              - mobile
-              description: Notification delivery method.
-            to:
-              type: string
-              description: Contact address.
-          description: Contact for the notification step.
-        sendAfter:
-          type: object
-          properties:
-            timeAmount:
-              type: integer
-              description: Time to wait.
-            timeUnit:
-              type: string
-              enum:
-              - minutes
-              - hours
-              - days
-              description: Time unit.
-          description: Delay before sending.
-        enabled:
-          type: boolean
-          description: Whether the step is enabled.
-    SuccessResponse:
-      type: object
-      properties:
-        result:
-          type: string
-          description: Result message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    TimeRestriction:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - time-of-day
-          - weekday-and-time-of-day
-          description: Type of time restriction.
-        restrictions:
-          type: array
-          items:
-            type: object
-            properties:
-              startDay:
-                type: string
-                description: Start day of the week.
-              startHour:
-                type: integer
-                description: Start hour.
-              startMin:
-                type: integer
-                description: Start minute.
-              endDay:
-                type: string
-                description: End day of the week.
-              endHour:
-                type: integer
-                description: End hour.
-              endMin:
-                type: integer
-                description: End minute.
-          description: Time restriction definitions.
-    GetNotificationRuleStepResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/NotificationRuleStep'
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
   parameters:
     UserIdentifier:
       name: identifier
@@ -810,18 +810,18 @@ components:
       description: Identifier of the user (user ID or username/email).
       schema:
         type: string
-    StepId:
-      name: stepId
-      in: path
-      required: true
-      description: Unique identifier of the notification step.
-      schema:
-        type: string
     RuleId:
       name: ruleId
       in: path
       required: true
       description: Unique identifier of the notification rule.
+      schema:
+        type: string
+    StepId:
+      name: stepId
+      in: path
+      required: true
+      description: Unique identifier of the notification step.
       schema:
         type: string
   securitySchemes:

@@ -194,49 +194,12 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ListServicesResponse:
+    SuccessResponse:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Service'
-          description: List of services.
-        paging:
-          type: object
-          properties:
-            next:
-              type: string
-              description: URL for the next page.
-            first:
-              type: string
-              description: URL for the first page.
-        totalCount:
-          type: integer
-          description: Total number of services.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
+        result:
           type: string
-          description: Unique identifier for the request.
-    GetServiceResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Service'
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message.
+          description: Result message.
         took:
           type: number
           description: Time taken in seconds.
@@ -269,18 +232,6 @@ components:
         isExternal:
           type: boolean
           description: Whether the service is external.
-    SuccessResponse:
-      type: object
-      properties:
-        result:
-          type: string
-          description: Result message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
     UpdateServiceRequest:
       type: object
       properties:
@@ -301,6 +252,29 @@ components:
           items:
             type: string
           description: Updated tags.
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    GetServiceResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Service'
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
     CreateServiceRequest:
       type: object
       required:
@@ -327,6 +301,32 @@ components:
           items:
             type: string
           description: Tags associated with the service.
+    ListServicesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Service'
+          description: List of services.
+        paging:
+          type: object
+          properties:
+            next:
+              type: string
+              description: URL for the next page.
+            first:
+              type: string
+              description: URL for the first page.
+        totalCount:
+          type: integer
+          description: Total number of services.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
   parameters:
     ServiceIdentifier:
       name: identifier

@@ -222,6 +222,24 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
+  parameters:
+    IdentifierType:
+      name: identifierType
+      in: query
+      description: Type of the identifier. Possible values are id or name.
+      schema:
+        type: string
+        enum:
+        - id
+        - name
+        default: id
+    ScheduleIdentifier:
+      name: identifier
+      in: path
+      required: true
+      description: Identifier of the schedule, which can be the schedule ID or name.
+      schema:
+        type: string
   schemas:
     CreateScheduleRequest:
       type: object
@@ -256,6 +274,96 @@ components:
           description: Initial rotations for the schedule.
           items:
             $ref: '#/components/schemas/Rotation'
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Result message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    ListSchedulesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Schedule'
+          description: List of schedules.
+        expandable:
+          type: array
+          items:
+            type: string
+          description: Expandable fields.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    ScheduleTimelineResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            startDate:
+              type: string
+              format: date-time
+              description: Start of the timeline.
+            endDate:
+              type: string
+              format: date-time
+              description: End of the timeline.
+            finalTimeline:
+              type: object
+              properties:
+                rotations:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: Rotation ID.
+                      name:
+                        type: string
+                        description: Rotation name.
+                      periods:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            startDate:
+                              type: string
+                              format: date-time
+                              description: Period start.
+                            endDate:
+                              type: string
+                              format: date-time
+                              description: Period end.
+                            recipient:
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                  description: Participant type.
+                                id:
+                                  type: string
+                                  description: Participant ID.
+                                name:
+                                  type: string
+                                  description: Participant name.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
     Schedule:
       type: object
       properties:
@@ -289,29 +397,6 @@ components:
           items:
             $ref: '#/components/schemas/Rotation'
           description: Rotations within the schedule.
-    GetScheduleResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Schedule'
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
     Rotation:
       type: object
       required:
@@ -396,25 +481,6 @@ components:
                   endMin:
                     type: integer
                     description: End minute.
-    ListSchedulesResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Schedule'
-          description: List of schedules.
-        expandable:
-          type: array
-          items:
-            type: string
-          description: Expandable fields.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
     UpdateScheduleRequest:
       type: object
       properties:
@@ -440,95 +506,29 @@ components:
             name:
               type: string
               description: Team name.
-    ScheduleTimelineResponse:
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    GetScheduleResponse:
       type: object
       properties:
         data:
-          type: object
-          properties:
-            startDate:
-              type: string
-              format: date-time
-              description: Start of the timeline.
-            endDate:
-              type: string
-              format: date-time
-              description: End of the timeline.
-            finalTimeline:
-              type: object
-              properties:
-                rotations:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                        description: Rotation ID.
-                      name:
-                        type: string
-                        description: Rotation name.
-                      periods:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            startDate:
-                              type: string
-                              format: date-time
-                              description: Period start.
-                            endDate:
-                              type: string
-                              format: date-time
-                              description: Period end.
-                            recipient:
-                              type: object
-                              properties:
-                                type:
-                                  type: string
-                                  description: Participant type.
-                                id:
-                                  type: string
-                                  description: Participant ID.
-                                name:
-                                  type: string
-                                  description: Participant name.
+          $ref: '#/components/schemas/Schedule'
         took:
           type: number
           description: Time taken in seconds.
         requestId:
           type: string
           description: Unique identifier for the request.
-    SuccessResponse:
-      type: object
-      properties:
-        result:
-          type: string
-          description: Result message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-  parameters:
-    IdentifierType:
-      name: identifierType
-      in: query
-      description: Type of the identifier. Possible values are id or name.
-      schema:
-        type: string
-        enum:
-        - id
-        - name
-        default: id
-    ScheduleIdentifier:
-      name: identifier
-      in: path
-      required: true
-      description: Identifier of the schedule, which can be the schedule ID or name.
-      schema:
-        type: string
   securitySchemes:
     genieKey:
       type: apiKey

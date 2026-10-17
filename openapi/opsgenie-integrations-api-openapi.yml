@@ -332,61 +332,18 @@ components:
                 - escalation
                 - schedule
                 description: Responder type.
-    ErrorResponse:
+    SuccessResponse:
       type: object
       properties:
-        message:
+        result:
           type: string
-          description: Error message.
+          description: Result message.
         took:
           type: number
           description: Time taken in seconds.
         requestId:
           type: string
           description: Unique identifier for the request.
-    UpdateIntegrationRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Updated integration name.
-        ownerTeam:
-          type: object
-          description: Updated owner team.
-          properties:
-            id:
-              type: string
-              description: Team ID.
-            name:
-              type: string
-              description: Team name.
-        allowWriteAccess:
-          type: boolean
-          description: Updated write access setting.
-        allowConfigurationAccess:
-          type: boolean
-          description: Updated configuration access setting.
-        ignoreRespondersFromPayload:
-          type: boolean
-          description: Updated responder ignore setting.
-        suppressNotifications:
-          type: boolean
-          description: Updated notification suppression setting.
-        responders:
-          type: array
-          description: Updated default responders.
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: Responder ID.
-              name:
-                type: string
-                description: Responder name.
-              type:
-                type: string
-                description: Responder type.
     Integration:
       type: object
       properties:
@@ -463,23 +420,66 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
-    GetIntegrationResponse:
+    ErrorResponse:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/Integration'
+        message:
+          type: string
+          description: Error message.
         took:
           type: number
           description: Time taken in seconds.
         requestId:
           type: string
           description: Unique identifier for the request.
-    SuccessResponse:
+    UpdateIntegrationRequest:
       type: object
       properties:
-        result:
+        name:
           type: string
-          description: Result message.
+          description: Updated integration name.
+        ownerTeam:
+          type: object
+          description: Updated owner team.
+          properties:
+            id:
+              type: string
+              description: Team ID.
+            name:
+              type: string
+              description: Team name.
+        allowWriteAccess:
+          type: boolean
+          description: Updated write access setting.
+        allowConfigurationAccess:
+          type: boolean
+          description: Updated configuration access setting.
+        ignoreRespondersFromPayload:
+          type: boolean
+          description: Updated responder ignore setting.
+        suppressNotifications:
+          type: boolean
+          description: Updated notification suppression setting.
+        responders:
+          type: array
+          description: Updated default responders.
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Responder ID.
+              name:
+                type: string
+                description: Responder name.
+              type:
+                type: string
+                description: Responder type.
+    GetIntegrationResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Integration'
         took:
           type: number
           description: Time taken in seconds.

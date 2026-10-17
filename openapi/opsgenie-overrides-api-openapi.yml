@@ -210,43 +210,6 @@ components:
       schema:
         type: string
   schemas:
-    UpdateOverrideRequest:
-      type: object
-      required:
-      - user
-      - startDate
-      - endDate
-      properties:
-        user:
-          type: object
-          description: User for the override.
-          properties:
-            id:
-              type: string
-              description: User ID.
-            username:
-              type: string
-              description: Username (email).
-        startDate:
-          type: string
-          format: date-time
-          description: Updated start date.
-        endDate:
-          type: string
-          format: date-time
-          description: Updated end date.
-        rotations:
-          type: array
-          description: Specific rotations to override.
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: Rotation ID.
-              name:
-                type: string
-                description: Rotation name.
     GetOverrideResponse:
       type: object
       properties:
@@ -290,47 +253,12 @@ components:
         requestId:
           type: string
           description: Unique identifier for the request.
-    ErrorResponse:
+    SuccessResponse:
       type: object
       properties:
-        message:
+        result:
           type: string
-          description: Error message.
-        took:
-          type: number
-          description: Time taken in seconds.
-        requestId:
-          type: string
-          description: Unique identifier for the request.
-    ListOverridesResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              alias:
-                type: string
-                description: Alias of the override.
-              user:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    description: User ID.
-                  username:
-                    type: string
-                    description: Username.
-              startDate:
-                type: string
-                format: date-time
-                description: Start date.
-              endDate:
-                type: string
-                format: date-time
-                description: End date.
-          description: List of overrides.
+          description: Result message.
         took:
           type: number
           description: Time taken in seconds.
@@ -374,12 +302,84 @@ components:
               name:
                 type: string
                 description: Rotation name.
-    SuccessResponse:
+    ErrorResponse:
       type: object
       properties:
-        result:
+        message:
           type: string
-          description: Result message.
+          description: Error message.
+        took:
+          type: number
+          description: Time taken in seconds.
+        requestId:
+          type: string
+          description: Unique identifier for the request.
+    UpdateOverrideRequest:
+      type: object
+      required:
+      - user
+      - startDate
+      - endDate
+      properties:
+        user:
+          type: object
+          description: User for the override.
+          properties:
+            id:
+              type: string
+              description: User ID.
+            username:
+              type: string
+              description: Username (email).
+        startDate:
+          type: string
+          format: date-time
+          description: Updated start date.
+        endDate:
+          type: string
+          format: date-time
+          description: Updated end date.
+        rotations:
+          type: array
+          description: Specific rotations to override.
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Rotation ID.
+              name:
+                type: string
+                description: Rotation name.
+    ListOverridesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              alias:
+                type: string
+                description: Alias of the override.
+              user:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: User ID.
+                  username:
+                    type: string
+                    description: Username.
+              startDate:
+                type: string
+                format: date-time
+                description: Start date.
+              endDate:
+                type: string
+                format: date-time
+                description: End date.
+          description: List of overrides.
         took:
           type: number
           description: Time taken in seconds.
