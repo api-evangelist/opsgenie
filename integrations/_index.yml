@@ -27,5 +27,5 @@
     - connectors/applications/opsgenie
     vendor_link: https://www.atlassian.com/software/opsgenie
     builder: Fivetran
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
