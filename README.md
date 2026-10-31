@@ -1,4 +1,4 @@
-# OpsGenie (opsgenie)
+# OpsGenie
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,299 +66,234 @@
 
 OpsGenie is an incident management and alerting platform, now part of Atlassian, that helps operations teams manage on-call schedules, route alerts, and coordinate incident response. The OpsGenie developer platform provides a comprehensive set of REST APIs for programmatically managing alerts, incidents, teams, schedules, escalations, integrations, heartbeats, services, notification rules, accounts, and maintenance windows.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/opsgenie/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/opsgenie/refs/heads/main/apis.yml)
+**Areas:** Alerts · Incident Management · Monitoring · On-Call
 
-## Scope
+## OpsGenie on APIs.io
 
-- **Position:** Consuming
-- **Access:** 3rd-Party
+Everything profiled for OpsGenie is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/opsgenie/](https://apis.io/providers/opsgenie/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (15)
 
-- Alerts
-- Incident Management
-- Monitoring
-- On-Call
-- Operations
+- [OpsGenie Account API](https://apis.io/apis/opsgenie/opsgenie-account-api/) — Operations for retrieving account information and configuration.
+- [OpsGenie Alerts API](https://apis.io/apis/opsgenie/opsgenie-alerts-api/) — Operations for creating, retrieving, updating, and managing alerts within the OpsGenie platform.
+- [OpsGenie Escalations API](https://apis.io/apis/opsgenie/opsgenie-escalations-api/) — Operations for creating, retrieving, updating, and deleting escalation policies.
+- [OpsGenie Heartbeats API](https://apis.io/apis/opsgenie/opsgenie-heartbeats-api/) — Operations for creating, managing, and pinging heartbeat monitors.
+- [OpsGenie Incidents API](https://apis.io/apis/opsgenie/opsgenie-incidents-api/) — Operations for creating, retrieving, updating, closing, and resolving incidents within the OpsGenie platform.
+- [OpsGenie Integrations API](https://apis.io/apis/opsgenie/opsgenie-integrations-api/) — Operations for creating, retrieving, enabling, disabling, and managing integrations.
+- [OpsGenie Maintenance API](https://apis.io/apis/opsgenie/opsgenie-maintenance-api/) — Operations for creating, listing, retrieving, and deleting maintenance windows.
+- [OpsGenie Notification Rules API](https://apis.io/apis/opsgenie/opsgenie-notification-rules-api/) — Operations for managing user notification rules and their steps.
+- [OpsGenie On-Call API](https://apis.io/apis/opsgenie/opsgenie-on-call-api/) — Operations for querying on-call participants.
+- [OpsGenie Overrides API](https://apis.io/apis/opsgenie/opsgenie-overrides-api/) — Operations for managing schedule overrides.
+- [OpsGenie Rotations API](https://apis.io/apis/opsgenie/opsgenie-rotations-api/) — Operations for managing schedule rotations.
+- [OpsGenie Schedules API](https://apis.io/apis/opsgenie/opsgenie-schedules-api/) — Operations for managing on-call schedules.
+- [OpsGenie Services API](https://apis.io/apis/opsgenie/opsgenie-services-api/) — Operations for creating, retrieving, updating, and deleting services in the service catalog.
+- [OpsGenie Teams API](https://apis.io/apis/opsgenie/opsgenie-teams-api/) — Operations for creating, retrieving, updating, and deleting teams and managing team membership.
+- [OpsGenie Users API](https://apis.io/apis/opsgenie/opsgenie-users-api/) — Operations for creating, retrieving, updating, and deleting user accounts within the OpsGenie platform.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-03-01
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### AsyncAPI (1)
 
-### OpsGenie Alert API
+Event-driven and webhook contracts.
 
-Programmatically create, update, close, and manage alerts within the OpsGenie incident management platform. Alert creation, deletion, and action requests are processed asynchronously to provide higher availability and scalability. Supports alert priorities, responders, tags, custom details, notes, and acknowledgments.
+- [OpsGenie Webhook Events](https://apis.io/asyncapis/opsgenie/opsgenie-webhook-asyncapi/)
 
-- **Human URL:** [https://docs.opsgenie.com/docs/alert-api](https://docs.opsgenie.com/docs/alert-api)
-- **Base URL:** `https://api.opsgenie.com`
+#### Event channels (1)
 
-#### Tags
+Individual events and webhooks the provider emits.
 
-- Alerts
-- Incident Management
-- Monitoring
-- Notifications
+- [/webhook](https://apis.io/channels/opsgenie/webhook/)
 
-#### Properties
+#### GraphQL (1)
 
-- [Documentation](https://docs.opsgenie.com/docs/alert-api)
-- [OpenAPI](openapi/opsgenie-alert-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/opsgenie-alert.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/opsgenie-alert.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/opsgenie-alert-schema.json) — [JSON Schema](https://json-schema.org/specification)
+GraphQL schemas.
 
-### OpsGenie Incident API
+- [Moved to /providers/opsgenie/](https://apis.io/graphqls/opsgenie/opsgenie-graphql/)
 
-Create and manage incidents programmatically. Supports defining responders, tags, custom details, priority levels, and impacted services for each incident. Available to Standard and Enterprise plan users with endpoints for creating, updating, closing, and resolving incidents in a structured response workflow.
+#### Agentic access (1)
 
-- **Human URL:** [https://docs.opsgenie.com/docs/incident-api](https://docs.opsgenie.com/docs/incident-api)
-- **Base URL:** `https://api.opsgenie.com`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Opsgenie Agentic Access](https://apis.io/agentic-access/opsgenie/opsgenie-agentic-access/)
 
-- Incidents
-- Incident Management
-- Operations
-- Response
+#### JSON Schema (103)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://docs.opsgenie.com/docs/incident-api)
-- [OpenAPI](openapi/opsgenie-incident-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/opsgenie-incident.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/opsgenie-incident.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/opsgenie-incident-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [Account](https://apis.io/schemas/opsgenie/opsgenie-account/)
+- [AddDetailsRequest](https://apis.io/schemas/opsgenie/opsgenie-adddetailsrequest/)
+- [AddNoteRequest](https://apis.io/schemas/opsgenie/opsgenie-addnoterequest/)
+- [AddResponderRequest](https://apis.io/schemas/opsgenie/opsgenie-addresponderrequest/)
+- [AddTagsRequest](https://apis.io/schemas/opsgenie/opsgenie-addtagsrequest/)
+- [OpsGenie Alert](https://apis.io/schemas/opsgenie/opsgenie-alert/)
+- [AlertActionRequest](https://apis.io/schemas/opsgenie/opsgenie-alertactionrequest/)
+- [AssignAlertRequest](https://apis.io/schemas/opsgenie/opsgenie-assignalertrequest/)
+- [AsyncRequestResponse](https://apis.io/schemas/opsgenie/opsgenie-asyncrequestresponse/)
+- [CloseAlertRequest](https://apis.io/schemas/opsgenie/opsgenie-closealertrequest/)
+- [CloseIncidentRequest](https://apis.io/schemas/opsgenie/opsgenie-closeincidentrequest/)
+- [CountAlertsResponse](https://apis.io/schemas/opsgenie/opsgenie-countalertsresponse/)
+- [CreateAlertRequest](https://apis.io/schemas/opsgenie/opsgenie-createalertrequest/)
+- [CreateEscalationRequest](https://apis.io/schemas/opsgenie/opsgenie-createescalationrequest/)
+- [CreateHeartbeatRequest](https://apis.io/schemas/opsgenie/opsgenie-createheartbeatrequest/)
+- [CreateIncidentRequest](https://apis.io/schemas/opsgenie/opsgenie-createincidentrequest/)
+- [CreateIntegrationRequest](https://apis.io/schemas/opsgenie/opsgenie-createintegrationrequest/)
+- [CreateIntegrationResponse](https://apis.io/schemas/opsgenie/opsgenie-createintegrationresponse/)
+- [CreateMaintenanceRequest](https://apis.io/schemas/opsgenie/opsgenie-createmaintenancerequest/)
+- [CreateNotificationRuleRequest](https://apis.io/schemas/opsgenie/opsgenie-createnotificationrulerequest/)
+- [CreateNotificationRuleResponse](https://apis.io/schemas/opsgenie/opsgenie-createnotificationruleresponse/)
+- [CreateNotificationRuleStepRequest](https://apis.io/schemas/opsgenie/opsgenie-createnotificationrulesteprequest/)
+- [CreateOverrideRequest](https://apis.io/schemas/opsgenie/opsgenie-createoverriderequest/)
+- [CreateRotationRequest](https://apis.io/schemas/opsgenie/opsgenie-createrotationrequest/)
+- [CreateScheduleRequest](https://apis.io/schemas/opsgenie/opsgenie-createschedulerequest/)
+- …and 78 more published on APIs.io
 
-### OpsGenie User API
+#### JSON Structure (1)
 
-Manage user accounts within the OpsGenie platform. Create, retrieve, update, and delete users, list users, and retrieve escalations associated with specific users. Supports managing user roles, contact methods, and notification preferences.
+Data models expressed in JSON Structure.
 
-- **Human URL:** [https://docs.opsgenie.com/docs/user-api](https://docs.opsgenie.com/docs/user-api)
-- **Base URL:** `https://api.opsgenie.com`
+- [Opsgenie Structure](https://apis.io/json-structure/opsgenie/opsgenie-structure/)
 
-#### Tags
+#### JSON-LD (1)
 
-- Users
-- Accounts
-- Identity
-- Management
+Linked-data contexts for the provider's vocabulary.
 
-#### Properties
+- [Opsgenie Context](https://apis.io/jsonld/opsgenie/opsgenie-context/)
 
-- [Documentation](https://docs.opsgenie.com/docs/user-api)
-- [OpenAPI](openapi/opsgenie-user-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/opsgenie-user.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/opsgenie-user.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Vocabulary (1)
 
-### OpsGenie Team API
+The provider's domain terms, defined.
 
-Manage teams within the OpsGenie platform. Create, update, retrieve, and delete teams, manage team members and their roles. Teams are a core organizational unit used to route alerts and assign on-call responsibilities to groups of users.
+- [OpsGenie Domain Vocabulary](https://apis.io/vocabularies/opsgenie/opsgenie-vocabulary/)
 
-- **Human URL:** [https://docs.opsgenie.com/docs/team-api](https://docs.opsgenie.com/docs/team-api)
-- **Base URL:** `https://api.opsgenie.com`
+#### Collections (42)
 
-#### Tags
+Postman and Open Collection request collections.
 
-- Teams
-- Groups
-- Collaboration
-- Management
+- [OpsGenie Account API](https://apis.io/collections/opsgenie/open-opsgenie-account/)
+- [OpsGenie Account API](https://apis.io/collections/opsgenie/open-opsgenie-account-api/)
+- [OpsGenie Alert API](https://apis.io/collections/opsgenie/open-opsgenie-alert/)
+- [OpsGenie Account Alerts API](https://apis.io/collections/opsgenie/open-opsgenie-alerts-api/)
+- [OpsGenie Escalation API](https://apis.io/collections/opsgenie/open-opsgenie-escalation/)
+- [OpsGenie Account Escalations API](https://apis.io/collections/opsgenie/open-opsgenie-escalations-api/)
+- [OpsGenie Heartbeat API](https://apis.io/collections/opsgenie/open-opsgenie-heartbeat/)
+- [OpsGenie Account Heartbeats API](https://apis.io/collections/opsgenie/open-opsgenie-heartbeats-api/)
+- [OpsGenie Incident API](https://apis.io/collections/opsgenie/open-opsgenie-incident/)
+- [OpsGenie Account Incidents API](https://apis.io/collections/opsgenie/open-opsgenie-incidents-api/)
+- [OpsGenie Integration API](https://apis.io/collections/opsgenie/open-opsgenie-integration/)
+- [OpsGenie Account Integrations API](https://apis.io/collections/opsgenie/open-opsgenie-integrations-api/)
+- [OpsGenie Maintenance API](https://apis.io/collections/opsgenie/open-opsgenie-maintenance/)
+- [OpsGenie Account Maintenance API](https://apis.io/collections/opsgenie/open-opsgenie-maintenance-api/)
+- [OpsGenie Notification Rule API](https://apis.io/collections/opsgenie/open-opsgenie-notification-rule/)
+- [OpsGenie Account Notification Rules API](https://apis.io/collections/opsgenie/open-opsgenie-notification-rules-api/)
+- [OpsGenie Account On-Call API](https://apis.io/collections/opsgenie/open-opsgenie-on-call-api/)
+- [OpsGenie Account Overrides API](https://apis.io/collections/opsgenie/open-opsgenie-overrides-api/)
+- [OpsGenie Account Rotations API](https://apis.io/collections/opsgenie/open-opsgenie-rotations-api/)
+- [OpsGenie Schedule API](https://apis.io/collections/opsgenie/open-opsgenie-schedule/)
+- [OpsGenie Account Schedules API](https://apis.io/collections/opsgenie/open-opsgenie-schedules-api/)
+- [OpsGenie Service API](https://apis.io/collections/opsgenie/open-opsgenie-service/)
+- [OpsGenie Account Services API](https://apis.io/collections/opsgenie/open-opsgenie-services-api/)
+- [OpsGenie Team API](https://apis.io/collections/opsgenie/open-opsgenie-team/)
+- [OpsGenie Account Teams API](https://apis.io/collections/opsgenie/open-opsgenie-teams-api/)
+- …and 17 more published on APIs.io
 
-#### Properties
+#### Governance rules (2)
 
-- [Documentation](https://docs.opsgenie.com/docs/team-api)
-- [OpenAPI](openapi/opsgenie-team-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/opsgenie-team.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/opsgenie-team.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Spectral rulesets for the provider's contracts.
 
-### OpsGenie Schedule API
+- [OpsGenie — asyncapi rules](https://apis.io/rules/opsgenie/opsgenie-asyncapi-spectral-rules/)
+- [OpsGenie — jsonschema rules](https://apis.io/rules/opsgenie/opsgenie-jsonschema-spectral-rules/)
 
-Programmatically manage on-call schedules and rotations. Create, update, and delete schedules, manage rotations and overrides, and query who is currently on call. Enables custom dashboards and integrations that reflect real-time on-call status.
+#### Security (3)
 
-- **Human URL:** [https://docs.opsgenie.com/docs/schedule-api](https://docs.opsgenie.com/docs/schedule-api)
-- **Base URL:** `https://api.opsgenie.com`
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Tags
+- [Opsgenie Authentication](https://apis.io/security/opsgenie/opsgenie-authentication/)
+- [Opsgenie Domain Security](https://apis.io/security/opsgenie/opsgenie-domain-security/)
+- [Opsgenie Vulnerability Disclosure](https://apis.io/security/opsgenie/opsgenie-vulnerability-disclosure/)
 
-- Schedules
-- On-Call
-- Rotations
-- Planning
+#### Plans and pricing (1)
 
-#### Properties
+Published plans, tiers and prices.
 
-- [Documentation](https://docs.opsgenie.com/docs/schedule-api)
-- [OpenAPI](openapi/opsgenie-schedule-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/opsgenie-schedule.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/opsgenie-schedule.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Opsgenie Plans Pricing](https://apis.io/plans/opsgenie/opsgenie-plans-pricing/)
 
-### OpsGenie Escalation API
+#### Rate limits (1)
 
-Manage escalation policies that define how alerts are routed when initial responders do not acknowledge them. Create, update, retrieve, and delete escalation configurations with rules defining sequence of notifications and configurable delay intervals.
+Published request limits.
 
-- **Human URL:** [https://docs.opsgenie.com/docs/escalation-api](https://docs.opsgenie.com/docs/escalation-api)
-- **Base URL:** `https://api.opsgenie.com`
+- [Opsgenie Rate Limits](https://apis.io/rate-limits/opsgenie/opsgenie-rate-limits/)
 
-#### Tags
+#### FinOps (1)
 
-- Escalations
-- Routing
-- Alerts
-- Workflows
+What the API costs to run, by operation.
 
-#### Properties
+- [Opsgenie Finops](https://apis.io/finops/opsgenie/opsgenie-finops/)
 
-- [Documentation](https://docs.opsgenie.com/docs/escalation-api)
-- [OpenAPI](openapi/opsgenie-escalation-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/opsgenie-escalation.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/opsgenie-escalation.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+## Where to find this API
 
-### OpsGenie Integration API
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-Programmatically manage integrations that connect OpsGenie with third-party monitoring, ticketing, and communication tools. Create, enable, disable, and configure integrations and their associated actions. Note that Zendesk, Slack, and Incoming Call integrations must be configured through the OpsGenie web interface.
-
-- **Human URL:** [https://docs.opsgenie.com/docs/integration-api](https://docs.opsgenie.com/docs/integration-api)
-- **Base URL:** `https://api.opsgenie.com`
-
-#### Tags
-
-- Integrations
-- Connections
-- Third Party
-- Automation
-
-#### Properties
-
-- [Documentation](https://docs.opsgenie.com/docs/integration-api)
-- [OpenAPI](openapi/opsgenie-integration-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/opsgenie-integration.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/opsgenie-integration.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [AsyncAPI](asyncapi/opsgenie-webhook-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-
-### OpsGenie Heartbeat API
-
-Set up and manage heartbeat monitors that track the health and availability of systems and services. Heartbeats expect periodic pings from monitored systems and generate an alert when a ping is not received within the configured interval.
-
-- **Human URL:** [https://docs.opsgenie.com/docs/heartbeat-api](https://docs.opsgenie.com/docs/heartbeat-api)
-- **Base URL:** `https://api.opsgenie.com`
-
-#### Tags
-
-- Heartbeat
-- Health Checks
-- Monitoring
-- Uptime
-
-#### Properties
-
-- [Documentation](https://docs.opsgenie.com/docs/heartbeat-api)
-- [OpenAPI](openapi/opsgenie-heartbeat-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/opsgenie-heartbeat.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/opsgenie-heartbeat.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/opsgenie-heartbeat-schema.json) — [JSON Schema](https://json-schema.org/specification)
-
-### OpsGenie Service API
-
-Manage services within the OpsGenie platform. Services represent business-critical applications and components that can be associated with incidents to track impact. Used in conjunction with the Incident API to identify which services are affected during an outage.
-
-- **Human URL:** [https://docs.opsgenie.com/docs/service-api](https://docs.opsgenie.com/docs/service-api)
-- **Base URL:** `https://api.opsgenie.com`
-
-#### Tags
-
-- Services
-- Service Catalog
-- Operations
-- Management
-
-#### Properties
-
-- [Documentation](https://docs.opsgenie.com/docs/service-api)
-- [OpenAPI](openapi/opsgenie-service-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/opsgenie-service.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/opsgenie-service.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### OpsGenie Notification Rule API
-
-Manage notification rules that control how and when users receive alert notifications. Create, update, and delete notification rules, including conditions, time restrictions, and notification channels such as email, SMS, push notifications, and voice calls.
-
-- **Human URL:** [https://docs.opsgenie.com/docs/notification-rule-api](https://docs.opsgenie.com/docs/notification-rule-api)
-- **Base URL:** `https://api.opsgenie.com`
-
-#### Tags
-
-- Notifications
-- Rules
-- Alerts
-- Configuration
-
-#### Properties
-
-- [Documentation](https://docs.opsgenie.com/docs/notification-rule-api)
-- [OpenAPI](openapi/opsgenie-notification-rule-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/opsgenie-notification-rule.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/opsgenie-notification-rule.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### OpsGenie Account API
-
-Retrieve account-level information and configuration settings. Access details about an OpsGenie account including plan information and account metadata. Foundational API for administrative operations and account management.
-
-- **Human URL:** [https://docs.opsgenie.com/docs/account-api](https://docs.opsgenie.com/docs/account-api)
-- **Base URL:** `https://api.opsgenie.com`
-
-#### Tags
-
-- Accounts
-- Administration
-- Settings
-- Configuration
-
-#### Properties
-
-- [Documentation](https://docs.opsgenie.com/docs/account-api)
-- [OpenAPI](openapi/opsgenie-account-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/opsgenie-account.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/opsgenie-account.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### OpsGenie Maintenance API
-
-Manage maintenance windows that suppress alert notifications during planned maintenance periods. Create, update, list, and delete maintenance windows with configurable time ranges and rules for which integrations or policies are affected.
-
-- **Human URL:** [https://docs.opsgenie.com/docs/maintenance-api](https://docs.opsgenie.com/docs/maintenance-api)
-- **Base URL:** `https://api.opsgenie.com`
-
-#### Tags
-
-- Maintenance
-- Windows
-- Scheduling
-- Operations
-
-#### Properties
-
-- [Documentation](https://docs.opsgenie.com/docs/maintenance-api)
-- [OpenAPI](openapi/opsgenie-maintenance-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/opsgenie-maintenance.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/opsgenie-maintenance.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/opsgenie)
-- [Portal](https://docs.opsgenie.com/)
-- [Documentation](https://docs.opsgenie.com/docs)
 - [Website](https://www.atlassian.com/software/opsgenie)
-- [Privacy Policy](https://www.atlassian.com/legal/privacy-policy)
-- [Terms of Service](https://www.atlassian.com/legal/software-license-agreement)
+- [Documentation](https://docs.opsgenie.com/docs)
 - [Support](https://support.atlassian.com/opsgenie/)
 - [Blog](https://www.atlassian.com/blog)
-- [Login](https://app.opsgenie.com/auth/login)
-- [Features](undefined)
-- [L L Ms Txt](https://docs.opsgenie.com/llms.txt)
+- [Terms of service](https://www.atlassian.com/legal/software-license-agreement)
+- [Privacy policy](https://www.atlassian.com/legal/privacy-policy)
+- [GitHub](https://github.com/opsgenie)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** API Evangelist
-**Email:** info@apievangelist.com
+**Kin Score 48.0** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 69.6 |
+| Contract quality | 75.1 |
+| Contract governance | 13.6 |
+| Operational transparency | 21.1 |
+| Developer ergonomics | 39.3 |
+| Access clarity | 42.1 |
+
+**Agent readiness 27.1** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 30.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/opsgenie/](https://apis.io/providers/opsgenie/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for OpsGenie: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/opsgenie/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
